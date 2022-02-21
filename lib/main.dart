@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
+
+import 'core/constants/strings.dart';
+import 'core/themes/app_theme.dart';
+import 'data/dio/dio_helper.dart';
+import 'logic/debug/app_bloc_observer.dart';
+import 'presentation/router/app_router.dart';
 
 void main() {
-  runApp(const MyApp());
+  DioHelper.init();
+  BlocOverrides.runZoned(
+    () {
+      runApp(const MyApp());
+    },
+    blocObserver: AppBlocObserver(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -9,22 +23,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return BlocProvider<SignUpCubit>(
+      create: (context) => SignUpCubit(),
+      child: MaterialApp(
+        title: Strings.appTitle,
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        debugShowCheckedModeBanner: false,
+        initialRoute: AppRouter.signUp,
+        onGenerateRoute: AppRouter.onGenerateRoute,
       ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({ Key? key }) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      
     );
   }
 }
