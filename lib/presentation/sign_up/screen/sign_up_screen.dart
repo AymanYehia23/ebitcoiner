@@ -32,9 +32,9 @@ class SignUpScreen extends StatelessWidget {
               );
             } else if (state is SignUpErrorState) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.error),
-                  duration: const Duration(milliseconds: 3000),
+                const SnackBar(
+                  content: Text('an error occurred try again later!'),
+                  duration: Duration(milliseconds: 3000),
                 ),
               );
             }

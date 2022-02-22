@@ -20,7 +20,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       print(res);
       return res;
     } catch (error) {
-      emit(SignUpErrorState(error.toString()));
+      emit(SignUpErrorState());
       print(error.toString());
       rethrow;
     }
