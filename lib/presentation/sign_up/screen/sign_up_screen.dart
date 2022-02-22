@@ -24,36 +24,41 @@ class SignUpScreen extends StatelessWidget {
                 ),
               );
             } else if (state is SignUpSuccessState) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(state.response),
-                duration: const Duration(milliseconds: 3000),
-              ),);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.response),
+                  duration: const Duration(milliseconds: 3000),
+                ),
+              );
             } else if (state is SignUpErrorState) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(state.error),
-                duration: const Duration(milliseconds: 3000),
-              ),);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.error),
+                  duration: const Duration(milliseconds: 3000),
+                ),
+              );
             }
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               ElevatedButton(
-                  onPressed: () {
-                    context.read<SignUpCubit>().signUp(
-                          SignUPModel(
-                            email: 'a@e.com',
-                            password: '123456',
-                            phone: '0123456789',
-                          ),
-                        );
-                  },
-                  child: const Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      fontSize: 40.0,
-                    ),
-                  )),
+                onPressed: () {
+                  context.read<SignUpCubit>().signUp(
+                        SignUPModel(
+                          email: 'a@e.com',
+                          password: '123456',
+                          phone: '0123456789',
+                        ),
+                      );
+                },
+                child: const Text(
+                  'Sign Up',
+                  style: TextStyle(
+                    fontSize: 40.0,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

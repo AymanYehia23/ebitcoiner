@@ -6,5 +6,5 @@ class Strings {
   static const signUpScreenTitle = 'Sign Up Screen';
 
   //End points
-  static const signUp = 'signup';
+  static const signUpApIEndPoint = 'signup';
 }

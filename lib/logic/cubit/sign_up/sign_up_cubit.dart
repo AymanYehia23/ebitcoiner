@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:hash_store/data/data_providers/sign_up_api.dart';
 import 'package:hash_store/data/models/sign_up_model.dart';
 import 'package:hash_store/data/repositories/sign_up_repo.dart';
 import 'package:meta/meta.dart';
@@ -12,9 +13,9 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   Future<String> signUp(SignUPModel signUPModel) async {
     emit(SignUpLoadingState());
-    _signUpRepo = SignUpRepo();
+    _signUpRepo = SignUpAPI();
     try {
-      String res = await _signUpRepo.signUpRepo(signUPModel: signUPModel);
+      String res = await _signUpRepo.postSignUp(signUPModel: signUPModel);
       emit(SignUpSuccessState(response: res));
       print(res);
       return res;
