@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/data/data_providers/sign_up_api.dart';
 import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 
 import 'core/constants/strings.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SignUpCubit>(
-      create: (context) => SignUpCubit(),
+      create: (context) => SignUpCubit(signUpRepo: SignUpAPI()),
       child: MaterialApp(
         title: Strings.appTitle,
         theme: AppTheme.lightTheme,
