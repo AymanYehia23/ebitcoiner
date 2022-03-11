@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/data/data_providers/sign_up_api.dart';
@@ -13,7 +14,12 @@ void main() {
   DioHelper.init();
   BlocOverrides.runZoned(
     () {
-      runApp(const MyApp());
+      runApp(
+        DevicePreview(
+          enabled: false,
+          builder: (context) => const MyApp(),
+        ),
+      );
     },
     blocObserver: AppBlocObserver(),
   );
@@ -31,8 +37,11 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRouter.signUp,
+        initialRoute: AppRouter.splash,
         onGenerateRoute: AppRouter.onGenerateRoute,
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
       ),
     );
   }

@@ -7,7 +7,7 @@ class DioHelper {
     dio = Dio(BaseOptions(
       baseUrl: 'https://expertminer.herokuapp.com/api/',
       receiveDataWhenStatusError: true,
-    ));
+    ),);
   }
 
   static Future<Response> getData({
@@ -36,4 +36,5 @@ class DioHelper {
       data: data,
     );
   }
+
 }
