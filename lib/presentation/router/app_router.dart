@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hash_store/presentation/Home/screen/home_screen.dart';
+import 'package:hash_store/presentation/assets/screen/assets_screen.dart';
 
 import '../../core/constants/strings.dart';
 import '../../core/exceptions/route_exception.dart';
@@ -8,6 +10,7 @@ import '../splash/screen/splash_screen.dart';
 class AppRouter {
   static const String signUp = 'signUp';
   static const String splash = 'splash';
+  static const String home = 'home';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -19,6 +22,8 @@ class AppRouter {
             title: Strings.signUpScreenTitle,
           ),
         );
+      case home:
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       default:
         throw const RouteException('Route not found!');
     }

@@ -5,12 +5,12 @@ import '../sizer/sizer.dart';
 
 class DefaultGradientButton extends StatelessWidget {
   final bool isFilled;
-  final String label;
+  final Widget text;
   final Function onPressed;
   const DefaultGradientButton({
     Key? key,
     required this.isFilled,
-    required this.label,
+    required this.text,
     required this.onPressed,
   }) : super(key: key);
 
@@ -38,13 +38,7 @@ class DefaultGradientButton extends StatelessWidget {
               ),
             ),
             child: TextButton(
-              child: Text(
-                label,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(fontSize: s.w(18.0)),
-              ),
+              child:text,
               onPressed: onPressed(),
             ),
           )
@@ -62,12 +56,7 @@ class DefaultGradientButton extends StatelessWidget {
               ),
               strokeWidth: 1,
               child: Center(
-                child: Text(
-                  label,
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                        fontSize: s.w(18.0),
-                      ),
-                ),
+                child: text,
               ),
               onTap: onPressed(),
               radius: Radius.circular(s.h(56.0)),
