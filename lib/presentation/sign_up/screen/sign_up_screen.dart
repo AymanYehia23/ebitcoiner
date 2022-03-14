@@ -1,68 +1,90 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/data/models/sign_up_model.dart';
-import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
+import 'package:hash_store/presentation/sizer/sizer.dart';
+
+import '../../shared_components/default_disabled_button.dart';
+import '../../shared_components/default_textfield.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key, required this.title}) : super(key: key);
+  const SignUpScreen({Key? key, }) : super(key: key);
 
-  final String title;
+  
 
   @override
   Widget build(BuildContext context) {
+    Sizer s = Sizer(context: context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: BlocListener<SignUpCubit, SignUpState>(
-          listener: (context, state) {
-            if (state is SignUpLoadingState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Loading...'),
-                ),
-              );
-            } else if (state is SignUpSuccessState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.response),
-                  duration: const Duration(milliseconds: 3000),
-                ),
-              );
-            } else if (state is SignUpErrorState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('an error occurred try again later!'),
-                  duration: Duration(milliseconds: 3000),
-                ),
-              );
-            }
-          },
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: s.w(16.0),
+        ),
+        child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ElevatedButton(
-                onPressed: () {
-                  context.read<SignUpCubit>().signUp(
-                        SignUPModel(
-                          email: 'a@e.com',
-                          password: '123456',
-                          phone: '0123456789',
-                        ),
-                      );
-                },
-                child: const Text(
-                  'Sign Up',
-                  style: TextStyle(
-                    fontSize: 40.0,
-                  ),
+            children: [
+              SizedBox(
+                height: s.h(112.0),
+              ),
+              Text(
+                'Create New Account',
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(fontSize: s.h(30.0)),
+              ),
+              SizedBox(
+                height: s.h(24.0),
+              ),
+              const DefaultTextField(
+                text: 'Email',
+                wid: 343.0,
+              ),
+              SizedBox(
+                height: s.h(20.0),
+              ),
+              SizedBox(
+                height: s.h(56.0),
+                child: Row(
+                  children: [
+                    const DefaultTextField(
+                      text: '+20',
+                      wid: 104.0,
+                    ),
+                    SizedBox(
+                      width: s.w(16.0),
+                    ),
+                    const DefaultTextField(
+                      text: 'Phone Number',
+                      wid: 224.0,
+                    ),
+                  ],
                 ),
               ),
+              SizedBox(
+                height: s.h(20.0),
+              ),
+              const DefaultTextField(
+                text: 'Password',
+                wid: 343.0,
+              ),
+              SizedBox(
+                height: s.h(24.0),
+              ),
+              Text(
+                'By continuing to register, you agree to',
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(fontSize: s.h(30.0)),
+              ),
+              SizedBox(
+                height: s.h(240.0),
+              ),
+              const DefaultDisabledButton(text: Text('Sign Up')),
             ],
           ),
         ),
-      ),
+     ),
     );
   }
 }
