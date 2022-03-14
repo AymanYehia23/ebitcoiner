@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRouter.logIn,
+        initialRoute: AppRouter.signUp,
         onGenerateRoute: AppRouter.onGenerateRoute,
         useInheritedMediaQuery: true,
         locale: DevicePreview.locale(context),

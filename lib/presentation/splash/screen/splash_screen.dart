@@ -35,7 +35,7 @@ class SplashScreen extends StatelessWidget {
                 'Get Access to Real Mining Power Without Any Extra Effort',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                      fontSize: s.w(24.0),
+                      fontSize: s.h(26.0),
                       fontWeight: FontWeight.bold,
                     ),
               ),
@@ -43,15 +43,16 @@ class SplashScreen extends StatelessWidget {
                 height: s.h(42.0),
               ),
               DefaultGradientButton(
-                  isFilled: true,
-                  text: Text(
-                    'Create an Account',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.w(18.0),
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                  onPressed: () {}),
+                isFilled: true,
+                text: Text(
+                  'Create an Account',
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontSize: s.h(19.0),
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                onPressed: () {},
+              ),
               SizedBox(
                 height: s.h(15.5),
               ),
@@ -60,7 +61,7 @@ class SplashScreen extends StatelessWidget {
                   text: Text(
                     'Sign In',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.w(18.0),
+                          fontSize: s.h(19.0),
                           fontWeight: FontWeight.bold,
                         ),
                   ),

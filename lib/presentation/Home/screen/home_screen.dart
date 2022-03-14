@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     Sizer s = Sizer(context: context);
     return Scaffold(
-      body: const AssetsScreen(),
+      body: AssetsScreen(),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(

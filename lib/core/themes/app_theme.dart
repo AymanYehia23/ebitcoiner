@@ -5,13 +5,17 @@ class AppTheme {
   static final lightTheme = ThemeData(
     primarySwatch: Colors.blue,
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    scaffoldBackgroundColor: const Color(0xff13111a),
+    scaffoldBackgroundColor: Colors.transparent,
+    appBarTheme:  const AppBarTheme(
+      color: Colors.transparent,
+      elevation: 0,
+    ),
     textTheme: const TextTheme(
       bodyText1: TextStyle(
         color: Colors.white,
       ),
       bodyText2: TextStyle(
-        color: Color.fromRGBO(183, 180, 199, 1),
+        color: Color(0xffb7b4c7)
       ),
     ),
     fontFamily: 'CircularStd',

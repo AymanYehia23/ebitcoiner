@@ -4,43 +4,42 @@ import 'package:hash_store/presentation/sizer/sizer.dart';
 
 class DefaultTextField extends StatelessWidget {
   final String text;
-  final double wid;
+  final bool isObscureText;
+  final IconData? suffixIcon;
   const DefaultTextField({
     Key? key,
     required this.text,
-    required this.wid,
+    this.isObscureText = false,
+    this.suffixIcon,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Sizer s = Sizer(context: context);
-    return Column(
-      children: [
-        Theme(
-          data: ThemeData(
-
-          ),
-          child: TextField(
-            decoration: InputDecoration(
-              fillColor: const Color(0xff302c3f),
-              border: OutlineInputBorder(
-                borderSide: BorderSide(
-                  width: s.w(wid),
-                  color: const Color(0xffe6e6e6),
-                ),
-                borderRadius: BorderRadius.all(Radius.circular(s.h(8.0))),
-              ),
-              hintText: text,
-              hintStyle: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    fontSize: s.h(19.0),
-                  ),
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: text,
+        labelStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
+              color: const Color(0xffb7b4c7),
             ),
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                  fontSize: s.h(19.0),
-                ),
+        fillColor: const Color(0xff302c3f),
+        filled: true,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(s.h(10)),
+          borderSide: const BorderSide(
+            color: Colors.white,
           ),
         ),
-      ],
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(s.h(10)),
+          borderSide: const BorderSide(
+            color: Color(0xffe6e6e6),
+          ),
+        ),
+        suffixIcon: suffixIcon == null ? const Text('') :Icon(suffixIcon!,color: const Color(0xffe6e6e6),),
+        
+      ),
+      obscureText: isObscureText,
     );
   }
 }
