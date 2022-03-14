@@ -27,7 +27,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const ResetPassScreen());
       case signUp:
         return MaterialPageRoute(
-          builder: (_) => const SignUpScreen(
+          builder: (_) =>  SignUpScreen(
           ),
         );
       default:

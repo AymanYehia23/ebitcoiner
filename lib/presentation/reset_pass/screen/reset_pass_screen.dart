@@ -46,8 +46,14 @@ class ResetPassScreen extends StatelessWidget {
                   SizedBox(
                     height: s.h(24.0),
                   ),
-                  const DefaultTextField(
+                  DefaultTextField(
                     text: 'Email',
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Invalid email!';
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(
                     height: s.h(435.0),

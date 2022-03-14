@@ -47,9 +47,8 @@ class _AssetsTotalWidgetState extends State<AssetsTotalWidget> {
                 children: [
                   Text(
                     'Total',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           fontSize: s.h(17),
-                          color: const Color(0xffb7b4c7),
                           fontWeight: FontWeight.bold,
                         ),
                   ),

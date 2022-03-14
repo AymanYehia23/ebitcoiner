@@ -35,9 +35,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: Strings.appTitle,
         theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRouter.signUp,
+        initialRoute: AppRouter.splash,
         onGenerateRoute: AppRouter.onGenerateRoute,
         useInheritedMediaQuery: true,
         locale: DevicePreview.locale(context),
