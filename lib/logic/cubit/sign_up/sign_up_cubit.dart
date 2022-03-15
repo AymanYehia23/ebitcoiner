@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hash_store/data/models/sign_up_model.dart';
 import 'package:hash_store/data/repositories/sign_up_repo.dart';
@@ -17,10 +18,10 @@ class SignUpCubit extends Cubit<SignUpState> {
       emit(SignUpSuccessState(response: res));
       print(res);
       return res;
-    } catch (error) {
-      emit(SignUpErrorState());
-      print(error.toString());
-      rethrow;
+    } on DioError catch (error) {
+      emit(SignUpErrorState(error: error.response!.data));
+      print(error.response!.data);
+      return error.response!.data;
     }
   }
 }

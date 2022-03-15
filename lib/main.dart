@@ -6,12 +6,12 @@ import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 
 import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
-import 'data/dio_helper.dart';
+import 'data/http/http_service.dart';
 import 'logic/debug/app_bloc_observer.dart';
 import 'presentation/router/app_router.dart';
 
 void main() {
-  DioHelper.init();
+  HttpService.init();
   BlocOverrides.runZoned(
     () {
       runApp(

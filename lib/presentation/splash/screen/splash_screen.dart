@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/presentation/router/app_router.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
@@ -27,7 +28,7 @@ class SplashScreen extends StatelessWidget {
                     height: s.h(394.0),
                     width: double.infinity,
                     child: SvgPicture.asset(
-                      'assets/images/splash_image.svg',
+                      Strings.splashImage,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -35,7 +36,7 @@ class SplashScreen extends StatelessWidget {
                     height: s.h(20.0),
                   ),
                   Text(
-                    'Get Access to Real Mining Power Without Any Extra Effort',
+                    Strings.splashScreenDescription,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
                           fontSize: s.h(26.0),
@@ -48,7 +49,7 @@ class SplashScreen extends StatelessWidget {
                   DefaultGradientButton(
                     isFilled: true,
                     text: Text(
-                      'Create an Account',
+                      Strings.splashCreateAnAccount,
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
                             fontSize: s.h(19.0),
                             fontWeight: FontWeight.bold,
@@ -64,7 +65,7 @@ class SplashScreen extends StatelessWidget {
                   DefaultGradientButton(
                     isFilled: false,
                     text: Text(
-                      'Sign In',
+                      Strings.splashSignIn,
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
                             fontSize: s.h(19.0),
                             fontWeight: FontWeight.bold,
