@@ -37,7 +37,6 @@ class DefaultTextField extends StatelessWidget {
           ),
         ),
         suffixIcon: suffixIcon == null ? const Text('') :Icon(suffixIcon!,color: const Color(0xffe6e6e6),),
-        
       ),
       obscureText: isObscureText,
     );

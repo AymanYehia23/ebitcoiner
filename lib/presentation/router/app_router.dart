@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hash_store/presentation/Home/screen/home_screen.dart';
+import 'package:hash_store/presentation/enter_new_pass/screens/enter_new_pass.dart';
 import 'package:hash_store/presentation/log_in/screen/log_in_screen.dart';
+import 'package:hash_store/presentation/recovery_link/screens/recovery_screen.dart';
 import 'package:hash_store/presentation/reset_pass/screen/reset_pass_screen.dart';
 
 import '../../core/constants/strings.dart';
@@ -14,6 +16,8 @@ class AppRouter {
   static const String logIn = 'logIn';
   static const String resetPass = 'resetPass';
   static const String home = 'home';
+  static const String recoveryLink = 'recoveryLink';
+  static const String enterNewPass = 'enterNewPass';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -21,15 +25,16 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case logIn:
         return MaterialPageRoute(builder: (_) => const LogInScreen());
-        case home:
+      case home:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case recoveryLink:
+        return MaterialPageRoute(builder: (_) => const RecoveryScreen());
       case resetPass:
         return MaterialPageRoute(builder: (_) => const ResetPassScreen());
       case signUp:
-        return MaterialPageRoute(
-          builder: (_) => const SignUpScreen(
-          ),
-        );
+        return MaterialPageRoute(builder: (_) => const SignUpScreen());
+      case enterNewPass:
+        return MaterialPageRoute(builder: (_) => const EnterNewPass());
       default:
         throw const RouteException('Route not found!');
     }
