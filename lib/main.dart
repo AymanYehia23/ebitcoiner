@@ -2,6 +2,9 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/data/data_providers/sign_up_api.dart';
+import 'package:hash_store/logic/cubit/login/login_cubit.dart';
+import 'package:hash_store/logic/cubit/new_password/new_password_cubit.dart';
+import 'package:hash_store/logic/cubit/reset_password/reset_password_cubit.dart';
 import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 
 import 'core/constants/strings.dart';
@@ -30,13 +33,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<SignUpCubit>(
-      create: (context) => SignUpCubit(signUpRepo: SignUpAPI()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<SignUpCubit>(
+          create: (context) => SignUpCubit(signUpRepo: SignUpAPI()),
+        ),
+        BlocProvider<LoginCubit>(
+          create: (context) => LoginCubit(),
+        ),
+        BlocProvider<ResetPasswordCubit>(
+          create: (context) => ResetPasswordCubit(),
+        ),
+        BlocProvider<NewPasswordCubit>(
+          create: (context) => NewPasswordCubit(),
+        ),
+      ],
       child: MaterialApp(
         title: Strings.appTitle,
         theme: AppTheme.lightTheme,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRouter.logIn,
+        initialRoute: AppRouter.splash,
         onGenerateRoute: AppRouter.onGenerateRoute,
         useInheritedMediaQuery: true,
         locale: DevicePreview.locale(context),

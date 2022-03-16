@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/logic/cubit/login/login_cubit.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
 import 'package:hash_store/core/extensions/input_validation.dart';
 
 import '../../shared_components/default_textfield.dart';
 
-class LoginForm extends StatefulWidget {
+class LoginForm extends StatelessWidget {
   const LoginForm({
     Key? key,
     required GlobalKey<FormState> formKey,
@@ -20,19 +22,10 @@ class LoginForm extends StatefulWidget {
   final TextEditingController _passwordController;
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
-}
-
-class _LoginFormState extends State<LoginForm> {
-  bool _isObscure = true;
-
-  IconData iconData = Icons.visibility_outlined;
-
-  @override
   Widget build(BuildContext context) {
     Sizer s = Sizer(context: context);
     return Form(
-      key: widget._formKey,
+      key: _formKey,
       child: Column(
         children: [
           DefaultTextField(
@@ -41,36 +34,33 @@ class _LoginFormState extends State<LoginForm> {
               if (!val!.isValidEmail) return 'Enter valid email';
               return null;
             },
-            controller: widget._emailController,
+            controller: _emailController,
           ),
           SizedBox(
             height: s.h(20.0),
           ),
-          DefaultTextField(
-            text: 'Password',
-            isObscureText: _isObscure,
-            suffixIcon: IconButton(
-              icon: Icon(
-                iconData,
-                color: Colors.white,
+          Builder(builder: (context) {
+            return DefaultTextField(
+              text: 'Password',
+              isObscureText: context.watch<LoginCubit>().isObscure,
+              suffixIcon: IconButton(
+                icon: Icon(
+                  context.read<LoginCubit>().iconData,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  context.read<LoginCubit>().changePasswordVisibility();
+                },
               ),
-              onPressed: () {
-                setState(() {
-                  _isObscure = !_isObscure;
-                  iconData = _isObscure
-                      ? Icons.visibility_outlined
-                      : Icons.visibility_off_outlined;
-                });
+              validator: (val) {
+                if (!val!.isValidPassword) {
+                  return 'Enter valid password';
+                }
+                return null;
               },
-            ),
-            validator: (val) {
-              if (!val!.isValidPassword) {
-                return 'Enter valid password';
-              }
-              return null;
-            },
-            controller: widget._passwordController,
-          ),
+              controller: _passwordController,
+            );
+          }),
         ],
       ),
     );

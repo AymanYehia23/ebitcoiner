@@ -18,31 +18,30 @@ class DefaultGradientButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Sizer s = Sizer(context: context);
     return isFilled
-        ? Container(
-            height: s.h(56.0),
-            width: double.infinity,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  s.h(56.0),
+        ? InkWell(
+            onTap: () {
+              onPressed();
+            },
+            child: Container(
+                height: s.h(56.0),
+                width: double.infinity,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(
+                      s.h(56.0),
+                    ),
+                  ),
+                  gradient: const LinearGradient(
+                    colors: [
+                      Color(0xffff4980),
+                      Color(0xff4f56ff),
+                    ],
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                  ),
                 ),
-              ),
-              gradient: const LinearGradient(
-                colors: [
-                  Color(0xffff4980),
-                  Color(0xff4f56ff),
-                ],
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-              ),
-            ),
-            child: TextButton(
-              child: text,
-              onPressed: () {
-                onPressed();
-              },
-            ),
+                child: text),
           )
         : SizedBox(
             width: double.infinity,

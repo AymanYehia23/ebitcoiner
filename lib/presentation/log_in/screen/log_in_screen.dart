@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 
 import '../../../core/constants/strings.dart';
+import '../../../logic/cubit/login/login_cubit.dart';
 import '../../router/app_router.dart';
 import '../../shared_components/default_gradient_button.dart';
 import '../../sizer/sizer.dart';
@@ -20,12 +22,10 @@ class _LogInScreenState extends State<LogInScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  bool _isEmpty = true;
-
   void _submit() {
     _formKey.currentState!.validate();
     if (_formKey.currentState!.validate()) {
-      Navigator.pushReplacementNamed(context, AppRouter.home);
+      Navigator.pushReplacementNamed(context, AppRouter.splash);
     }
   }
 
@@ -46,13 +46,9 @@ class _LogInScreenState extends State<LogInScreen> {
   void _checkOfEmptyValue() {
     if (_emailController.text.isNotEmpty &&
         _passwordController.text.isNotEmpty) {
-      setState(() {
-        _isEmpty = false;
-      });
+      context.read<LoginCubit>().isEmpty = false;
     } else {
-      setState(() {
-        _isEmpty = true;
-      });
+      context.read<LoginCubit>().isEmpty = true;
     }
   }
 
@@ -70,7 +66,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   Navigator.pushNamed(context, AppRouter.signUp);
                 },
                 child: Text(
-                  Strings.signUp,
+                  'Sign Up',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontSize: s.h(17),
                       ),
@@ -108,7 +104,10 @@ class _LogInScreenState extends State<LogInScreen> {
                     height: s.h(24.0),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed(AppRouter.resetPass);
+                    },
                     child: Text(
                       Strings.forgetPassword,
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
@@ -121,8 +120,10 @@ class _LogInScreenState extends State<LogInScreen> {
                   SizedBox(
                     height: s.h(300.0),
                   ),
-                  _isEmpty
-                      ? DefaultDisabledButton(
+                  Builder(
+                    builder: (context) {
+                      if (context.select((LoginCubit s) => s.isEmpty)) {
+                        return DefaultDisabledButton(
                           text: Text(
                             'Login',
                             style:
@@ -131,8 +132,9 @@ class _LogInScreenState extends State<LogInScreen> {
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
-                        )
-                      : DefaultGradientButton(
+                        );
+                      } else {
+                        return DefaultGradientButton(
                           isFilled: true,
                           text: Text(
                             'Login',
@@ -145,7 +147,10 @@ class _LogInScreenState extends State<LogInScreen> {
                           onPressed: () {
                             _submit();
                           },
-                        ),
+                        );
+                      }
+                    },
+                  )
                 ],
               ),
             ),

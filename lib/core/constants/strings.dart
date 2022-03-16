@@ -19,9 +19,9 @@ class Strings {
   static const login = 'Login';
   static const forgetPassword = 'Forget your Password';
 
-  //Enter New Password & Resset Password Screen
+  //Enter New Password & Reset Password Screen
   static const enterNewPassword = 'Enter New Password';
-  static const resetPassword = 'Resset Password';
+  static const resetPassword = 'Reset Password';
   static const resetMsg =
       'Enter your account email to send you password recovery link';
 

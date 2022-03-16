@@ -28,9 +28,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  bool _isEmpty = true;
-  bool _isObscure = true;
-
   @override
   void initState() {
     _nameController.addListener(_checkOfEmptyValue);
@@ -54,18 +51,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
         _emailController.text.isNotEmpty &&
         _phoneNumberController.text.isNotEmpty &&
         _passwordController.text.isNotEmpty) {
-      setState(() {
-        _isEmpty = false;
-      });
+      context.read<SignUpCubit>().isEmpty = false;
     } else {
-      setState(() {
-        _isEmpty = true;
-      });
+      context.read<SignUpCubit>().isEmpty = true;
     }
   }
 
   void _submit() async {
-    _formKey.currentState!.validate();
     if (_formKey.currentState!.validate()) {
       final signUpModel = SignUPModel(
         name: _nameController.text,
@@ -73,7 +65,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         password: _passwordController.text,
         phone: _phoneNumberController.text,
       );
-      await context.read<SignUpCubit>().signUp(signUpModel);
+      Navigator.of(context).pushReplacementNamed(AppRouter.splash);
+      //await context.read<SignUpCubit>().signUp(signUpModel);
     }
   }
 
@@ -109,7 +102,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, 'Login');
+                    Navigator.pushNamed(context, AppRouter.logIn);
                   },
                   child: Text(
                     'Login',
@@ -199,8 +192,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     SizedBox(
                       height: s.h(160.0),
                     ),
-                    _isEmpty
-                        ? DefaultDisabledButton(
+                    Builder(
+                      builder: (context) {
+                        if (context.select((SignUpCubit s) => s.isEmpty)) {
+                          return DefaultDisabledButton(
                             text: Text(
                               'Sign Up',
                               style: Theme.of(context)
@@ -211,8 +206,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
-                          )
-                        : DefaultGradientButton(
+                          );
+                        } else {
+                          return DefaultGradientButton(
                             isFilled: true,
                             text: Builder(builder: (context) {
                               final signUpState =
@@ -236,7 +232,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             onPressed: () {
                               _submit();
                             },
-                          ),
+                          );
+                        }
+                      },
+                    )
                   ],
                 ),
               ),

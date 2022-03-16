@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hash_store/core/constants/strings.dart';
+import 'package:hash_store/presentation/router/app_router.dart';
 
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
 
 class RecoveryScreen extends StatelessWidget {
-  const RecoveryScreen({Key? key,/*required this.email*/}) : super(key: key);
+  const RecoveryScreen({
+    Key? key,
+    /*required this.email*/
+  }) : super(key: key);
 
   //final String email;
   @override
@@ -17,17 +21,7 @@ class RecoveryScreen extends StatelessWidget {
       children: [
         const GradientBackgroundContainer(),
         Scaffold(
-          appBar: AppBar(
-            actions: [
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  '',
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-              )
-            ],
-          ),
+          appBar: AppBar(),
           body: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(
@@ -45,7 +39,7 @@ class RecoveryScreen extends StatelessWidget {
                         height: s.h(88.0),
                         width: s.w(88.0),
                         child: SvgPicture.asset(
-                         Strings.msgImage,
+                          Strings.msgImage,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -76,9 +70,13 @@ class RecoveryScreen extends StatelessWidget {
                     height: s.h(32.0),
                   ),
                   DefaultGradientButton(
-                      isFilled: false,
-                      text: const Text('Back To Login Page'),
-                      onPressed: () {}),
+                    isFilled: false,
+                    text: const Text('Back To Login Page'),
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed(AppRouter.enterNewPass);
+                    },
+                  ),
                 ],
               ),
             ),

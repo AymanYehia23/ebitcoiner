@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
 import 'package:hash_store/core/extensions/input_validation.dart';
+import '../../../logic/cubit/sign_up/sign_up_cubit.dart';
 import '../../shared_components/default_textfield.dart';
 import 'country_code_widget.dart';
 
-class SignUpForm extends StatefulWidget {
+class SignUpForm extends StatelessWidget {
   const SignUpForm({
     Key? key,
     required GlobalKey<FormState> formKey,
@@ -27,18 +29,10 @@ class SignUpForm extends StatefulWidget {
   final TextEditingController _passwordController;
 
   @override
-  State<SignUpForm> createState() => _SignUpFormState();
-}
-
-class _SignUpFormState extends State<SignUpForm> {
-  bool _isObscure = true;
-  IconData iconData = Icons.visibility_outlined;
-
-  @override
   Widget build(BuildContext context) {
     Sizer s = Sizer(context: context);
     return Form(
-      key: widget._formKey,
+      key: _formKey,
       child: Column(
         children: [
           DefaultTextField(
@@ -52,7 +46,7 @@ class _SignUpFormState extends State<SignUpForm> {
               if (!val!.isValidName) return 'Enter valid name';
               return null;
             },
-            controller: widget._nameController,
+            controller: _nameController,
           ),
           SizedBox(
             height: s.h(20.0),
@@ -63,7 +57,7 @@ class _SignUpFormState extends State<SignUpForm> {
               if (!val!.isValidEmail) return 'Enter valid email';
               return null;
             },
-            controller: widget._emailController,
+            controller: _emailController,
           ),
           SizedBox(
             height: s.h(20.0),
@@ -90,7 +84,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     if (!val!.isValidPhone) return 'Enter valid phone';
                     return null;
                   },
-                  controller: widget._phoneNumberController,
+                  controller: _phoneNumberController,
                 ),
               ),
             ],
@@ -98,29 +92,28 @@ class _SignUpFormState extends State<SignUpForm> {
           SizedBox(
             height: s.h(20.0),
           ),
-          DefaultTextField(
-            text: 'Password',
-            isObscureText: _isObscure,
-            suffixIcon: IconButton(
-              icon: Icon(
-                iconData,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                setState(() {
-                  _isObscure = !_isObscure;
-                  iconData = _isObscure
-                      ? Icons.visibility_outlined
-                      : Icons.visibility_off_outlined;
-                });
-              },
-            ),
-            validator: (val) {
-              if (!val!.isValidPassword) return 'Enter valid password';
-              return null;
-            },
-            controller: widget._passwordController,
-          ),
+          Builder(
+            builder: (context) {
+              return DefaultTextField(
+                text: 'Password',
+                isObscureText: context.watch<SignUpCubit>().isObscure,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    context.read<SignUpCubit>().iconData,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    context.read<SignUpCubit>().changePasswordVisibility();
+                  },
+                ),
+                validator: (val) {
+                  if (!val!.isValidPassword) return 'Enter valid password';
+                  return null;
+                },
+                controller: _passwordController,
+              );
+            }
+          )
         ],
       ),
     );
