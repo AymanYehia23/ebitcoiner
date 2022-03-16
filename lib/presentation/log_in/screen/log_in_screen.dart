@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
-import 'package:hash_store/presentation/shared_components/default_textfield.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 
 import '../../../core/constants/strings.dart';
 import '../../router/app_router.dart';
 import '../../shared_components/default_gradient_button.dart';
 import '../../sizer/sizer.dart';
+import '../widgets/login_form.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);
@@ -99,35 +99,10 @@ class _LogInScreenState extends State<LogInScreen> {
                   SizedBox(
                     height: s.h(24.0),
                   ),
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        DefaultTextField(
-                          text: 'Email',
-                          validator: (String value) {
-                            if (value.isEmpty) {
-                              return 'Invalid email!';
-                            }
-                          },
-                          controller: _emailController,
-                        ),
-                        SizedBox(
-                          height: s.h(20.0),
-                        ),
-                        DefaultTextField(
-                          text: 'Password',
-                          isObscureText: true,
-                          suffixIcon: Icons.remove_red_eye_outlined,
-                          validator: (String value) {
-                            if (value.length < 3) {
-                              return 'Too short password!';
-                            }
-                          },
-                          controller: _passwordController,
-                        ),
-                      ],
-                    ),
+                  LoginForm(
+                    formKey: _formKey,
+                    emailController: _emailController,
+                    passwordController: _passwordController,
                   ),
                   SizedBox(
                     height: s.h(24.0),

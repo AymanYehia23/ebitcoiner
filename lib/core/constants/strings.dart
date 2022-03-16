@@ -8,15 +8,12 @@ class Strings {
   //Splash Screen
   static const splashScreenDescription =
       'Get Access to Real Mining Power Without Any Extra Effort';
-  static const splashCreateAnAccount = 'Create an Account';
-  static const splashSignIn = 'Sign In';
+
 
   // Signup Screen
   static const successfulSignUpMessage =
       'The account has been created successfully\nyou can log in now';
-  static const login = 'Login';
   static const createNewAccount = 'Create New Account';
-  static const signUp = 'Sign Up';
 
   //Login Screen
   static const forgetPassword = 'Forget your Password';

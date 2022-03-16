@@ -1,4 +1,3 @@
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/core/constants/strings.dart';
@@ -10,7 +9,7 @@ import 'package:hash_store/presentation/shared_components/gradient_background_co
 import 'package:hash_store/presentation/sizer/sizer.dart';
 
 import '../../shared_components/default_disabled_button.dart';
-import '../../shared_components/default_textfield.dart';
+import '../widgets/sign_up_form.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({
@@ -30,19 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   bool _isEmpty = true;
-
-  void _submit() async {
-    _formKey.currentState!.validate();
-    if (_formKey.currentState!.validate()) {
-      final signUpModel = SignUPModel(
-        name: _nameController.text,
-        email: _emailController.text,
-        password: _passwordController.text,
-        phone: _phoneNumberController.text,
-      );
-      await context.read<SignUpCubit>().signUp(signUpModel);
-    }
-  }
+  bool _isObscure = true;
 
   @override
   void initState() {
@@ -74,6 +61,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
       setState(() {
         _isEmpty = true;
       });
+    }
+  }
+
+  void _submit() async {
+    _formKey.currentState!.validate();
+    if (_formKey.currentState!.validate()) {
+      final signUpModel = SignUPModel(
+        name: _nameController.text,
+        email: _emailController.text,
+        password: _passwordController.text,
+        phone: _phoneNumberController.text,
+      );
+      await context.read<SignUpCubit>().signUp(signUpModel);
     }
   }
 
@@ -109,10 +109,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppRouter.logIn);
+                    Navigator.pushNamed(context, 'Login');
                   },
                   child: Text(
-                    Strings.login,
+                    'Login',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
                           fontSize: s.h(17),
                         ),
@@ -141,114 +141,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     SizedBox(
                       height: s.h(24.0),
                     ),
-                    Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          DefaultTextField(
-                            text: 'Name',
-                            validator: (String value) {
-                              if (value.isEmpty) {
-                                return 'Invalid name!';
-                              }
-                            },
-                            controller: _nameController,
-                          ),
-                          SizedBox(
-                            height: s.h(20.0),
-                          ),
-                          DefaultTextField(
-                            text: 'Email',
-                            validator: (String value) {
-                              if (value.isEmpty) {
-                                return 'Invalid email!';
-                              }
-                            },
-                            controller: _emailController,
-                          ),
-                          SizedBox(
-                            height: s.h(20.0),
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Container(
-                                  height: s.h(65),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xff302c3f),
-                                    border: Border.all(
-                                      color: Colors.white,
-                                    ),
-                                    borderRadius:
-                                        BorderRadius.circular(s.h(10)),
-                                  ),
-                                  child: CountryCodePicker(
-                                    textStyle:
-                                        Theme.of(context).textTheme.bodyText2,
-                                    initialSelection: 'eg',
-                                    dialogBackgroundColor:
-                                        const Color(0xff13111a)
-                                            .withOpacity(0.8),
-                                    dialogSize: Size(s.w(250), s.h(600)),
-                                    dialogTextStyle:
-                                        Theme.of(context).textTheme.bodyText2,
-                                    searchDecoration: InputDecoration(
-                                      labelStyle:
-                                          Theme.of(context).textTheme.bodyText2,
-                                      fillColor: Colors.white54,
-                                      filled: true,
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(s.h(10)),
-                                        borderSide: const BorderSide(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(s.h(10)),
-                                        borderSide: const BorderSide(
-                                          color: Color(0xffe6e6e6),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: s.w(16),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: DefaultTextField(
-                                  text: 'Phone Number',
-                                  validator: (value) {
-                                    if (value.isEmpty) {
-                                      return 'Invalid Phone Number!';
-                                    }
-                                  },
-                                  controller: _phoneNumberController,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: s.h(20.0),
-                          ),
-                          DefaultTextField(
-                            text: 'Password',
-                            isObscureText: true,
-                            suffixIcon: Icons.remove_red_eye_outlined,
-                            validator: (String value) {
-                              if (value.length < 3) {
-                                return 'Too short password!';
-                              }
-                            },
-                            controller: _passwordController,
-                          ),
-                        ],
-                      ),
+                    SignUpForm(
+                      formKey: _formKey,
+                      nameController: _nameController,
+                      emailController: _emailController,
+                      phoneNumberController: _phoneNumberController,
+                      passwordController: _passwordController,
                     ),
                     SizedBox(
                       height: s.h(24.0),
@@ -304,7 +202,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     _isEmpty
                         ? DefaultDisabledButton(
                             text: Text(
-                              Strings.signUp,
+                              'Sign Up',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText2!
@@ -325,7 +223,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 );
                               }
                               return Text(
-                                Strings.signUp,
+                                'Sign Up',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText1!

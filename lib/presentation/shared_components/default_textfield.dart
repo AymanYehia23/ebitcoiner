@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:hash_store/presentation/sizer/sizer.dart';
 
 class DefaultTextField extends StatelessWidget {
   final String text;
   final bool isObscureText;
-  final IconData? suffixIcon;
-  final Function? validator;
+  final IconButton? suffixIcon;
   final TextEditingController? controller;
+  final List<TextInputFormatter>? inputFormatters;
+  final String? Function(String?)? validator;
+
   const DefaultTextField({
     Key? key,
     required this.text,
+    this.inputFormatters,
     this.isObscureText = false,
     this.suffixIcon,
     this.validator,
@@ -40,13 +44,10 @@ class DefaultTextField extends StatelessWidget {
         ),
         suffixIcon: suffixIcon == null
             ? const Text('')
-            : Icon(
-                suffixIcon!,
-                color: const Color(0xffe6e6e6),
-              ),
+            : suffixIcon!
       ),
       obscureText: isObscureText,
-      validator:(value)=> validator!(value),
+      validator: validator,
       controller: controller,
     );
   }
