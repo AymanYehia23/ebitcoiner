@@ -49,7 +49,7 @@ class SplashScreen extends StatelessWidget {
                   DefaultGradientButton(
                     isFilled: true,
                     text: Text(
-                      Strings.splashCreateAnAccount,
+                      'Create an Account',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
                             fontSize: s.h(19.0),
                             fontWeight: FontWeight.bold,
@@ -65,7 +65,7 @@ class SplashScreen extends StatelessWidget {
                   DefaultGradientButton(
                     isFilled: false,
                     text: Text(
-                      Strings.splashSignIn,
+                      'Sign In',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
                             fontSize: s.h(19.0),
                             fontWeight: FontWeight.bold,
