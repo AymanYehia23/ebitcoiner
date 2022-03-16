@@ -6,11 +6,15 @@ class DefaultTextField extends StatelessWidget {
   final String text;
   final bool isObscureText;
   final IconData? suffixIcon;
+  final Function? validator;
+  final TextEditingController? controller;
   const DefaultTextField({
     Key? key,
     required this.text,
     this.isObscureText = false,
     this.suffixIcon,
+    this.validator,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -19,9 +23,7 @@ class DefaultTextField extends StatelessWidget {
     return TextFormField(
       decoration: InputDecoration(
         labelText: text,
-        labelStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
-              color: const Color(0xffb7b4c7),
-            ),
+        labelStyle: Theme.of(context).textTheme.bodyText2,
         fillColor: const Color(0xff302c3f),
         filled: true,
         focusedBorder: OutlineInputBorder(
@@ -36,9 +38,16 @@ class DefaultTextField extends StatelessWidget {
             color: Color(0xffe6e6e6),
           ),
         ),
-        suffixIcon: suffixIcon == null ? const Text('') :Icon(suffixIcon!,color: const Color(0xffe6e6e6),),
+        suffixIcon: suffixIcon == null
+            ? const Text('')
+            : Icon(
+                suffixIcon!,
+                color: const Color(0xffe6e6e6),
+              ),
       ),
       obscureText: isObscureText,
+      validator:(value)=> validator!(value),
+      controller: controller,
     );
   }
 }

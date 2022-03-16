@@ -3,6 +3,7 @@ import 'package:hash_store/presentation/shared_components/default_disabled_butto
 import 'package:hash_store/presentation/shared_components/default_textfield.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:hash_store/core/constants/strings.dart';
 
 class EnterNewPass extends StatelessWidget {
   const EnterNewPass({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class EnterNewPass extends StatelessWidget {
             TextButton(
               onPressed: () {},
               child: Text(
-                'Sign Up',
+                Strings.signUp,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
@@ -35,7 +36,7 @@ class EnterNewPass extends StatelessWidget {
                   height: s.h(32.0),
                 ),
                 Text(
-                  'Enter New Password',
+                  Strings.enterNewPassword,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontSize: s.h(30.0),
@@ -61,7 +62,7 @@ class EnterNewPass extends StatelessWidget {
                   SizedBox(
                     height: s.h(403.0),
                   ),
-                  const DefaultDisabledButton(text: Text('Reset Password')),
+                  const DefaultDisabledButton(text: Text('Resset Password')),
               ],
             ),
           ),

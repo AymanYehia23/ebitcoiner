@@ -4,7 +4,6 @@ import 'package:hash_store/presentation/enter_new_pass/screens/enter_new_pass.da
 import 'package:hash_store/presentation/log_in/screen/log_in_screen.dart';
 import 'package:hash_store/presentation/recovery_link/screens/recovery_screen.dart';
 import 'package:hash_store/presentation/reset_pass/screen/reset_pass_screen.dart';
-
 import '../../core/constants/strings.dart';
 import '../../core/exceptions/route_exception.dart';
 import '../sign_up/screen/sign_up_screen.dart';

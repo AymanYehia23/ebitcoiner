@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
 import 'package:hash_store/presentation/shared_components/default_textfield.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
@@ -26,7 +27,7 @@ class ResetPassScreen extends StatelessWidget {
                     height: s.h(24.0),
                   ),
                   Text(
-                    'Reset Password',
+                    Strings.resetPassword,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
                           fontSize: s.h(30.0),
@@ -37,7 +38,7 @@ class ResetPassScreen extends StatelessWidget {
                     height: s.h(8.0),
                   ),
                   Text(
-                    'Enter your account email to send you password recovery link',
+                    Strings.resetMsg,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           fontSize: s.h(16.0),
@@ -46,8 +47,14 @@ class ResetPassScreen extends StatelessWidget {
                   SizedBox(
                     height: s.h(24.0),
                   ),
-                  const DefaultTextField(
+                  DefaultTextField(
                     text: 'Email',
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Invalid email!';
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(
                     height: s.h(435.0),

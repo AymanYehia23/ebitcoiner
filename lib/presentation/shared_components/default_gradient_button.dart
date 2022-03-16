@@ -38,8 +38,10 @@ class DefaultGradientButton extends StatelessWidget {
               ),
             ),
             child: TextButton(
-              child:text,
-              onPressed: onPressed(),
+              child: text,
+              onPressed: () {
+                onPressed();
+              },
             ),
           )
         : SizedBox(
@@ -58,7 +60,9 @@ class DefaultGradientButton extends StatelessWidget {
               child: Center(
                 child: text,
               ),
-              onTap: onPressed(),
+              onTap: () {
+                onPressed();
+              },
               radius: Radius.circular(s.h(56.0)),
             ),
           );
