@@ -16,6 +16,7 @@ class Strings {
   static const createNewAccount = 'Create New Account';
 
   //Login Screen
+  static const login = 'Login';
   static const forgetPassword = 'Forget your Password';
 
   //Enter New Password & Resset Password Screen
