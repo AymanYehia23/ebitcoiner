@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/logic/cubit/new_password/new_password_cubit.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
 import 'package:hash_store/core/extensions/input_validation.dart';
 
+import '../../../logic/cubit/update_password/update_password_cubit.dart';
 import '../../shared_components/default_textfield.dart';
 
 class NewPasswordForm extends StatelessWidget {
@@ -11,13 +11,12 @@ class NewPasswordForm extends StatelessWidget {
   final TextEditingController rePasswordController;
   final GlobalKey<FormState> formKey;
   String? pass;
-  NewPasswordForm(
-      {Key? key,
-      required this.passwordController,
-      required this.rePasswordController,
-      required this.formKey,
-      })
-      : super(key: key);
+  NewPasswordForm({
+    Key? key,
+    required this.passwordController,
+    required this.rePasswordController,
+    required this.formKey,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Sizer s = Sizer(context: context);
@@ -29,7 +28,7 @@ class NewPasswordForm extends StatelessWidget {
             builder: (context) {
               return DefaultTextField(
                 text: 'New Password',
-                isObscureText: context.watch<NewPasswordCubit>().isObscure,
+                isObscureText: context.watch<UpdatePasswordCubit>().isObscure,
                 validator: (val) {
                   pass = val;
                   if (!val!.isValidPassword) {
@@ -39,10 +38,10 @@ class NewPasswordForm extends StatelessWidget {
                 },
                 suffixIcon: IconButton(
                   onPressed: () {
-                    context.read<NewPasswordCubit>().changePasswordVisibility();
+                    context.read<UpdatePasswordCubit>().changePasswordVisibility();
                   },
                   icon: Icon(
-                    context.watch<NewPasswordCubit>().iconData,
+                    context.read<UpdatePasswordCubit>().iconData,
                     color: Colors.white,
                   ),
                 ),
@@ -57,7 +56,7 @@ class NewPasswordForm extends StatelessWidget {
             builder: (context) {
               return DefaultTextField(
                 text: 'Re-type New Password',
-                isObscureText: context.watch<NewPasswordCubit>().reIsObscure,
+                isObscureText: context.watch<UpdatePasswordCubit>().isObscure2,
                 validator: (val) {
                   if (!val!.isValidPassword) {
                     return 'Enter valid password';
@@ -69,12 +68,10 @@ class NewPasswordForm extends StatelessWidget {
                 controller: rePasswordController,
                 suffixIcon: IconButton(
                   onPressed: () {
-                    context
-                        .read<NewPasswordCubit>()
-                        .changeRePasswordVisibility();
+                    context.read<UpdatePasswordCubit>().changePasswordVisibility2();
                   },
                   icon: Icon(
-                    context.watch<NewPasswordCubit>().reIconData,
+                    context.read<UpdatePasswordCubit>().iconData2,
                     color: Colors.white,
                   ),
                 ),

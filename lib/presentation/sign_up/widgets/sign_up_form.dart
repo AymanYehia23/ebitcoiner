@@ -8,7 +8,7 @@ import '../../shared_components/default_textfield.dart';
 import 'country_code_widget.dart';
 
 class SignUpForm extends StatelessWidget {
-  const SignUpForm({
+   const SignUpForm({
     Key? key,
     required GlobalKey<FormState> formKey,
     required TextEditingController nameController,
@@ -27,6 +27,7 @@ class SignUpForm extends StatelessWidget {
   final TextEditingController _emailController;
   final TextEditingController _phoneNumberController;
   final TextEditingController _passwordController;
+
 
   @override
   Widget build(BuildContext context) {
@@ -92,28 +93,28 @@ class SignUpForm extends StatelessWidget {
           SizedBox(
             height: s.h(20.0),
           ),
-          Builder(
-            builder: (context) {
-              return DefaultTextField(
-                text: 'Password',
-                isObscureText: context.watch<SignUpCubit>().isObscure,
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    context.read<SignUpCubit>().iconData,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    context.read<SignUpCubit>().changePasswordVisibility();
-                  },
+          Builder(builder: (context) {
+            return DefaultTextField(
+              text: 'Password',
+              isObscureText: context.watch<SignUpCubit>().isObscure,
+              suffixIcon: IconButton(
+                icon: Icon(
+                  context.read<SignUpCubit>().iconData,
+                  color: Colors.white,
                 ),
-                validator: (val) {
-                  if (!val!.isValidPassword) return 'Enter valid password';
-                  return null;
+                onPressed: () {
+                  context.read<SignUpCubit>().changePasswordVisibility(
+
+                      );
                 },
-                controller: _passwordController,
-              );
-            }
-          )
+              ),
+              validator: (val) {
+                if (!val!.isValidPassword) return 'Enter valid password';
+                return null;
+              },
+              controller: _passwordController,
+            );
+          })
         ],
       ),
     );

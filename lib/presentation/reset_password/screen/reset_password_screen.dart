@@ -7,18 +7,18 @@ import 'package:hash_store/presentation/shared_components/gradient_background_co
 import 'package:hash_store/presentation/sizer/sizer.dart';
 import 'package:hash_store/core/extensions/input_validation.dart';
 
-import '../../../logic/cubit/reset_password/reset_password_cubit.dart';
+import '../../../logic/cubit/update_password/update_password_cubit.dart';
 import '../../router/app_router.dart';
 import '../../shared_components/default_gradient_button.dart';
 
-class ResetPassScreen extends StatefulWidget {
-  const ResetPassScreen({Key? key}) : super(key: key);
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({Key? key}) : super(key: key);
 
   @override
-  State<ResetPassScreen> createState() => _ResetPassScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPassScreenState();
 }
 
-class _ResetPassScreenState extends State<ResetPassScreen> {
+class _ResetPassScreenState extends State<ResetPasswordScreen> {
   final TextEditingController _emailController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey();
 
@@ -31,6 +31,7 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
 
   @override
   void initState() {
+    context.read<UpdatePasswordCubit>().isEmpty = true;
     _emailController.addListener(_checkOfEmptyValue);
     super.initState();
   }
@@ -43,9 +44,9 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
 
   void _checkOfEmptyValue() {
     if (_emailController.text.isNotEmpty) {
-      context.read<ResetPasswordCubit>().isEmpty = false;
+      context.read<UpdatePasswordCubit>().isEmpty = false;
     } else {
-      context.read<ResetPasswordCubit>().isEmpty = true;
+      context.read<UpdatePasswordCubit>().isEmpty = true;
     }
   }
 
@@ -104,7 +105,8 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                   ),
                   Builder(
                     builder: (context) {
-                      if (context.select((ResetPasswordCubit s) => s.isEmpty)) {
+                      if (context
+                          .select((UpdatePasswordCubit u) => u.isEmpty)) {
                         return DefaultDisabledButton(
                           text: Text(
                             'Next',

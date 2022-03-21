@@ -1,12 +1,10 @@
-import 'dart:convert';
-
-class SignUPModel {
+class SignUPRequestModel {
   String name;
   String email;
   String password;
   String phone;
 
-  SignUPModel({
+  SignUPRequestModel({
     required this.name,
     required this.email,
     required this.password,
@@ -21,6 +19,4 @@ class SignUPModel {
       'phone': phone,
     };
   }
-
-  String toJson() => json.encode(toMap());
 }

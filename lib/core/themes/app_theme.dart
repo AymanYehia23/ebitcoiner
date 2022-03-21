@@ -6,7 +6,9 @@ class AppTheme {
     primarySwatch: Colors.blue,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     scaffoldBackgroundColor: Colors.transparent,
-    appBarTheme:  const AppBarTheme(
+    colorScheme:
+        const ColorScheme.highContrastDark(secondary: Color(0xffb7b4c7)),
+    appBarTheme: const AppBarTheme(
       color: Colors.transparent,
       elevation: 0,
     ),
@@ -14,9 +16,7 @@ class AppTheme {
       bodyText1: TextStyle(
         color: Colors.white,
       ),
-      bodyText2: TextStyle(
-        color: Color(0xffb7b4c7)
-      ),
+      bodyText2: TextStyle(color: Color(0xffb7b4c7)),
       subtitle1: TextStyle(color: Colors.white),
     ),
     fontFamily: 'CircularStd',

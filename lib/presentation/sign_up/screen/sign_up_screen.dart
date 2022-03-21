@@ -8,6 +8,7 @@ import 'package:hash_store/presentation/shared_components/default_gradient_butto
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
 
+import '../../../logic/cubit/login/login_cubit.dart';
 import '../../shared_components/default_disabled_button.dart';
 import '../widgets/sign_up_form.dart';
 
@@ -59,14 +60,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void _submit() async {
     if (_formKey.currentState!.validate()) {
-      final signUpModel = SignUPModel(
+      final signUPRequestModel = SignUPRequestModel(
         name: _nameController.text,
         email: _emailController.text,
         password: _passwordController.text,
         phone: _phoneNumberController.text,
       );
-      Navigator.of(context).pushReplacementNamed(AppRouter.splash);
-      //await context.read<SignUpCubit>().signUp(signUpModel);
+      await context.read<SignUpCubit>().signUp(signUPRequestModel);
     }
   }
 
@@ -76,27 +76,40 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Stack(
       children: [
         const GradientBackgroundContainer(),
-        BlocListener<SignUpCubit, SignUpState>(
-          listener: (context, state) {
-            if (state is SignUpErrorState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.error),
-                  duration: const Duration(seconds: 3),
-                ),
-              );
-            } else if (state is SignUpSuccessState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text(
-                    Strings.successfulSignUpMessage,
-                  ),
-                  duration: Duration(seconds: 6),
-                ),
-              );
-              Navigator.of(context).pushReplacementNamed(AppRouter.logIn);
-            }
-          },
+        MultiBlocListener(
+          listeners: [
+            BlocListener<SignUpCubit, SignUpState>(
+              listener: (context, state) async {
+                if (state is SignUpErrorState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.error),
+                      duration: const Duration(seconds: 3),
+                    ),
+                  );
+                } else if (state is SignUpSuccessState) {
+                  await context.read<LoginCubit>().login(
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                      );
+                }
+              },
+            ),
+            BlocListener<LoginCubit, LoginState>(
+              listener: (context, state) {
+                if (state is LoginSuccessState) {
+                  Navigator.of(context).pushReplacementNamed(AppRouter.home);
+                } else if (state is LoginErrorState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Failed to login'),
+                      duration: Duration(seconds: 3),
+                    ),
+                  );
+                }
+              },
+            ),
+          ],
           child: Scaffold(
             appBar: AppBar(
               actions: [
@@ -213,7 +226,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             text: Builder(builder: (context) {
                               final signUpState =
                                   context.watch<SignUpCubit>().state;
-                              if (signUpState is SignUpLoadingState) {
+                              final loginState =
+                                  context.watch<LoginCubit>().state;
+                              if (signUpState is SignUpLoadingState ||
+                                  loginState is LoginLoadingState) {
                                 return const Center(
                                   child: CircularProgressIndicator(),
                                 );

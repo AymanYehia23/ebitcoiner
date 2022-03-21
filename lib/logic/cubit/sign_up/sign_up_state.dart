@@ -19,4 +19,10 @@ class SignUpErrorState extends SignUpState {
   SignUpErrorState({required this.error});
 }
 
-class ChangePasswordVisibilityState extends SignUpState{}
+class DeleteAccountLoadingState extends SignUpState {}
+
+class DeleteAccountSuccessState extends SignUpState {}
+
+class DeleteAccountErrorState extends SignUpState {}
+
+class ChangePasswordVisibilityState extends SignUpState {}

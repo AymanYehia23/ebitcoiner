@@ -3,12 +3,11 @@ class Strings {
   static const appTitle = 'App Name';
 
   //Home Screen
-  static const assets ='Assets';
+  static const assets = 'Assets';
 
   //Splash Screen
   static const splashScreenDescription =
       'Get Access to Real Mining Power Without Any Extra Effort';
-
 
   // Signup Screen
   static const successfulSignUpMessage =
@@ -50,5 +49,12 @@ class Strings {
 
   //API
   static const baseUrl = 'https://cominer.herokuapp.com/api/';
+  static const apiKey =
+      'c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4';
   static const signUpEndPoint = 'user/register';
+  static const deleteAccountEndPoint = 'user/deleteAccount';
+  static const loginEndPoint = 'user/login';
+  static const logoutEndPoint = 'user/logout';
+  static const getNewAccessTokenEndPoint = 'user/getNewAccessToken';
+  static const updatePasswordEndPoint = 'user/updatePassword';
 }

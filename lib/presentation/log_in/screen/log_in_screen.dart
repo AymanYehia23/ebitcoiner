@@ -22,10 +22,11 @@ class _LogInScreenState extends State<LogInScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void _submit() {
+  void _submit() async {
     _formKey.currentState!.validate();
     if (_formKey.currentState!.validate()) {
-      Navigator.pushReplacementNamed(context, AppRouter.splash);
+      await context.read<LoginCubit>().login(
+          email: _emailController.text, password: _passwordController.text);
     }
   }
 
@@ -58,100 +59,129 @@ class _LogInScreenState extends State<LogInScreen> {
     return Stack(
       children: [
         const GradientBackgroundContainer(),
-        Scaffold(
-          appBar: AppBar(
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, AppRouter.signUp);
-                },
-                child: Text(
-                  'Sign Up',
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                        fontSize: s.h(17),
-                      ),
+        BlocListener<LoginCubit, LoginState>(
+          listener: (context, state) {
+            if (state is LoginSuccessState) {
+              Navigator.of(context).pushReplacementNamed(AppRouter.home);
+            } else if (state is LoginErrorState) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Failed to login'),
+                  duration: Duration(seconds: 3),
                 ),
-              ),
-            ],
-          ),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: s.w(16.0),
-              ),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: s.h(24.0),
-                  ),
-                  Text(
-                    Strings.login,
-                    textAlign: TextAlign.center,
+              );
+            }
+          },
+          child: Scaffold(
+            appBar: AppBar(
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRouter.signUp);
+                  },
+                  child: Text(
+                    'Sign Up',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(30.0),
-                          fontWeight: FontWeight.bold,
+                          fontSize: s.h(17),
                         ),
                   ),
-                  SizedBox(
-                    height: s.h(24.0),
-                  ),
-                  LoginForm(
-                    formKey: _formKey,
-                    emailController: _emailController,
-                    passwordController: _passwordController,
-                  ),
-                  SizedBox(
-                    height: s.h(24.0),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context)
-                          .pushReplacementNamed(AppRouter.resetPass);
-                    },
-                    child: Text(
-                      Strings.forgetPassword,
+                ),
+              ],
+            ),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: s.w(16.0),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: s.h(24.0),
+                    ),
+                    Text(
+                      Strings.login,
+                      textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: s.h(15.0),
-                            color: const Color(0xffff4980),
+                            fontSize: s.h(30.0),
                             fontWeight: FontWeight.bold,
                           ),
                     ),
-                  ),
-                  SizedBox(
-                    height: s.h(300.0),
-                  ),
-                  Builder(
-                    builder: (context) {
-                      if (context.select((LoginCubit s) => s.isEmpty)) {
-                        return DefaultDisabledButton(
-                          text: Text(
-                            'Login',
-                            style:
-                                Theme.of(context).textTheme.bodyText2!.copyWith(
-                                      fontSize: s.h(17),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                          ),
-                        );
-                      } else {
-                        return DefaultGradientButton(
-                          isFilled: true,
-                          text: Text(
-                            'Login',
-                            style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: s.h(17),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                          ),
-                          onPressed: () {
-                            _submit();
-                          },
-                        );
-                      }
-                    },
-                  )
-                ],
+                    SizedBox(
+                      height: s.h(24.0),
+                    ),
+                    LoginForm(
+                      formKey: _formKey,
+                      emailController: _emailController,
+                      passwordController: _passwordController,
+                    ),
+                    SizedBox(
+                      height: s.h(24.0),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushReplacementNamed(AppRouter.resetPassword);
+                      },
+                      child: Text(
+                        Strings.forgetPassword,
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: s.h(15.0),
+                              color: const Color(0xffff4980),
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: s.h(300.0),
+                    ),
+                    Builder(
+                      builder: (context) {
+                        if (context.select((LoginCubit s) => s.isEmpty)) {
+                          return DefaultDisabledButton(
+                            text: Text(
+                              'Login',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
+                                    fontSize: s.h(17),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          );
+                        } else {
+                          return DefaultGradientButton(
+                            isFilled: true,
+                            text: Builder(
+                              builder: (context) {
+                                final loginState =
+                                    context.watch<LoginCubit>().state;
+                                if (loginState is LoginLoadingState) {
+                                  return const Center(
+                                      child: CircularProgressIndicator());
+                                } else {
+                                  return Text(
+                                    'Login',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .copyWith(
+                                          fontSize: s.h(17),
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  );
+                                }
+                              },
+                            ),
+                            onPressed: () {
+                              _submit();
+                            },
+                          );
+                        }
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
           ),

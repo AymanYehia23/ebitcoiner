@@ -43,6 +43,7 @@ dependencies:
   outline_gradient_button: ^2.0.0+1
   syncfusion_flutter_charts: ^19.4.55
   country_code_picker: ^2.0.2
+  flutter_secure_storage: ^5.0.2
   
 
 dev_dependencies:

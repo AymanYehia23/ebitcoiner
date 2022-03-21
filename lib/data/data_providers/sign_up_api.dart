@@ -6,11 +6,10 @@ import '../http/http_service.dart';
 
 class SignUpAPI implements SignUpRepo {
   @override
-  Future<String> postSignUp({required SignUPModel signUPModel}) async {
-    final response = await HttpService.postRequest(
+  Future<String> postSignUp({required SignUPRequestModel signUPRequestModel}) async {
+    return await HttpService.postRequest(
       endPoint: Strings.signUpEndPoint,
-      data: signUPModel.toMap(),
-    );
-    return response.data;
+      data: signUPRequestModel.toMap(),
+    ).then((value) => value.data);
   }
 }

@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hash_store/core/constants/strings.dart';
+import 'package:hash_store/data/data_providers/delete_account_api.dart';
+import 'package:hash_store/data/data_providers/logout_api.dart';
+import 'package:hash_store/logic/cubit/delete_account/delete_account_cubit.dart';
+import 'package:hash_store/logic/cubit/logout/logout_cubit.dart';
 import 'package:hash_store/presentation/assets/screen/assets_screen.dart';
 import 'package:hash_store/presentation/devices/screen/devices_screen.dart';
-import 'package:hash_store/presentation/hashrate/screen/hashrate_screen.dart';
 import 'package:hash_store/presentation/profile/screen/profile_screen.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
+
+import '../../hashrate/screen/hashrate_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -21,7 +27,17 @@ class _HomeScreenState extends State<HomeScreen> {
     AssetsScreen(),
     const HashRateScreen(),
     const DevicesScreen(),
-    const ProfileScreen(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<LogoutCubit>(
+          create: (context) => LogoutCubit(logoutRepo: LogoutApi()),
+        ),
+        BlocProvider<DeleteAccountCubit>(
+          create: (context) => DeleteAccountCubit(deleteAccountRepo: DeleteAccountApi()),
+        ),
+      ],
+      child: ProfileScreen(),
+    ),
   ];
   void _onItemTapped(int index) {
     setState(() {

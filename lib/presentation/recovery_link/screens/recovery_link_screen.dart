@@ -7,8 +7,8 @@ import 'package:hash_store/presentation/shared_components/default_gradient_butto
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
 
-class RecoveryScreen extends StatelessWidget {
-  const RecoveryScreen({
+class RecoveryLinkScreen extends StatelessWidget {
+  const RecoveryLinkScreen({
     Key? key,
     /*required this.email*/
   }) : super(key: key);
@@ -74,7 +74,7 @@ class RecoveryScreen extends StatelessWidget {
                     text: const Text('Back To Login Page'),
                     onPressed: () {
                       Navigator.of(context)
-                          .pushReplacementNamed(AppRouter.enterNewPass);
+                          .pushReplacementNamed(AppRouter.enterNewPassword);
                     },
                   ),
                 ],
