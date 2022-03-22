@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hash_store/core/constants/enums.dart';
+import 'package:hash_store/core/constants/strings.dart';
+import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
 
-class AssetsChangeChartButton extends StatefulWidget {
+class AssetsChangeChartButton extends StatelessWidget {
   const AssetsChangeChartButton({
     Key? key,
   }) : super(key: key);
 
-  @override
-  State<AssetsChangeChartButton> createState() =>
-      _AssetsChangeChartButtonState();
-}
-
-class _AssetsChangeChartButtonState extends State<AssetsChangeChartButton> {
-  var _selectedCurrency = Currency.btc;
   @override
   Widget build(BuildContext context) {
     Sizer s = Sizer(context: context);
@@ -28,16 +24,14 @@ class _AssetsChangeChartButtonState extends State<AssetsChangeChartButton> {
         children: [
           InkWell(
             onTap: () {
-              setState(() {
-                _selectedCurrency = Currency.btc;
-              });
+              context.read<AssetsCubit>().getChartData(Currency.btc);
             },
             child: Container(
               width: s.w(78),
               height: s.h(32),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(s.h(20)),
-                color: _selectedCurrency == Currency.btc
+                color: context.watch<AssetsCubit>().currency == Currency.btc
                     ? const Color(0xff302c3f)
                     : null,
               ),
@@ -45,7 +39,7 @@ class _AssetsChangeChartButtonState extends State<AssetsChangeChartButton> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset(
-                    'assets/images/btc_icon.svg',
+                    Strings.btcIcon,
                     width: s.h(24),
                     height: s.h(24),
                   ),
@@ -65,16 +59,14 @@ class _AssetsChangeChartButtonState extends State<AssetsChangeChartButton> {
           ),
           InkWell(
             onTap: () {
-              setState(() {
-                _selectedCurrency = Currency.eth;
-              });
+              context.read<AssetsCubit>().getChartData(Currency.eth);
             },
             child: Container(
               width: s.w(78),
               height: s.h(32),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(s.h(20)),
-                color: _selectedCurrency == Currency.eth
+                color: context.watch<AssetsCubit>().currency == Currency.eth
                     ? const Color(0xff302c3f)
                     : null,
               ),
@@ -82,7 +74,7 @@ class _AssetsChangeChartButtonState extends State<AssetsChangeChartButton> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset(
-                    'assets/images/eth_icon.svg',
+                    Strings.ethIcon,
                     width: s.h(24),
                     height: s.h(24),
                   ),
@@ -102,24 +94,24 @@ class _AssetsChangeChartButtonState extends State<AssetsChangeChartButton> {
           ),
           InkWell(
             onTap: () {
-              setState(() {
-                _selectedCurrency = Currency.rvn;
-              });
+              context.read<AssetsCubit>().getChartData(Currency.rvn);
             },
             child: Container(
               width: s.w(78),
               height: s.h(32),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(s.h(20)),
-                color: _selectedCurrency == Currency.rvn? const Color(0xff302c3f):null,
+                color: context.watch<AssetsCubit>().currency == Currency.rvn
+                    ? const Color(0xff302c3f)
+                    : null,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset(
-                    'assets/images/rvn_icon.svg',
-                    width: s.h(24),
-                    height: s.h(24),
+                    Strings.rvnIcon,
+                    width: s.h(28),
+                    height: s.h(28),
                   ),
                   SizedBox(
                     width: s.w(4),

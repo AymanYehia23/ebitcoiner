@@ -8,6 +8,7 @@ import '../widgets/assets_change_chart_button.dart';
 import '../widgets/assets_chart_widget.dart';
 import '../widgets/assets_header_widget.dart';
 import '../widgets/assets_total_widget.dart';
+import '../widgets/miners_gains_widget.dart';
 
 class AssetsScreen extends StatelessWidget {
   AssetsScreen({Key? key}) : super(key: key);
@@ -30,7 +31,9 @@ class AssetsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const AssetsHeaderWidget(),
-            SizedBox(height: s.h(12),),
+            SizedBox(
+              height: s.h(12),
+            ),
             const AssetsTotalWidget(),
             SizedBox(height: s.h(40.0)),
             Text(
@@ -50,7 +53,7 @@ class AssetsScreen extends StatelessWidget {
                 border: Border(
                   bottom: BorderSide(
                     width: 0.7,
-                    color: Colors.white,
+                    color: Colors.grey,
                   ),
                 ),
               ),
@@ -83,9 +86,25 @@ class AssetsScreen extends StatelessWidget {
             AssetsChartWidget(
               data: data,
             ),
+            SizedBox(
+              height: s.h(40),
+            ),
+            Text(
+              'Miners Gains',
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    fontSize: s.h(30),
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            SizedBox(
+              height: s.h(14),
+            ),
+            const MinersGainsWidget(),
           ],
         ),
       ),
     );
   }
 }
+
+

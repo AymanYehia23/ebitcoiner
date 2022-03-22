@@ -46,6 +46,12 @@ class Strings {
   static const hashRateIcon = 'assets/images/hash_rate_icon.svg';
   static const devicesIcon = 'assets/images/devices_icon.svg';
   static const userImage = 'assets/images/user_image.jpg';
+  static const mainersImage = 'assets/images/miners_image.svg';
+  static const btcIcon = 'assets/images/btc_icon.svg';
+  static const ethIcon = 'assets/images/eth_icon.svg';
+  static const rvnIcon = 'assets/images/rvn_icon.svg';
+  static const featherChevronDownIcon =
+      'assets/images/feather_chevron_down_icon.svg';
 
   //API
   static const baseUrl = 'https://cominer.herokuapp.com/api/';

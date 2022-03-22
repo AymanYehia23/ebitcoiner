@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hash_store/core/constants/strings.dart';
 
+import '../../../logic/cubit/assets/assets_cubit.dart';
 import '../../shared_components/default_gradient_button.dart';
 import '../../sizer/sizer.dart';
 
-class AssetsTotalWidget extends StatefulWidget {
+class AssetsTotalWidget extends StatelessWidget {
   const AssetsTotalWidget({
     Key? key,
   }) : super(key: key);
 
-  @override
-  State<AssetsTotalWidget> createState() => _AssetsTotalWidgetState();
-}
-
-class _AssetsTotalWidgetState extends State<AssetsTotalWidget> {
-  bool _isExpanded = false;
   @override
   Widget build(BuildContext context) {
     Sizer s = Sizer(context: context);
@@ -23,7 +20,8 @@ class _AssetsTotalWidgetState extends State<AssetsTotalWidget> {
         vertical: s.h(16.0),
         horizontal: s.w(16.0),
       ),
-      height: _isExpanded ? s.h(270) : s.h(128),
+      height:
+          context.select((AssetsCubit a) => a.isExpanded) ? s.h(270) : s.h(128),
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white),
@@ -35,7 +33,7 @@ class _AssetsTotalWidgetState extends State<AssetsTotalWidget> {
           Row(
             children: [
               SvgPicture.asset(
-                'assets/images/assets_icon.svg',
+                Strings.assetsIcon,
                 width: s.h(24),
                 height: s.h(24),
               ),
@@ -84,7 +82,7 @@ class _AssetsTotalWidgetState extends State<AssetsTotalWidget> {
           Row(
             children: [
               SvgPicture.asset(
-                'assets/images/btc_icon.svg',
+                Strings.btcIcon,
                 height: s.h(32),
                 width: s.h(32.0),
               ),
@@ -92,7 +90,7 @@ class _AssetsTotalWidgetState extends State<AssetsTotalWidget> {
                 width: s.w(8.0),
               ),
               SvgPicture.asset(
-                'assets/images/eth_icon.svg',
+                Strings.ethIcon,
                 height: s.h(32),
                 width: s.h(32.0),
               ),
@@ -100,16 +98,14 @@ class _AssetsTotalWidgetState extends State<AssetsTotalWidget> {
                 width: s.w(8.0),
               ),
               SvgPicture.asset(
-                'assets/images/rvn_icon.svg',
-                height: s.h(32),
-                width: s.h(32.0),
+                Strings.rvnIcon,
+                height: s.h(37),
+                width: s.h(37.0),
               ),
               const Spacer(),
               InkWell(
                 onTap: () {
-                  setState(() {
-                    _isExpanded = !_isExpanded;
-                  });
+                  context.read<AssetsCubit>().changeSize();
                 },
                 child: Container(
                   width: s.h(32),
@@ -121,13 +117,13 @@ class _AssetsTotalWidgetState extends State<AssetsTotalWidget> {
                     ),
                   ),
                   child: SvgPicture.asset(
-                    'assets/images/feather_chevron_down_icon.svg',
+                    Strings.featherChevronDownIcon,
                   ),
                 ),
               ),
             ],
           ),
-          if (_isExpanded)
+          if (context.select((AssetsCubit a) => a.isExpanded))
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -137,7 +133,7 @@ class _AssetsTotalWidgetState extends State<AssetsTotalWidget> {
                 Row(
                   children: [
                     SvgPicture.asset(
-                      'assets/images/btc_icon.svg',
+                      Strings.btcIcon,
                       height: s.h(24),
                       width: s.h(24),
                     ),
@@ -164,7 +160,7 @@ class _AssetsTotalWidgetState extends State<AssetsTotalWidget> {
                 Row(
                   children: [
                     SvgPicture.asset(
-                      'assets/images/eth_icon.svg',
+                      Strings.ethIcon,
                       height: s.h(24),
                       width: s.h(24),
                     ),
@@ -191,9 +187,9 @@ class _AssetsTotalWidgetState extends State<AssetsTotalWidget> {
                 Row(
                   children: [
                     SvgPicture.asset(
-                      'assets/images/rvn_icon.svg',
-                      height: s.h(24),
-                      width: s.h(24),
+                      Strings.rvnIcon,
+                      height: s.h(28),
+                      width: s.h(28),
                     ),
                     SizedBox(
                       width: s.w(8),

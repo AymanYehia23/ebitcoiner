@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../../data/models/chart_model.dart';
 
-class AssetsChartWidget extends StatefulWidget {
+class AssetsChartWidget extends StatelessWidget {
   final List<ChartData> data;
   const AssetsChartWidget({
     Key? key,
@@ -13,11 +15,6 @@ class AssetsChartWidget extends StatefulWidget {
           key: key,
         );
 
-  @override
-  State<AssetsChartWidget> createState() => _AssetsChartWidgetState();
-}
-
-class _AssetsChartWidgetState extends State<AssetsChartWidget> {
   @override
   Widget build(BuildContext context) {
     Sizer s = Sizer(context: context);
@@ -35,13 +32,14 @@ class _AssetsChartWidgetState extends State<AssetsChartWidget> {
         ),
         series: <ChartSeries<ChartData, String>>[
           ColumnSeries<ChartData, String>(
-            dataSource: widget.data,
+            dataSource: context.watch<AssetsCubit>().chartData,
             xValueMapper: (ChartData data, _) => data.x,
             yValueMapper: (ChartData data, _) => data.y,
             name: 'BTC',
             color: const Color(0xffff4980),
-            borderRadius: BorderRadius.all(
-              Radius.circular(s.h(5)),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(s.h(5)),
+              topRight: Radius.circular(s.h(5)),
             ),
             width: 0.5,
           ),
