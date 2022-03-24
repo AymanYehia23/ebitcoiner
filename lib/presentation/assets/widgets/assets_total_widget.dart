@@ -21,7 +21,7 @@ class AssetsTotalWidget extends StatelessWidget {
         horizontal: s.w(16.0),
       ),
       height:
-          context.select((AssetsCubit a) => a.isExpanded) ? s.h(270) : s.h(128),
+          context.select((AssetsCubit a) => a.isExpanded) ? s.h(276) : s.h(134),
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white),

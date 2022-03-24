@@ -60,8 +60,9 @@ class _LogInScreenState extends State<LogInScreen> {
       children: [
         const GradientBackgroundContainer(),
         BlocListener<LoginCubit, LoginState>(
-          listener: (context, state) {
+          listener: (context, state) async {
             if (state is LoginSuccessState) {
+              await context.read<LoginCubit>().saveTokens();
               Navigator.of(context).pushReplacementNamed(AppRouter.home);
             } else if (state is LoginErrorState) {
               ScaffoldMessenger.of(context).showSnackBar(

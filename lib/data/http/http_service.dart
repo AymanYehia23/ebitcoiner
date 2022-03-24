@@ -4,6 +4,7 @@ import 'package:hash_store/core/secure_storage/secure_storage.dart';
 
 class HttpService {
   static late Dio _dio;
+  static SecureStorage secureStorage = SecureStorage();
 
   static init() {
     _dio = Dio(
@@ -33,7 +34,7 @@ class HttpService {
     );
   }
 
-    static Future<Response> putRequest({
+  static Future<Response> putRequest({
     required String endPoint,
     required Map<String, dynamic>? data,
   }) async {
@@ -60,7 +61,7 @@ class HttpService {
           if ((error.response?.statusCode == 401 &&
               error.response?.data == 'Unauthorized')) {
             print('in if: ${error.response?.data}');
-            if (await SecureStorage.containsKey(key: 'refreshToken')) {
+            if (await secureStorage.containsKey(key: 'refreshToken')) {
               print('find refreshToken');
               await refreshToken();
               try {
@@ -78,7 +79,7 @@ class HttpService {
           if (request.method == 'DELETE' || request.method == 'PUT') {
             request.headers = {
               'Authorization':
-                  'Bearer ${await SecureStorage.getValue(key: 'accessToken')}'
+                  'Bearer ${await secureStorage.getValue(key: 'accessToken')}'
             };
           }
           return requestInterceptorHandler.next(request);
@@ -92,7 +93,7 @@ class HttpService {
   }
 
   static Future<void> refreshToken() async {
-    final refreshToken = await SecureStorage.getValue(key: 'refreshToken');
+    final refreshToken = await secureStorage.getValue(key: 'refreshToken');
     final response = await _dio
         .post(Strings.getNewAccessTokenEndPoint, data: {'token': refreshToken});
 
@@ -100,13 +101,13 @@ class HttpService {
       // successfully got the new access token
       print('successfully got the new access token');
       print(response.data);
-      await SecureStorage.deleteValue(key: 'accessToken');
-      await SecureStorage.addValue(key: 'accessToken', value: response.data);
+      await secureStorage.deleteValue(key: 'accessToken');
+      await secureStorage.addValue(key: 'accessToken', value: response.data);
     } else {
       print('refresh token is wrong so log out user');
       // refresh token is wrong so log out user.
-      await SecureStorage.deleteValue(key: 'accessToken');
-      await SecureStorage.deleteValue(key: 'refreshToken');
+      await secureStorage.deleteValue(key: 'accessToken');
+      await secureStorage.deleteValue(key: 'refreshToken');
     }
   }
 

@@ -1,4 +1,4 @@
 abstract class DeleteAccountRepo {
-  Future<String> deleteAccount(
+  Future<void> requestDeleteAccount(
       {required String password, required String? refreshToken});
 }
