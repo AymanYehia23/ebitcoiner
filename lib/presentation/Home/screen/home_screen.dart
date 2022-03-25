@@ -7,8 +7,10 @@ import 'package:hash_store/data/data_providers/logout_api.dart';
 import 'package:hash_store/logic/cubit/delete_account/delete_account_cubit.dart';
 import 'package:hash_store/logic/cubit/logout/logout_cubit.dart';
 import 'package:hash_store/presentation/assets/screen/assets_screen.dart';
+import 'package:hash_store/presentation/choose_desired_plan/screens/choose_desired_plan_screen.dart';
 import 'package:hash_store/presentation/devices/screen/devices_screen.dart';
 import 'package:hash_store/presentation/profile/screen/profile_screen.dart';
+import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
 
@@ -25,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   List<Widget> screens = [
     AssetsScreen(),
-    const HashRateScreen(),
+    HashRateScreen(),
     const DevicesScreen(),
     MultiBlocProvider(
       providers: [
@@ -33,7 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
           create: (context) => LogoutCubit(logoutRepo: LogoutApi()),
         ),
         BlocProvider<DeleteAccountCubit>(
-          create: (context) => DeleteAccountCubit(deleteAccountRepo: DeleteAccountApi()),
+          create: (context) =>
+              DeleteAccountCubit(deleteAccountRepo: DeleteAccountApi()),
         ),
       ],
       child: ProfileScreen(),
@@ -52,7 +55,19 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         const GradientBackgroundContainer(),
         Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            title: Title(
+              color: Colors.white,
+              child: Text(
+                'HashRate Plans',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(fontSize: s.h(17.0)),
+              ),
+            ),
+            centerTitle: true,
+          ),
           body: screens[_selectedIndex],
           bottomNavigationBar: BottomNavigationBar(
             items: [
@@ -102,6 +117,22 @@ class _HomeScreenState extends State<HomeScreen> {
             unselectedItemColor: Colors.grey,
             selectedItemColor: const Color(0xffFF4980),
             elevation: 10,
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {},
+            child: SizedBox(
+              height: double.infinity,
+              child: DefaultGradientButton(
+                text: const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  const ChooseDesiredPlanScreen();
+                },
+                isFilled: true,
+              ),
+            ),
           ),
         ),
       ],

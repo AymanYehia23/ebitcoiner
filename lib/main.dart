@@ -10,6 +10,8 @@ import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
 import 'package:hash_store/logic/cubit/login/login_cubit.dart';
 import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 import 'package:hash_store/presentation/Home/screen/home_screen.dart';
+import 'package:hash_store/presentation/add_new_hashrate/screens/add_new_hashrate_screen.dart';
+import 'package:hash_store/presentation/choose_desired_plan/screens/choose_desired_plan_screen.dart';
 import 'package:hash_store/presentation/splash/screen/splash_screen.dart';
 
 import 'core/constants/strings.dart';

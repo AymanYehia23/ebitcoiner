@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hash_store/presentation/Home/screen/home_screen.dart';
+import 'package:hash_store/presentation/add_new_hashrate/screens/add_new_hashrate_screen.dart';
+import 'package:hash_store/presentation/choose_desired_plan/screens/choose_desired_plan_screen.dart';
 import 'package:hash_store/presentation/log_in/screen/log_in_screen.dart';
 import 'package:hash_store/presentation/recovery_link/screens/recovery_link_screen.dart';
 import '../../core/exceptions/route_exception.dart';
@@ -16,6 +18,8 @@ class AppRouter {
   static const String home = 'home';
   static const String recoveryLink = 'recoveryLink';
   static const String enterNewPassword = 'enterNewPassword';
+  static const String addNewHashrate = 'addNewHashrate';
+  static const String chooseDesiredPlan = 'chooseDesiredPlan';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -33,6 +37,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
       case enterNewPassword:
         return MaterialPageRoute(builder: (_) => const EnterNewPassword());
+      case addNewHashrate:
+        return MaterialPageRoute(builder: (_) => const AddNewHashrateScreen());
+      case chooseDesiredPlan:
+        return MaterialPageRoute(builder: (_) => const ChooseDesiredPlanScreen());
       default:
         throw const RouteException('Route not found!');
     }
