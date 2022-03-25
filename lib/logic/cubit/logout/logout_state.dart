@@ -1,12 +1,55 @@
 part of 'logout_cubit.dart';
 
 @immutable
-abstract class LogoutState {}
+abstract class LogoutState extends Equatable {}
 
-class LogoutInitial extends LogoutState {}
+class LogoutInitial extends LogoutState {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [LogoutInitial];
+}
 
-class LogoutLoadingState extends LogoutState{}
+class LogoutLoadingState extends LogoutState{
+  @override
+  // TODO: implement props
+  List<Object?> get props => [LogoutLoadingState];
+}
 
-class LogoutSuccessState extends LogoutState{}
+class LogoutSuccessState extends LogoutState{
+  @override
+  // TODO: implement props
+  List<Object?> get props => [LogoutSuccessState];
+}
 
-class LogoutErrorState extends LogoutState{}
+class LogoutErrorState extends LogoutState{
+  @override
+  // TODO: implement props
+  List<Object?> get props => [LogoutErrorState];
+}
+
+class GetSavedRefreshTokenLoadingState extends LogoutState{
+  @override
+  // TODO: implement props
+  List<Object?> get props => [GetSavedRefreshTokenLoadingState];
+}
+
+class GetSavedRefreshTokenSuccessState extends LogoutState {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [GetSavedRefreshTokenSuccessState];
+}
+
+class DeleteSavedRefreshTokenLoadingState extends LogoutState {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [DeleteSavedRefreshTokenLoadingState];
+}
+
+class DeleteSavedRefreshTokenSuccessState extends LogoutState {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [DeleteSavedRefreshTokenSuccessState];
+}
+
+
+

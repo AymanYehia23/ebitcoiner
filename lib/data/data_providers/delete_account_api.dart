@@ -5,7 +5,7 @@ import '../http/http_service.dart';
 
 class DeleteAccountApi implements DeleteAccountRepo {
   @override
-  Future<String> deleteAccount(
+  Future<String> requestDeleteAccount(
       {required String password, required String? refreshToken}) async {
     return await HttpService.deleteRequest(
         endPoint: Strings.deleteAccountEndPoint,

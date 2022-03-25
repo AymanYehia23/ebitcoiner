@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hash_store/core/constants/strings.dart';
+import 'package:hash_store/core/secure_storage/secure_storage.dart';
 import 'package:hash_store/data/data_providers/delete_account_api.dart';
 import 'package:hash_store/data/data_providers/logout_api.dart';
 import 'package:hash_store/logic/cubit/delete_account/delete_account_cubit.dart';
@@ -32,11 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
     MultiBlocProvider(
       providers: [
         BlocProvider<LogoutCubit>(
-          create: (context) => LogoutCubit(logoutRepo: LogoutApi()),
+          create: (context) => LogoutCubit(LogoutApi(),SecureStorage()),
         ),
         BlocProvider<DeleteAccountCubit>(
-          create: (context) =>
-              DeleteAccountCubit(deleteAccountRepo: DeleteAccountApi()),
+          create: (context) => DeleteAccountCubit(DeleteAccountApi()),
         ),
       ],
       child: ProfileScreen(),

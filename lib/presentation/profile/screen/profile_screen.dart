@@ -34,8 +34,9 @@ class ProfileScreen extends StatelessWidget {
           },
         ),
         BlocListener<DeleteAccountCubit, DeleteAccountState>(
-          listener: (context, state) {
+          listener: (context, state) async {
             if (state is DeleteAccountSuccessState) {
+              await context.read<LogoutCubit>().deleteSavedTokens();
               Navigator.of(context).pushReplacementNamed(AppRouter.splash);
             } else if (state is DeleteAccountErrorState) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -48,39 +49,93 @@ class ProfileScreen extends StatelessWidget {
           },
         ),
       ],
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: s.w(16)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Center(
-              child: Text(
-                Strings.profile,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(fontSize: s.w(60)),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: s.w(16)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Center(
+                child: Text(
+                  Strings.profile,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1!
+                      .copyWith(fontSize: s.w(60)),
+                ),
               ),
-            ),
-            SizedBox(
-              height: s.h(15),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: s.w(70)),
-              child: DefaultGradientButton(
-                isFilled: true,
+              SizedBox(
+                height: s.h(15),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: s.w(70)),
+                child: DefaultGradientButton(
+                  isFilled: true,
+                  onPressed: () async {
+                    await context.read<LogoutCubit>().logout(
+                          await context
+                              .read<LogoutCubit>()
+                              .getSavedRefreshToken(),
+                        );
+                  },
+                  text: Builder(builder: (context) {
+                    final logoutState = context.watch<LogoutCubit>().state;
+                    if (logoutState is LogoutLoadingState) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return Text(
+                      'Logout',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(fontSize: 30),
+                    );
+                  }),
+                ),
+              ),
+              SizedBox(
+                height: s.h(150),
+              ),
+              Form(
+                key: _formKey,
+                child: DefaultTextField(
+                  text: 'Password',
+                  controller: _passwordController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'You must enter your password';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              SizedBox(
+                height: s.h(20),
+              ),
+              DefaultGradientButton(
+                isFilled: false,
                 onPressed: () async {
-                  await context.read<LogoutCubit>().logout();
+                  if (_formKey.currentState!.validate()) {
+                    await context.read<DeleteAccountCubit>().deleteAccount(
+                          password: _passwordController.text,
+                          refreshToken: await context
+                              .read<LogoutCubit>()
+                              .getSavedRefreshToken(),
+                        );
+                  }
                 },
                 text: Builder(builder: (context) {
-                  final logoutState = context.watch<LogoutCubit>().state;
-                  if (logoutState is LogoutLoadingState) {
+                  final deleteAccountState =
+                      context.watch<DeleteAccountCubit>().state;
+                  if (deleteAccountState is DeleteAccountLoadingState) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
                   return Text(
-                    'Logout',
+                    'Delete Account',
                     style: Theme.of(context)
                         .textTheme
                         .bodyText1!
@@ -88,53 +143,8 @@ class ProfileScreen extends StatelessWidget {
                   );
                 }),
               ),
-            ),
-            SizedBox(
-              height: s.h(150),
-            ),
-            Form(
-              key: _formKey,
-              child: DefaultTextField(
-                text: 'Password',
-                controller: _passwordController,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'You must enter your password';
-                  }
-                  return null;
-                },
-              ),
-            ),
-            SizedBox(
-              height: s.h(20),
-            ),
-            DefaultGradientButton(
-              isFilled: false,
-              onPressed: () async {
-                if (_formKey.currentState!.validate()) {
-                  await context
-                      .read<DeleteAccountCubit>()
-                      .deleteAccount(password: _passwordController.text);
-                }
-              },
-              text: Builder(builder: (context) {
-                final deleteAccountState =
-                    context.watch<DeleteAccountCubit>().state;
-                if (deleteAccountState is DeleteAccountLoadingState) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                return Text(
-                  'Delete Account',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(fontSize: 30),
-                );
-              }),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

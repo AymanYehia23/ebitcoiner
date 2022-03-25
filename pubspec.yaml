@@ -44,6 +44,9 @@ dependencies:
   syncfusion_flutter_charts: ^19.4.55
   country_code_picker: ^2.0.2
   flutter_secure_storage: ^5.0.2
+  mocktail: ^0.3.0
+  bloc_test: ^9.0.3
+  equatable: ^2.0.3
   
 
 dev_dependencies:

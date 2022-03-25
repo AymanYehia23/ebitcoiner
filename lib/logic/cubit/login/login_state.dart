@@ -1,26 +1,54 @@
 part of 'login_cubit.dart';
 
 @immutable
-abstract class LoginState {}
+abstract class LoginState extends Equatable {}
 
-class LoginInitial extends LoginState {}
+class LoginInitial extends LoginState {
+  @override
+  List<Object?> get props => [LoginInitial];
+}
 
-class LoginLoadingState extends LoginState{}
+class LoginLoadingState extends LoginState {
+  @override
+  List<Object?> get props => [LoginLoadingState];
+}
 
-class LoginSuccessState extends LoginState {}
+class LoginSuccessState extends LoginState {
+  @override
+  List<Object?> get props => [LoginSuccessState];
+}
 
-class LoginErrorState extends LoginState {}
+class SaveTokensLoadingState extends LoginState {
+  @override
+  List<Object?> get props => [SaveTokensLoadingState];
+}
 
-class AutoLoginLoadingState extends LoginState{}
+class SaveTokensSuccessState extends LoginState {
+  @override
+  List<Object?> get props => [SaveTokensSuccessState];
+}
 
-class AutoLoginSuccessState extends LoginState {}
+class LoginErrorState extends LoginState {
+  @override
+  List<Object?> get props => [LoginErrorState];
+}
 
-class AutoLoginFailedState extends LoginState {}
+class AutoLoginLoadingState extends LoginState {
+  @override
+  List<Object?> get props => [AutoLoginLoadingState];
+}
 
-class LogoutLoadingState extends LoginState{}
+class AutoLoginSuccessState extends LoginState {
+  @override
+  List<Object?> get props => [AutoLoginSuccessState];
+}
 
-class LogoutSuccessState extends LoginState{}
+class AutoLoginFailedState extends LoginState {
+  @override
+  List<Object?> get props => [AutoLoginFailedState];
+}
 
-class LogoutErrorState extends LoginState{}
-
-class ChangePasswordVisibilityState extends LoginState {}
+class ChangePasswordVisibilityState extends LoginState {
+  @override
+  List<Object?> get props => [ChangePasswordVisibilityState];
+}

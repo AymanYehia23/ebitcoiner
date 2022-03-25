@@ -1,32 +1,49 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class SecureStorage {
-  static late FlutterSecureStorage _storage;
+abstract class SecureStorageRepo {
+  Future<void> addValue({required String key, required String? value});
 
-  static init() {
-    _storage = const FlutterSecureStorage();
+  Future<String?> getValue({
+    required String key,
+  });
+
+  Future<void> deleteValue({
+    required String key,
+  });
+
+  Future<bool> containsKey({
+    required String key,
+  });
+}
+
+
+class SecureStorage implements SecureStorageRepo {
+  
+  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
+
+  @override
+  Future<void> addValue({required String key, required String? value}) async {
+    await _secureStorage.write(key: key, value: value);
   }
 
-  static Future<void> addValue(
-      {required String key, required String? value}) async {
-    await _storage.write(key: key, value: value);
-  }
-
-  static Future<String?> getValue({
+  @override
+  Future<String?> getValue({
     required String key,
   }) async {
-    return await _storage.read(key: key);
+    return await _secureStorage.read(key: key);
   }
 
-  static Future<void> deleteValue({
+  @override
+  Future<void> deleteValue({
     required String key,
   }) async {
-    await _storage.delete(key: key);
+    return await _secureStorage.delete(key: key);
   }
 
-  static Future<bool> containsKey({
+  @override
+  Future<bool> containsKey({
     required String key,
   }) async {
-    return await _storage.containsKey(key: key);
+    return await _secureStorage.containsKey(key: key);
   }
 }

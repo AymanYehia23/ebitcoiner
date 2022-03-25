@@ -6,6 +6,7 @@ import 'package:hash_store/core/secure_storage/secure_storage.dart';
 import 'package:hash_store/data/data_providers/login_api.dart';
 import 'package:hash_store/data/data_providers/sign_up_api.dart';
 import 'package:hash_store/data/data_providers/update_password_api.dart';
+import 'package:hash_store/data/models/login_model.dart';
 import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
 import 'package:hash_store/logic/cubit/login/login_cubit.dart';
 import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
@@ -23,7 +24,6 @@ import 'presentation/router/app_router.dart';
 
 void main() {
   HttpService.init();
-  SecureStorage.init();
   BlocOverrides.runZoned(
     () {
       runApp(
@@ -45,11 +45,14 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<SignUpCubit>(
-          create: (context) => SignUpCubit(signUpRepo: SignUpAPI()),
+          create: (context) => SignUpCubit(SignUpAPI()),
         ),
         BlocProvider<LoginCubit>(
-          create: (context) =>
-              LoginCubit(loginRepo: LoginApi())..tryAutoLogin(),
+          create: (context) => LoginCubit(
+            LoginApi(),
+            LoginResponseModel(),
+            SecureStorage(),
+          )..tryAutoLogin(),
         ),
         BlocProvider<UpdatePasswordCubit>(
           create: (context) =>
@@ -60,21 +63,24 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-          title: Strings.appTitle,
-          theme: AppTheme.lightTheme,
-          debugShowCheckedModeBanner: false,
-          onGenerateRoute: AppRouter.onGenerateRoute,
-          useInheritedMediaQuery: true,
-          locale: DevicePreview.locale(context),
-          builder: DevicePreview.appBuilder,
-          home: BlocBuilder<LoginCubit, LoginState>(
-            builder: (context, state) {
-              if (state is AutoLoginSuccessState) {
-                return const HomeScreen();
-              }
-              return const SplashScreen();
-            },
-          )),
+        title: Strings.appTitle,
+        theme: AppTheme.lightTheme,
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: AppRouter.onGenerateRoute,
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
+        home: BlocBuilder<LoginCubit, LoginState>(
+          builder: (context, state) {
+            if (state is AutoLoginLoadingState) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is AutoLoginSuccessState) {
+              return const HomeScreen();
+            }
+            return const SplashScreen();
+          },
+        ),
+      ),
     );
   }
 }

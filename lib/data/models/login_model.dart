@@ -2,7 +2,8 @@ class LoginResponseModel {
   Jwt? jwt;
   User? user;
 
-  LoginResponseModel(this.jwt, this.user);
+
+  LoginResponseModel({this.jwt, this.user});
 
   LoginResponseModel.fromJson(Map<String, dynamic> json) {
     jwt = Jwt.fromJson(json['jwt']);
@@ -50,8 +51,8 @@ class User {
 }
 
 class Balance {
-  int? eth;
-  int? btc;
+  dynamic eth;
+  dynamic btc;
 
   Balance(this.eth, this.btc);
 
