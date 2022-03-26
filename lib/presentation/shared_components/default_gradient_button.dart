@@ -7,12 +7,16 @@ class DefaultGradientButton extends StatelessWidget {
   final bool isFilled;
   final Widget text;
   final Function onPressed;
-  const DefaultGradientButton({
-    Key? key,
-    required this.isFilled,
-    required this.text,
-    required this.onPressed,
-  }) : super(key: key);
+  final double? hight;
+  final double? radius;
+  const DefaultGradientButton(
+      {Key? key,
+      required this.isFilled,
+      required this.text,
+      required this.onPressed,
+      this.hight,
+      this.radius})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class DefaultGradientButton extends StatelessWidget {
               onPressed();
             },
             child: Container(
-                height: s.h(56.0),
+                height: hight ?? s.h(56.0),
                 width: double.infinity,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
@@ -62,7 +66,7 @@ class DefaultGradientButton extends StatelessWidget {
               onTap: () {
                 onPressed();
               },
-              radius: Radius.circular(s.h(56.0)),
+              radius: Radius.circular(radius ?? s.h(56.0)),
             ),
           );
   }

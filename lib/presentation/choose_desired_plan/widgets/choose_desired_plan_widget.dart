@@ -34,12 +34,12 @@ class _ChooseDesiredPlanWidgetState extends State<ChooseDesiredPlanWidget> {
   Widget build(BuildContext context) {
     Sizer s = Sizer(context: context);
     return Container(
-      height: s.h(315.0),
+      height: s.h(314.0),
       width: double.infinity,
       decoration: BoxDecoration(
         color: const Color(0xff1d1a27),
         border: Border.all(
-          color: Colors.white,
+          color: const Color(0xff302C3F),
         ),
         borderRadius: BorderRadius.circular(s.w(8.0)),
       ),
@@ -48,168 +48,149 @@ class _ChooseDesiredPlanWidgetState extends State<ChooseDesiredPlanWidget> {
           Container(
             height: s.h(84.0),
             padding: EdgeInsets.symmetric(
-                horizontal: s.w(16.0), vertical: s.h(16.0)),
-            child: Expanded(
-              child: Row(
-                children: [
-                  SvgPicture.asset(
-                    widget.minersPic,
-                    height: s.h(56.0),
-                    width: s.h(56.0),
-                  ),
-                  SizedBox(
-                    width: s.w(8.0),
-                  ),
-                  Text(
-                    widget.text,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(17.0),
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ],
+              horizontal: s.w(16.0),
+            ),
+            child: Row(
+              children: [
+                SvgPicture.asset(
+                  widget.minersPic,
+                  height: s.h(56.0),
+                  width: s.h(56.0),
+                ),
+                SizedBox(
+                  width: s.w(8.0),
+                ),
+                Text(
+                  widget.text,
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontSize: s.h(17.0),
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ],
+            ),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Mining Currency',
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                              fontSize: s.h(15.0),
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      SizedBox(
+                        height: s.h(5.0),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            widget.currencyIcn,
+                            height: s.h(20.0),
+                            width: s.h(20.0),
+                          ),
+                          SizedBox(
+                            width: s.w(4.0),
+                          ),
+                          Text(
+                            widget.currencyName,
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      fontSize: s.h(17.0),
+                                    ),
+                          ),
+                        ],
+                      ),
+                    ]),
               ),
-            ),
+              Expanded(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Power',
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                              fontSize: s.h(15.0),
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      Text(
+                        widget.power,
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: s.h(17.0),
+                            ),
+                      ),
+                    ]),
+              ),
+            ],
           ),
-          Expanded(
+          SizedBox(
+            height: s.h(16),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Price Per 1 GH/S',
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                              fontSize: s.h(15.0),
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      Text(
+                        widget.pricePer1Gh,
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: s.h(17.0),
+                            ),
+                      ),
+                    ]),
+              ),
+              Expanded(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Profitability',
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                              fontSize: s.h(15.0),
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      Text(
+                        widget.profitability,
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: s.h(17.0),
+                            ),
+                      ),
+                    ]),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: s.h(16),
+          ),
+          const Divider(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: s.w(16),vertical: s.h(16)),
             child: Row(
               children: [
-                Container(
-                  height: s.h(84.0),
-                  width: s.w(171.5),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: s.w(16.0), vertical: s.h(16.0)),
+                Expanded(
                   child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Mining Currency',
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    fontSize: s.h(10.0),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              widget.currencyIcn,
-                              height: s.h(20.0),
-                              width: s.h(20.0),
-                            ),
-                            SizedBox(
-                              width: s.w(4.0),
-                            ),
-                            Text(
-                              widget.currencyName,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
-                                    fontSize: s.h(12.0),
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ]),
-                ),
-                Container(
-                  height: s.h(84.0),
-                  width: s.w(168.0),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: s.w(16.0), vertical: s.h(16.0)),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Power',
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    fontSize: s.h(10.0),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                        Text(
-                          widget.power,
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: s.h(12.0),
-                                  ),
-                        ),
-                      ]),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Row(
-              children: [
-                Container(
-                  height: s.h(84.0),
-                  width: s.w(168.0),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: s.w(16.0), vertical: s.h(16.0)),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Price Per 1 GH/S',
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    fontSize: s.h(10.0),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                        Text(
-                          widget.pricePer1Gh,
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: s.h(12.0),
-                                  ),
-                        ),
-                      ]),
-                ),
-                Container(
-                  height: s.h(84.0),
-                  width: s.w(171.5),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: s.w(16.0), vertical: s.h(16.0)),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Profitability',
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    fontSize: s.h(10.0),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                        Text(
-                          widget.profitability,
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: s.h(12.0),
-                                  ),
-                        ),
-                      ]),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            height: s.h(87.0),
-            padding: EdgeInsets.symmetric(horizontal: s.w(16.0)),
-            child: Expanded(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Price',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(10.0),
+                              fontSize: s.h(15.0),
+                              fontWeight: FontWeight.bold,
                             ),
                       ),
                       SizedBox(
@@ -218,15 +199,15 @@ class _ChooseDesiredPlanWidgetState extends State<ChooseDesiredPlanWidget> {
                       Text(
                         widget.price,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(25.0),
+                              fontSize: s.h(30.0),
+                              fontWeight: FontWeight.bold,
                             ),
                       ),
                     ],
                   ),
-                  const Spacer(),
-                  DefaultGradientSmallButton(onPressed: () {}),
-                ],
-              ),
+                ),
+                Expanded(child: DefaultGradientSmallButton(onPressed: () {})),
+              ],
             ),
           ),
         ],

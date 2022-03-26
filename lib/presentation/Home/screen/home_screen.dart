@@ -11,6 +11,7 @@ import 'package:hash_store/presentation/assets/screen/assets_screen.dart';
 import 'package:hash_store/presentation/choose_desired_plan/screens/choose_desired_plan_screen.dart';
 import 'package:hash_store/presentation/devices/screen/devices_screen.dart';
 import 'package:hash_store/presentation/profile/screen/profile_screen.dart';
+import 'package:hash_store/presentation/router/app_router.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
@@ -56,16 +57,19 @@ class _HomeScreenState extends State<HomeScreen> {
         const GradientBackgroundContainer(),
         Scaffold(
           appBar: AppBar(
-            title: Title(
-              color: Colors.white,
-              child: Text(
-                'HashRate Plans',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(fontSize: s.h(17.0)),
-              ),
-            ),
+            title: _selectedIndex == 1
+                ? Title(
+                    color: Colors.white,
+                    child: Text(
+                      'Hashrate Plans',
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            fontSize: s.h(19.0),
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  )
+                : null,
+            backgroundColor: _selectedIndex == 1 ? Colors.black : null,
             centerTitle: true,
           ),
           body: screens[_selectedIndex],
@@ -118,22 +122,27 @@ class _HomeScreenState extends State<HomeScreen> {
             selectedItemColor: const Color(0xffFF4980),
             elevation: 10,
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-            child: SizedBox(
-              height: double.infinity,
-              child: DefaultGradientButton(
-                text: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  const ChooseDesiredPlanScreen();
-                },
-                isFilled: true,
-              ),
-            ),
-          ),
+          floatingActionButton: _selectedIndex == 1
+              ? FloatingActionButton(
+                  onPressed: () {
+                    
+                  },
+                  child: SizedBox(
+                    height: double.infinity,
+                    child: DefaultGradientButton(
+                      text: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushNamed(AppRouter.addNewHashrate);
+                      },
+                      isFilled: true,
+                    ),
+                  ),
+                )
+              : null,
         ),
       ],
     );

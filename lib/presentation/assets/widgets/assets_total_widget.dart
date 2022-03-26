@@ -25,7 +25,7 @@ class AssetsTotalWidget extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white),
-        borderRadius: BorderRadius.circular(s.w(8)),
+        borderRadius: BorderRadius.circular(s.h(8)),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

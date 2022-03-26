@@ -20,130 +20,143 @@ class _ChooseDesiredPlanScreenState extends State<ChooseDesiredPlanScreen> {
     return Stack(
       children: [
         const GradientBackgroundContainer(),
-        SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: s.h(210),
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: Color(0xff1d1a27),
-                  border: Border(
-                    bottom: BorderSide(
-                      width: 0.7,
-                      color: Colors.white,
+        Scaffold(
+          appBar: AppBar(
+            title: Text(
+              'Add new hashrate plan',
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    fontSize: s.h(19),
+                  ),
+            ),
+            centerTitle: true,
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: s.h(225),
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    color: Color(0xff1d1a27),
+                    border: Border(
+                      bottom: BorderSide(
+                        width: 0.7,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
-                ),
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: s.h(8.0)),
-                      height: s.h(38.0),
-                      width: double.infinity,
-                      child: Text(
+                  child: Column(
+                    children: [
+                      SizedBox(height: s.h(8)),
+                      Text(
                         'Choose Currency',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(17.0),
+                              fontSize: s.h(19.0),
                               fontWeight: FontWeight.bold,
                             ),
                         textAlign: TextAlign.center,
                       ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: s.h(12.0)),
-                      height: s.h(48.0),
-                      width: double.infinity,
-                      child: const AssetsChangeChartButton(),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: s.h(8.0)),
-                      height: s.h(38.0),
-                      width: double.infinity,
-                      child: Text(
+                      SizedBox(
+                        height: s.h(8),
+                      ),
+                      const AssetsChangeChartButton(),
+                      const Divider(),
+                      Text(
                         'Contract period',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(17.0),
+                              fontSize: s.h(19.0),
                               fontWeight: FontWeight.bold,
                             ),
                         textAlign: TextAlign.center,
                       ),
-                    ),
-                    const ContractPeriodWidget(),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: s.h(40.0),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: s.w(16.0)),
-                child: Column(children: [
-                  Text(
-                    'Choose desired Plan',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(28),
-                          fontWeight: FontWeight.bold,
+                      SizedBox(
+                        height: s.h(8),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: s.w(16),
+                          vertical: s.h(8),
                         ),
+                        child: const ContractPeriodWidget(),
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                    height: s.h(12.0),
+                ),
+                SizedBox(
+                  height: s.h(40.0),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: s.w(16.0)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Choose desired Plan',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: s.h(28),
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      SizedBox(
+                        height: s.h(12.0),
+                      ),
+                      const ChooseDesiredPlanWidget(
+                        price: '\$ 200',
+                        minersPic: 'assets/images/miners_image.svg',
+                        text: 'Lite Miners',
+                        currencyIcn: 'assets/images/btc_icon.svg',
+                        currencyName: 'BTC (Bitcoin)',
+                        power: '23 580 GH/S',
+                        pricePer1Gh: '\$ 0.0120',
+                        profitability: 'From 143%',
+                      ),
+                      SizedBox(
+                        height: s.h(16.0),
+                      ),
+                      const ChooseDesiredPlanWidget(
+                        price: '\$ 500',
+                        minersPic: 'assets/images/regular_miners_image.svg',
+                        text: 'Regular Miners',
+                        currencyIcn: 'assets/images/btc_icon.svg',
+                        currencyName: 'BTC (Bitcoin)',
+                        power: '23 580 GH/S',
+                        pricePer1Gh: '\$ 0.0120',
+                        profitability: 'From 143%',
+                      ),
+                      SizedBox(
+                        height: s.h(16.0),
+                      ),
+                      const ChooseDesiredPlanWidget(
+                        price: '\$ 1000',
+                        minersPic: 'assets/images/pro_miners_image.svg',
+                        text: 'Pro Miners',
+                        currencyIcn: 'assets/images/btc_icon.svg',
+                        currencyName: 'BTC (Bitcoin)',
+                        power: '23 580 GH/S',
+                        pricePer1Gh: '\$ 0.0120',
+                        profitability: 'From 143%',
+                      ),
+                      SizedBox(
+                        height: s.h(16.0),
+                      ),
+                      const ChooseDesiredPlanWidget(
+                        price: '\$ 5000',
+                        minersPic: 'assets/images/elite_miners_image.svg',
+                        text: 'Elite Miners',
+                        currencyIcn: 'assets/images/btc_icon.svg',
+                        currencyName: 'BTC (Bitcoin)',
+                        power: '23 580 GH/S',
+                        pricePer1Gh: '\$ 0.0120',
+                        profitability: 'From 143%',
+                      ),
+                      SizedBox(
+                        height: s.h(70.0),
+                      ),
+                    ],
                   ),
-                  const ChooseDesiredPlanWidget(
-                    price: '\$ 200',
-                    minersPic: 'assets/images/miners_image.svg',
-                    text: 'Lite Miners',
-                    currencyIcn: 'assets/images/btc_icon.svg',
-                    currencyName: 'BTC (Bitcoin)',
-                    power: '23 580 GH/S',
-                    pricePer1Gh: '\$ 0.0120',
-                    profitability: 'From 143%',
-                  ),
-                  SizedBox(
-                    height: s.h(16.0),
-                  ),
-                  const ChooseDesiredPlanWidget(
-                    price: '\$ 500',
-                    minersPic: 'assets/images/regular_miners_image.svg',
-                    text: 'Regular Miners',
-                    currencyIcn: 'assets/images/btc_icon.svg',
-                    currencyName: 'BTC (Bitcoin)',
-                    power: '23 580 GH/S',
-                    pricePer1Gh: '\$ 0.0120',
-                    profitability: 'From 143%',
-                  ),
-                  SizedBox(
-                    height: s.h(16.0),
-                  ),
-                  const ChooseDesiredPlanWidget(
-                    price: '\$ 1000',
-                    minersPic: 'assets/images/pro_miners_image.svg',
-                    text: 'Pro Miners',
-                    currencyIcn: 'assets/images/btc_icon.svg',
-                    currencyName: 'BTC (Bitcoin)',
-                    power: '23 580 GH/S',
-                    pricePer1Gh: '\$ 0.0120',
-                    profitability: 'From 143%',
-                  ),
-                  SizedBox(
-                    height: s.h(16.0),
-                  ),
-                  const ChooseDesiredPlanWidget(
-                    price: '\$ 5000',
-                    minersPic: 'assets/images/elite_miners_image.svg',
-                    text: 'Elite Miners',
-                    currencyIcn: 'assets/images/btc_icon.svg',
-                    currencyName: 'BTC (Bitcoin)',
-                    power: '23 580 GH/S',
-                    pricePer1Gh: '\$ 0.0120',
-                    profitability: 'From 143%',
-                  ),
-                  SizedBox(
-                    height: s.h(70.0),
-                  ),
-                ]),
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ],
