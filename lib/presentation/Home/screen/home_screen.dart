@@ -29,11 +29,11 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> screens = [
     AssetsScreen(),
     HashRateScreen(),
-    const DevicesScreen(),
+    DevicesScreen(),
     MultiBlocProvider(
       providers: [
         BlocProvider<LogoutCubit>(
-          create: (context) => LogoutCubit(LogoutApi(),SecureStorage()),
+          create: (context) => LogoutCubit(LogoutApi(), SecureStorage()),
         ),
         BlocProvider<DeleteAccountCubit>(
           create: (context) => DeleteAccountCubit(DeleteAccountApi()),
