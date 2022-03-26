@@ -92,6 +92,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         email: _emailController.text,
                         password: _passwordController.text,
                       );
+                  await context.read<LoginCubit>().saveTokens();
                 }
               },
             ),

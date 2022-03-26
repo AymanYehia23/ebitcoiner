@@ -25,108 +25,97 @@ class ActivePlansWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Sizer s = Sizer(context: context);
     return Container(
-      height: s.h(235),
+      padding: EdgeInsets.symmetric(
+        horizontal: s.w(16.0),
+        vertical: s.h(16.0),
+      ),
+      height: s.h(225),
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.white,
+          color: const Color(0xff302C3F),
         ),
-        borderRadius: BorderRadius.circular(s.w(8)),
+        borderRadius: BorderRadius.circular(s.h(8)),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: s.h(16),
-              vertical: s.w(16.0),
-            ),
-            height: s.h(66.0),
-            width: double.infinity,
-            child: Expanded(
-              child: Row(
-                children: [
-                  SvgPicture.asset(
-                    currencyPic,
-                    height: s.h(32),
-                    width: s.h(32.0),
-                  ),
-                  SizedBox(
-                    width: s.w(8.0),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        currency,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(14.0),
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                      Text(
-                        'Booking Date: $bookingDate',
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(10.0),
-                              fontWeight: FontWeight.bold,
-                            ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
+          Expanded(
+            child: Row(
+              children: [
+                SvgPicture.asset(
+                  currencyPic,
+                  height: s.h(32.0),
+                  width: s.h(32.0),
+                ),
+                SizedBox(
+                  width: s.w(8.0),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      currency,
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            fontSize: s.h(19.0),
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    Text(
+                      'Booking Date: $bookingDate',
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                            fontSize: s.h(15.0),
+                          ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
           Expanded(
             child: Row(
               children: [
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: s.h(16),
-                    vertical: s.w(16.0),
-                  ),
-                  height: s.h(71.0),
-                  width: s.w(170.0),
+                Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Total Mined',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(10.0),
+                              fontSize: s.h(15.0),
                               fontWeight: FontWeight.bold,
                             ),
+                      ),
+                      SizedBox(
+                        height: s.h(4),
                       ),
                       Text(
                         totalMined,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(12.0),
+                              fontSize: s.h(17.0),
                             ),
                       )
                     ],
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: s.h(16),
-                    vertical: s.w(16.0),
-                  ),
-                  height: s.h(71.0),
-                  width: s.w(170.0),
+                Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Avg Daily Income',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(10.0),
+                              fontSize: s.h(15.0),
                               fontWeight: FontWeight.bold,
                             ),
+                      ),
+                      SizedBox(
+                        height: s.h(4),
                       ),
                       Text(
                         avgDailyIncome,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(12.0),
+                              fontSize: s.h(17.0),
                             ),
                       )
                     ],
@@ -138,68 +127,61 @@ class ActivePlansWidget extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: s.h(16),
-                    vertical: s.w(16.0),
-                  ),
-                  height: s.h(71.0),
-                  width: s.w(170.0),
+                Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Current HashPower',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(10.0),
+                              fontSize: s.h(15.0),
                               fontWeight: FontWeight.bold,
                             ),
                       ),
-                      Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              'assets/images/mining_pink_icon.svg',
-                              height: s.h(16.0),
-                              width: s.w(16.0),
-                            ),
-                            Text(
-                              currentHashPower,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
-                                    fontSize: s.h(12.0),
-                                  ),
-                            ),
-                          ],
-                        ),
+                      SizedBox(
+                        height: s.h(4),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            'assets/images/mining_pink_icon.svg',
+                            height: s.h(16.0),
+                            width: s.h(16.0),
+                          ),
+                          SizedBox(
+                            width: s.w(4),
+                          ),
+                          Text(
+                            currentHashPower,
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      fontSize: s.h(17.0),
+                                    ),
+                          ),
+                        ],
                       )
                     ],
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: s.h(16),
-                    vertical: s.w(16.0),
-                  ),
-                  height: s.h(71.0),
-                  width: s.w(170.0),
+                Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Expired on',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(10.0),
+                              fontSize: s.h(15.0),
                               fontWeight: FontWeight.bold,
                             ),
+                      ),
+                      SizedBox(
+                        height: s.h(4),
                       ),
                       Text(
                         expiredOn,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(12.0),
+                              fontSize: s.h(17.0),
                             ),
                       )
                     ],

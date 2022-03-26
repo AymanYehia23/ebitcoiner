@@ -37,9 +37,9 @@ class HashRateScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [  
+              children: [
                 SizedBox(
-                  height: s.h(33.0),
+                  height: s.h(32.0),
                 ),
                 const HashrateTotalWidget(),
                 SizedBox(
@@ -106,22 +106,24 @@ class HashRateScreen extends StatelessWidget {
                 ),
                 SizedBox(height: s.h(12.0)),
                 const ActivePlansWidget(
-                    currencyPic: 'assets/images/btc_icon.svg',
-                    currency: 'Bitcoin — Starter',
-                    totalMined: '0.000002130 BTC',
-                    avgDailyIncome: '14.0323213 BTC',
-                    currentHashPower: '23 580 GH/S',
-                    expiredOn: '12 Jan 2022',
-                    bookingDate: '12 Jan 2021'),
+                  currencyPic: 'assets/images/btc_icon.svg',
+                  currency: 'Bitcoin — Starter',
+                  totalMined: '0.000002130 BTC',
+                  avgDailyIncome: '14.0323213 BTC',
+                  currentHashPower: '23 580 GH/S',
+                  expiredOn: '12 Jan 2022',
+                  bookingDate: '12 Jan 2021',
+                ),
                 SizedBox(height: s.h(15.0)),
                 const ActivePlansWidget(
-                    currencyPic: 'assets/images/eth_icon.svg',
-                    currency: 'Ethereum — Starter',
-                    totalMined: '0.000002130 BTC',
-                    avgDailyIncome: '14.0323213 BTC',
-                    currentHashPower: '23 580 GH/S',
-                    expiredOn: '12 Jan 2022',
-                    bookingDate: '12 Jan 2021'),
+                  currencyPic: 'assets/images/eth_icon.svg',
+                  currency: 'Ethereum — Starter',
+                  totalMined: '0.000002130 BTC',
+                  avgDailyIncome: '14.0323213 BTC',
+                  currentHashPower: '23 580 GH/S',
+                  expiredOn: '12 Jan 2022',
+                  bookingDate: '12 Jan 2021',
+                ),
                 SizedBox(height: s.h(40.0)),
                 const ExpiredPlansWidget(),
                 SizedBox(height: s.h(75.0)),
