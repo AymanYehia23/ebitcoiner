@@ -11,5 +11,8 @@ class UpdatePasswordSuccessState extends UpdatePasswordState{}
 
 class UpdatePasswordErrorState extends UpdatePasswordState{}
 
-class ChangePasswordVisibilityState extends UpdatePasswordState {}
+class ChangePasswordVisibilityLoadingState extends UpdatePasswordState {}
+
+class ChangePasswordVisibilitySuccessState extends UpdatePasswordState {}
+
 

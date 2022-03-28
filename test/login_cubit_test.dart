@@ -62,10 +62,10 @@ void main() {
         },
       );
       blocTest<LoginCubit, LoginState>(
-        "the cubit should emit [ChangePasswordVisibilityState] when (changePasswordVisibility) method called.",
+        "the cubit should emit [ChangePasswordVisibilityStates] when (changePasswordVisibility) method called.",
         build: () => sut,
         act: (cubit) => cubit.changePasswordVisibility(),
-        expect: () => <LoginState>[ChangePasswordVisibilityState()],
+        expect: () => <LoginState>[ChangePasswordVisibilityLoadingState(),ChangePasswordVisibilitySuccessState()],
       );
     },
   );

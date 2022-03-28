@@ -8,10 +8,12 @@ import 'package:hash_store/data/data_providers/sign_up_api.dart';
 import 'package:hash_store/data/data_providers/update_password_api.dart';
 import 'package:hash_store/data/models/login_model.dart';
 import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
+import 'package:hash_store/logic/cubit/currency_converter/currency_converter_cubit.dart';
 import 'package:hash_store/logic/cubit/login/login_cubit.dart';
 import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 import 'package:hash_store/presentation/Home/screen/home_screen.dart';
 import 'package:hash_store/presentation/splash/screen/splash_screen.dart';
+import 'package:sizer/sizer.dart';
 
 import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
@@ -59,25 +61,32 @@ class MyApp extends StatelessWidget {
         BlocProvider<AssetsCubit>(
           create: (context) => AssetsCubit()..getChartData(Currency.btc),
         ),
-      ],
-      child: MaterialApp(
-        title: Strings.appTitle,
-        theme: AppTheme.lightTheme,
-        debugShowCheckedModeBanner: false,
-        onGenerateRoute: AppRouter.onGenerateRoute,
-        useInheritedMediaQuery: true,
-        locale: DevicePreview.locale(context),
-        builder: DevicePreview.appBuilder,
-        home: BlocBuilder<LoginCubit, LoginState>(
-          builder: (context, state) {
-            if (state is AutoLoginLoadingState) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is AutoLoginSuccessState) {
-              return const HomeScreen();
-            }
-            return const SplashScreen();
-          },
+        BlocProvider<CurrencyConverterCubit>(
+          create: (context) => CurrencyConverterCubit(),
         ),
+      ],
+      child: Sizer(
+        builder: (context, orientation, deviceType) {
+          return MaterialApp(
+            title: Strings.appTitle,
+            theme: AppTheme.lightTheme,
+            debugShowCheckedModeBanner: false,
+            onGenerateRoute: AppRouter.onGenerateRoute,
+            useInheritedMediaQuery: true,
+            locale: DevicePreview.locale(context),
+            builder: DevicePreview.appBuilder,
+            home: BlocBuilder<LoginCubit, LoginState>(
+              builder: (context, state) {
+                if (state is AutoLoginLoadingState) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is AutoLoginSuccessState) {
+                  return const HomeScreen();
+                }
+                return const HomeScreen();
+              },
+            ),
+          );
+        }
       ),
     );
   }

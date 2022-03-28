@@ -47,6 +47,7 @@ dependencies:
   mocktail: ^0.3.0
   bloc_test: ^9.0.3
   equatable: ^2.0.3
+  sizer: ^2.0.15
   
 
 dev_dependencies:

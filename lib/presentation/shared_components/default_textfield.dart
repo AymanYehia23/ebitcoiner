@@ -9,6 +9,7 @@ class DefaultTextField extends StatelessWidget {
   final IconButton? suffixIcon;
   final TextEditingController? controller;
   final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? inputType;
   final String? Function(String?)? validator;
 
   const DefaultTextField({
@@ -19,6 +20,7 @@ class DefaultTextField extends StatelessWidget {
     this.suffixIcon,
     this.validator,
     this.controller,
+    this.inputType,
   }) : super(key: key);
 
   @override
@@ -49,6 +51,8 @@ class DefaultTextField extends StatelessWidget {
       obscureText: isObscureText,
       validator: validator,
       controller: controller,
+      inputFormatters: inputFormatters,
+      keyboardType: inputType,
     );
   }
 }

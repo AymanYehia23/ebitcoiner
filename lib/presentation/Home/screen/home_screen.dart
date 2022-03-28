@@ -28,7 +28,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   List<Widget> screens = [
-    AssetsScreen(),
+    const AssetsScreen(),
     HashRateScreen(),
     const DevicesScreen(),
     MultiBlocProvider(

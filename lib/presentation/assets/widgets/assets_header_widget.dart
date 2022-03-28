@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 class AssetsHeaderWidget extends StatelessWidget {
   const AssetsHeaderWidget({
@@ -9,24 +8,23 @@ class AssetsHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Hello, Ahmed 👋',
           style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                fontSize: s.h(19),
+                fontSize: 13.sp,
                 fontWeight: FontWeight.bold,
               ),
         ),
         SizedBox(
-          height: s.h(8.0),
+          height: 1.h,
         ),
         Text(
           'Available Balance',
           style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                fontSize: s.h(30),
+                fontSize: 22.sp,
                 fontWeight: FontWeight.bold,
               ),
         ),

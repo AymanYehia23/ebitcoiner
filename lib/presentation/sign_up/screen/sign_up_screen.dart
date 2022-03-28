@@ -29,6 +29,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  late String _countryCode;
+
   @override
   void initState() {
     _nameController.addListener(_checkOfEmptyValue);
@@ -64,9 +66,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
         name: _nameController.text,
         email: _emailController.text,
         password: _passwordController.text,
-        phone: _phoneNumberController.text,
+        phone: '$_countryCode${_phoneNumberController.text}',
       );
-      await context.read<SignUpCubit>().signUp(signUPRequestModel);
+      print(signUPRequestModel.phone);
+      //await context.read<SignUpCubit>().signUp(signUPRequestModel);
     }
   }
 
@@ -247,12 +250,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               );
                             }),
                             onPressed: () {
+                              _countryCode =
+                                  context.read<SignUpCubit>().countryCode;
                               _submit();
                             },
                           );
                         }
                       },
-                    )
+                    ),
+                    SizedBox(
+                      height: s.h(16),
+                    ),
                   ],
                 ),
               ),

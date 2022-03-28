@@ -57,9 +57,10 @@ class LoginCubit extends Cubit<LoginState> {
   IconData iconData = Icons.visibility_outlined;
 
   void changePasswordVisibility() {
+    emit(ChangePasswordVisibilityLoadingState());
     isObscure = !isObscure;
     iconData =
         isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-    emit(ChangePasswordVisibilityState());
+    emit(ChangePasswordVisibilitySuccessState());
   }
 }

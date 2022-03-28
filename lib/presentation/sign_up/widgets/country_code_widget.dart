@@ -1,12 +1,13 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
 
 class CustomCountryCode extends StatelessWidget {
   const CustomCountryCode({
     Key? key,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Sizer s = Sizer(context: context);
@@ -42,6 +43,9 @@ class CustomCountryCode extends StatelessWidget {
             ),
           ),
         ),
+        onChanged: (value) {
+          context.read<SignUpCubit>().countryCode = value.dialCode.toString();
+        },
       ),
     );
   }

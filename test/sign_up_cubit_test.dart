@@ -61,7 +61,7 @@ void main() {
         "the cubit should emit [ChangePasswordVisibilityState] when (changePasswordVisibility) method called.",
         build: () => sut,
         act: (cubit) => cubit.changePasswordVisibility(),
-        expect: () => <SignUpState>[ChangePasswordVisibilityState()],
+        expect: () => <SignUpState>[ChangePasswordVisibilityLoadingState(),ChangePasswordVisibilitySuccessState()],
       );
     },
   );

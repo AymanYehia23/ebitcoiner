@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hash_store/core/constants/enums.dart';
 import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 class AssetsChangeChartButton extends StatelessWidget {
   const AssetsChangeChartButton({
@@ -13,11 +13,10 @@ class AssetsChangeChartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: s.w(16.0)),
+      padding: EdgeInsets.symmetric(horizontal: (4.w)),
       width: double.infinity,
-      height: s.h(48),
+      height: (9.h),
       color: const Color(0xff1d1a27),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -27,10 +26,10 @@ class AssetsChangeChartButton extends StatelessWidget {
               context.read<AssetsCubit>().getChartData(Currency.btc);
             },
             child: Container(
-              width: s.w(78),
-              height: s.h(32),
+              width: (20.w),
+              height: (4.h),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(s.h(20)),
+                borderRadius: BorderRadius.circular((20)),
                 color: context.watch<AssetsCubit>().currency == Currency.btc
                     ? const Color(0xff302c3f)
                     : null,
@@ -40,16 +39,16 @@ class AssetsChangeChartButton extends StatelessWidget {
                 children: [
                   SvgPicture.asset(
                     Strings.btcIcon,
-                    width: s.h(24),
-                    height: s.h(24),
+                    width: (3.w),
+                    height: (3.h),
                   ),
                   SizedBox(
-                    width: s.w(4),
+                    width: (1.w),
                   ),
                   Text(
                     'BTC',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(15),
+                          fontSize: (12.sp),
                           fontWeight: FontWeight.bold,
                         ),
                   ),
@@ -62,10 +61,10 @@ class AssetsChangeChartButton extends StatelessWidget {
               context.read<AssetsCubit>().getChartData(Currency.eth);
             },
             child: Container(
-              width: s.w(78),
-              height: s.h(32),
+             width: (20.w),
+              height: (4.h),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(s.h(20)),
+                borderRadius: BorderRadius.circular((20)),
                 color: context.watch<AssetsCubit>().currency == Currency.eth
                     ? const Color(0xff302c3f)
                     : null,
@@ -75,16 +74,16 @@ class AssetsChangeChartButton extends StatelessWidget {
                 children: [
                   SvgPicture.asset(
                     Strings.ethIcon,
-                    width: s.h(24),
-                    height: s.h(24),
+                    width: (24),
+                    height: (24),
                   ),
                   SizedBox(
-                    width: s.w(4),
+                    width: (1.w),
                   ),
                   Text(
                     'ETH',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(15),
+                          fontSize: (12.sp),
                           fontWeight: FontWeight.bold,
                         ),
                   ),
@@ -97,10 +96,10 @@ class AssetsChangeChartButton extends StatelessWidget {
               context.read<AssetsCubit>().getChartData(Currency.rvn);
             },
             child: Container(
-              width: s.w(78),
-              height: s.h(32),
+             width: (20.w),
+              height: (4.h),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(s.h(20)),
+                borderRadius: BorderRadius.circular((20)),
                 color: context.watch<AssetsCubit>().currency == Currency.rvn
                     ? const Color(0xff302c3f)
                     : null,
@@ -110,16 +109,16 @@ class AssetsChangeChartButton extends StatelessWidget {
                 children: [
                   SvgPicture.asset(
                     Strings.rvnIcon,
-                    width: s.h(28),
-                    height: s.h(28),
+                    width: (3.5.w),
+                    height: (3.5.h),
                   ),
                   SizedBox(
-                    width: s.w(4),
+                    width: (1.w),
                   ),
                   Text(
                     'RVN',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(15),
+                          fontSize: (12.sp),
                           fontWeight: FontWeight.bold,
                         ),
                   ),

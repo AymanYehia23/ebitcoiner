@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../../data/models/chart_model.dart';
@@ -17,11 +17,10 @@ class AssetsChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Container(
       color: const Color(0xff1d1a27),
       width: double.infinity,
-      height: s.h(300),
+      height: 30.h,
       child: SfCartesianChart(
         primaryXAxis: CategoryAxis(),
         primaryYAxis: NumericAxis(
@@ -38,8 +37,8 @@ class AssetsChartWidget extends StatelessWidget {
             name: 'BTC',
             color: const Color(0xffff4980),
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(s.h(5)),
-              topRight: Radius.circular(s.h(5)),
+              topLeft: Radius.circular((5)),
+              topRight: Radius.circular((5)),
             ),
             width: 0.5,
           ),

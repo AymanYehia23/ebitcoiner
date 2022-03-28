@@ -26,8 +26,13 @@ class SignUpErrorState extends SignUpState {
   @override
   List<Object?> get props => [SignUpErrorState];
 }
-
-class ChangePasswordVisibilityState extends SignUpState {
+class ChangePasswordVisibilityLoadingState extends SignUpState {
   @override
-  List<Object?> get props => [SignUpErrorState];
+  List<Object?> get props => [ChangePasswordVisibilityLoadingState];
 }
+
+class ChangePasswordVisibilitySuccessState extends SignUpState {
+  @override
+  List<Object?> get props => [ChangePasswordVisibilitySuccessState];
+}
+

@@ -3,6 +3,8 @@ import 'package:hash_store/core/constants/enums.dart';
 import 'package:hash_store/data/models/chart_model.dart';
 import 'package:meta/meta.dart';
 
+import '../../../core/constants/strings.dart';
+
 part 'assets_state.dart';
 
 class AssetsCubit extends Cubit<AssetsState> {
@@ -10,9 +12,15 @@ class AssetsCubit extends Cubit<AssetsState> {
 
   //Assets total UI logic
   bool isExpanded = false;
+  String expandedIcon = Strings.featherChevronDownIcon;
 
   void changeSize() {
     isExpanded = !isExpanded;
+    if (isExpanded == true) {
+      expandedIcon = Strings.featherChevronUp;
+    } else {
+      expandedIcon = Strings.featherChevronDownIcon;
+    }
     emit(AssetsTotalChangeSizeState());
   }
 
