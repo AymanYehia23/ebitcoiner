@@ -268,8 +268,12 @@ class YourMinersWidget extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: s.w(16)),
                   child: DefaultGradientButton(
                       isFilled: true,
-                      text: const Text(
+                      text: Text(
                         'Renew maintenance support',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            fontSize: s.h(19.0),
+                            fontWeight: FontWeight.bold,
+                          ),
                       ),
                       onPressed: () {}),
                 ),

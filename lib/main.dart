@@ -11,6 +11,7 @@ import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
 import 'package:hash_store/logic/cubit/login/login_cubit.dart';
 import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 import 'package:hash_store/presentation/Home/screen/home_screen.dart';
+import 'package:hash_store/presentation/buy_mining_device/screens/buy_mining_device_screen.dart';
 import 'package:hash_store/presentation/splash/screen/splash_screen.dart';
 
 import 'core/constants/strings.dart';
@@ -73,7 +74,7 @@ class MyApp extends StatelessWidget {
             if (state is AutoLoginLoadingState) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is AutoLoginSuccessState) {
-              return const HomeScreen();
+              return const BuyMiningDeviceScreen();
             }
             return const SplashScreen();
           },
