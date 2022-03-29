@@ -48,7 +48,12 @@ class AutoLoginFailedState extends LoginState {
   List<Object?> get props => [AutoLoginFailedState];
 }
 
-class ChangePasswordVisibilityState extends LoginState {
+class ChangePasswordVisibilityLoadingState extends LoginState {
   @override
-  List<Object?> get props => [ChangePasswordVisibilityState];
+  List<Object?> get props => [ChangePasswordVisibilityLoadingState];
+}
+
+class ChangePasswordVisibilitySuccessState extends LoginState {
+  @override
+  List<Object?> get props => [ChangePasswordVisibilitySuccessState];
 }

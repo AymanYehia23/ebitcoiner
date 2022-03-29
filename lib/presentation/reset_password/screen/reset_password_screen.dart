@@ -4,8 +4,8 @@ import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
 import 'package:hash_store/presentation/shared_components/default_textfield.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
 import 'package:hash_store/core/extensions/input_validation.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../logic/cubit/update_password/update_password_cubit.dart';
 import '../../router/app_router.dart';
@@ -52,7 +52,6 @@ class _ResetPassScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Stack(
       children: [
         const GradientBackgroundContainer(),
@@ -60,34 +59,34 @@ class _ResetPassScreenState extends State<ResetPasswordScreen> {
           appBar: AppBar(),
           body: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: s.h(16.0),
+              horizontal: 4.w,
             ),
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   SizedBox(
-                    height: s.h(24.0),
+                    height: 4.h,
                   ),
                   Text(
                     Strings.resetPassword,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(30.0),
+                          fontSize: 22.sp,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
                   SizedBox(
-                    height: s.h(8.0),
+                    height: 1.h,
                   ),
                   Text(
                     Strings.resetMsg,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                          fontSize: s.h(16.0),
+                          fontSize: 12.sp,
                         ),
                   ),
                   SizedBox(
-                    height: s.h(24.0),
+                    height: 4.h,
                   ),
                   Form(
                     key: _formKey,
@@ -101,7 +100,7 @@ class _ResetPassScreenState extends State<ResetPasswordScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: s.h(435.0),
+                    height: 50.h,
                   ),
                   Builder(
                     builder: (context) {
@@ -112,7 +111,7 @@ class _ResetPassScreenState extends State<ResetPasswordScreen> {
                             'Next',
                             style:
                                 Theme.of(context).textTheme.bodyText2!.copyWith(
-                                      fontSize: s.h(19),
+                                      fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -124,7 +123,7 @@ class _ResetPassScreenState extends State<ResetPasswordScreen> {
                             'Next',
                             style:
                                 Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: s.h(19),
+                                      fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),

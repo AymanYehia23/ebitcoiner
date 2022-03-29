@@ -32,16 +32,18 @@ class UpdatePasswordCubit extends Cubit<UpdatePasswordState> {
   IconData iconData2 = Icons.visibility_outlined;
 
   void changePasswordVisibility() {
+    emit(ChangePasswordVisibilityLoadingState());
     isObscure = !isObscure;
     iconData =
         isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-    emit(ChangePasswordVisibilityState());
+    emit(ChangePasswordVisibilitySuccessState());
   }
 
   void changePasswordVisibility2() {
+    emit(ChangePasswordVisibilityLoadingState());
     isObscure2 = !isObscure2;
     iconData2 =
         isObscure2 ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-    emit(ChangePasswordVisibilityState());
+    emit(ChangePasswordVisibilitySuccessState());
   }
 }

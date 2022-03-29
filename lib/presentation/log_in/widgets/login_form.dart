@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/logic/cubit/login/login_cubit.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
 import 'package:hash_store/core/extensions/input_validation.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../shared_components/default_textfield.dart';
 
@@ -23,7 +23,6 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Form(
       key: _formKey,
       child: Column(
@@ -37,7 +36,7 @@ class LoginForm extends StatelessWidget {
             controller: _emailController,
           ),
           SizedBox(
-            height: s.h(20.0),
+            height: 3.5.h,
           ),
           Builder(builder: (context) {
             return DefaultTextField(

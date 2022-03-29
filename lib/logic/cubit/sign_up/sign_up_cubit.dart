@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:hash_store/data/models/sign_up_model.dart';
 import 'package:hash_store/data/repositories/sign_up_repo.dart';
 
-
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
@@ -24,16 +23,17 @@ class SignUpCubit extends Cubit<SignUpState> {
     }
   }
 
-
   //UI logic
   bool isEmpty = true;
   bool isObscure = true;
   IconData iconData = Icons.visibility_outlined;
+  String countryCode = '+20';
 
   void changePasswordVisibility() {
+    emit(ChangePasswordVisibilityLoadingState());
     isObscure = !isObscure;
     iconData =
         isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-    emit(ChangePasswordVisibilityState());
+    emit(ChangePasswordVisibilitySuccessState());
   }
 }

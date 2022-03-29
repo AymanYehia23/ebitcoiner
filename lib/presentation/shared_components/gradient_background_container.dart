@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 class GradientBackgroundContainer extends StatelessWidget {
   final Widget? child;
@@ -11,7 +11,6 @@ class GradientBackgroundContainer extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return SafeArea(
       child: Stack(
         children: [
@@ -21,8 +20,8 @@ class GradientBackgroundContainer extends StatelessWidget {
             color: const Color(0xff13111a),
           ),
           Container(
-            margin: EdgeInsets.only(right: s.w(16.0)),
-            height: s.h(218),
+            margin: EdgeInsets.only(right: 4.w),
+            height: 30.h,
             width: double.infinity,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -35,7 +34,7 @@ class GradientBackgroundContainer extends StatelessWidget {
                 stops: const [0, 1],
                 transform: const GradientRotation(-225),
               ),
-              borderRadius: BorderRadius.circular(s.h(2160)),
+              borderRadius: BorderRadius.circular((2160)),
               backgroundBlendMode: BlendMode.overlay,
               color:  const Color(0xff13111a),
             ),

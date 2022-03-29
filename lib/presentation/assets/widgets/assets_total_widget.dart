@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hash_store/core/constants/strings.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../logic/cubit/assets/assets_cubit.dart';
 import '../../shared_components/default_gradient_button.dart';
-import '../../sizer/sizer.dart';
 
 class AssetsTotalWidget extends StatelessWidget {
   const AssetsTotalWidget({
@@ -14,18 +14,15 @@ class AssetsTotalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: s.h(16.0),
-        horizontal: s.w(16.0),
-      ),
-      height:
-          context.select((AssetsCubit a) => a.isExpanded) ? s.h(276) : s.h(134),
+      padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
+      height: context.select((AssetsCubit a) => a.isExpanded) ? (34.h) : (17.h),
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white),
-        borderRadius: BorderRadius.circular(s.h(8)),
+        borderRadius: BorderRadius.circular(
+          8,
+        ),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -34,11 +31,11 @@ class AssetsTotalWidget extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 Strings.assetsIcon,
-                width: s.h(24),
-                height: s.h(24),
+                width: (4.w),
+                height: (3.h),
               ),
               SizedBox(
-                width: s.w(7.0),
+                width: (2.w),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,14 +43,14 @@ class AssetsTotalWidget extends StatelessWidget {
                   Text(
                     'Total',
                     style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                          fontSize: s.h(17),
+                          fontSize: (13.sp),
                           fontWeight: FontWeight.bold,
                         ),
                   ),
                   Text(
                     '\$12,020.64',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(19),
+                          fontSize: (14.sp),
                           fontWeight: FontWeight.bold,
                         ),
                   )
@@ -61,14 +58,14 @@ class AssetsTotalWidget extends StatelessWidget {
               ),
               const Spacer(),
               SizedBox(
-                width: s.w(115.0),
-                height: s.h(40.0),
+                width: (30.w),
+                height: (5.h),
                 child: DefaultGradientButton(
                   isFilled: false,
                   text: Text(
                     'Withdraw',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(17),
+                          fontSize: (13.sp),
                         ),
                   ),
                   onPressed: () {},
@@ -77,30 +74,30 @@ class AssetsTotalWidget extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: s.h(10.0),
+            height: (1.h),
           ),
           Row(
             children: [
               SvgPicture.asset(
                 Strings.btcIcon,
-                height: s.h(32),
-                width: s.h(32.0),
+                height: (4.h),
+                width: (4.w),
               ),
               SizedBox(
-                width: s.w(8.0),
+                width: (2.w),
               ),
               SvgPicture.asset(
                 Strings.ethIcon,
-                height: s.h(32),
-                width: s.h(32.0),
+                height: (4.h),
+                width: (4.w),
               ),
               SizedBox(
-                width: s.w(8.0),
+                width: (2.w),
               ),
               SvgPicture.asset(
                 Strings.rvnIcon,
-                height: s.h(37),
-                width: s.h(37.0),
+                height: (4.5.h),
+                width: (5.w),
               ),
               const Spacer(),
               InkWell(
@@ -108,16 +105,16 @@ class AssetsTotalWidget extends StatelessWidget {
                   context.read<AssetsCubit>().changeSize();
                 },
                 child: Container(
-                  width: s.h(32),
-                  height: s.h(32),
+                  width: (8.w),
+                  height: (8.w),
                   decoration: BoxDecoration(
                     color: const Color(0xff302c3f),
                     borderRadius: BorderRadius.circular(
-                      s.h(32),
+                      (32),
                     ),
                   ),
                   child: SvgPicture.asset(
-                    Strings.featherChevronDownIcon,
+                    context.read<AssetsCubit>().expandedIcon,
                   ),
                 ),
               ),
@@ -128,22 +125,22 @@ class AssetsTotalWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
-                  height: s.h(24),
+                  height: (3.h),
                 ),
                 Row(
                   children: [
                     SvgPicture.asset(
                       Strings.btcIcon,
-                      height: s.h(24),
-                      width: s.h(24),
+                      height: (3.h),
+                      width: (3.w),
                     ),
                     SizedBox(
-                      width: s.w(8),
+                      width: (2.w),
                     ),
                     Text(
                       'BTC (Bitcoin)',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: s.h(17),
+                            fontSize: (13.sp),
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -151,7 +148,7 @@ class AssetsTotalWidget extends StatelessWidget {
                     Text(
                       '\$10,020.64',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: s.h(17),
+                            fontSize: (13.sp),
                           ),
                     ),
                   ],
@@ -161,16 +158,16 @@ class AssetsTotalWidget extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       Strings.ethIcon,
-                      height: s.h(24),
-                      width: s.h(24),
+                      height: (3.h),
+                      width: (3.w),
                     ),
                     SizedBox(
-                      width: s.w(8),
+                      width: (2.w),
                     ),
                     Text(
                       'ETH (Ethereum)',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: s.h(17),
+                            fontSize: (13.sp),
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -178,7 +175,7 @@ class AssetsTotalWidget extends StatelessWidget {
                     Text(
                       '\$2,000.0',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: s.h(17),
+                            fontSize: (13.sp),
                           ),
                     ),
                   ],
@@ -188,16 +185,16 @@ class AssetsTotalWidget extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       Strings.rvnIcon,
-                      height: s.h(28),
-                      width: s.h(28),
+                      height: (3.5.h),
+                      width: (3.5.w),
                     ),
                     SizedBox(
-                      width: s.w(8),
+                      width: (2.w),
                     ),
                     Text(
                       'RVN (Raven)',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: s.h(17),
+                            fontSize: (13.sp),
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -205,7 +202,7 @@ class AssetsTotalWidget extends StatelessWidget {
                     Text(
                       '\$0',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: s.h(17),
+                            fontSize: (13.sp),
                           ),
                     ),
                   ],

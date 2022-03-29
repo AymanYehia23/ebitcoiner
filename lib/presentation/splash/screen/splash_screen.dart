@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/presentation/router/app_router.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../shared_components/default_gradient_button.dart';
 
@@ -11,7 +11,6 @@ class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Stack(
       children: [
         const GradientBackgroundContainer(),
@@ -19,13 +18,13 @@ class SplashScreen extends StatelessWidget {
           appBar: AppBar(),
           body: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: s.w(16.0),
+              horizontal: 4.w,
             ),
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   SizedBox(
-                    height: s.h(394.0),
+                    height: 45.h,
                     width: double.infinity,
                     child: SvgPicture.asset(
                       Strings.splashImage,
@@ -33,25 +32,25 @@ class SplashScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: s.h(20.0),
+                    height: 3.5.h,
                   ),
                   Text(
                     Strings.splashScreenDescription,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(26.0),
+                          fontSize:20.sp,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
                   SizedBox(
-                    height: s.h(42.0),
+                    height: 5.h,
                   ),
                   DefaultGradientButton(
                     isFilled: true,
                     text: Text(
                       'Create an Account',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: s.h(19.0),
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -60,14 +59,14 @@ class SplashScreen extends StatelessWidget {
                     },
                   ),
                   SizedBox(
-                    height: s.h(15.5),
+                    height: 2.h,
                   ),
                   DefaultGradientButton(
                     isFilled: false,
                     text: Text(
                       'Sign In',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: s.h(19.0),
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
                           ),
                     ),

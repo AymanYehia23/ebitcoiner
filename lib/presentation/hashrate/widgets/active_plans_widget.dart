@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 class ActivePlansWidget extends StatelessWidget {
   final String currencyPic;
@@ -23,19 +23,18 @@ class ActivePlansWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: s.w(16.0),
-        vertical: s.h(16.0),
+        horizontal:4.w,
+        vertical: 2.h,
       ),
-      height: s.h(225),
+      height: 30.h,
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(
           color: const Color(0xff302C3F),
         ),
-        borderRadius: BorderRadius.circular(s.h(8)),
+        borderRadius: BorderRadius.circular((8)),
       ),
       child: Column(
         children: [
@@ -44,11 +43,11 @@ class ActivePlansWidget extends StatelessWidget {
               children: [
                 SvgPicture.asset(
                   currencyPic,
-                  height: s.h(32.0),
-                  width: s.h(32.0),
+                  height: 8.5.w,
+                  width: 8.5.w,
                 ),
                 SizedBox(
-                  width: s.w(8.0),
+                  width: 1.w,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,14 +56,14 @@ class ActivePlansWidget extends StatelessWidget {
                     Text(
                       currency,
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: s.h(19.0),
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
                     Text(
                       'Booking Date: $bookingDate',
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                            fontSize: s.h(15.0),
+                            fontSize: 10.sp,
                           ),
                     ),
                   ],
@@ -82,17 +81,17 @@ class ActivePlansWidget extends StatelessWidget {
                       Text(
                         'Total Mined',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
+                              fontSize: 10.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       SizedBox(
-                        height: s.h(4),
+                        height: 0.5.h,
                       ),
                       Text(
                         totalMined,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(17.0),
+                              fontSize: 11.sp,
                             ),
                       )
                     ],
@@ -105,17 +104,17 @@ class ActivePlansWidget extends StatelessWidget {
                       Text(
                         'Avg Daily Income',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
+                              fontSize: 10.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       SizedBox(
-                        height: s.h(4),
+                        height: 0.5.h,
                       ),
                       Text(
                         avgDailyIncome,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(17.0),
+                              fontSize: 11.sp,
                             ),
                       )
                     ],
@@ -134,29 +133,29 @@ class ActivePlansWidget extends StatelessWidget {
                       Text(
                         'Current HashPower',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
+                              fontSize: 10.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       SizedBox(
-                        height: s.h(4),
+                        height: 0.5.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset(
                             'assets/images/mining_pink_icon.svg',
-                            height: s.h(16.0),
-                            width: s.h(16.0),
+                            height: 2.h,
+                            width: 3.w,
                           ),
                           SizedBox(
-                            width: s.w(4),
+                            width: 1.w,
                           ),
                           Text(
                             currentHashPower,
                             style:
                                 Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: s.h(17.0),
+                                      fontSize: 11.sp,
                                     ),
                           ),
                         ],
@@ -171,17 +170,17 @@ class ActivePlansWidget extends StatelessWidget {
                       Text(
                         'Expired on',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
+                              fontSize:10.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       SizedBox(
-                        height: s.h(4),
+                        height: 0.5.h,
                       ),
                       Text(
                         expiredOn,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(17.0),
+                              fontSize: 11.sp,
                             ),
                       )
                     ],

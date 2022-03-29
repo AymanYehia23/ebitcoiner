@@ -52,6 +52,7 @@ class Strings {
   static const rvnIcon = 'assets/images/rvn_icon.svg';
   static const featherChevronDownIcon =
       'assets/images/feather_chevron_down_icon.svg';
+  static const featherChevronUp = 'assets/images/feather_chevron_up.svg';
 
   //API
   static const baseUrl = 'https://cominer.herokuapp.com/api/';

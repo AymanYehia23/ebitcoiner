@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 class YourMinersWidget extends StatelessWidget {
   final String yourMinerPic;
@@ -31,12 +31,11 @@ class YourMinersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     const String endSupport =
         'Device support stopped, please renew\n maintenance support to re-activate the device';
     return closeToEnd
         ? Container(
-            height: s.h(371.0),
+            height: 43.h,
             width: double.infinity,
             decoration: BoxDecoration(
               color: const Color(0xff1d1a27),
@@ -48,7 +47,7 @@ class YourMinersWidget extends StatelessWidget {
               children: [
                 Container(
                   color: const Color.fromRGBO(240, 61, 62, 0.1),
-                  height: s.h(40.0),
+                  height: 5.h,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -57,14 +56,14 @@ class YourMinersWidget extends StatelessWidget {
                         color: Colors.red,
                       ),
                       SizedBox(
-                        width: s.w(5.0),
+                        width: 1.w,
                       ),
                       Text(
                         isEnd
                             ? endSupport
                             : 'Maintenance support will end on $maintenanceEnd',
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(12.0),
+                              fontSize: 9.sp,
                               color: Colors.red,
                             ),
                       ),
@@ -73,17 +72,17 @@ class YourMinersWidget extends StatelessWidget {
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(
-                      horizontal: s.w(16.0), vertical: s.h(16.0)),
-                  height: s.h(92.0),
+                      horizontal: 4.w, vertical: 2.h),
+                  height: 10.h,
                   child: Row(
                     children: [
                       SvgPicture.asset(
                         yourMinerPic,
-                        height: s.h(64.0),
-                        width: s.h(60.0),
+                        height: 9.h,
+                        width: 12.w,
                       ),
                       SizedBox(
-                        width: s.w(12.0),
+                        width: 3.w,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,22 +91,22 @@ class YourMinersWidget extends StatelessWidget {
                             antMiner,
                             style:
                                 Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: s.h(19.0),
+                                      fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
                           SizedBox(
-                            height: s.h(7.0),
+                            height: 0.4.h,
                           ),
                           Row(
                             children: [
                               SvgPicture.asset(
                                 currencyIcn,
-                                height: s.h(24.0),
-                                width: s.h(24.0),
+                                height: 6.w,
+                                width: 6.w,
                               ),
                               SizedBox(
-                                width: s.w(8.0),
+                                width: 2.w,
                               ),
                               Text(
                                 currency,
@@ -115,7 +114,7 @@ class YourMinersWidget extends StatelessWidget {
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
-                                      fontSize: s.h(16.0),
+                                      fontSize: 11.5.sp,
                                     ),
                               ),
                             ],
@@ -128,14 +127,14 @@ class YourMinersWidget extends StatelessWidget {
                 Text(
                   'Device Bought on: $maintenanceStart',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                        fontSize: s.h(16.0),
+                        fontSize: 12.5.sp,
                       ),
                 ),
                 Row(
                   children: [
                     Expanded(
                       child: SizedBox(
-                        height: s.h(71.0),
+                        height: 8.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -145,11 +144,11 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    fontSize: s.h(15.0),
+                                    fontSize: 12.sp,
                                   ),
                             ),
                             SizedBox(
-                              height: s.h(4.0),
+                              height: 0.5.h,
                             ),
                             Text(
                               maintenanceStart,
@@ -157,7 +156,7 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
-                                    fontSize: s.h(17.0),
+                                    fontSize: 13.sp,
                                   ),
                             )
                           ],
@@ -166,7 +165,7 @@ class YourMinersWidget extends StatelessWidget {
                     ),
                     Expanded(
                       child: SizedBox(
-                        height: s.h(71.0),
+                        height: 8.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -176,11 +175,11 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    fontSize: s.h(15.0),
+                                    fontSize:12.sp,
                                   ),
                             ),
                             SizedBox(
-                              height: s.h(4.0),
+                              height: 0.5.h,
                             ),
                             Text(
                               maintenanceEnd,
@@ -188,7 +187,7 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
-                                    fontSize: s.h(17.0),
+                                    fontSize: 13.sp,
                                   ),
                             )
                           ],
@@ -201,7 +200,7 @@ class YourMinersWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: SizedBox(
-                        height: s.h(71.0),
+                        height: 8.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -211,11 +210,11 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    fontSize: s.h(15.0),
+                                    fontSize: 12.sp,
                                   ),
                             ),
                             SizedBox(
-                              height: s.h(4.0),
+                              height: 0.5.h,
                             ),
                             Text(
                               maintenancePrice,
@@ -223,7 +222,7 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
-                                    fontSize: s.h(17.0),
+                                    fontSize: 13.sp
                                   ),
                             )
                           ],
@@ -232,7 +231,7 @@ class YourMinersWidget extends StatelessWidget {
                     ),
                     Expanded(
                       child: SizedBox(
-                        height: s.h(71.0),
+                        height: 8.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -242,11 +241,11 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    fontSize: s.h(15.0),
+                                    fontSize: 12.sp,
                                   ),
                             ),
                             SizedBox(
-                              height: s.h(4.0),
+                              height: 0.5.h,
                             ),
                             Text(
                               profit,
@@ -254,7 +253,7 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
-                                    fontSize: s.h(17.0),
+                                    fontSize: 13.sp,
                                   ),
                             )
                           ],
@@ -264,50 +263,50 @@ class YourMinersWidget extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  height: s.h(56.0),
-                  padding: EdgeInsets.symmetric(horizontal: s.w(16)),
+                  height: 6.8.h,
+                  padding: EdgeInsets.symmetric(horizontal: 4.w),
                   child: DefaultGradientButton(
                       isFilled: true,
                       text: Text(
                         'Renew maintenance support',
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: s.h(19.0),
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
                           ),
                       ),
                       onPressed: () {}),
                 ),
                 SizedBox(
-                  height: s.h(16),
+                  height: 2.h,
                 ),
               ],
             ),
           )
         : Container(
-            height: isEnd ? s.h(350.0) : s.h(240.0),
+            height: 28.h,
             width: double.infinity,
             decoration: BoxDecoration(
               color: const Color(0xff1d1a27),
               border: Border.all(
                 color: Colors.white,
               ),
-              borderRadius: BorderRadius.circular(s.w(8.0)),
+              borderRadius: BorderRadius.circular((8.0)),
             ),
             child: Column(
               children: [
                 Container(
                   padding: EdgeInsets.symmetric(
-                      horizontal: s.w(16.0), vertical: s.h(16.0)),
-                  height: s.h(92.0),
+                      horizontal: 4.w, vertical: 2.h),
+                  height: 10.h,
                   child: Row(
                     children: [
                       SvgPicture.asset(
                         yourMinerPic,
-                        height: s.h(64.0),
-                        width: s.h(60.0),
+                        height: 9.h,
+                        width: 12.w,
                       ),
                       SizedBox(
-                        width: s.w(12.0),
+                        width: 3.w,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -316,22 +315,22 @@ class YourMinersWidget extends StatelessWidget {
                             antMiner,
                             style:
                                 Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: s.h(19.0),
+                                      fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
                           SizedBox(
-                            height: s.h(7.0),
+                            height: 0.4.h,
                           ),
                           Row(
                             children: [
                               SvgPicture.asset(
                                 currencyIcn,
-                                height: s.h(24.0),
-                                width: s.h(24.0),
+                                height: 6.w,
+                                width: 6.w,
                               ),
                               SizedBox(
-                                width: s.w(8.0),
+                                width: 2.w,
                               ),
                               Text(
                                 currency,
@@ -339,7 +338,7 @@ class YourMinersWidget extends StatelessWidget {
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
-                                      fontSize: s.h(16.0),
+                                      fontSize:11.5.sp,
                                     ),
                               ),
                             ],
@@ -353,7 +352,7 @@ class YourMinersWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: SizedBox(
-                        height: s.h(71.0),
+                        height: 8.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -363,11 +362,11 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    fontSize: s.h(15.0),
+                                    fontSize: 12.sp,
                                   ),
                             ),
                             SizedBox(
-                              height: s.h(4.0),
+                              height: 0.5.h,
                             ),
                             Text(
                               maintenanceStart,
@@ -375,7 +374,7 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
-                                    fontSize: s.h(17.0),
+                                    fontSize: 13.sp,
                                   ),
                             )
                           ],
@@ -384,7 +383,7 @@ class YourMinersWidget extends StatelessWidget {
                     ),
                     Expanded(
                       child: SizedBox(
-                        height: s.h(71.0),
+                        height: 8.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -394,11 +393,11 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    fontSize: s.h(15.0),
+                                    fontSize: 12.sp,
                                   ),
                             ),
                             SizedBox(
-                              height: s.h(4.0),
+                              height: 0.5.h,
                             ),
                             Text(
                               maintenanceEnd,
@@ -406,7 +405,7 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
-                                    fontSize: s.h(17.0),
+                                    fontSize:13.sp,
                                   ),
                             )
                           ],
@@ -419,7 +418,7 @@ class YourMinersWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: SizedBox(
-                        height: s.h(71.0),
+                        height: 8.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -429,11 +428,11 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    fontSize: s.h(15.0),
+                                    fontSize: 12.sp,
                                   ),
                             ),
                             SizedBox(
-                              height: s.h(4.0),
+                              height: 0.5.h,
                             ),
                             Text(
                               maintenancePrice,
@@ -441,7 +440,7 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
-                                    fontSize: s.h(17.0),
+                                    fontSize: 13.sp,
                                   ),
                             )
                           ],
@@ -450,7 +449,7 @@ class YourMinersWidget extends StatelessWidget {
                     ),
                     Expanded(
                       child: SizedBox(
-                        height: s.h(71.0),
+                        height: 8.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -460,11 +459,11 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    fontSize: s.h(15.0),
+                                    fontSize: 12.sp,
                                   ),
                             ),
                             SizedBox(
-                              height: s.h(4.0),
+                              height: 0.5.h,
                             ),
                             Text(
                               profit,
@@ -472,7 +471,7 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
-                                    fontSize: s.h(17.0),
+                                    fontSize: 13.sp,
                                   ),
                             )
                           ],

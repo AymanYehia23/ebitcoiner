@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 class ContractPeriodWidget extends StatefulWidget {
   const ContractPeriodWidget({Key? key}) : super(key: key);
@@ -11,28 +11,27 @@ class ContractPeriodWidget extends StatefulWidget {
 class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return SizedBox(
-      height: s.h(61.0),
+      height: 8.h,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
           InkWell(
             onTap: () {},
             child: Container(
-              width: s.w(136),
-              height: s.h(61.0),
+              width: 40.w,
+              height: 9.h,
               decoration: BoxDecoration(
                 color: const Color(0xff302c3f),
                 borderRadius: BorderRadius.circular(
-                  s.h(8.0),
+                  (8.0),
                 ),
               ),
               child: Center(
                 child: Text(
                   '30 days',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                        fontSize: s.h(18.0),
+                        fontSize: 13.5.sp,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
@@ -40,17 +39,17 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
             ),
           ),
           SizedBox(
-            width: s.w(10.0),
+            width: 3.w,
           ),
           InkWell(
             onTap: () {},
             child: Container(
-              width: s.w(136),
-              height: s.h(61.0),
+              width: 40.w,
+              height: 9.h,
               decoration: BoxDecoration(
                 color: const Color(0xff302c3f),
                 borderRadius: BorderRadius.circular(
-                  s.h(8.0),
+                  (8.0),
                 ),
               ),
               child: Column(
@@ -59,14 +58,14 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
                   Text(
                     '360 days',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(18.0),
+                          fontSize: 13.5.sp,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
                   Text(
                     '12% Off',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(14.0),
+                          fontSize: 10.sp,
                           color: const Color(0xffff4980),
                         ),
                   ),
@@ -75,17 +74,17 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
             ),
           ),
           SizedBox(
-            width: s.w(10.0),
+            width: 3.w,
           ),
           InkWell(
             onTap: () {},
             child: Container(
-              width: s.w(136),
-              height: s.h(61.0),
+              width: 40.w,
+              height: 9.h,
               decoration: BoxDecoration(
                 color: const Color(0xff302c3f),
                 borderRadius: BorderRadius.circular(
-                  s.h(8.0),
+                  (8.0),
                 ),
               ),
               child: Column(
@@ -94,7 +93,7 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
                   Text(
                     '3 Years',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(18.0),
+                          fontSize: 13.5.sp,
                           fontWeight: FontWeight.bold,
                         ),
                     textAlign: TextAlign.center,
@@ -102,7 +101,7 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
                   Text(
                     '40% Off',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(14.0),
+                          fontSize: 10.sp,
                           color: const Color(0xffff4980),
                         ),
                   ),

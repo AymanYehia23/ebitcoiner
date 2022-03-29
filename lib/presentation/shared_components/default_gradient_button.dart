@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
-
-import '../sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 class DefaultGradientButton extends StatelessWidget {
   final bool isFilled;
@@ -20,23 +19,22 @@ class DefaultGradientButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return isFilled
         ? InkWell(
             onTap: () {
               onPressed();
             },
             child: Container(
-                height: hight ?? s.h(56.0),
+                height: hight ?? 6.8.h,
                 width: double.infinity,
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(
                     Radius.circular(
-                      s.h(56.0),
+                      (56.0),
                     ),
                   ),
-                  gradient: const LinearGradient(
+                  gradient: LinearGradient(
                     colors: [
                       Color(0xffff4980),
                       Color(0xff4f56ff),
@@ -49,7 +47,7 @@ class DefaultGradientButton extends StatelessWidget {
           )
         : SizedBox(
             width: double.infinity,
-            height: s.h(56.0),
+            height:6.8.h,
             child: OutlineGradientButton(
               gradient: const LinearGradient(
                 colors: [
@@ -66,7 +64,7 @@ class DefaultGradientButton extends StatelessWidget {
               onTap: () {
                 onPressed();
               },
-              radius: Radius.circular(radius ?? s.h(56.0)),
+              radius: Radius.circular(radius ?? (56.0)),
             ),
           );
   }

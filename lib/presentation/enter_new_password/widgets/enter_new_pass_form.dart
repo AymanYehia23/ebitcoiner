@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
 import 'package:hash_store/core/extensions/input_validation.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../logic/cubit/update_password/update_password_cubit.dart';
 import '../../shared_components/default_textfield.dart';
@@ -19,7 +19,6 @@ class NewPasswordForm extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Form(
       key: formKey,
       child: Column(
@@ -50,7 +49,7 @@ class NewPasswordForm extends StatelessWidget {
             },
           ),
           SizedBox(
-            height: s.h(20.0),
+            height: 3.5.h,
           ),
           Builder(
             builder: (context) {

@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:hash_store/presentation/buy_mining_device/widgets/buy_mining_device_widget.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 class BuyMiningDeviceScreen extends StatelessWidget {
   const BuyMiningDeviceScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Stack(
       children: [
         const GradientBackgroundContainer(),
         SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: s.w(16.0)),
+            padding: EdgeInsets.symmetric(horizontal: 4.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: s.h(24.0),
+                  height: 4.h,
                 ),
                 Text(
                   'Choose desired device',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                        fontSize: s.h(30),
+                        fontSize: 22.sp,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
@@ -42,7 +41,7 @@ class BuyMiningDeviceScreen extends StatelessWidget {
                   maintenancePrice: '\$112.69/mth',
                 ),
                 SizedBox(
-                  height: s.h(16.0),
+                  height: 2.h,
                 ),
                 const BuyMiningDeviceWidget(
                   yourMinerPic: 'assets/images/antMinerL7_image.svg',
@@ -58,7 +57,7 @@ class BuyMiningDeviceScreen extends StatelessWidget {
                   maintenancePrice: '\$112.69/mth',
                 ),
                 SizedBox(
-                  height: s.h(16.0),
+                  height: 2.h,
                 ),
                 const BuyMiningDeviceWidget(
                   yourMinerPic: 'assets/images/antMinerL7_image.svg',

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
 import 'package:hash_store/core/extensions/input_validation.dart';
+import 'package:sizer/sizer.dart';
 import '../../../logic/cubit/sign_up/sign_up_cubit.dart';
 import '../../shared_components/default_textfield.dart';
 import 'country_code_widget.dart';
 
 class SignUpForm extends StatelessWidget {
-   const SignUpForm({
+  const SignUpForm({
     Key? key,
     required GlobalKey<FormState> formKey,
     required TextEditingController nameController,
@@ -28,10 +28,8 @@ class SignUpForm extends StatelessWidget {
   final TextEditingController _phoneNumberController;
   final TextEditingController _passwordController;
 
-
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Form(
       key: _formKey,
       child: Column(
@@ -44,13 +42,13 @@ class SignUpForm extends StatelessWidget {
               )
             ],
             validator: (val) {
-              if (!val!.isValidName) return 'Enter valid name';
+              if (val!.isEmpty) return 'Enter valid name';
               return null;
             },
             controller: _nameController,
           ),
           SizedBox(
-            height: s.h(20.0),
+            height: 3.h,
           ),
           DefaultTextField(
             text: 'Email',
@@ -61,7 +59,7 @@ class SignUpForm extends StatelessWidget {
             controller: _emailController,
           ),
           SizedBox(
-            height: s.h(20.0),
+            height: 3.h,
           ),
           Row(
             children: [
@@ -70,7 +68,7 @@ class SignUpForm extends StatelessWidget {
                 child: CustomCountryCode(),
               ),
               SizedBox(
-                width: s.w(16),
+                width: 4.w,
               ),
               Expanded(
                 flex: 2,
@@ -78,11 +76,15 @@ class SignUpForm extends StatelessWidget {
                   text: 'Phone Number',
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(
-                      RegExp(r"[0-9]"),
-                    )
+                      RegExp(r"[1-9]"),
+                    ),
                   ],
+                  inputType: TextInputType.phone,
                   validator: (val) {
-                    if (!val!.isValidPhone) return 'Enter valid phone';
+                    String _countryCode = context.read<SignUpCubit>().countryCode;
+                    if (!('$_countryCode$val').isValidPhone) {
+                      return 'Enter valid phone';
+                    }
                     return null;
                   },
                   controller: _phoneNumberController,
@@ -91,7 +93,7 @@ class SignUpForm extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: s.h(20.0),
+            height: 3.h,
           ),
           Builder(builder: (context) {
             return DefaultTextField(
@@ -103,13 +105,11 @@ class SignUpForm extends StatelessWidget {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  context.read<SignUpCubit>().changePasswordVisibility(
-
-                      );
+                  context.read<SignUpCubit>().changePasswordVisibility();
                 },
               ),
               validator: (val) {
-                if (!val!.isValidPassword) return 'Enter valid password';
+                if (!val!.isValidPassword) return 'Password must contain at least 8 characters\none uppercase letter and one lowercase letter ';
                 return null;
               },
               controller: _passwordController,
