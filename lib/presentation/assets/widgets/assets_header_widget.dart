@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../../logic/cubit/login/login_cubit.dart';
 
 class AssetsHeaderWidget extends StatelessWidget {
   const AssetsHeaderWidget({
@@ -11,13 +14,15 @@ class AssetsHeaderWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Hello, Ahmed 👋',
-          style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                fontSize: 13.sp,
-                fontWeight: FontWeight.bold,
-              ),
-        ),
+        Builder(builder: (context) {
+          return Text(
+            'Hello, ${context.watch<LoginCubit>().name} 👋',
+            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+          );
+        }),
         SizedBox(
           height: 1.h,
         ),

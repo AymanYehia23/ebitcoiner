@@ -38,6 +38,7 @@ class LogoutCubit extends Cubit<LogoutState> {
     emit(DeleteSavedRefreshTokenLoadingState());
     await _secureStorage.deleteValue(key: 'accessToken');
     await _secureStorage.deleteValue(key: 'refreshToken');
+    await _secureStorage.deleteValue(key: 'name');
     emit(DeleteSavedRefreshTokenSuccessState());
   }
 }

@@ -47,13 +47,15 @@ class AssetsTotalWidget extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                   ),
-                  Text(
-                    '\$12,020.64',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: (14.sp),
-                          fontWeight: FontWeight.bold,
-                        ),
-                  )
+                  Builder(builder: (context) {
+                    return Text(
+                      '\$${context.watch<AssetsCubit>().totalProfit.substring(0, 6)}',
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            fontSize: (14.sp),
+                            fontWeight: FontWeight.bold,
+                          ),
+                    );
+                  }),
                 ],
               ),
               const Spacer(),
@@ -145,11 +147,16 @@ class AssetsTotalWidget extends StatelessWidget {
                           ),
                     ),
                     const Spacer(),
-                    Text(
-                      '\$10,020.64',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: (13.sp),
-                          ),
+                    Builder(
+                      builder: (context) {
+                        return Text(
+                          '\$${context.watch<AssetsCubit>().totalBTC.substring(0, 6)}',
+                          style:
+                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                                    fontSize: (13.sp),
+                                  ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -172,11 +179,16 @@ class AssetsTotalWidget extends StatelessWidget {
                           ),
                     ),
                     const Spacer(),
-                    Text(
-                      '\$2,000.0',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: (13.sp),
-                          ),
+                    Builder(
+                      builder: (context) {
+                        return Text(
+                          '\$${context.watch<AssetsCubit>().totalETH.substring(0, 6)}',
+                          style:
+                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                                    fontSize: (13.sp),
+                                  ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -199,11 +211,16 @@ class AssetsTotalWidget extends StatelessWidget {
                           ),
                     ),
                     const Spacer(),
-                    Text(
-                      '\$0',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: (13.sp),
-                          ),
+                    Builder(
+                      builder: (context) {
+                        return Text(
+                          '\$${context.watch<AssetsCubit>().totalRVN.substring(0, 6)}',
+                          style:
+                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                                    fontSize: (13.sp),
+                                  ),
+                        );
+                      },
                     ),
                   ],
                 ),

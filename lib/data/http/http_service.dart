@@ -6,7 +6,7 @@ class HttpService {
   static late Dio _dio;
   static SecureStorage secureStorage = SecureStorage();
 
-  static init() {
+  static init() async {
     _dio = Dio(
       BaseOptions(
         baseUrl: Strings.baseUrl,
@@ -64,24 +64,19 @@ class HttpService {
             if (await secureStorage.containsKey(key: 'refreshToken')) {
               print('find refreshToken');
               await refreshToken();
-              try {
-                return errorInterceptorHandler
-                    .resolve(await _retry(error.requestOptions));
-              } on DioError catch (error) {
-                print('in resolve: ${error.response!.data}');
-              }
+              return errorInterceptorHandler.resolve(
+                await _retry(error.requestOptions),
+              );
             }
           }
           print('out of if: ${error.response!.data}');
           return errorInterceptorHandler.next(error);
         },
         onRequest: (request, requestInterceptorHandler) async {
-          if (request.method == 'DELETE' || request.method == 'PUT') {
-            request.headers = {
-              'Authorization':
-                  'Bearer ${await secureStorage.getValue(key: 'accessToken')}'
-            };
-          }
+          request.headers = {
+            'Authorization':
+                'Bearer ${await secureStorage.getValue(key: 'accessToken')}'
+          };
           return requestInterceptorHandler.next(request);
         },
         onResponse: (response, responseInterceptorHandler) {

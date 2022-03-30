@@ -19,12 +19,14 @@ class LoginCubit extends Cubit<LoginState> {
   final SecureStorageRepo _secureStorage;
   final LoginRepo _loginRepo;
   LoginResponseModel _loginResponseModel;
+  String? name = '';
 
   Future<void> login({required String email, required String password}) async {
     emit(LoginLoadingState());
     try {
       _loginResponseModel =
           await _loginRepo.postLogin(email: email, password: password);
+      name = _loginResponseModel.user?.name;
       emit(LoginSuccessState());
     } on DioError catch (_) {
       emit(LoginErrorState());
@@ -39,12 +41,17 @@ class LoginCubit extends Cubit<LoginState> {
       key: 'refreshToken',
       value: _loginResponseModel.jwt?.refreshToken,
     );
+    await _secureStorage.addValue(
+      key: 'name',
+      value: name,
+    );
     emit(SaveTokensSuccessState());
   }
 
   Future<void> tryAutoLogin() async {
     emit(AutoLoginLoadingState());
     if (await _secureStorage.containsKey(key: 'accessToken')) {
+      name = await _secureStorage.getValue(key: 'name');
       emit(AutoLoginSuccessState());
     } else {
       emit(AutoLoginFailedState());

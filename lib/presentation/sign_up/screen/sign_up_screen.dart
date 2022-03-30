@@ -69,7 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         phone: '$_countryCode${_phoneNumberController.text}',
       );
       print(signUPRequestModel.phone);
-      //await context.read<SignUpCubit>().signUp(signUPRequestModel);
+      await context.read<SignUpCubit>().signUp(signUPRequestModel);
     }
   }
 

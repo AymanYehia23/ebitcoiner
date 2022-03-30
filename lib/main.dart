@@ -4,11 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/core/constants/enums.dart';
 import 'package:hash_store/core/secure_storage/secure_storage.dart';
 import 'package:hash_store/data/data_providers/login_api.dart';
+import 'package:hash_store/data/data_providers/plan_contract_api.dart';
 import 'package:hash_store/data/data_providers/sign_up_api.dart';
 import 'package:hash_store/data/data_providers/update_password_api.dart';
 import 'package:hash_store/data/models/login_model.dart';
+import 'package:hash_store/data/models/plan_contract_model.dart';
 import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
-import 'package:hash_store/logic/cubit/currency_converter/currency_converter_cubit.dart';
+import 'package:hash_store/logic/currency_converter_cubit.dart';
 import 'package:hash_store/logic/cubit/login/login_cubit.dart';
 import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 import 'package:hash_store/presentation/Home/screen/home_screen.dart';
@@ -59,10 +61,7 @@ class MyApp extends StatelessWidget {
               UpdatePasswordCubit(updatePasswordRepo: UpdatePasswordApi()),
         ),
         BlocProvider<AssetsCubit>(
-          create: (context) => AssetsCubit()..getChartData(Currency.btc),
-        ),
-        BlocProvider<CurrencyConverterCubit>(
-          create: (context) => CurrencyConverterCubit(),
+          create: (context) => AssetsCubit(PlanContractApi(),PlanContractsResponseModel())..getPlanContract(),
         ),
       ],
       child: Sizer(
@@ -82,7 +81,7 @@ class MyApp extends StatelessWidget {
                 } else if (state is AutoLoginSuccessState) {
                   return const HomeScreen();
                 }
-                return const HomeScreen();
+                return const SplashScreen();
               },
             ),
           );

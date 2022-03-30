@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
 import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 
@@ -63,6 +64,7 @@ class _LogInScreenState extends State<LogInScreen> {
           listener: (context, state) async {
             if (state is LoginSuccessState) {
               await context.read<LoginCubit>().saveTokens();
+              await context.read<AssetsCubit>().getPlanContract();
               Navigator.of(context).pushReplacementNamed(AppRouter.home);
             } else if (state is LoginErrorState) {
               ScaffoldMessenger.of(context).showSnackBar(

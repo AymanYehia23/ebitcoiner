@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hash_store">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="hash_store"
         android:name="${applicationName}"

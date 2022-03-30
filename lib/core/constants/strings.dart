@@ -64,4 +64,5 @@ class Strings {
   static const logoutEndPoint = 'user/logout';
   static const getNewAccessTokenEndPoint = 'user/getNewAccessToken';
   static const updatePasswordEndPoint = 'user/updatePassword';
+  static const getDemoPlanContractEndPoint = 'plan/x/democontract';
 }

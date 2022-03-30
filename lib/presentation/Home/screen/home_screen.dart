@@ -8,15 +8,13 @@ import 'package:hash_store/data/data_providers/logout_api.dart';
 import 'package:hash_store/logic/cubit/delete_account/delete_account_cubit.dart';
 import 'package:hash_store/logic/cubit/logout/logout_cubit.dart';
 import 'package:hash_store/presentation/assets/screen/assets_screen.dart';
-import 'package:hash_store/presentation/choose_desired_plan/screens/choose_desired_plan_screen.dart';
 import 'package:hash_store/presentation/devices/screen/devices_screen.dart';
+import 'package:hash_store/presentation/hashrate/screen/hashrate_screen.dart';
 import 'package:hash_store/presentation/profile/screen/profile_screen.dart';
-import 'package:hash_store/presentation/router/app_router.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
 
-import '../../hashrate/screen/hashrate_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -135,8 +133,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed(AppRouter.addNewHashrate);
+                        //Navigator.of(context)
+                            //.pushNamed(AppRouter.addNewHashrate);
                       },
                       isFilled: true,
                     ),

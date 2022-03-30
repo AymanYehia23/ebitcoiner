@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hash_store/core/constants/strings.dart';
+import 'package:hash_store/core/secure_storage/secure_storage.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../shared_components/default_gradient_button.dart';
@@ -27,7 +28,7 @@ class AssetsScreen extends StatelessWidget {
             const AssetsTotalWidget(),
             SizedBox(height: (5.h)),
             Text(
-              'Hashrate Gains',
+              'Hashrate Profits',
               style: Theme.of(context).textTheme.bodyText1!.copyWith(
                     fontSize: (22.sp),
                     fontWeight: FontWeight.bold,
@@ -51,7 +52,7 @@ class AssetsScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Last 7 days gains',
+                    'Last Profits',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
                           fontSize: (14.sp),
                           fontWeight: FontWeight.bold,
@@ -60,7 +61,9 @@ class AssetsScreen extends StatelessWidget {
                   Container(
                     width: (10.w),
                     height: (10.w),
-                    padding: EdgeInsets.symmetric(horizontal: 2.w,),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 2.w,
+                    ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular((40)),
                       color: const Color(0xff302c3f),
@@ -79,32 +82,31 @@ class AssetsScreen extends StatelessWidget {
             Container(
               height: 10.h,
               color: const Color(0xff1d1a27),
-              padding: EdgeInsets.symmetric(vertical: 2.h,horizontal: 4.w),
+              padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
               child: DefaultGradientButton(
-                      isFilled: false,
-                      text: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'See mining devices',
-                            style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: (12.sp),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                            textAlign: TextAlign.center,
+                isFilled: false,
+                text: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'See mining devices',
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            fontSize: (12.sp),
+                            fontWeight: FontWeight.bold,
                           ),
-                          SizedBox(
-                            width: 1.w,
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            size: 2.h,
-                          ),
-                        ],
-                      ),
-                      onPressed: () {},
+                      textAlign: TextAlign.center,
                     ),
+                    SizedBox(
+                      width: 1.w,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 2.h,
+                    ),
+                  ],
+                ),
+                onPressed: () {},
+              ),
             ),
             SizedBox(
               height: (5.h),
@@ -126,5 +128,3 @@ class AssetsScreen extends StatelessWidget {
     );
   }
 }
-
-
