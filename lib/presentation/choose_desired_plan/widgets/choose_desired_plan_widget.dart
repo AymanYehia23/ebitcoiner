@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_small_button.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
+
 
 class ChooseDesiredPlanWidget extends StatefulWidget {
   final String price;
@@ -32,38 +33,37 @@ class ChooseDesiredPlanWidget extends StatefulWidget {
 class _ChooseDesiredPlanWidgetState extends State<ChooseDesiredPlanWidget> {
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Container(
-      height: s.h(314.0),
+      height: 37.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: const Color(0xff1d1a27),
         border: Border.all(
           color: const Color(0xff302C3F),
         ),
-        borderRadius: BorderRadius.circular(s.w(8.0)),
+        borderRadius: BorderRadius.circular((8.0)),
       ),
       child: Column(
         children: [
           Container(
-            height: s.h(84.0),
+            height: 9.h,
             padding: EdgeInsets.symmetric(
-              horizontal: s.w(16.0),
+              horizontal: 4.w,
             ),
             child: Row(
               children: [
                 SvgPicture.asset(
                   widget.minersPic,
-                  height: s.h(56.0),
-                  width: s.h(56.0),
+                  height: 17.w,
+                  width: 17.w,
                 ),
                 SizedBox(
-                  width: s.w(8.0),
+                  width: 2.w,
                 ),
                 Text(
                   widget.text,
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                        fontSize: s.h(17.0),
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
@@ -79,29 +79,29 @@ class _ChooseDesiredPlanWidgetState extends State<ChooseDesiredPlanWidget> {
                       Text(
                         'Mining Currency',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       SizedBox(
-                        height: s.h(5.0),
+                        height: 0.5.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset(
                             widget.currencyIcn,
-                            height: s.h(20.0),
-                            width: s.h(20.0),
+                            height: 5.w,
+                            width: 5.w,
                           ),
                           SizedBox(
-                            width: s.w(4.0),
+                            width: 1.w,
                           ),
                           Text(
                             widget.currencyName,
                             style:
                                 Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: s.h(17.0),
+                                      fontSize: 13.sp,
                                     ),
                           ),
                         ],
@@ -115,14 +115,14 @@ class _ChooseDesiredPlanWidgetState extends State<ChooseDesiredPlanWidget> {
                       Text(
                         'Power',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       Text(
                         widget.power,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(17.0),
+                              fontSize: 13.sp,
                             ),
                       ),
                     ]),
@@ -130,7 +130,7 @@ class _ChooseDesiredPlanWidgetState extends State<ChooseDesiredPlanWidget> {
             ],
           ),
           SizedBox(
-            height: s.h(16),
+            height: 2.h,
           ),
           Row(
             children: [
@@ -141,14 +141,14 @@ class _ChooseDesiredPlanWidgetState extends State<ChooseDesiredPlanWidget> {
                       Text(
                         'Price Per 1 GH/S',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       Text(
                         widget.pricePer1Gh,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(17.0),
+                              fontSize: 13.sp,
                             ),
                       ),
                     ]),
@@ -160,14 +160,14 @@ class _ChooseDesiredPlanWidgetState extends State<ChooseDesiredPlanWidget> {
                       Text(
                         'Profitability',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       Text(
                         widget.profitability,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(17.0),
+                              fontSize: 13.sp,
                             ),
                       ),
                     ]),
@@ -175,11 +175,11 @@ class _ChooseDesiredPlanWidgetState extends State<ChooseDesiredPlanWidget> {
             ],
           ),
           SizedBox(
-            height: s.h(16),
+            height: 2.h,
           ),
           const Divider(),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: s.w(16),vertical: s.h(16)),
+            padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
             child: Row(
               children: [
                 Expanded(
@@ -189,17 +189,17 @@ class _ChooseDesiredPlanWidgetState extends State<ChooseDesiredPlanWidget> {
                       Text(
                         'Price',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       SizedBox(
-                        height: s.h(4.0),
+                        height: 0.5.h,
                       ),
                       Text(
                         widget.price,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(30.0),
+                              fontSize: 22.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),

@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> screens = [
     const AssetsScreen(),
     HashRateScreen(),
-    const DevicesScreen(),
+    DevicesScreen(),
     MultiBlocProvider(
       providers: [
         BlocProvider<LogoutCubit>(

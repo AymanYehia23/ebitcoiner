@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hash_store/presentation/add_new_hashrate/widgets/contract_period_widget.dart';
 import 'package:hash_store/presentation/router/app_router.dart';
+import 'package:sizer/sizer.dart';
 import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
 
 class AddNewHashrateScreen extends StatefulWidget {
   const AddNewHashrateScreen({Key? key}) : super(key: key);
@@ -22,7 +22,6 @@ class _AddNewHashrateScreenState extends State<AddNewHashrateScreen> {
   bool isSelected3 = false;
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Scaffold(
       backgroundColor: const Color(0xff13111a),
       appBar: AppBar(
@@ -38,7 +37,7 @@ class _AddNewHashrateScreenState extends State<AddNewHashrateScreen> {
             style: Theme.of(context)
                 .textTheme
                 .bodyText1!
-                .copyWith(fontSize: s.h(17.0)),
+                .copyWith(fontSize: 13.sp),
           ),
           color: Colors.white,
         ),
@@ -48,14 +47,14 @@ class _AddNewHashrateScreenState extends State<AddNewHashrateScreen> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(top: s.h(8)),
-              height: s.h(38.0),
+              padding: EdgeInsets.only(top: 1.h),
+              height: 5.h,
               width: double.infinity,
               color: const Color(0xff1d1a27),
               child: Text(
                 'Choose Currency',
                 style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                      fontSize: s.h(19.0),
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
                     ),
                 textAlign: TextAlign.center,
@@ -73,26 +72,26 @@ class _AddNewHashrateScreenState extends State<AddNewHashrateScreen> {
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(
-                      horizontal: s.w(16.0),
+                      horizontal: 4.w,
                     ),
-                    height: s.h(64.0),
+                    height: 7.h,
                     width: double.infinity,
                     child: Row(
                       children: [
                         SvgPicture.asset(
                           'assets/images/btc_icon.svg',
-                          height: s.h(32),
-                          width: s.h(32.0),
+                          height: (4.h),
+                          width: (4.w),
                         ),
                         SizedBox(
-                          width: s.w(4.0),
+                          width: 1.w,
                         ),
                         Text(
                           'BTC (Bitcoin)',
                           style: Theme.of(context)
                               .textTheme
                               .bodyText1!
-                              .copyWith(fontSize: s.h(19.0)),
+                              .copyWith(fontSize: 14.sp),
                         ),
                         const Spacer(),
                         InkWell(
@@ -104,12 +103,12 @@ class _AddNewHashrateScreenState extends State<AddNewHashrateScreen> {
                             });
                           },
                           child: Container(
-                            width: s.h(32),
-                            height: s.h(32),
+                            width: (9.w),
+                            height: (9.w),
                             decoration: BoxDecoration(
                               color: const Color(0xff302c3f),
                               borderRadius: BorderRadius.circular(
-                                s.h(32),
+                                (32),
                               ),
                             ),
                             child: SvgPicture.asset(
@@ -165,26 +164,26 @@ class _AddNewHashrateScreenState extends State<AddNewHashrateScreen> {
                   Divider(color: Colors.grey.shade800),
                   Container(
                     padding: EdgeInsets.symmetric(
-                      horizontal: s.w(16.0),
+                      horizontal: 4.w,
                     ),
-                    height: s.h(64.0),
+                    height: 7.h,
                     width: double.infinity,
                     child: Row(
                       children: [
                         SvgPicture.asset(
                           'assets/images/eth_icon.svg',
-                          height: s.h(32),
-                          width: s.h(32.0),
+                          height: 4.h,
+                          width: 4.w,
                         ),
                         SizedBox(
-                          width: s.w(4.0),
+                          width: 1.w,
                         ),
                         Text(
                           'Eth (Ethereum)',
                           style: Theme.of(context)
                               .textTheme
                               .bodyText1!
-                              .copyWith(fontSize: s.h(19.0)),
+                              .copyWith(fontSize: 14.sp),
                         ),
                         const Spacer(),
                         InkWell(
@@ -196,12 +195,12 @@ class _AddNewHashrateScreenState extends State<AddNewHashrateScreen> {
                             });
                           },
                           child: Container(
-                            width: s.h(32),
-                            height: s.h(32),
+                            width: (9.w),
+                            height: (9.w),
                             decoration: BoxDecoration(
                               color: const Color(0xff302c3f),
                               borderRadius: BorderRadius.circular(
-                                s.h(32),
+                                (32),
                               ),
                             ),
                             child: SvgPicture.asset(
@@ -257,27 +256,26 @@ class _AddNewHashrateScreenState extends State<AddNewHashrateScreen> {
                   Divider(color: Colors.grey.shade800),
                   Container(
                     padding: EdgeInsets.symmetric(
-                      horizontal: s.w(16.0),
-                      vertical: s.h(16.0),
+                      horizontal: 4.w,
                     ),
-                    height: s.h(64.0),
+                    height: 7.h,
                     width: double.infinity,
                     child: Row(
                       children: [
                         SvgPicture.asset(
                           'assets/images/rvn_icon.svg',
-                          height: s.h(32),
-                          width: s.h(32.0),
+                          height: 4.5.h,
+                          width: 5.w
                         ),
                         SizedBox(
-                          width: s.w(4.0),
+                          width: 1.w,
                         ),
                         Text(
                           'RVN (Raven)',
                           style: Theme.of(context)
                               .textTheme
                               .bodyText1!
-                              .copyWith(fontSize: s.h(19.0)),
+                              .copyWith(fontSize: 14.sp),
                         ),
                         const Spacer(),
                         InkWell(
@@ -289,12 +287,12 @@ class _AddNewHashrateScreenState extends State<AddNewHashrateScreen> {
                             });
                           },
                           child: Container(
-                            width: s.h(32),
-                            height: s.h(32),
+                            width: (9.w),
+                            height: (9.w),
                             decoration: BoxDecoration(
                               color: const Color(0xff302c3f),
                               borderRadius: BorderRadius.circular(
-                                s.h(32),
+                                (32),
                               ),
                             ),
                             child: SvgPicture.asset(
@@ -351,17 +349,17 @@ class _AddNewHashrateScreenState extends State<AddNewHashrateScreen> {
               ),
             ),
             SizedBox(
-              height: s.h(196),
+              height: 45.h,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: s.w(16)),
+              padding: EdgeInsets.symmetric(horizontal: 4.w),
               child: isSelected1 || isSelected2 || isSelected3
                   ? DefaultGradientButton(
                       isFilled: true,
                       text: Text(
                         'Next',
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(19),
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
@@ -374,7 +372,7 @@ class _AddNewHashrateScreenState extends State<AddNewHashrateScreen> {
                       text: Text(
                         'Next',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(19),
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),

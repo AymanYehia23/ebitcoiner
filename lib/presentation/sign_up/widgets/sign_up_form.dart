@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
 import 'package:hash_store/core/extensions/input_validation.dart';
+import 'package:sizer/sizer.dart';
 import '../../../logic/cubit/sign_up/sign_up_cubit.dart';
 import '../../shared_components/default_textfield.dart';
 import 'country_code_widget.dart';
@@ -30,7 +30,6 @@ class SignUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Form(
       key: _formKey,
       child: Column(
@@ -49,7 +48,7 @@ class SignUpForm extends StatelessWidget {
             controller: _nameController,
           ),
           SizedBox(
-            height: s.h(20.0),
+            height: 3.h,
           ),
           DefaultTextField(
             text: 'Email',
@@ -60,7 +59,7 @@ class SignUpForm extends StatelessWidget {
             controller: _emailController,
           ),
           SizedBox(
-            height: s.h(20.0),
+            height: 3.h,
           ),
           Row(
             children: [
@@ -69,7 +68,7 @@ class SignUpForm extends StatelessWidget {
                 child: CustomCountryCode(),
               ),
               SizedBox(
-                width: s.w(16),
+                width: 4.w,
               ),
               Expanded(
                 flex: 2,
@@ -94,7 +93,7 @@ class SignUpForm extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: s.h(20.0),
+            height: 3.h,
           ),
           Builder(builder: (context) {
             return DefaultTextField(

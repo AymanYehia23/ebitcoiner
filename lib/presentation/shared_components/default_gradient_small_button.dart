@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 class DefaultGradientSmallButton extends StatelessWidget {
   final Function onPressed;
@@ -8,22 +8,21 @@ class DefaultGradientSmallButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return InkWell(
       onTap: () {
         onPressed();
       },
       child: Container(
-        height: s.h(56.0),
-        width: s.w(155.5),
+        height: 6.8.h,
+        width: 50.w,
         alignment: Alignment.center,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(
             Radius.circular(
-              s.h(56.0),
+              (56.0),
             ),
           ),
-          gradient: const LinearGradient(
+          gradient: LinearGradient(
             colors: [
               Color(0xffff4980),
               Color(0xff4f56ff),
@@ -35,7 +34,7 @@ class DefaultGradientSmallButton extends StatelessWidget {
         child: Text(
           'Buy Plan',
           style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                fontSize: s.h(17.0),
+                fontSize: 13.sp,
                 fontWeight: FontWeight.bold,
               ),
         ),

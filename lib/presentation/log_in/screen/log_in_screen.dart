@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
 import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../core/constants/strings.dart';
 import '../../../logic/cubit/login/login_cubit.dart';
 import '../../router/app_router.dart';
 import '../../shared_components/default_gradient_button.dart';
-import '../../sizer/sizer.dart';
 import '../widgets/login_form.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -56,7 +56,6 @@ class _LogInScreenState extends State<LogInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Stack(
       children: [
         const GradientBackgroundContainer(),
@@ -85,7 +84,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   child: Text(
                     'Sign Up',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(17),
+                          fontSize: 13.sp,
                         ),
                   ),
                 ),
@@ -94,23 +93,23 @@ class _LogInScreenState extends State<LogInScreen> {
             body: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: s.w(16.0),
+                  horizontal: 4.w,
                 ),
                 child: Column(
                   children: [
                     SizedBox(
-                      height: s.h(24.0),
+                      height: 4.h,
                     ),
                     Text(
                       Strings.login,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: s.h(30.0),
+                            fontSize: 22.sp,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
                     SizedBox(
-                      height: s.h(24.0),
+                      height: 4.h,
                     ),
                     LoginForm(
                       formKey: _formKey,
@@ -118,7 +117,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       passwordController: _passwordController,
                     ),
                     SizedBox(
-                      height: s.h(24.0),
+                      height: 4.h,
                     ),
                     TextButton(
                       onPressed: () {
@@ -128,14 +127,14 @@ class _LogInScreenState extends State<LogInScreen> {
                       child: Text(
                         Strings.forgetPassword,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(15.0),
+                              fontSize: 11.sp,
                               color: const Color(0xffff4980),
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                     ),
                     SizedBox(
-                      height: s.h(300.0),
+                      height: 35.h,
                     ),
                     Builder(
                       builder: (context) {
@@ -147,7 +146,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    fontSize: s.h(17),
+                                    fontSize: 13.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
@@ -169,7 +168,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                         .textTheme
                                         .bodyText1!
                                         .copyWith(
-                                          fontSize: s.h(17),
+                                          fontSize: 13.sp,
                                           fontWeight: FontWeight.bold,
                                         ),
                                   );

@@ -25,7 +25,6 @@ class DefaultTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return TextFormField(
       decoration: InputDecoration(
         labelText: text,
@@ -33,13 +32,13 @@ class DefaultTextField extends StatelessWidget {
         fillColor: const Color(0xff302c3f),
         filled: true,
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(s.h(10)),
+          borderRadius: BorderRadius.circular((10)),
           borderSide: const BorderSide(
             color: Colors.white,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(s.h(10)),
+          borderRadius: BorderRadius.circular((10)),
           borderSide: const BorderSide(
             color: Color(0xffe6e6e6),
           ),

@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/core/secure_storage/secure_storage.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../shared_components/default_gradient_button.dart';
 import '../widgets/assets_change_chart_button.dart';
 import '../widgets/assets_chart_widget.dart';

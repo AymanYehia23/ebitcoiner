@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 class DefaultDisabledButton extends StatelessWidget {
   final Widget text;
@@ -10,18 +10,17 @@ class DefaultDisabledButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Container(
-      height: s.h(56.0),
+      height: 6.8.h,
       width: double.infinity,
       alignment: Alignment.center,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(
-            s.h(56.0),
+            (56.0),
           ),
         ),
-        color: const Color(0xff302c3f),
+        color: Color(0xff302c3f),
       ),
       child: text
     );

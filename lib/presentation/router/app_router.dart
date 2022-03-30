@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hash_store/presentation/Home/screen/home_screen.dart';
 import 'package:hash_store/presentation/add_new_hashrate/screens/add_new_hashrate_screen.dart';
+import 'package:hash_store/presentation/buy_mining_device/screens/buy_mining_device_screen.dart';
 import 'package:hash_store/presentation/choose_desired_plan/screens/choose_desired_plan_screen.dart';
 import 'package:hash_store/presentation/log_in/screen/log_in_screen.dart';
 import 'package:hash_store/presentation/recovery_link/screens/recovery_link_screen.dart';
@@ -20,6 +21,7 @@ class AppRouter {
   static const String enterNewPassword = 'enterNewPassword';
   static const String addNewHashrate = 'addNewHashrate';
   static const String chooseDesiredPlan = 'chooseDesiredPlan';
+  static const String buyMiningDevice = 'buyMiningDevice';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -41,6 +43,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const AddNewHashrateScreen());
       case chooseDesiredPlan:
         return MaterialPageRoute(builder: (_) => const ChooseDesiredPlanScreen());
+      case buyMiningDevice:
+        return MaterialPageRoute(builder: (_) => const BuyMiningDeviceScreen());
       default:
         throw const RouteException('Route not found!');
     }

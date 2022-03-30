@@ -6,7 +6,7 @@ import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 import 'package:hash_store/presentation/router/app_router.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../logic/cubit/login/login_cubit.dart';
 import '../../shared_components/default_disabled_button.dart';
@@ -75,7 +75,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Stack(
       children: [
         const GradientBackgroundContainer(),
@@ -124,7 +123,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Text(
                     'Login',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(17),
+                          fontSize:13.sp,
                         ),
                   ),
                 )
@@ -133,12 +132,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
             body: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: s.w(16.0),
+                  horizontal: 4.w,
                 ),
                 child: Column(
                   children: [
                     SizedBox(
-                      height: s.h(24.0),
+                      height: 4.h,
                     ),
                     Text(
                       Strings.createNewAccount,
@@ -146,10 +145,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: Theme.of(context)
                           .textTheme
                           .bodyText1!
-                          .copyWith(fontSize: s.h(30.0)),
+                          .copyWith(fontSize: 22.sp),
                     ),
                     SizedBox(
-                      height: s.h(24.0),
+                      height: 4.h,
                     ),
                     SignUpForm(
                       formKey: _formKey,
@@ -159,7 +158,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       passwordController: _passwordController,
                     ),
                     SizedBox(
-                      height: s.h(24.0),
+                      height: 4.h,
                     ),
                     Text(
                       'By continuing to register, you agree to',
@@ -167,7 +166,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: Theme.of(context)
                           .textTheme
                           .bodyText2!
-                          .copyWith(fontSize: s.h(15.0)),
+                          .copyWith(fontSize: 11.sp),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -179,7 +178,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             textAlign: TextAlign.center,
                             style:
                                 Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: s.h(15.0),
+                                      fontSize: 11.sp,
                                       color: const Color(0xffff4980),
                                     ),
                           ),
@@ -189,7 +188,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           textAlign: TextAlign.center,
                           style:
                               Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    fontSize: s.h(15.0),
+                                    fontSize: 11.sp,
                                   ),
                         ),
                         InkWell(
@@ -199,7 +198,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             textAlign: TextAlign.center,
                             style:
                                 Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: s.h(15.0),
+                                      fontSize:11.sp,
                                       color: const Color(0xffff4980),
                                     ),
                           ),
@@ -207,7 +206,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ],
                     ),
                     SizedBox(
-                      height: s.h(160.0),
+                      height: 18.h,
                     ),
                     Builder(
                       builder: (context) {
@@ -219,7 +218,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    fontSize: s.h(17),
+                                    fontSize: 13.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
@@ -244,7 +243,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
-                                      fontSize: s.h(17),
+                                      fontSize: 13.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
                               );
@@ -259,7 +258,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                     ),
                     SizedBox(
-                      height: s.h(16),
+                      height: 2.h,
                     ),
                   ],
                 ),

@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/presentation/router/app_router.dart';
 import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
 import 'package:hash_store/core/constants/strings.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../logic/cubit/update_password/update_password_cubit.dart';
 import '../../shared_components/default_gradient_button.dart';
@@ -57,7 +57,6 @@ class _EnterNewPassState extends State<EnterNewPassword> {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Stack(children: [
       const GradientBackgroundContainer(),
       BlocListener<UpdatePasswordCubit, UpdatePasswordState>(
@@ -97,23 +96,23 @@ class _EnterNewPassState extends State<EnterNewPassword> {
           body: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: s.w(16.0),
+                horizontal: 4.w,
               ),
               child: Column(
                 children: [
                   SizedBox(
-                    height: s.h(32.0),
+                    height: 4.8.h,
                   ),
                   Text(
                     Strings.enterNewPassword,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(30.0),
+                          fontSize: 22.sp,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
                   SizedBox(
-                    height: s.h(24.0),
+                    height: 4.h,
                   ),
                   NewPasswordForm(
                     passwordController: _passwordController,
@@ -121,7 +120,7 @@ class _EnterNewPassState extends State<EnterNewPassword> {
                     formKey: _formKey,
                   ),
                   SizedBox(
-                    height: s.h(403.0),
+                    height: 45.h,
                   ),
                   Builder(
                     builder: (context) {
@@ -132,7 +131,7 @@ class _EnterNewPassState extends State<EnterNewPassword> {
                             'Reset Password',
                             style:
                                 Theme.of(context).textTheme.bodyText2!.copyWith(
-                                      fontSize: s.h(19),
+                                      fontSize: 12.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -155,7 +154,7 @@ class _EnterNewPassState extends State<EnterNewPassword> {
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
-                                    fontSize: s.h(19),
+                                    fontSize:12.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
                             );
