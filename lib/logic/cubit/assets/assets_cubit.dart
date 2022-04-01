@@ -12,17 +12,18 @@ import '../../currency_converter_cubit.dart';
 part 'assets_state.dart';
 
 class AssetsCubit extends Cubit<AssetsState> {
-  AssetsCubit(this._planContractRepo, this.planContractsResponseModel)
+  AssetsCubit(
+      this._planContractRepo, this._planContractsResponseModel, this._converter)
       : super(AssetsInitial());
 
   final PlanContractRepo _planContractRepo;
-  PlanContractsResponseModel planContractsResponseModel;
-  final CurrencyConverter _converter = CurrencyConverter();
+  PlanContractsResponseModel _planContractsResponseModel;
+  final CurrencyConverter _converter;
 
   Future<void> getPlanContract() async {
     emit(AssetsGetPlanContractLoadingState());
     try {
-      planContractsResponseModel = await _planContractRepo.getPlanContract();
+      _planContractsResponseModel = await _planContractRepo.getPlanContract();
       emit(AssetsGetPlanContractSuccessState());
       await getTotalProfit();
     } on DioError catch (_) {
@@ -40,33 +41,32 @@ class AssetsCubit extends Cubit<AssetsState> {
 
   Future<void> getTotalProfit() async {
     emit(AssetsGetTotalProfitLoadingState());
-    totalProfit = '0.00000';
-    totalBTC = '0.00000';
-    totalETH = '0.00000';
-    totalRVN = '0.00000';
-
-    if (planContractsResponseModel.cryptoName == 'BTC') {
+    if (_planContractsResponseModel.cryptoName == 'BTC') {
       totalProfit = await _converter.convertCryptocurrencyToUSD(
         currencyType: Currency.btc,
-        currencyAmount: planContractsResponseModel.totalMined,
+        currencyAmount: _planContractsResponseModel.totalMined,
       );
       totalBTC = totalProfit;
       emit(AssetsGetTotalProfitSuccessState());
-    } else if (planContractsResponseModel.cryptoName == 'ETH') {
+    } else if (_planContractsResponseModel.cryptoName == 'ETH') {
       totalProfit = await _converter.convertCryptocurrencyToUSD(
         currencyType: Currency.eth,
-        currencyAmount: planContractsResponseModel.totalMined,
+        currencyAmount: _planContractsResponseModel.totalMined,
       );
       totalETH = totalProfit;
       emit(AssetsGetTotalProfitSuccessState());
-    } else if (planContractsResponseModel.cryptoName == 'RVN') {
+    } else if (_planContractsResponseModel.cryptoName == 'RVN') {
       totalProfit = await _converter.convertCryptocurrencyToUSD(
         currencyType: Currency.rvn,
-        currencyAmount: planContractsResponseModel.totalMined,
+        currencyAmount: _planContractsResponseModel.totalMined,
       );
       totalRVN = totalProfit;
       emit(AssetsGetTotalProfitSuccessState());
     } else {
+      totalProfit = '0.00000';
+      totalBTC = '0.00000';
+      totalETH = '0.00000';
+      totalRVN = '0.00000';
       emit(AssetsGetTotalProfitErrorState());
     }
   }
@@ -90,8 +90,8 @@ class AssetsCubit extends Cubit<AssetsState> {
     if (selectedCurrency == Currency.btc) {
       currency = selectedCurrency;
       chartData = [];
-      if (planContractsResponseModel.cryptoName == 'BTC') {
-        for (var element in planContractsResponseModel.hourlyGains!) {
+      if (_planContractsResponseModel.cryptoName == 'BTC') {
+        for (var element in _planContractsResponseModel.hourlyGains!) {
           chartData.add(ChartData(element.date, element.profit as double));
         }
       }
@@ -99,8 +99,8 @@ class AssetsCubit extends Cubit<AssetsState> {
     } else if (selectedCurrency == Currency.eth) {
       currency = selectedCurrency;
       chartData = [];
-      if (planContractsResponseModel.cryptoName == 'ETH') {
-        for (var element in planContractsResponseModel.hourlyGains!) {
+      if (_planContractsResponseModel.cryptoName == 'ETH') {
+        for (var element in _planContractsResponseModel.hourlyGains!) {
           chartData.add(ChartData(element.date, element.profit as double));
         }
       }
@@ -108,8 +108,8 @@ class AssetsCubit extends Cubit<AssetsState> {
     } else {
       currency = selectedCurrency;
       chartData = [];
-      if (planContractsResponseModel.cryptoName == 'RVN') {
-        for (var element in planContractsResponseModel.hourlyGains!) {
+      if (_planContractsResponseModel.cryptoName == 'RVN') {
+        for (var element in _planContractsResponseModel.hourlyGains!) {
           chartData.add(ChartData(element.date, element.profit as double));
         }
       }

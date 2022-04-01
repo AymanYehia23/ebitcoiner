@@ -12,8 +12,8 @@ class LogoutCubit extends Cubit<LogoutState> {
   LogoutCubit(this._logoutRepo, this._secureStorage) : super(LogoutInitial());
 
   //Business logic
-  final SecureStorageRepo _secureStorage;
   final LogoutRepo _logoutRepo;
+  final SecureStorageRepo _secureStorage;
 
   Future<void> logout(String? refreshToken) async {
     emit(LogoutLoadingState());

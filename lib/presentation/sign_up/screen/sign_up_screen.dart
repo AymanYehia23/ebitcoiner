@@ -6,6 +6,7 @@ import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 import 'package:hash_store/presentation/router/app_router.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
+import 'package:hive/hive.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../logic/cubit/login/login_cubit.dart';
@@ -37,6 +38,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _emailController.addListener(_checkOfEmptyValue);
     _phoneNumberController.addListener(_checkOfEmptyValue);
     _passwordController.addListener(_checkOfEmptyValue);
+    context.read<SignUpCubit>().changeIsEmpty(true);
     super.initState();
   }
 
@@ -54,9 +56,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         _emailController.text.isNotEmpty &&
         _phoneNumberController.text.isNotEmpty &&
         _passwordController.text.isNotEmpty) {
-      context.read<SignUpCubit>().isEmpty = false;
+      context.read<SignUpCubit>().changeIsEmpty(false);
     } else {
-      context.read<SignUpCubit>().isEmpty = true;
+      context.read<SignUpCubit>().changeIsEmpty(true);
     }
   }
 
@@ -68,7 +70,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         password: _passwordController.text,
         phone: '$_countryCode${_phoneNumberController.text}',
       );
-      print(signUPRequestModel.phone);
+      await Hive.openBox('userData');
+
       await context.read<SignUpCubit>().signUp(signUPRequestModel);
     }
   }
@@ -118,12 +121,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppRouter.logIn);
+                    Navigator.pushReplacementNamed(context, AppRouter.logIn);
                   },
                   child: Text(
                     'Login',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize:13.sp,
+                          fontSize: 13.sp,
                         ),
                   ),
                 )
@@ -198,7 +201,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             textAlign: TextAlign.center,
                             style:
                                 Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize:11.sp,
+                                      fontSize: 11.sp,
                                       color: const Color(0xffff4980),
                                     ),
                           ),
@@ -206,7 +209,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ],
                     ),
                     SizedBox(
-                      height: 18.h,
+                      height: 14.h,
                     ),
                     Builder(
                       builder: (context) {

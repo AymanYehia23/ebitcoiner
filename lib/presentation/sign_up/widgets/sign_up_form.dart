@@ -76,7 +76,7 @@ class SignUpForm extends StatelessWidget {
                   text: 'Phone Number',
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(
-                      RegExp(r"[1-9]"),
+                      RegExp(r"^[1-9][0-9]*"),
                     ),
                   ],
                   inputType: TextInputType.phone,

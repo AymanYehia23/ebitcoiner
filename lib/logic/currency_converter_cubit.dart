@@ -3,8 +3,8 @@ import 'package:hash_store/core/constants/enums.dart';
 
 class CurrencyConverter {
   Dio dio = Dio(
-    BaseOptions(baseUrl: "https://rest.coinapi.io/v1/", headers: {
-      'X-CoinAPI-Key': 'C7F88831-426D-4FEF-AAB6-CF0B3A93721F',
+    BaseOptions(baseUrl: "https://min-api.cryptocompare.com/", headers: {
+      'api_key': '3ccbc9d8557b907ce54e3c11dd330b350210fbe96c21adb82361f58a15d4a21a',
     }),
   );
 
@@ -13,9 +13,9 @@ class CurrencyConverter {
       {required String currencyType}) async {
     try {
       final res = await dio.get(
-        'exchangerate/$currencyType/USD',
+        'data/price?fsym=$currencyType&tsyms=USD',
       );
-      return res.data['rate'];
+      return res.data['USD'];
     } on DioError catch (error) {
       return error.response!.data;
     }

@@ -1,4 +1,6 @@
-class PlanContractsResponseModel {
+import 'package:equatable/equatable.dart';
+
+class PlanContractsResponseModel extends Equatable {
   String? sId;
   bool? demo;
   String? cryptoName;
@@ -46,6 +48,9 @@ class PlanContractsResponseModel {
     }
     iV = json['__v'];
   }
+
+  @override
+  List<Object?> get props => [PlanContractsResponseModel];
 }
 
 class HourlyGains {

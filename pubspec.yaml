@@ -36,7 +36,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   bloc: ^8.0.2
   flutter_bloc: ^8.0.1
-  hydrated_bloc: ^8.0.0
   dio: ^4.0.4
   device_preview: ^1.0.0
   flutter_svg: ^1.0.3
@@ -48,11 +47,16 @@ dependencies:
   bloc_test: ^9.0.3
   equatable: ^2.0.3
   sizer: ^2.0.15
+  path_provider: ^2.0.9
+  hive:
+  hive_flutter:
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  hive_generator:
+  build_runner:
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

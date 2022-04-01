@@ -4,12 +4,10 @@ import 'package:equatable/equatable.dart';
 import 'package:hash_store/data/repositories/delete_account_repo.dart';
 import 'package:meta/meta.dart';
 
-
 part 'delete_account_state.dart';
 
 class DeleteAccountCubit extends Cubit<DeleteAccountState> {
-  DeleteAccountCubit(this._deleteAccountRepo)
-      : super(DeleteAccountInitial());
+  DeleteAccountCubit(this._deleteAccountRepo) : super(DeleteAccountInitial());
 
   //Business logic
   final DeleteAccountRepo _deleteAccountRepo;

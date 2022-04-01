@@ -18,6 +18,12 @@ class LoginSuccessState extends LoginState {
   List<Object?> get props => [LoginSuccessState];
 }
 
+
+class LoginErrorState extends LoginState {
+  @override
+  List<Object?> get props => [LoginErrorState];
+}
+
 class SaveTokensLoadingState extends LoginState {
   @override
   List<Object?> get props => [SaveTokensLoadingState];
@@ -26,11 +32,6 @@ class SaveTokensLoadingState extends LoginState {
 class SaveTokensSuccessState extends LoginState {
   @override
   List<Object?> get props => [SaveTokensSuccessState];
-}
-
-class LoginErrorState extends LoginState {
-  @override
-  List<Object?> get props => [LoginErrorState];
 }
 
 class AutoLoginLoadingState extends LoginState {
@@ -48,9 +49,20 @@ class AutoLoginFailedState extends LoginState {
   List<Object?> get props => [AutoLoginFailedState];
 }
 
-class ChangePasswordVisibilityLoadingState extends LoginState {
+
+class ChangeIsEmptyTrueState extends LoginState {
   @override
-  List<Object?> get props => [ChangePasswordVisibilityLoadingState];
+  List<Object?> get props => [ChangeIsEmptyTrueState];
+}
+
+class ChangeIsEmptyFalseState extends LoginState {
+  @override
+  List<Object?> get props => [ChangeIsEmptyFalseState];
+}
+
+class ChangePasswordVisibilityInitialState extends LoginState {
+  @override
+  List<Object?> get props => [ChangePasswordVisibilityInitialState];
 }
 
 class ChangePasswordVisibilitySuccessState extends LoginState {

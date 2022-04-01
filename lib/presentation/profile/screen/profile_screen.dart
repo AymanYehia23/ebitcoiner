@@ -23,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
           listener: (context, state) async {
             if (state is LogoutSuccessState) {
               await context.read<LogoutCubit>().deleteSavedTokens();
-              Navigator.of(context).pushReplacementNamed(AppRouter.logIn);
+              Navigator.of(context).pushReplacementNamed(AppRouter.splash);
             } else if (state is LogoutErrorState) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(

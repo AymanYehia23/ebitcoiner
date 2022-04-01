@@ -15,6 +15,7 @@ import 'package:hash_store/presentation/shared_components/default_gradient_butto
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:hash_store/presentation/sizer/sizer.dart';
 
+import '../../router/app_router.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -32,15 +33,21 @@ class _HomeScreenState extends State<HomeScreen> {
     MultiBlocProvider(
       providers: [
         BlocProvider<LogoutCubit>(
-          create: (context) => LogoutCubit(LogoutApi(), SecureStorage()),
+          create: (context) => LogoutCubit(
+            LogoutApi(),
+            SecureStorage(),
+          ),
         ),
         BlocProvider<DeleteAccountCubit>(
-          create: (context) => DeleteAccountCubit(DeleteAccountApi()),
+          create: (context) => DeleteAccountCubit(
+            DeleteAccountApi(),
+          ),
         ),
       ],
       child: ProfileScreen(),
     ),
   ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -122,9 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           floatingActionButton: _selectedIndex == 1
               ? FloatingActionButton(
-                  onPressed: () {
-                    
-                  },
+                  onPressed: () {},
                   child: SizedBox(
                     height: double.infinity,
                     child: DefaultGradientButton(
@@ -133,8 +138,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        //Navigator.of(context)
-                            //.pushNamed(AppRouter.addNewHashrate);
+                        Navigator.of(context)
+                            .pushNamed(AppRouter.addNewHashrate);
                       },
                       isFilled: true,
                     ),
