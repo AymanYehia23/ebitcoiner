@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hash_store/presentation/devices/widgets/your_miners_widget.dart';
 import 'package:hash_store/presentation/hashrate/widgets/hashrate_total_widget.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../core/constants/strings.dart';

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
+
+ bool show = false;
 
 class BuyMiningDeviceWidget extends StatefulWidget {
   final String yourMinerPic;
@@ -15,6 +17,7 @@ class BuyMiningDeviceWidget extends StatefulWidget {
   final String power;
   final String unitPrice;
   final String maintenancePrice;
+  
   const BuyMiningDeviceWidget({
     Key? key,
     required this.yourMinerPic,
@@ -37,37 +40,36 @@ class BuyMiningDeviceWidget extends StatefulWidget {
 class _BuyMiningDeviceWidgetState extends State<BuyMiningDeviceWidget> {
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Container(
-      height: s.h(420.0),
+      height: 49.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: const Color(0xff1d1a27),
         border: Border.all(
           color: Colors.white,
         ),
-        borderRadius: BorderRadius.circular(s.h(8.0)),
+        borderRadius: BorderRadius.circular((8.0)),
       ),
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: s.w(16.0)),
-            height: s.h(84.0),
+            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+            height: 9.h,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SvgPicture.asset(
                   widget.yourMinerPic,
-                  height: s.h(52.0),
-                  width: s.w(56.0),
+                  height: 7.h,
+                  width: 7.h,
                 ),
                 SizedBox(
-                  width: s.w(8.0),
+                  width: 2.w,
                 ),
                 Text(
                   widget.yourMinerName,
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                        fontSize: s.h(19.0),
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
@@ -75,61 +77,62 @@ class _BuyMiningDeviceWidgetState extends State<BuyMiningDeviceWidget> {
             ),
           ),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 child: SizedBox(
-                  height: s.h(100.0),
+                  height: 12.h,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Mining Currency',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       SizedBox(
-                        height: s.h(4.5),
+                        height: 0.5.h,
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset(
                             widget.currencyIcn1,
-                            height: s.h(20.0),
-                            width: s.w(20.0),
+                            height: 6.w,
+                            width: 6.w,
                           ),
                           SizedBox(
-                            width: s.w(4.0),
+                            width: 1.w,
                           ),
                           Text(
                             widget.currencyName1,
                             style:
                                 Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: s.h(17.0),
+                                      fontSize: 12.sp,
                                     ),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: s.h(7.0),
+                        height: 1.h,
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset(
                             widget.currencyIcn2,
-                            height: s.h(20.0),
-                            width: s.w(20.0),
+                            height: 6.w,
+                            width: 6.w,
                           ),
                           SizedBox(
-                            width: s.w(4.0),
+                            width: 1.w,
                           ),
                           Text(
                             widget.currencyName2,
                             style:
                                 Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: s.h(17.0),
+                                      fontSize: 12.sp,
                                     ),
                           ),
                         ],
@@ -140,24 +143,24 @@ class _BuyMiningDeviceWidgetState extends State<BuyMiningDeviceWidget> {
               ),
               Expanded(
                 child: SizedBox(
-                  height: s.h(100.0),
+                  height: 12.h,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Algorithm',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       SizedBox(
-                        height: s.h(4.5),
+                        height: 0.5.h,
                       ),
                       Text(
                         widget.algorithm,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(17.0),
+                              fontSize: 12.sp,
                             ),
                       ),
                     ],
@@ -171,24 +174,24 @@ class _BuyMiningDeviceWidgetState extends State<BuyMiningDeviceWidget> {
             children: [
               Expanded(
                 child: SizedBox(
-                  height: s.h(71.0),
+                  height: 7.5.h,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Power',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       SizedBox(
-                        width: s.w(4.0),
+                        width: 1.w,
                       ),
                       Text(
                         widget.power,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(17.0),
+                              fontSize: 12.sp,
                             ),
                       ),
                     ],
@@ -197,24 +200,24 @@ class _BuyMiningDeviceWidgetState extends State<BuyMiningDeviceWidget> {
               ),
               Expanded(
                 child: SizedBox(
-                  height: s.h(71.0),
+                  height: 7.5.h,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Profitability',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       SizedBox(
-                        height: s.h(4.0),
+                        height: 0.5.h,
                       ),
                       Text(
                         widget.profitability,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(17.0),
+                              fontSize: 12.sp,
                             ),
                       ),
                     ],
@@ -224,73 +227,94 @@ class _BuyMiningDeviceWidgetState extends State<BuyMiningDeviceWidget> {
             ],
           ),
           const Divider(
-            color: Colors.white,
+            color: Color.fromARGB(255, 226, 159, 159),
           ),
-          Container(
-            padding: EdgeInsets.symmetric(
-                horizontal: s.w(16.0), vertical: s.h(16.0)),
-            height: s.h(157.0),
+          SizedBox(
+            height: 18.h,
             child: Column(children: [
               Row(
                 children: [
-                  SizedBox(
-                    height: s.h(87.0),
-                    child: Column(children: [
-                      Text(
-                        'Unit Price',
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
-                              fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: SizedBox(
+                      height: 8.h,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Unit Price',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
-                      ),
-                      SizedBox(
-                        height: s.h(4.0),
-                      ),
-                      Text(
-                        widget.unitPrice,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(30.0),
-                              fontWeight: FontWeight.bold,
+                            SizedBox(
+                              height: 0.5.h,
                             ),
-                      ),
-                    ]),
+                            Text(
+                              widget.unitPrice,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ]),
+                    ),
                   ),
-                  SizedBox(
-                    height: s.h(87.0),
-                    child: Column(children: [
-                      Text(
-                        'Maintenance Price',
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: s.h(15.0),
-                              fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: SizedBox(
+                      height: 8.h,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Maintenance Price',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
-                      ),
-                      SizedBox(
-                        height: s.h(4.0),
-                      ),
-                      Text(
-                        widget.maintenancePrice,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: s.h(30.0),
-                              fontWeight: FontWeight.bold,
+                            SizedBox(
+                              height: 0.5.h,
                             ),
-                      ),
-                    ]),
+                            Text(
+                              widget.maintenancePrice,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ]),
+                    ),
                   ),
                 ],
               ),
-              SizedBox(
-                height: s.h(54.0),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 4.w),
+                height: 6.8.h,
                 child: DefaultGradientButton(
                   isFilled: true,
                   text: Text(
                     'Buy Device',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: s.h(19.0),
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    show =true;
+                  },
                 ),
               ),
             ]),
