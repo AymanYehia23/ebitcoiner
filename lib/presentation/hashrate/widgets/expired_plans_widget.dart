@@ -19,7 +19,7 @@ class _ExpiredPlansWidgetState extends State<ExpiredPlansWidget> {
         horizontal: 4.w,
         vertical: 2.h,
       ),
-      height: _isExpanded ? 40.h : 8.5.h,
+      height: _isExpanded ? 40.h : 9.h,
       decoration: BoxDecoration(
         border: Border.all(
           color: const Color(0xff302C3F),

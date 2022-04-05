@@ -32,7 +32,8 @@ class ContractPeriodWidget extends StatefulWidget {
 class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      height: 27.h,
       padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
       child: Column(
         children: [
@@ -53,7 +54,7 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
                     ? InkWell(
                         onTap: widget.onTapInkWell1(),
                         child: Container(
-                          height: 6.5.h,
+                          height: 8.h,
                           decoration: BoxDecoration(
                             color: const Color(0xff302c3f),
                             borderRadius: BorderRadius.circular(
@@ -75,7 +76,7 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
                         ),
                       )
                     : DefaultGradientButton(
-                        hight: 6.5.h,
+                        hight: 8.h,
                         radius: (8),
                         isFilled: false,
                         text: Text(
@@ -98,7 +99,7 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
                     ? InkWell(
                         onTap: widget.onTapInkWell2(),
                         child: Container(
-                          height: 6.5.h,
+                          height: 8.h,
                           decoration: BoxDecoration(
                             color: const Color(0xff302c3f),
                             borderRadius: BorderRadius.circular(
@@ -125,7 +126,7 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
-                                      fontSize: 10.sp,
+                                      fontSize: 9.5.sp,
                                       color: const Color(0xffff4980),
                                     ),
                                 textAlign: TextAlign.center,
@@ -135,7 +136,7 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
                         ),
                       )
                     : DefaultGradientButton(
-                        hight: 6.5.h,
+                        hight: 8.h,
                         radius: (8),
                         isFilled: false,
                         text: Column(
@@ -158,7 +159,7 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
-                                    fontSize:10.sp,
+                                    fontSize:9.5.sp,
                                     color: const Color(0xffff4980),
                                   ),
                               textAlign: TextAlign.center,
@@ -180,7 +181,7 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
                     ? InkWell(
                         onTap: widget.onTapInkWell3(),
                         child: Container(
-                          height: 6.5.h,
+                          height: 8.h,
                           decoration: BoxDecoration(
                             color: const Color(0xff302c3f),
                             borderRadius: BorderRadius.circular(
@@ -207,7 +208,7 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
-                                      fontSize: 10.sp,
+                                      fontSize: 9.5.sp,
                                       color: const Color(0xffff4980),
                                     ),
                                 textAlign: TextAlign.center,
@@ -217,7 +218,7 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
                         ),
                       )
                     : DefaultGradientButton(
-                        hight: 6.5.h,
+                        hight: 8.h,
                         radius: (8),
                         isFilled: false,
                         text: Column(
@@ -240,7 +241,7 @@ class _ContractPeriodWidgetState extends State<ContractPeriodWidget> {
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
-                                    fontSize: 10.sp,
+                                    fontSize: 9.5.sp,
                                     color: const Color(0xffff4980),
                                   ),
                               textAlign: TextAlign.center,

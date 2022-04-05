@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hash_store/presentation/buy_mining_device/widgets/pay_for_buy_device_widget.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:sizer/sizer.dart';
-
- bool show = false;
 
 class BuyMiningDeviceWidget extends StatefulWidget {
   final String yourMinerPic;
@@ -17,7 +16,7 @@ class BuyMiningDeviceWidget extends StatefulWidget {
   final String power;
   final String unitPrice;
   final String maintenancePrice;
-  
+
   const BuyMiningDeviceWidget({
     Key? key,
     required this.yourMinerPic,
@@ -41,7 +40,7 @@ class _BuyMiningDeviceWidgetState extends State<BuyMiningDeviceWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 49.h,
+      height: 52.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: const Color(0xff1d1a27),
@@ -53,7 +52,7 @@ class _BuyMiningDeviceWidgetState extends State<BuyMiningDeviceWidget> {
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+            padding: EdgeInsets.only(left: 4.w, top: 2.h),
             height: 9.h,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +79,7 @@ class _BuyMiningDeviceWidgetState extends State<BuyMiningDeviceWidget> {
             children: [
               Expanded(
                 child: SizedBox(
-                  height: 12.h,
+                  height: 14.h,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -227,7 +226,7 @@ class _BuyMiningDeviceWidgetState extends State<BuyMiningDeviceWidget> {
             ],
           ),
           const Divider(
-            color: Color.fromARGB(255, 226, 159, 159),
+            color: Colors.white,
           ),
           SizedBox(
             height: 18.h,
@@ -302,7 +301,7 @@ class _BuyMiningDeviceWidgetState extends State<BuyMiningDeviceWidget> {
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 4.w),
-                height: 6.8.h,
+                height: 8.h,
                 child: DefaultGradientButton(
                   isFilled: true,
                   text: Text(
@@ -313,7 +312,14 @@ class _BuyMiningDeviceWidgetState extends State<BuyMiningDeviceWidget> {
                         ),
                   ),
                   onPressed: () {
-                    show =true;
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (context) => const PayForBuyDevice(
+                              yourMinerPic:
+                                  'assets/images/antMinerL7_image.svg',
+                              yourMinerName: 'AntMiner E9',
+                              yourMinerRate: 'Forever — 23 580 GH/S',
+                            ));
                   },
                 ),
               ),

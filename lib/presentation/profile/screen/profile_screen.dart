@@ -5,7 +5,8 @@ import 'package:hash_store/logic/cubit/delete_account/delete_account_cubit.dart'
 import 'package:hash_store/logic/cubit/logout/logout_cubit.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:hash_store/presentation/shared_components/default_textfield.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
+
 
 import '../../router/app_router.dart';
 
@@ -16,7 +17,6 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return MultiBlocListener(
       listeners: [
         BlocListener<LogoutCubit, LogoutState>(
@@ -52,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
       ],
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: s.w(16)),
+          padding: EdgeInsets.symmetric(horizontal: 4.w),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -62,14 +62,14 @@ class ProfileScreen extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1!
-                      .copyWith(fontSize: s.w(60)),
+                      .copyWith(fontSize: 44.sp),
                 ),
               ),
               SizedBox(
-                height: s.h(15),
+                height: 2.h,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: s.w(70)),
+                padding: EdgeInsets.symmetric(horizontal: 17.w),
                 child: DefaultGradientButton(
                   isFilled: true,
                   onPressed: () async {
@@ -91,13 +91,13 @@ class ProfileScreen extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .bodyText1!
-                          .copyWith(fontSize: 30),
+                          .copyWith(fontSize: 22.sp),
                     );
                   }),
                 ),
               ),
               SizedBox(
-                height: s.h(150),
+                height: 20.h,
               ),
               Form(
                 key: _formKey,
@@ -113,7 +113,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: s.h(20),
+                height: 3.h,
               ),
               DefaultGradientButton(
                 isFilled: false,

@@ -20,7 +20,7 @@ class _HashrateTotalWidgetState extends State<HashrateTotalWidget> {
         horizontal: 4.w,
         vertical: 2.h,
       ),
-      height: _isExpanded ? 40.h : 17.h,
+      height: _isExpanded ? 42.h : 19.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: const Color(0xff1d1a27),

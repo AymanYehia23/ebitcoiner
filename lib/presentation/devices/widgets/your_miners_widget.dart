@@ -36,7 +36,7 @@ class YourMinersWidget extends StatelessWidget {
         'Device support stopped, please renew\n maintenance support to re-activate the device';
     return closeToEnd
         ? Container(
-            height: 43.h,
+            height: 50.h,
             width: double.infinity,
             decoration: BoxDecoration(
               color: const Color(0xff1d1a27),
@@ -72,9 +72,8 @@ class YourMinersWidget extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 4.w, vertical: 2.h),
-                  height: 10.h,
+                  padding: EdgeInsets.only(top: 2.h, left: 4.w),
+                  height: 12.h,
                   child: Row(
                     children: [
                       SvgPicture.asset(
@@ -87,6 +86,7 @@ class YourMinersWidget extends StatelessWidget {
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             antMiner,
@@ -125,11 +125,17 @@ class YourMinersWidget extends StatelessWidget {
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: 1.5.h,
+                ),
                 Text(
                   'Device Bought on: $maintenanceStart',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontSize: 12.5.sp,
                       ),
+                ),
+                SizedBox(
+                  height: 1.5.h,
                 ),
                 Row(
                   children: [
@@ -176,7 +182,7 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    fontSize:12.sp,
+                                    fontSize: 12.sp,
                                   ),
                             ),
                             SizedBox(
@@ -222,9 +228,7 @@ class YourMinersWidget extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText1!
-                                  .copyWith(
-                                    fontSize: 13.sp
-                                  ),
+                                  .copyWith(fontSize: 13.sp),
                             )
                           ],
                         ),
@@ -264,18 +268,18 @@ class YourMinersWidget extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  height: 6.8.h,
+                  height: 8.h,
                   padding: EdgeInsets.symmetric(horizontal: 4.w),
                   child: DefaultGradientButton(
                       isFilled: true,
                       text: Text(
                         'Renew maintenance support',
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
-                      onPressed: (){
+                      onPressed: () {
                         Navigator.of(context)
                             .pushNamed(AppRouter.buyMiningDevice);
                       }),
@@ -287,7 +291,7 @@ class YourMinersWidget extends StatelessWidget {
             ),
           )
         : Container(
-            height: 28.h,
+            height: 30.h,
             width: double.infinity,
             decoration: BoxDecoration(
               color: const Color(0xff1d1a27),
@@ -299,8 +303,7 @@ class YourMinersWidget extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 4.w, vertical: 2.h),
+                  padding: EdgeInsets.only(top: 2.h, left: 4.w),
                   height: 10.h,
                   child: Row(
                     children: [
@@ -314,6 +317,7 @@ class YourMinersWidget extends StatelessWidget {
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             antMiner,
@@ -342,7 +346,7 @@ class YourMinersWidget extends StatelessWidget {
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
-                                      fontSize:11.5.sp,
+                                      fontSize: 11.5.sp,
                                     ),
                               ),
                             ],
@@ -356,7 +360,7 @@ class YourMinersWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: SizedBox(
-                        height: 8.h,
+                        height: 9.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -387,7 +391,7 @@ class YourMinersWidget extends StatelessWidget {
                     ),
                     Expanded(
                       child: SizedBox(
-                        height: 8.h,
+                        height: 9.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -409,7 +413,7 @@ class YourMinersWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
-                                    fontSize:13.sp,
+                                    fontSize: 13.sp,
                                   ),
                             )
                           ],
@@ -422,7 +426,7 @@ class YourMinersWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: SizedBox(
-                        height: 8.h,
+                        height: 9.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -453,7 +457,7 @@ class YourMinersWidget extends StatelessWidget {
                     ),
                     Expanded(
                       child: SizedBox(
-                        height: 8.h,
+                        height: 9.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

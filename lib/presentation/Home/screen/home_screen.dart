@@ -8,13 +8,12 @@ import 'package:hash_store/data/data_providers/logout_api.dart';
 import 'package:hash_store/logic/cubit/delete_account/delete_account_cubit.dart';
 import 'package:hash_store/logic/cubit/logout/logout_cubit.dart';
 import 'package:hash_store/presentation/assets/screen/assets_screen.dart';
-import 'package:hash_store/presentation/choose_desired_plan/screens/choose_desired_plan_screen.dart';
 import 'package:hash_store/presentation/devices/screen/devices_screen.dart';
 import 'package:hash_store/presentation/profile/screen/profile_screen.dart';
 import 'package:hash_store/presentation/router/app_router.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
-import 'package:hash_store/presentation/sizer/sizer.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../hashrate/screen/hashrate_screen.dart';
 
@@ -51,7 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Sizer s = Sizer(context: context);
     return Stack(
       children: [
         const GradientBackgroundContainer(),
@@ -63,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text(
                       'Hashrate Plans',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: s.h(19.0),
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -102,10 +100,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 label: Strings.devices,
               ),
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 icon: CircleAvatar(
-                  radius: s.h(18),
-                  backgroundImage: const AssetImage(
+                  radius: (18),
+                  backgroundImage: AssetImage(
                     Strings.userImage,
                   ),
                 ),

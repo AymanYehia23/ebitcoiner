@@ -124,7 +124,7 @@ class HashRateScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 5.h),
                 const ExpiredPlansWidget(),
-                SizedBox(height: 8.h),
+                SizedBox(height: 15.h),
               ],
             ),
           ),

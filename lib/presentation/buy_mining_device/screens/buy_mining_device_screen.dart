@@ -107,12 +107,6 @@ class BuyMiningDeviceScreen extends StatelessWidget {
           ),
         ],
       ),
-      
-      bottomSheet: const PayForBuyDevice(
-        yourMinerPic: 'assets/images/antMinerL7_image.svg',
-        yourMinerName: 'AntMiner E9',
-        yourMinerRate: 'Forever — 23 580 GH/S',
-      ),
     );
   }
 }

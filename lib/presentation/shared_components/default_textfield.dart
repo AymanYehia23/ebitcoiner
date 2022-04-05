@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:hash_store/presentation/sizer/sizer.dart';
 
 class DefaultTextField extends StatelessWidget {
   final String text;

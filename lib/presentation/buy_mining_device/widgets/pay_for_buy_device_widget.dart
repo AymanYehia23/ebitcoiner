@@ -16,13 +16,8 @@ class PayForBuyDevice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return show? BottomSheet(
-        onClosing: () {},
-        builder: (context) {
-          return Container(
+    return Container(
             padding: EdgeInsets.only(top: 4.h),
-            height: 50.h,
-            width: double.infinity,
             color: const Color(0xff1d1a27),
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -53,6 +48,5 @@ class PayForBuyDevice extends StatelessWidget {
               ),
             ]),
           );
-        }):Container(height: 0,);
   }
 }

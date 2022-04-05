@@ -25,7 +25,7 @@ class DefaultGradientButton extends StatelessWidget {
               onPressed();
             },
             child: Container(
-                height: hight ?? 6.8.h,
+                height: hight ?? 8.h,
                 width: double.infinity,
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(
@@ -47,7 +47,7 @@ class DefaultGradientButton extends StatelessWidget {
           )
         : SizedBox(
             width: double.infinity,
-            height:6.8.h,
+            height:8.h,
             child: OutlineGradientButton(
               gradient: const LinearGradient(
                 colors: [
