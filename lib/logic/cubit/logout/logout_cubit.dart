@@ -12,8 +12,8 @@ class LogoutCubit extends Cubit<LogoutState> {
   LogoutCubit(this._logoutRepo, this._secureStorage) : super(LogoutInitial());
 
   //Business logic
-  final SecureStorageRepo _secureStorage;
   final LogoutRepo _logoutRepo;
+  final SecureStorageRepo _secureStorage;
 
   Future<void> logout(String? refreshToken) async {
     emit(LogoutLoadingState());
@@ -38,6 +38,7 @@ class LogoutCubit extends Cubit<LogoutState> {
     emit(DeleteSavedRefreshTokenLoadingState());
     await _secureStorage.deleteValue(key: 'accessToken');
     await _secureStorage.deleteValue(key: 'refreshToken');
+    await _secureStorage.deleteValue(key: 'name');
     emit(DeleteSavedRefreshTokenSuccessState());
   }
 }

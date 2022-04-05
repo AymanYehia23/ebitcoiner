@@ -9,13 +9,13 @@ import 'package:hash_store/logic/cubit/delete_account/delete_account_cubit.dart'
 import 'package:hash_store/logic/cubit/logout/logout_cubit.dart';
 import 'package:hash_store/presentation/assets/screen/assets_screen.dart';
 import 'package:hash_store/presentation/devices/screen/devices_screen.dart';
+import 'package:hash_store/presentation/hashrate/screen/hashrate_screen.dart';
 import 'package:hash_store/presentation/profile/screen/profile_screen.dart';
-import 'package:hash_store/presentation/router/app_router.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../hashrate/screen/hashrate_screen.dart';
+import '../../router/app_router.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -33,15 +33,21 @@ class _HomeScreenState extends State<HomeScreen> {
     MultiBlocProvider(
       providers: [
         BlocProvider<LogoutCubit>(
-          create: (context) => LogoutCubit(LogoutApi(), SecureStorage()),
+          create: (context) => LogoutCubit(
+            LogoutApi(),
+            SecureStorage(),
+          ),
         ),
         BlocProvider<DeleteAccountCubit>(
-          create: (context) => DeleteAccountCubit(DeleteAccountApi()),
+          create: (context) => DeleteAccountCubit(
+            DeleteAccountApi(),
+          ),
         ),
       ],
       child: ProfileScreen(),
     ),
   ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -122,9 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           floatingActionButton: _selectedIndex == 1
               ? FloatingActionButton(
-                  onPressed: () {
-                    
-                  },
+                  onPressed: () {},
                   child: SizedBox(
                     height: double.infinity,
                     child: DefaultGradientButton(

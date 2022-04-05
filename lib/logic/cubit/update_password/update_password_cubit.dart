@@ -6,15 +6,13 @@ import 'package:hash_store/data/repositories/update_password_repo.dart';
 part 'update_password_state.dart';
 
 class UpdatePasswordCubit extends Cubit<UpdatePasswordState> {
-  UpdatePasswordCubit({required this.updatePasswordRepo})
-      : super(UpdatePasswordInitial());
-
+  UpdatePasswordCubit(this._updatePasswordRepo) : super(UpdatePasswordInitial());
   //Business logic
-  UpdatePasswordRepo updatePasswordRepo;
+   final UpdatePasswordRepo _updatePasswordRepo;
   Future<String> updatePassword(String password, String rePassword) async {
     emit(UpdatePasswordLoadingState());
     try {
-      String res = await updatePasswordRepo.putUpdatePassword(
+      String res = await _updatePasswordRepo.putUpdatePassword(
           password: password, rePassword: rePassword);
       emit(UpdatePasswordSuccessState());
       return res;

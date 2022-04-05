@@ -22,8 +22,8 @@ class AssetsChangeChartButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           InkWell(
-            onTap: () {
-              context.read<AssetsCubit>().getChartData(Currency.btc);
+            onTap: () async {
+              await context.read<AssetsCubit>().getChartData(Currency.btc);
             },
             child: Container(
               width: (20.w),
@@ -57,11 +57,11 @@ class AssetsChangeChartButton extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () {
-              context.read<AssetsCubit>().getChartData(Currency.eth);
+            onTap: () async{
+             await context.read<AssetsCubit>().getChartData(Currency.eth);
             },
             child: Container(
-             width: (20.w),
+              width: (20.w),
               height: (4.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular((20)),
@@ -92,11 +92,11 @@ class AssetsChangeChartButton extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () {
-              context.read<AssetsCubit>().getChartData(Currency.rvn);
+            onTap: () async{
+              await context.read<AssetsCubit>().getChartData(Currency.rvn);
             },
             child: Container(
-             width: (20.w),
+              width: (20.w),
               height: (4.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular((20)),

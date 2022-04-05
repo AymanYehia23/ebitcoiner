@@ -65,7 +65,8 @@ void main() {
         "the cubit should emit [ChangePasswordVisibilityStates] when (changePasswordVisibility) method called.",
         build: () => sut,
         act: (cubit) => cubit.changePasswordVisibility(),
-        expect: () => <LoginState>[ChangePasswordVisibilityLoadingState(),ChangePasswordVisibilitySuccessState()],
+        expect: () => <LoginState>[
+          ChangePasswordVisibilityInitialState(),ChangePasswordVisibilitySuccessState()],
       );
     },
   );
@@ -92,7 +93,7 @@ void main() {
         build: () => sut,
         act: (cubit) async =>
             await cubit.login(email: 'email', password: 'password'),
-        expect: () => <LoginState>[LoginLoadingState(), LoginSuccessState()],
+        expect: () => <LoginState>[LoginLoadingState(), LoginSuccessState(loginResponseModel: loginResponseModel)],
       );
 
       blocTest<LoginCubit, LoginState>(
@@ -116,6 +117,7 @@ void main() {
           ).thenAnswer(
             (_) async => Future.value(),
           );
+          
         },
         verify: (_) {
           verify(

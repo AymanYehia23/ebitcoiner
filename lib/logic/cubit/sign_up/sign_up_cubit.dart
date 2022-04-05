@@ -8,8 +8,8 @@ import 'package:hash_store/data/repositories/sign_up_repo.dart';
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
-  final SignUpRepo _signUpRepo;
   SignUpCubit(this._signUpRepo) : super(SignUpInitialState());
+  final SignUpRepo _signUpRepo;
 
   //Business logic
   Future<void> signUp(SignUPRequestModel signUPRequestModel) async {
@@ -28,6 +28,16 @@ class SignUpCubit extends Cubit<SignUpState> {
   bool isObscure = true;
   IconData iconData = Icons.visibility_outlined;
   String countryCode = '+20';
+
+  void changeIsEmpty(bool i) {
+    if (i) {
+      isEmpty = true;
+      emit(ChangeIsEmptyTrueState());
+    } else {
+      isEmpty = false;
+      emit(ChangeIsEmptyFalseState());
+    }
+  }
 
   void changePasswordVisibility() {
     emit(ChangePasswordVisibilityLoadingState());

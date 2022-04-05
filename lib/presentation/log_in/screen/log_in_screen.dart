@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
+import 'package:hive/hive.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../core/constants/strings.dart';
@@ -25,8 +26,11 @@ class _LogInScreenState extends State<LogInScreen> {
   void _submit() async {
     _formKey.currentState!.validate();
     if (_formKey.currentState!.validate()) {
+      await Hive.openBox('userData');
       await context.read<LoginCubit>().login(
-          email: _emailController.text, password: _passwordController.text);
+            email: _emailController.text,
+            password: _passwordController.text,
+          );
     }
   }
 
@@ -34,6 +38,8 @@ class _LogInScreenState extends State<LogInScreen> {
   void initState() {
     _emailController.addListener(_checkOfEmptyValue);
     _passwordController.addListener(_checkOfEmptyValue);
+    context.read<LoginCubit>().changeIsEmpty(true);
+
     super.initState();
   }
 
@@ -47,9 +53,9 @@ class _LogInScreenState extends State<LogInScreen> {
   void _checkOfEmptyValue() {
     if (_emailController.text.isNotEmpty &&
         _passwordController.text.isNotEmpty) {
-      context.read<LoginCubit>().isEmpty = false;
+      context.read<LoginCubit>().changeIsEmpty(false);
     } else {
-      context.read<LoginCubit>().isEmpty = true;
+      context.read<LoginCubit>().changeIsEmpty(true);
     }
   }
 
@@ -77,7 +83,7 @@ class _LogInScreenState extends State<LogInScreen> {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppRouter.signUp);
+                    Navigator.pushReplacementNamed(context, AppRouter.signUp);
                   },
                   child: Text(
                     'Sign Up',
@@ -132,7 +138,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 35.h,
+                      height: 32.h,
                     ),
                     Builder(
                       builder: (context) {
@@ -158,7 +164,8 @@ class _LogInScreenState extends State<LogInScreen> {
                                     context.watch<LoginCubit>().state;
                                 if (loginState is LoginLoadingState) {
                                   return const Center(
-                                      child: CircularProgressIndicator());
+                                    child: CircularProgressIndicator(),
+                                  );
                                 } else {
                                   return Text(
                                     'Login',
@@ -179,7 +186,10 @@ class _LogInScreenState extends State<LogInScreen> {
                           );
                         }
                       },
-                    )
+                    ),
+                    SizedBox(
+                      height: 2.h,
+                    ),
                   ],
                 ),
               ),

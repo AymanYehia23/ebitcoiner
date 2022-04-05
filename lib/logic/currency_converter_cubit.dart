@@ -1,47 +1,42 @@
-import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:equatable/equatable.dart';
 import 'package:hash_store/core/constants/enums.dart';
 
-part 'currency_converter_state.dart';
-
-class CurrencyConverterCubit extends Cubit<CurrencyConverterState> {
-  CurrencyConverterCubit() : super(CurrencyConverterInitial());
-
+class CurrencyConverter {
   Dio dio = Dio(
-    BaseOptions(baseUrl: "https://rest.coinapi.io/v1/", headers: {
-      'X-CoinAPI-Key': 'FA115B09-8DD2-4C01-A8FF-C0976EFCF395',
+    BaseOptions(baseUrl: "https://min-api.cryptocompare.com/", headers: {
+      'api_key': '3ccbc9d8557b907ce54e3c11dd330b350210fbe96c21adb82361f58a15d4a21a',
     }),
   );
+
 
   Future<dynamic> getCryptocurrencyPerUSDPrice(
       {required String currencyType}) async {
     try {
       final res = await dio.get(
-        'exchangerate/$currencyType/USD',
+        'data/price?fsym=$currencyType&tsyms=USD',
       );
-      return res.data['rate'];
+      return res.data['USD'];
     } on DioError catch (error) {
       return error.response!.data;
     }
   }
 
   Future<String> convertCryptocurrencyToUSD(
-      {required Currency currencyType, required double currencyAmount}) async {
+      {required Currency currencyType, required double? currencyAmount}) async {
     if (currencyType == Currency.btc) {
       double btcPerUSD =
           await getCryptocurrencyPerUSDPrice(currencyType: 'BTC');
-      final result = currencyAmount * btcPerUSD;
+      final result = currencyAmount! * btcPerUSD;
       return result.toString();
     } else if (currencyType == Currency.eth) {
       double ethPerUSD =
           await getCryptocurrencyPerUSDPrice(currencyType: 'ETH');
-      final result = currencyAmount * ethPerUSD;
+      final result = currencyAmount! * ethPerUSD;
       return result.toString();
     } else {
       double rvnPerUSD =
           await getCryptocurrencyPerUSDPrice(currencyType: 'RVN');
-      final result = currencyAmount * rvnPerUSD;
+      final result = currencyAmount! * rvnPerUSD;
       return result.toString();
     }
   }

@@ -55,7 +55,7 @@ class SplashScreen extends StatelessWidget {
                           ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, AppRouter.signUp);
+                      Navigator.pushReplacementNamed(context, AppRouter.signUp);
                     },
                   ),
                   SizedBox(
@@ -71,7 +71,7 @@ class SplashScreen extends StatelessWidget {
                           ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, AppRouter.logIn);
+                      Navigator.pushReplacementNamed(context, AppRouter.logIn);
                     },
                   ),
                 ],
