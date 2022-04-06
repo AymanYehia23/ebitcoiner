@@ -52,7 +52,7 @@ class BuyMiningDeviceScreen extends StatelessWidget {
                     height: 2.h,
                   ),
                   const BuyMiningDeviceWidget(
-                    yourMinerPic: 'assets/images/antMinerE9_image.svg',
+                    yourMinerPic: 'assets/images/antMinerE9_image.png',
                     yourMinerName: 'AntMiner E9',
                     currencyIcn1: 'assets/images/btc_icon.svg',
                     currencyIcn2: 'assets/images/eth_icon.svg',
@@ -68,7 +68,7 @@ class BuyMiningDeviceScreen extends StatelessWidget {
                     height: 2.h,
                   ),
                   const BuyMiningDeviceWidget(
-                    yourMinerPic: 'assets/images/antMinerL7_image.svg',
+                    yourMinerPic: 'assets/images/antMinerL7_image.png',
                     yourMinerName: 'AntMiner L7 9500 Mh',
                     currencyIcn1: 'assets/images/btc_icon.svg',
                     currencyIcn2: 'assets/images/eth_icon.svg',
@@ -85,7 +85,7 @@ class BuyMiningDeviceScreen extends StatelessWidget {
                     height: 2.h,
                   ),
                   const BuyMiningDeviceWidget(
-                    yourMinerPic: 'assets/images/antMinerL7_image.svg',
+                    yourMinerPic: 'assets/images/antMinerL7_image.png',
                     yourMinerName: 'AntMiner S19 Pro',
                     currencyIcn1: 'assets/images/btc_icon.svg',
                     currencyIcn2: 'assets/images/eth_icon.svg',

@@ -111,7 +111,7 @@ class DevicesScreen extends StatelessWidget {
                   height: 1.5.h,
                 ),
                 const YourMinersWidget(
-                  yourMinerPic: 'assets/images/antMinerE9_image.svg',
+                  yourMinerPic: 'assets/images/antMinerE9_image.png',
                   currencyIcn: 'assets/images/btc_icon.svg',
                   currency: 'Bitcoin — SHA-256',
                   antMiner: 'AntMiner E9',
@@ -126,7 +126,7 @@ class DevicesScreen extends StatelessWidget {
                   height: 2.h,
                 ),
                 const YourMinersWidget(
-                  yourMinerPic: 'assets/images/antMinerE9_image.svg',
+                  yourMinerPic: 'assets/images/antMinerE9_image.png',
                   currencyIcn: 'assets/images/btc_icon.svg',
                   currency: 'Bitcoin — SHA-256',
                   antMiner: 'AntMiner E9',

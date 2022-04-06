@@ -76,10 +76,10 @@ class YourMinersWidget extends StatelessWidget {
                   height: 12.h,
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        yourMinerPic,
+                      Image(
                         height: 9.h,
                         width: 12.w,
+                        image: AssetImage(yourMinerPic),
                       ),
                       SizedBox(
                         width: 3.w,
@@ -304,17 +304,17 @@ class YourMinersWidget extends StatelessWidget {
                   height: 10.h,
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        yourMinerPic,
+                     Image(
                         height: 9.h,
                         width: 12.w,
+                        image: AssetImage(yourMinerPic),
                       ),
                       SizedBox(
                         width: 3.w,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                         mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             antMiner,

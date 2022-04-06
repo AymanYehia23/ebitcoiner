@@ -22,10 +22,10 @@ class PayForBuyDevice extends StatelessWidget {
       padding: EdgeInsets.only(top: 2.h, left: 4.w, right: 4.w),
       color: const Color(0xff1d1a27),
       child: Column(children: [
-        SvgPicture.asset(
-          yourMinerPic,
+        Image(
           height: 7.h,
           width: 7.h,
+          image: AssetImage(yourMinerPic),
         ),
         SizedBox(
           height: 1.h,

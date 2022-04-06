@@ -57,10 +57,10 @@ class _BuyMiningDeviceWidgetState extends State<BuyMiningDeviceWidget> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SvgPicture.asset(
-                  widget.yourMinerPic,
+                Image(
                   height: 7.h,
                   width: 7.h,
+                  image: AssetImage(widget.yourMinerPic),
                 ),
                 SizedBox(
                   width: 2.w,
@@ -316,7 +316,7 @@ class _BuyMiningDeviceWidgetState extends State<BuyMiningDeviceWidget> {
                         context: context,
                         builder: (context) => const PayForBuyDevice(
                               yourMinerPic:
-                                  'assets/images/antMinerL7_image.svg',
+                                  'assets/images/antMinerL7_image.png',
                               yourMinerName: 'AntMiner E9',
                               yourMinerRate: 'Forever — 23 580 GH/S',
                             ));
