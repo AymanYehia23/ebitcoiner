@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hash_store/core/constants/strings.dart';
 import 'package:sizer/sizer.dart';
 import '../../../logic/cubit/assets/assets_cubit.dart';
+import '../../router/app_router.dart';
 import '../../shared_components/default_gradient_button.dart';
 import '../widgets/assets_change_chart_button.dart';
 import '../widgets/assets_chart_widget.dart';
@@ -115,7 +116,10 @@ class AssetsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushNamed(AppRouter.buyMiningDevice);
+                      },
                     ),
                   ),
                   SizedBox(

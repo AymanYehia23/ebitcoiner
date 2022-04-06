@@ -15,7 +15,6 @@ import 'package:hash_store/presentation/splash/screen/splash_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:sizer/sizer.dart';
-
 import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
 import 'data/data_providers/plan_contract_api.dart';

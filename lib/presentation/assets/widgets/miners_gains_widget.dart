@@ -4,6 +4,8 @@ import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../router/app_router.dart';
+
 class MinersGainsWidget extends StatelessWidget {
   const MinersGainsWidget({
     Key? key,
@@ -117,7 +119,10 @@ class MinersGainsWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context)
+                            .pushNamed(AppRouter.buyMiningDevice);
+                    },
                   ),
                   SizedBox(height: 0.2.h,)
                 ],

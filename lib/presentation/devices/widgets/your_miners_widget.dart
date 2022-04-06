@@ -279,10 +279,7 @@ class YourMinersWidget extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                       ),
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed(AppRouter.buyMiningDevice);
-                      }),
+                      onPressed: () {}),
                 ),
                 SizedBox(
                   height: 2.h,
