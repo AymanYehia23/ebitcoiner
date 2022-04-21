@@ -112,7 +112,7 @@ class HashrateTotalWidget extends StatelessWidget {
           AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             height: context.select((HashRateCubit h) => h.isTotalExpanded)
-                ? 19.h
+                ? 20.h
                 : 0,
             child: SingleChildScrollView(
               child: Column(

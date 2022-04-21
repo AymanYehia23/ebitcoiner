@@ -37,7 +37,7 @@ class DevicesScreen extends StatelessWidget {
                   height: 5.h,
                 ),
                 Text(
-                  'Miners Gains',
+                  'Miners Profits',
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1!

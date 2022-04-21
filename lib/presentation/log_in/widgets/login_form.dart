@@ -53,7 +53,7 @@ class LoginForm extends StatelessWidget {
               ),
               validator: (val) {
                 if (!val!.isValidPassword) {
-                  return 'Enter valid password';
+                  return 'Password must contain at least 8 characters\none uppercase letter and one lowercase letter';
                 }
                 return null;
               },

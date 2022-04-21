@@ -9,7 +9,7 @@ import 'package:meta/meta.dart';
 
 import '../../../core/constants/strings.dart';
 import '../../../data/models/login_model.dart';
-import '../../currency_converter_cubit.dart';
+import '../../currency_converter.dart';
 
 part 'assets_state.dart';
 

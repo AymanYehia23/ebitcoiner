@@ -10,7 +10,7 @@ import 'package:hash_store/data/models/login_model.dart';
 import 'package:hash_store/logic/cubit/forget_password/forget_password_cubit.dart';
 import 'package:hash_store/logic/cubit/login/login_cubit.dart';
 import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
-import 'package:hash_store/logic/currency_converter_cubit.dart';
+import 'package:hash_store/logic/currency_converter.dart';
 import 'package:hash_store/presentation/Home/screen/home_screen.dart';
 import 'package:hash_store/presentation/splash/screen/splash_screen.dart';
 import 'package:sizer/sizer.dart';
