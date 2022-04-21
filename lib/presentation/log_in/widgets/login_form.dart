@@ -10,15 +10,15 @@ class LoginForm extends StatelessWidget {
   const LoginForm({
     Key? key,
     required GlobalKey<FormState> formKey,
-    required TextEditingController emailController,
+    required TextEditingController userNameController,
     required TextEditingController passwordController,
   })  : _formKey = formKey,
-        _emailController = emailController,
+        _userNameController = userNameController,
         _passwordController = passwordController,
         super(key: key);
 
   final GlobalKey<FormState> _formKey;
-  final TextEditingController _emailController;
+  final TextEditingController _userNameController;
   final TextEditingController _passwordController;
 
   @override
@@ -28,12 +28,12 @@ class LoginForm extends StatelessWidget {
       child: Column(
         children: [
           DefaultTextField(
-            text: 'Email',
+            text: 'User name',
             validator: (val) {
-              if (!val!.isValidEmail) return 'Enter valid email';
+              if (val!.isEmpty) return 'Enter valid User name';
               return null;
             },
-            controller: _emailController,
+            controller: _userNameController,
           ),
           SizedBox(
             height: 3.5.h,

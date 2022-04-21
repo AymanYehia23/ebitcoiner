@@ -24,6 +24,7 @@ class ActivePlansWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: 2.h),
       padding: EdgeInsets.symmetric(
         horizontal:4.w,
         vertical: 2.h,
@@ -102,7 +103,7 @@ class ActivePlansWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Avg Daily Income',
+                        'Avg Income Per Minute',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.bold,

@@ -1,11 +1,11 @@
 class SignUPRequestModel {
-  String name;
+  String userName;
   String email;
   String password;
   String phone;
 
   SignUPRequestModel({
-    required this.name,
+    required this.userName,
     required this.email,
     required this.password,
     required this.phone,
@@ -13,7 +13,7 @@ class SignUPRequestModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'name' :name,
+      'userName' : userName,
       'email': email,
       'password': password,
       'phone': phone,

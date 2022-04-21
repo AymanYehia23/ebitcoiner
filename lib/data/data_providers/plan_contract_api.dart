@@ -6,17 +6,21 @@ import '../repositories/plan_contract_repo.dart';
 
 class PlanContractApi extends PlanContractRepo {
   @override
-  Future<PlanContractsResponseModel> getPlanContract() async {
+  Future<List<PlanContractModel>> getPlanContract() async {
+    List<PlanContractModel> plansContractList = [];
     try {
       return await HttpService.getRequest(
-              endPoint: Strings.getDemoPlanContractEndPoint)
-          .then(
+        endPoint: Strings.getPlanContractEndPoint,
+      ).then(
         (value) {
-          return PlanContractsResponseModel.fromJson(value.data[0]);
+          value.data.forEach((element) {
+            plansContractList.add(PlanContractModel.fromJson(element));
+          });
+          return plansContractList;
         },
       );
-    } catch (_) {
-      return PlanContractsResponseModel();
+    } catch (error) {
+      return plansContractList;
     }
   }
 }

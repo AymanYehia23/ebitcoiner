@@ -14,7 +14,8 @@ class AssetsTotalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
       height: context.select((AssetsCubit a) => a.isExpanded) ? (34.h) : (17.h),
       width: double.infinity,
@@ -49,7 +50,7 @@ class AssetsTotalWidget extends StatelessWidget {
                   ),
                   Builder(builder: (context) {
                     return Text(
-                      '\$${context.watch<AssetsCubit>().totalProfit.substring(0, 6)}',
+                      '\$${context.watch<AssetsCubit>().totalProfit}',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
                             fontSize: (14.sp),
                             fontWeight: FontWeight.bold,
@@ -97,7 +98,7 @@ class AssetsTotalWidget extends StatelessWidget {
                 width: (2.w),
               ),
               SvgPicture.asset(
-                Strings.rvnIcon,
+                Strings.ltctIcon,
                 height: (4.5.h),
                 width: (5.w),
               ),
@@ -122,110 +123,117 @@ class AssetsTotalWidget extends StatelessWidget {
               ),
             ],
           ),
-          if (context.select((AssetsCubit a) => a.isExpanded))
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                  height: (3.h),
-                ),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      Strings.btcIcon,
-                      height: (3.h),
-                      width: (3.w),
-                    ),
-                    SizedBox(
-                      width: (2.w),
-                    ),
-                    Text(
-                      'BTC (Bitcoin)',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: (13.sp),
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    const Spacer(),
-                    Builder(
-                      builder: (context) {
-                        return Text(
-                          '\$${context.watch<AssetsCubit>().totalBTC.substring(0, 6)}',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: (13.sp),
-                                  ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-                const Divider(color: Colors.grey),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      Strings.ethIcon,
-                      height: (3.h),
-                      width: (3.w),
-                    ),
-                    SizedBox(
-                      width: (2.w),
-                    ),
-                    Text(
-                      'ETH (Ethereum)',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: (13.sp),
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    const Spacer(),
-                    Builder(
-                      builder: (context) {
-                        return Text(
-                          '\$${context.watch<AssetsCubit>().totalETH.substring(0, 6)}',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: (13.sp),
-                                  ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-                const Divider(color: Colors.grey),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      Strings.rvnIcon,
-                      height: (3.5.h),
-                      width: (3.5.w),
-                    ),
-                    SizedBox(
-                      width: (2.w),
-                    ),
-                    Text(
-                      'RVN (Raven)',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: (13.sp),
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    const Spacer(),
-                    Builder(
-                      builder: (context) {
-                        return Text(
-                          '\$${context.watch<AssetsCubit>().totalRVN.substring(0, 6)}',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: (13.sp),
-                                  ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            height: context.select((AssetsCubit a) => a.isExpanded)
+                ? (17.h)
+                : 0,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    height: (3.h),
+                  ),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        Strings.btcIcon,
+                        height: (3.h),
+                        width: (3.w),
+                      ),
+                      SizedBox(
+                        width: (2.w),
+                      ),
+                      Text(
+                        'BTC (Bitcoin)',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: (13.sp),
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      const Spacer(),
+                      Builder(
+                        builder: (context) {
+                          return Text(
+                            '\$${context.watch<AssetsCubit>().totalBTC}',
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      fontSize: (13.sp),
+                                    ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  const Divider(color: Colors.grey),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        Strings.ethIcon,
+                        height: (3.h),
+                        width: (3.w),
+                      ),
+                      SizedBox(
+                        width: (2.w),
+                      ),
+                      Text(
+                        'ETH (Ethereum)',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: (13.sp),
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      const Spacer(),
+                      Builder(
+                        builder: (context) {
+                          return Text(
+                            '\$${context.watch<AssetsCubit>().totalETH}',
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      fontSize: (13.sp),
+                                    ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  const Divider(color: Colors.grey),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        Strings.ltctIcon,
+                        height: (3.5.h),
+                        width: (3.5.w),
+                      ),
+                      SizedBox(
+                        width: (2.w),
+                      ),
+                      Text(
+                        'LTCT',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: (13.sp),
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      const Spacer(),
+                      Builder(
+                        builder: (context) {
+                          return Text(
+                            '\$${context.watch<AssetsCubit>().totalLTCT}',
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      fontSize: (13.sp),
+                                    ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
+          ),
         ],
       ),
     );

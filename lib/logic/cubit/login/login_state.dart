@@ -8,20 +8,35 @@ class LoginInitial extends LoginState {
   List<Object?> get props => [LoginInitial];
 }
 
-class LoginLoadingState extends LoginState {
+class FirstLoginLoadingState extends LoginState {
   @override
-  List<Object?> get props => [LoginLoadingState];
+  List<Object?> get props => [FirstLoginLoadingState];
 }
 
-class LoginSuccessState extends LoginState {
+class FirstLoginSuccessState extends LoginState {
   @override
-  List<Object?> get props => [LoginSuccessState];
+  List<Object?> get props => [FirstLoginSuccessState];
 }
 
 
-class LoginErrorState extends LoginState {
+class FirstLoginErrorState extends LoginState {
   @override
-  List<Object?> get props => [LoginErrorState];
+  List<Object?> get props => [FirstLoginErrorState];
+}
+
+class SecondeLoginLoadingState extends LoginState {
+  @override
+  List<Object?> get props => [SecondeLoginLoadingState];
+}
+
+class SecondeLoginSuccessState extends LoginState {
+  @override
+  List<Object?> get props => [SecondeLoginSuccessState];
+}
+
+class SecondeLoginErrorState extends LoginState {
+  @override
+  List<Object?> get props => [SecondeLoginErrorState];
 }
 
 class SaveTokensLoadingState extends LoginState {

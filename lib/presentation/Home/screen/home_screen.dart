@@ -1,11 +1,14 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/core/secure_storage/secure_storage.dart';
+import 'package:hash_store/data/data_providers/asic_contract_api.dart';
 import 'package:hash_store/data/data_providers/delete_account_api.dart';
 import 'package:hash_store/data/data_providers/logout_api.dart';
+import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
 import 'package:hash_store/logic/cubit/delete_account/delete_account_cubit.dart';
+import 'package:hash_store/logic/cubit/devices/devices_cubit.dart';
+import 'package:hash_store/logic/cubit/hash_rate/hash_rate_cubit.dart';
 import 'package:hash_store/logic/cubit/logout/logout_cubit.dart';
 import 'package:hash_store/presentation/assets/screen/assets_screen.dart';
 import 'package:hash_store/presentation/devices/screen/devices_screen.dart';
@@ -16,6 +19,7 @@ import 'package:hash_store/presentation/shared_components/gradient_background_co
 import 'package:sizer/sizer.dart';
 
 import '../../router/app_router.dart';
+import '../../shared_components/custom_icons.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,10 +30,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  String title = '';
+  Color color = Colors.transparent;
+  bool isFloatingButton = false;
+  String navigatorName = '';
   List<Widget> screens = [
     const AssetsScreen(),
-    HashRateScreen(),
-    DevicesScreen(),
+    BlocProvider<HashRateCubit>(
+      create: (context) =>
+          HashRateCubit(context.read<AssetsCubit>().plansContractList),
+      child: const HashRateScreen(),
+    ),
+    BlocProvider<DevicesCubit>(
+      create: (context) => DevicesCubit(AsicContractApi()),
+      child: const DevicesScreen(),
+    ),
     MultiBlocProvider(
       providers: [
         BlocProvider<LogoutCubit>(
@@ -51,6 +66,21 @@ class _HomeScreenState extends State<HomeScreen> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      if (_selectedIndex == 1) {
+        title = 'Hashrate plans';
+        color = Colors.black;
+        isFloatingButton = true;
+        navigatorName = AppRouter.addPlanContract;
+      } else if (_selectedIndex == 2) {
+        title = 'Devices';
+        color = Colors.black;
+        isFloatingButton = true;
+        navigatorName = AppRouter.buyMiningDevice;
+      } else {
+        title = '';
+        color = Colors.transparent;
+        isFloatingButton = false;
+      }
     });
   }
 
@@ -61,72 +91,35 @@ class _HomeScreenState extends State<HomeScreen> {
         const GradientBackgroundContainer(),
         Scaffold(
           appBar: AppBar(
-            title: _selectedIndex == 1
-                ? Title(
-                    color: Colors.white,
-                    child: Text(
-                      'Hashrate Plans',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
+            title: Title(
+              color: Colors.white,
+              child: Text(
+                title,
+                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.bold,
                     ),
-                  )
-                : null,
-            backgroundColor: _selectedIndex == 1 ? Colors.black : null,
+              ),
+            ),
+            backgroundColor: color,
             centerTitle: true,
           ),
           body: screens[_selectedIndex],
-          bottomNavigationBar: BottomNavigationBar(
-            items: [
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  Strings.assetsIcon,
-                  color: _selectedIndex == 0
-                      ? const Color(0xffFF4980)
-                      : Colors.grey,
-                ),
-                label: Strings.assets,
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  Strings.hashRateIcon,
-                  color: _selectedIndex == 1
-                      ? const Color(0xffFF4980)
-                      : Colors.grey,
-                ),
-                label: Strings.hashRate,
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  Strings.devicesIcon,
-                  color: _selectedIndex == 2
-                      ? const Color(0xffFF4980)
-                      : Colors.grey,
-                ),
-                label: Strings.devices,
-              ),
-              const BottomNavigationBarItem(
-                icon: CircleAvatar(
-                  radius: (18),
-                  backgroundImage: AssetImage(
-                    Strings.userImage,
-                  ),
-                ),
-                label: Strings.profile,
-              ),
+          bottomNavigationBar: CurvedNavigationBar(
+            height: 7.h,
+            items: const [
+              Icon(CustomIcons.assets_icon),
+              Icon(CustomIcons.hash_rate_icon),
+              Icon(CustomIcons.devices_icon),
+              Icon(Icons.person),
             ],
             backgroundColor: const Color(0xff1d1a27),
-            currentIndex: _selectedIndex,
             onTap: (int index) {
               _onItemTapped(index);
             },
-            type: BottomNavigationBarType.fixed,
-            unselectedItemColor: Colors.grey,
-            selectedItemColor: const Color(0xffFF4980),
-            elevation: 10,
+            color: const Color(0xffFF4980).withOpacity(0.8),
           ),
-          floatingActionButton: _selectedIndex == 1
+          floatingActionButton: isFloatingButton
               ? FloatingActionButton(
                   onPressed: () {},
                   child: SizedBox(
@@ -137,8 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed(AppRouter.addNewHashrate);
+                        Navigator.of(context).pushNamed(navigatorName);
                       },
                       isFilled: true,
                     ),

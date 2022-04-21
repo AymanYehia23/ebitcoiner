@@ -6,10 +6,8 @@ import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 import 'package:hash_store/presentation/router/app_router.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
-import 'package:hive/hive.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../logic/cubit/login/login_cubit.dart';
 import '../../shared_components/default_disabled_button.dart';
 import '../widgets/sign_up_form.dart';
 
@@ -25,7 +23,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
-  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -34,7 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   void initState() {
-    _nameController.addListener(_checkOfEmptyValue);
+    _userNameController.addListener(_checkOfEmptyValue);
     _emailController.addListener(_checkOfEmptyValue);
     _phoneNumberController.addListener(_checkOfEmptyValue);
     _passwordController.addListener(_checkOfEmptyValue);
@@ -44,7 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   void dispose() {
-    _nameController.dispose();
+    _userNameController.dispose();
     _emailController.dispose();
     _phoneNumberController.dispose();
     _passwordController.dispose();
@@ -52,7 +50,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _checkOfEmptyValue() {
-    if (_nameController.text.isNotEmpty &&
+    if (_userNameController.text.isNotEmpty &&
         _emailController.text.isNotEmpty &&
         _phoneNumberController.text.isNotEmpty &&
         _passwordController.text.isNotEmpty) {
@@ -65,13 +63,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void _submit() async {
     if (_formKey.currentState!.validate()) {
       final signUPRequestModel = SignUPRequestModel(
-        name: _nameController.text,
+        userName: _userNameController.text,
         email: _emailController.text,
         password: _passwordController.text,
         phone: '$_countryCode${_phoneNumberController.text}',
       );
-      await Hive.openBox('userData');
-
       await context.read<SignUpCubit>().signUp(signUPRequestModel);
     }
   }
@@ -92,26 +88,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       duration: const Duration(seconds: 3),
                     ),
                   );
-                } else if (state is SignUpSuccessState) {
-                  await context.read<LoginCubit>().login(
-                        email: _emailController.text,
-                        password: _passwordController.text,
-                      );
-                  await context.read<LoginCubit>().saveTokens();
                 }
-              },
-            ),
-            BlocListener<LoginCubit, LoginState>(
-              listener: (context, state) {
-                if (state is LoginSuccessState) {
-                  Navigator.of(context).pushReplacementNamed(AppRouter.home);
-                } else if (state is LoginErrorState) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Failed to login'),
-                      duration: Duration(seconds: 3),
-                    ),
-                  );
+                if (state is SignUpSuccessState) {
+                  Navigator.of(context).pushReplacementNamed(AppRouter.firstLogin);
                 }
               },
             ),
@@ -121,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, AppRouter.logIn);
+                    Navigator.pushReplacementNamed(context, AppRouter.firstLogin);
                   },
                   child: Text(
                     'Login',
@@ -155,7 +134,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     SignUpForm(
                       formKey: _formKey,
-                      nameController: _nameController,
+                      nameController: _userNameController,
                       emailController: _emailController,
                       phoneNumberController: _phoneNumberController,
                       passwordController: _passwordController,
@@ -232,10 +211,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             text: Builder(builder: (context) {
                               final signUpState =
                                   context.watch<SignUpCubit>().state;
-                              final loginState =
-                                  context.watch<LoginCubit>().state;
-                              if (signUpState is SignUpLoadingState ||
-                                  loginState is LoginLoadingState) {
+
+                              if (signUpState is SignUpLoadingState) {
                                 return const Center(
                                   child: CircularProgressIndicator(),
                                 );

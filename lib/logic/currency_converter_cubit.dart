@@ -21,23 +21,23 @@ class CurrencyConverter {
     }
   }
 
-  Future<String> convertCryptocurrencyToUSD(
+  Future<double> convertCryptocurrencyToUSD(
       {required Currency currencyType, required double? currencyAmount}) async {
     if (currencyType == Currency.btc) {
       double btcPerUSD =
           await getCryptocurrencyPerUSDPrice(currencyType: 'BTC');
       final result = currencyAmount! * btcPerUSD;
-      return result.toString();
+      return result;
     } else if (currencyType == Currency.eth) {
       double ethPerUSD =
           await getCryptocurrencyPerUSDPrice(currencyType: 'ETH');
       final result = currencyAmount! * ethPerUSD;
-      return result.toString();
+      return result;
     } else {
       double rvnPerUSD =
           await getCryptocurrencyPerUSDPrice(currencyType: 'RVN');
       final result = currencyAmount! * rvnPerUSD;
-      return result.toString();
+      return result;
     }
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/logic/cubit/login/login_cubit.dart';
+import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -10,7 +10,7 @@ class AssetsHeaderWidget extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final userName = context.read<LoginCubit>().userData.name;
+    final userName = context.read<AssetsCubit>().userData.userName;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

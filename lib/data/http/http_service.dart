@@ -73,10 +73,13 @@ class HttpService {
           return errorInterceptorHandler.next(error);
         },
         onRequest: (request, requestInterceptorHandler) async {
-          request.headers = {
-            'Authorization':
-                'Bearer ${await secureStorage.getValue(key: 'accessToken')}'
-          };
+          if (request.path != Strings.sLoginEndPoint ||
+              request.path != Strings.getNewAccessTokenEndPoint) {
+            request.headers = {
+              'Authorization':
+                  'Bearer ${await secureStorage.getValue(key: 'accessToken')}'
+            };
+          }
           return requestInterceptorHandler.next(request);
         },
         onResponse: (response, responseInterceptorHandler) {
@@ -89,9 +92,9 @@ class HttpService {
 
   static Future<void> refreshToken() async {
     final refreshToken = await secureStorage.getValue(key: 'refreshToken');
+    print(refreshToken);
     final response = await _dio
         .post(Strings.getNewAccessTokenEndPoint, data: {'token': refreshToken});
-
     if (response.statusCode == 202) {
       // successfully got the new access token
       print('successfully got the new access token');

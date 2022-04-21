@@ -64,7 +64,7 @@ class MinersGainsWidget extends StatelessWidget {
                   ),
                   Center(
                     child: SvgPicture.asset(
-                      Strings.mainersImage,
+                      Strings.eliteMinersImage,
                       width: (26.w),
                       height: (13.h),
                     ),

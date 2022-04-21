@@ -27,17 +27,6 @@ class LogoutErrorState extends LogoutState{
   List<Object?> get props => [LogoutErrorState];
 }
 
-class GetSavedRefreshTokenLoadingState extends LogoutState{
-  @override
-  // TODO: implement props
-  List<Object?> get props => [GetSavedRefreshTokenLoadingState];
-}
-
-class GetSavedRefreshTokenSuccessState extends LogoutState {
-  @override
-  // TODO: implement props
-  List<Object?> get props => [GetSavedRefreshTokenSuccessState];
-}
 
 class DeleteSavedRefreshTokenLoadingState extends LogoutState {
   @override

@@ -1,7 +1,3 @@
-import 'package:hive/hive.dart';
-
-part 'login_model.g.dart';
-
 class LoginResponseModel {
   Jwt? jwt;
   User? user;
@@ -9,8 +5,8 @@ class LoginResponseModel {
   LoginResponseModel({this.jwt, this.user});
 
   LoginResponseModel.fromJson(Map<String, dynamic> json) {
-    jwt = Jwt.fromJson(json['jwt']);
-    user = User.fromJson(json['user']);
+    jwt = json['jwt'] != null ?  Jwt.fromJson(json['jwt']) : null;
+    user = json['user'] != null ?  User.fromJson(json['user']) : null;
   }
 }
 
@@ -18,7 +14,7 @@ class Jwt {
   String? accessToken;
   String? refreshToken;
 
-  Jwt(this.accessToken, this.refreshToken);
+  Jwt({this.accessToken, this.refreshToken});
 
   Jwt.fromJson(Map<String, dynamic> json) {
     accessToken = json['accessToken'];
@@ -26,55 +22,62 @@ class Jwt {
   }
 }
 
-@HiveType(typeId: 0)
 class User {
-  @HiveField(0)
-  String? userID;
-  @HiveField(1)
-  String? name;
-  @HiveField(2)
-  String? email;
-  @HiveField(3)
-  String? phone;
-  @HiveField(4)
   Balance? balance;
-  @HiveField(5)
-  Balance? demoBalance;
-  @HiveField(6)
+  DemoBalance? demoBalance;
+  String? sId;
+  String? userName;
   int? activePlans;
-  @HiveField(7)
   int? activeDemoPlans;
-  @HiveField(8)
   int? devices;
 
-  User(this.userID, this.name, this.email, this.phone, this.balance,
-      this.demoBalance, this.activePlans, this.activeDemoPlans, this.devices);
-  User.empty();
+  User(
+      {this.balance,
+      this.demoBalance,
+      this.sId,
+      this.userName,
+      this.activePlans,
+      this.activeDemoPlans,
+      this.devices,
+      });
 
   User.fromJson(Map<String, dynamic> json) {
-    userID = json['userID'];
-    name = json['name'];
-    email = json['email'];
-    phone = json['phone'];
-    balance = Balance.fromJson(json['balance']);
-    demoBalance = Balance.fromJson(json['demoBalance']);
+    balance =
+        json['balance'] != null ? Balance.fromJson(json['balance']) : null;
+    demoBalance = json['demoBalance'] != null
+        ? DemoBalance.fromJson(json['demoBalance'])
+        : null;
+    sId = json['_id'];
+    userName = json['userName'];
     activePlans = json['activePlans'];
     activeDemoPlans = json['activeDemoPlans'];
     devices = json['devices'];
   }
+
 }
 
-@HiveType(typeId: 1)
 class Balance {
-  @HiveField(0)
-  dynamic eth;
-  @HiveField(1)
-  dynamic btc;
+  double? ltct;
+  double? eth;
+  double? btc;
 
-  Balance(this.eth, this.btc);
+  Balance({this.ltct, this.eth, this.btc});
 
   Balance.fromJson(Map<String, dynamic> json) {
-    eth = json['eth'];
-    btc = json['btc'];
+    ltct = json['ltct'] + 0.0;
+    eth = json['eth'] + 0.0;
+    btc = json['btc'] + 0.0;
+  }
+}
+
+class DemoBalance {
+  double? eth;
+  double? btc;
+
+  DemoBalance({this.eth, this.btc});
+
+  DemoBalance.fromJson(Map<String, dynamic> json) {
+    eth = json['eth'] + 0.0;
+    btc = json['btc'] + 0.0;
   }
 }

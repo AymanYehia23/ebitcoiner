@@ -35,7 +35,7 @@ class SignUpForm extends StatelessWidget {
       child: Column(
         children: [
           DefaultTextField(
-            text: 'Name',
+            text: 'User name',
             inputFormatters: [
               FilteringTextInputFormatter.allow(
                 RegExp(r"[a-zA-Z]+|\s"),
@@ -109,7 +109,7 @@ class SignUpForm extends StatelessWidget {
                 },
               ),
               validator: (val) {
-                if (!val!.isValidPassword) return 'Password must contain at least 8 characters\none uppercase letter and one lowercase letter ';
+                if (!val!.isValidPassword) return 'Password must contain at least 8 characters\none uppercase letter and one lowercase letter';
                 return null;
               },
               controller: _passwordController,

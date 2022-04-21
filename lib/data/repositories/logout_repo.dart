@@ -1,3 +1,3 @@
 abstract class LogoutRepo{
-  Future<void> postLogout({required String? refreshToken});
+  Future<dynamic> postLogout({required String? refreshToken});
 }

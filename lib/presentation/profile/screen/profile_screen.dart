@@ -7,7 +7,6 @@ import 'package:hash_store/presentation/shared_components/default_gradient_butto
 import 'package:hash_store/presentation/shared_components/default_textfield.dart';
 import 'package:sizer/sizer.dart';
 
-
 import '../../router/app_router.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -73,11 +72,7 @@ class ProfileScreen extends StatelessWidget {
                 child: DefaultGradientButton(
                   isFilled: true,
                   onPressed: () async {
-                    await context.read<LogoutCubit>().logout(
-                          await context
-                              .read<LogoutCubit>()
-                              .getSavedRefreshToken(),
-                        );
+                    await context.read<LogoutCubit>().logout();
                   },
                   text: Builder(builder: (context) {
                     final logoutState = context.watch<LogoutCubit>().state;

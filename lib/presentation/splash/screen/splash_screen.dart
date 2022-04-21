@@ -71,7 +71,7 @@ class SplashScreen extends StatelessWidget {
                           ),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, AppRouter.logIn);
+                      Navigator.pushReplacementNamed(context, AppRouter.firstLogin);
                     },
                   ),
                 ],

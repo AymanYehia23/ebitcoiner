@@ -1,7 +1,6 @@
-import 'package:hash_store/data/models/login_model.dart';
-
 abstract class LoginRepo {
-  Future<LoginResponseModel> postLogin(
-      {required String email, required String password});
-      
+  Future<dynamic> fPostLogin(
+      {required String userName, required String password});
+
+  Future<dynamic> sPostLogin({required String userName, required String otp});
 }

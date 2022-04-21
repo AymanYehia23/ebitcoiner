@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hash_store/logic/cubit/hash_rate/hash_rate_cubit.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../core/constants/strings.dart';
 
-class HashrateTotalWidget extends StatefulWidget {
+class HashrateTotalWidget extends StatelessWidget {
   const HashrateTotalWidget({Key? key}) : super(key: key);
-
-  @override
-  State<HashrateTotalWidget> createState() => _HashrateTotalWidgetState();
-}
-
-class _HashrateTotalWidgetState extends State<HashrateTotalWidget> {
-  bool _isExpanded = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       padding: EdgeInsets.symmetric(
         horizontal: 4.w,
-        vertical: 2.h,
+        vertical: 2.w,
       ),
-      height: _isExpanded ? 42.h : 19.h,
+      height:
+          context.select((HashRateCubit h) => h.isTotalExpanded) ? 40.h : 17.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: const Color(0xff1d1a27),
@@ -35,9 +32,9 @@ class _HashrateTotalWidgetState extends State<HashrateTotalWidget> {
           Row(
             children: [
               SvgPicture.asset(
-                'assets/images/mining_icon.svg',
-                width: (8.5.w),
-                height: (8.5.w),
+                Strings.miningIcon,
+                width: (4.w),
+                height: (3.h),
               ),
               SizedBox(
                 width: 2.w,
@@ -52,49 +49,49 @@ class _HashrateTotalWidgetState extends State<HashrateTotalWidget> {
                           fontWeight: FontWeight.bold,
                         ),
                   ),
-                  Text(
-                    '23 580 GH/S',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                  )
+                  Builder(builder: (context) {
+                    return Text(
+                      '${context.watch<HashRateCubit>().totalPower.toStringAsFixed(2)} GH/S',
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    );
+                  })
                 ],
               ),
             ],
           ),
           SizedBox(
-            height: 2.h,
+            height: 1.h,
           ),
           Row(
             children: [
               SvgPicture.asset(
-                'assets/images/btc_icon.svg',
-                width: (8.w),
-                height: (8.w),
+                Strings.btcIcon,
+                height: (4.h),
+                width: (4.w),
               ),
               SizedBox(
-                width: 1.w,
+                width: 2.w,
               ),
               SvgPicture.asset(
-                'assets/images/eth_icon.svg',
-                width: (8.w),
-                height: (8.w),
+                Strings.ethIcon,
+                height: (4.h),
+                width: (4.w),
               ),
               SizedBox(
-                width: 1.w,
+                width: 2.w,
               ),
               SvgPicture.asset(
-                'assets/images/rvn_icon.svg',
-                width: (8.5.w),
-                height: (9.w),
+                Strings.ltctIcon,
+                height: (4.5.h),
+                width: (5.w),
               ),
               const Spacer(),
               InkWell(
                 onTap: () {
-                  setState(() {
-                    _isExpanded = !_isExpanded;
-                  });
+                  context.read<HashRateCubit>().changeTotalSize();
                 },
                 child: Container(
                   width: (8.w),
@@ -106,145 +103,162 @@ class _HashrateTotalWidgetState extends State<HashrateTotalWidget> {
                     ),
                   ),
                   child: SvgPicture.asset(
-                    Strings.featherChevronDownIcon,
+                    context.read<HashRateCubit>().expandedTotalIcon,
                   ),
                 ),
               ),
             ],
           ),
-          if (_isExpanded)
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                  height: 4.h,
-                ),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      Strings.btcIcon,
-                      height: (4.h),
-                      width: (4.w),
-                    ),
-                    SizedBox(
-                      width: 2.w,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'BTC (Bitcoin)',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: 11.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                        Text(
-                          '1 active plan',
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            height: context.select((HashRateCubit h) => h.isTotalExpanded)
+                ? 19.h
+                : 0,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        Strings.btcIcon,
+                        height: (3.h),
+                        width: (3.w),
+                      ),
+                      SizedBox(
+                        width: 2.w,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'BTC (Bitcoin)',
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      fontSize: 11.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                          ),
+                          if (context.read<HashRateCubit>().btcActivePlans > 0)
+                            Text(
+                              '${context.read<HashRateCubit>().btcActivePlans} active plan',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
                                     color: const Color(0xffff4980),
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Text(
-                      '20 580 GH/S',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 11.sp,
+                            ),
+                        ],
+                      ),
+                      const Spacer(),
+                      Text(
+                        '${context.watch<HashRateCubit>().totalBTCPower} TH/S',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 11.sp,
+                            ),
+                      ),
+                    ],
+                  ),
+                  const Divider(color: Colors.grey),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        Strings.ethIcon,
+                        height: (3.h),
+                        width: (3.w),
+                      ),
+                      SizedBox(
+                        width: 2.w,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'ETH (Ethereum)',
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      fontSize: 11.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                           ),
-                    ),
-                  ],
-                ),
-                const Divider(color: Colors.grey),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      Strings.ethIcon,
-                      height: (4.h),
-                      width: (4.w),
-                    ),
-                    SizedBox(
-                      width: 2.w,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'ETH (Ethereum)',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: 11.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                        Text(
-                          '1 active plan',
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                          if (context.read<HashRateCubit>().ethActivePlans > 0)
+                            Text(
+                              '${context.read<HashRateCubit>().ethActivePlans} active plan',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
                                     color: const Color(0xffff4980),
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Text(
-                      '3 000 GH/S',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 11.sp,
+                            ),
+                        ],
+                      ),
+                      const Spacer(),
+                      Text(
+                        '${context.watch<HashRateCubit>().totalETHPower} MH/S',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 11.sp,
+                            ),
+                      ),
+                    ],
+                  ),
+                  const Divider(color: Colors.grey),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        Strings.ltctIcon,
+                        height: (3.5.h),
+                        width: (3.5.w),
+                      ),
+                      SizedBox(
+                        width: 2.w,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'LTCT',
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      fontSize: 11.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                           ),
-                    ),
-                  ],
-                ),
-                const Divider(color: Colors.grey),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/images/rvn_icon.svg',
-                      height: (4.5.h),
-                      width: (5.w),
-                    ),
-                    SizedBox(
-                      width: 2.w,
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          'RVN (Raven)',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: 11.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                        Text(
-                          '',
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                          if (context.read<HashRateCubit>().ltctActivePlans > 0)
+                            Text(
+                              '${context.read<HashRateCubit>().ltctActivePlans} active plan',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
                                     color: const Color(0xffff4980),
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Text(
-                      '0 \$',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 11.sp,
-                          ),
-                    ),
-                  ],
-                ),
-              ],
+                            ),
+                        ],
+                      ),
+                      const Spacer(),
+                      Text(
+                        '${context.watch<HashRateCubit>().totalLTCTPower} MH/S',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 11.sp,
+                            ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
+          ),
         ],
       ),
     );

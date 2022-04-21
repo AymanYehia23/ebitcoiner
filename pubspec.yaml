@@ -40,22 +40,20 @@ dependencies:
   device_preview: ^1.0.0
   flutter_svg: ^1.0.3
   outline_gradient_button: ^2.0.0+1
-  syncfusion_flutter_charts: ^19.4.55
+  syncfusion_flutter_charts: ^20.1.47+1
   country_code_picker: ^2.0.2
   flutter_secure_storage: ^5.0.2
   mocktail: ^0.3.0
   bloc_test: ^9.0.3
   equatable: ^2.0.3
   sizer: ^2.0.15
-  path_provider: ^2.0.9
-  hive:
-  hive_flutter:
+  circular_countdown_timer: ^0.2.1
+  curved_navigation_bar: ^1.0.3
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  hive_generator:
   build_runner:
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -96,6 +94,9 @@ flutter:
     - family: CircularStd
       fonts:
         - asset: assets\fonts\circular-std-medium-500.ttf
+    - family: CustomIcons
+      fonts:
+        - asset: assets\fonts\CustomIcons.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

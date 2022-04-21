@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class PlanContractsResponseModel extends Equatable {
+class PlanContractModel {
   String? sId;
   bool? demo;
   String? cryptoName;
@@ -14,7 +12,7 @@ class PlanContractsResponseModel extends Equatable {
   List<HourlyGains>? hourlyGains;
   int? iV;
 
-  PlanContractsResponseModel({
+  PlanContractModel({
     this.sId,
     this.demo,
     this.cryptoName,
@@ -29,15 +27,15 @@ class PlanContractsResponseModel extends Equatable {
     this.iV,
   });
 
-  PlanContractsResponseModel.fromJson(Map<String, dynamic> json) {
+  PlanContractModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     demo = json['demo'];
     cryptoName = json['cryptoName'];
-    startDate = json['startDate'];
-    endDate = json['endDate'];
-    totalMined = json['totalMined'];
+    startDate = json['startDate'].toString().substring(0,10);
+    endDate = json['endDate'].toString().substring(0, 10);
+    totalMined = json['totalMined'] + 0.0;
     planStatus = json['planStatus'];
-    hashPower = json['hashPower'];
+    hashPower = json['hashPower'] + 0.0;
     userID = json['userID'];
     planID = json['planID'];
     if (json['hourlyGains'] != null) {
@@ -48,9 +46,6 @@ class PlanContractsResponseModel extends Equatable {
     }
     iV = json['__v'];
   }
-
-  @override
-  List<Object?> get props => [PlanContractsResponseModel];
 }
 
 class HourlyGains {

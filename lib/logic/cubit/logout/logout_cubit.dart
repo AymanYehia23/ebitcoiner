@@ -15,11 +15,11 @@ class LogoutCubit extends Cubit<LogoutState> {
   final LogoutRepo _logoutRepo;
   final SecureStorageRepo _secureStorage;
 
-  Future<void> logout(String? refreshToken) async {
+  Future<void> logout() async {
     emit(LogoutLoadingState());
     try {
       await _logoutRepo.postLogout(
-        refreshToken: refreshToken,
+        refreshToken: await getSavedRefreshToken(),
       );
       emit(LogoutSuccessState());
     } on DioError catch (_) {
@@ -28,9 +28,7 @@ class LogoutCubit extends Cubit<LogoutState> {
   }
 
   Future<String?> getSavedRefreshToken() async {
-    emit(GetSavedRefreshTokenLoadingState());
     String? refreshToken = await _secureStorage.getValue(key: 'refreshToken');
-    emit(GetSavedRefreshTokenSuccessState());
     return refreshToken;
   }
 
@@ -38,7 +36,6 @@ class LogoutCubit extends Cubit<LogoutState> {
     emit(DeleteSavedRefreshTokenLoadingState());
     await _secureStorage.deleteValue(key: 'accessToken');
     await _secureStorage.deleteValue(key: 'refreshToken');
-    await _secureStorage.deleteValue(key: 'name');
     emit(DeleteSavedRefreshTokenSuccessState());
   }
 }

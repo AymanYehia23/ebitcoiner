@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/core/secure_storage/secure_storage.dart';
 import 'package:hash_store/data/models/login_model.dart';
 import 'package:hash_store/data/repositories/login_repo.dart';
-import 'package:hive/hive.dart';
 
 part 'login_state.dart';
 
@@ -14,27 +13,34 @@ class LoginCubit extends Cubit<LoginState> {
     this._loginRepo,
     this._loginResponseModel,
     this._secureStorage,
-    this._userDataBox,
-    this.userData,
   ) : super(LoginInitial());
 
   //Business logic
   final SecureStorageRepo _secureStorage;
   final LoginRepo _loginRepo;
   LoginResponseModel _loginResponseModel;
-  final Box _userDataBox;
-  User userData;
 
-  Future<void> login({required String email, required String password}) async {
-    emit(LoginLoadingState());
+  Future<void> firstLoginAuth(
+      {required String userName, required String password}) async {
+    emit(FirstLoginLoadingState());
     try {
-      _loginResponseModel =
-          await _loginRepo.postLogin(email: email, password: password);
-      Hive.box('userData').put('userData', _loginResponseModel.user);
-      emit(LoginSuccessState());
-      userData = _userDataBox.get('userData');
+      await _loginRepo.fPostLogin(userName: userName, password: password);
+      emit(FirstLoginSuccessState());
     } on DioError catch (_) {
-      emit(LoginErrorState());
+      emit(FirstLoginErrorState());
+    }
+  }
+
+  Future<void> secondeLoginAuth(
+      {required String userName, required String otp}) async {
+    emit(SecondeLoginLoadingState());
+    try {
+      _loginResponseModel = LoginResponseModel.fromJson(
+        await _loginRepo.sPostLogin(userName: userName, otp: otp),
+      );
+      emit(SecondeLoginSuccessState());
+    } on DioError catch (_) {
+      emit(SecondeLoginErrorState());
     }
   }
 
@@ -52,7 +58,8 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> tryAutoLogin() async {
     emit(AutoLoginLoadingState());
     if (await _secureStorage.containsKey(key: 'accessToken')) {
-      userData = _userDataBox.get('userData');
+      print(await _secureStorage.getValue(key: 'accessToken'));
+      print(await _secureStorage.getValue(key: 'refreshToken'));
       emit(AutoLoginSuccessState());
     } else {
       emit(AutoLoginFailedState());
@@ -63,6 +70,8 @@ class LoginCubit extends Cubit<LoginState> {
   bool isEmpty = true;
   bool isObscure = true;
   IconData iconData = Icons.visibility_outlined;
+  String userName = '';
+  String password = '';
 
   void changeIsEmpty(bool i) {
     if (i) {

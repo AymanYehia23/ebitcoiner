@@ -17,7 +17,7 @@ class AssetsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: context.read<AssetsCubit>().getPlanContract(),
+      future: context.read<AssetsCubit>().getAllAssetsData(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
@@ -85,9 +85,7 @@ class AssetsScreen extends StatelessWidget {
                     ),
                   ),
                   const AssetsChangeChartButton(),
-                  const AssetsChartWidget(
-                    data: [],
-                  ),
+                  const AssetsChartWidget(),
                   Container(
                     height: 10.h,
                     color: const Color(0xff1d1a27),

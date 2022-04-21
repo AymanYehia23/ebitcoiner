@@ -7,10 +7,8 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import '../../../data/models/chart_model.dart';
 
 class AssetsChartWidget extends StatelessWidget {
-  final List<ChartData> data;
   const AssetsChartWidget({
     Key? key,
-    required this.data,
   }) : super(
           key: key,
         );
@@ -31,12 +29,13 @@ class AssetsChartWidget extends StatelessWidget {
         }
         return SfCartesianChart(
           primaryXAxis: CategoryAxis(
-              visibleMinimum: 12,
-              visibleMaximum: context.read<AssetsCubit>().chartData.length - 1,
-              interval: 0.5),
+            visibleMinimum: 4,
+            visibleMaximum: 8,
+            interval: 0.5,
+          ),
           primaryYAxis: NumericAxis(
-            minimum: 0.0001,
-            maximum: 0.00019,
+            minimum: 0.00001,
+            maximum: 0.0001,
             interval: 0.00001,
             labelFormat: '{value}',
             decimalPlaces: 7,
@@ -46,7 +45,7 @@ class AssetsChartWidget extends StatelessWidget {
           ),
           series: <ChartSeries<ChartData, String>>[
             ColumnSeries<ChartData, String>(
-              dataSource: context.read<AssetsCubit>().chartData,
+              dataSource: context.read<AssetsCubit>().selectedChartData,
               xValueMapper: (ChartData data, _) =>
                   data.x!.isNotEmpty ? data.x?.substring(14, 19) : data.x,
               yValueMapper: (ChartData data, _) => data.y,
