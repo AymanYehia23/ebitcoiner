@@ -173,7 +173,7 @@ class AssetsCubit extends Cubit<AssetsState> {
     ltctPlanNumber = 0;
     emit(AssetsChartLoadingState());
     for (var plan in plansContractList) {
-      if (plan.cryptoName == 'BTC') {
+      if (plan.cryptoName == 'BTC' && plan.planStatus!) {
         for (var element in plan.hourlyGains!) {
           btcChartData.add(ChartData(element.date, element.profit as double));
         }
@@ -184,7 +184,7 @@ class AssetsCubit extends Cubit<AssetsState> {
             btcChartData,
           ),
         );
-      } else if (plan.cryptoName == 'ETH') {
+      } else if (plan.cryptoName == 'ETH' && plan.planStatus!) {
         for (var element in plan.hourlyGains!) {
           ethChartData.add(
             ChartData(
@@ -200,7 +200,7 @@ class AssetsCubit extends Cubit<AssetsState> {
             ethChartData,
           ),
         );
-      } else if (plan.cryptoName == 'RVN') {
+      } else if (plan.cryptoName == 'RVN' && plan.planStatus!) {
         for (var element in plan.hourlyGains!) {
           rvnChartData.add(ChartData(element.date, element.profit as double));
         }
@@ -211,7 +211,7 @@ class AssetsCubit extends Cubit<AssetsState> {
             rvnChartData,
           ),
         );
-      } else {
+      } else if (plan.cryptoName == 'LTCT' && plan.planStatus!) {
         for (var element in plan.hourlyGains!) {
           ltctChartData.add(ChartData(element.date, element.profit as double));
         }
@@ -225,6 +225,29 @@ class AssetsCubit extends Cubit<AssetsState> {
       }
     }
     emit(AssetsChartSuccessState());
+  }
+
+  double getMaxChartValue() {
+    if (selectedChartData.isEmpty) {
+      return 1;
+    } else {
+      return selectedChartData[0].y! * 2;
+    }
+  }
+    double getMinChartValue() {
+    if (selectedChartData.isEmpty) {
+      return 0;
+    } else {
+      return selectedChartData[0].y! / 2;
+    }
+  }
+
+   double getInterChartValue() {
+    if (selectedChartData.isEmpty) {
+      return 0.10;
+    } else {
+      return (getMaxChartValue() - getMinChartValue()) / 10;
+    }
   }
 
   void changeChartButton(Currency selectedCurrency) {

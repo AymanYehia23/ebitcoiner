@@ -47,10 +47,6 @@ class AsicsCubit extends Cubit<AsicsState> {
       paymentCurrency = 'RVN';
       emit(AsicsRVNState());
     }
-    else{
-      paymentCurrency = 'LTCT';
-      emit(AsicsLTCTState());
-    }
   }
 
   String currencyIcon(int index) {

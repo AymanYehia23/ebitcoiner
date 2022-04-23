@@ -170,48 +170,7 @@ class ChooseAsicPaymentCurrency extends StatelessWidget {
                             ),
                           ),
                         ),
-                        InkWell(
-                          onTap: () {
-                            context
-                                .read<AsicsCubit>()
-                                .choosePaymentCurrency(Currency.ltct);
-                          },
-                          child: Container(
-                            width: (20.w),
-                            height: (4.h),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular((20)),
-                              color:
-                                  context.watch<AsicsCubit>().paymentCurrency ==
-                                          'LTCT'
-                                      ? const Color(0xff302c3f)
-                                      : null,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  Strings.ltctIcon,
-                                  width: (6.w),
-                                  height: (3.5.h),
-                                ),
-                                SizedBox(
-                                  width: (1.w),
-                                ),
-                                Text(
-                                  'LTCT',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .copyWith(
-                                        fontSize: (12.sp),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        
                       ],
                     ),
                   ],

@@ -98,9 +98,6 @@ class PlansCubit extends Cubit<PlansState> {
     } else if (currency == Currency.rvn) {
       paymentCurrency = 'RVN';
       emit(PlansRVNState());
-    } else {
-      paymentCurrency = 'LTCT';
-      emit(PlansRVNState());
     }
   }
 

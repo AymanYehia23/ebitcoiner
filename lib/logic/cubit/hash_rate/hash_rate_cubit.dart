@@ -49,8 +49,12 @@ class HashRateCubit extends Cubit<HashRateState> {
 
   //HashRate business logic
   final List<PlanContractModel> plansContractList;
+  List<PlanContractModel> activePlans = [];
+  List<PlanContractModel> expiredPlans = [];
 
   Future<void> getTotalPower() async {
+    activePlans = [];
+    expiredPlans = [];
     totalPower = 0.0;
     totalBTCPower = 0.0;
     totalETHPower = 0.0;
@@ -65,21 +69,39 @@ class HashRateCubit extends Cubit<HashRateState> {
     if (plansContractList.isNotEmpty) {
       for (PlanContractModel element in plansContractList) {
         if (element.cryptoName == 'BTC') {
-          btcActivePlans += 1;
-          totalBTCPower += element.hashPower!;
-          totalBTCPower = double.parse((totalBTCPower).toStringAsFixed(2));
+          if (element.planStatus!) {
+            activePlans.add(element);
+            btcActivePlans += 1;
+            totalBTCPower += element.hashPower!;
+            totalBTCPower = double.parse((totalBTCPower).toStringAsFixed(2));
+          } else {
+            expiredPlans.add(element);
+          }
         } else if (element.cryptoName == 'ETH') {
-          ethActivePlans += 1;
-          totalETHPower += element.hashPower!;
-          totalETHPower = double.parse((totalETHPower).toStringAsFixed(2));
+          if (element.planStatus!) {
+            activePlans.add(element);
+            ethActivePlans += 1;
+            totalETHPower += element.hashPower!;
+            totalETHPower = double.parse((totalETHPower).toStringAsFixed(2));
+          } else {
+            expiredPlans.add(element);
+          }
         } else if (element.cryptoName == 'RVN') {
-          rvnActivePlans += 1;
-          totalRVNPower += element.hashPower!;
-          totalRVNPower = double.parse((totalRVNPower).toStringAsFixed(2));
-        } else {
-          ltctActivePlans += 1;
-          totalLTCTPower += element.hashPower!;
-          totalLTCTPower = double.parse((totalRVNPower).toStringAsFixed(2));
+          if (element.planStatus!) {
+            activePlans.add(element);
+            rvnActivePlans += 1;
+            totalRVNPower += element.hashPower!;
+            totalRVNPower = double.parse((totalRVNPower).toStringAsFixed(2));
+          }
+        } else if (element.cryptoName == 'LTCT') {
+          if (element.planStatus!) {
+            activePlans.add(element);
+            ltctActivePlans += 1;
+            totalLTCTPower += element.hashPower!;
+            totalLTCTPower = double.parse((totalRVNPower).toStringAsFixed(2));
+          } else {
+            expiredPlans.add(element);
+          }
         }
         totalPower =
             totalBTCPower + totalETHPower + totalRVNPower + totalLTCTPower;

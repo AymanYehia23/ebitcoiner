@@ -12,7 +12,7 @@ class AssetsChartWidget extends StatelessWidget {
   }) : super(
           key: key,
         );
-
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,11 +34,11 @@ class AssetsChartWidget extends StatelessWidget {
             interval: 0.5,
           ),
           primaryYAxis: NumericAxis(
-            minimum: 0.00001,
-            maximum: 0.0001,
-            interval: 0.00001,
+            minimum: context.read<AssetsCubit>().getMaxChartValue(),
+            maximum: context.read<AssetsCubit>().getMinChartValue(),
+            interval: context.read<AssetsCubit>().getInterChartValue(),
             labelFormat: '{value}',
-            decimalPlaces: 7,
+            decimalPlaces: 5,
           ),
           zoomPanBehavior: ZoomPanBehavior(
             enablePanning: true,

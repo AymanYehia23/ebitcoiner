@@ -9,6 +9,7 @@ import 'package:hash_store/presentation/hashrate/widgets/hashrate_total_widget.d
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:sizer/sizer.dart';
 import '../../../data/models/plan_contract_model.dart';
+import '../../../logic/cubit/assets/assets_cubit.dart';
 import '../../assets/widgets/assets_change_chart_button.dart';
 import '../../assets/widgets/assets_chart_widget.dart';
 
@@ -50,7 +51,7 @@ class HashRateScreen extends StatelessWidget {
             horizontal: 4.w,
           ),
           child: SingleChildScrollView(
-            physics: const ScrollPhysics(),
+            primary: true,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -122,7 +123,7 @@ class HashRateScreen extends StatelessWidget {
                 const AssetsChartWidget(),
                 SizedBox(height: 5.h),
                 Text(
-                  'Active Plans (${context.read<HashRateCubit>().plansContractList.length})',
+                  'Active Plans (${context.read<AssetsCubit>().userData.activePlans})',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontSize: 22.sp,
                         fontWeight: FontWeight.bold,
@@ -133,30 +134,30 @@ class HashRateScreen extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount:
-                      context.read<HashRateCubit>().plansContractList.length,
+                      context.read<HashRateCubit>().activePlans.length,
                   itemBuilder: (context, index) => ActivePlansWidget(
                     totalMined:
-                        '${context.read<HashRateCubit>().plansContractList[index].totalMined?.toStringAsFixed(6)}',
+                        '${context.read<HashRateCubit>().activePlans[index].totalMined?.toStringAsFixed(6)}',
                     avgDailyIncome: getHourlyProfits(
                       context
                           .read<HashRateCubit>()
-                          .plansContractList[index]
+                          .activePlans[index]
                           .hourlyGains,
                     ),
                     bookingDate:
-                        '${context.read<HashRateCubit>().plansContractList[index].startDate}',
+                        '${context.read<HashRateCubit>().activePlans[index].startDate}',
                     expiredOn:
-                        '${context.read<HashRateCubit>().plansContractList[index].endDate}',
+                        '${context.read<HashRateCubit>().activePlans[index].endDate}',
                     currency:
-                        '${context.read<HashRateCubit>().plansContractList[index].cryptoName}',
+                        '${context.read<HashRateCubit>().activePlans[index].cryptoName}',
                     currencyPic: getCurrencyPic(
                       context
                           .read<HashRateCubit>()
-                          .plansContractList[index]
+                          .activePlans[index]
                           .cryptoName,
                     ),
                     currentHashPower:
-                        '${context.read<HashRateCubit>().plansContractList[index].hashPower?.toStringAsFixed(2)}',
+                        '${context.read<HashRateCubit>().activePlans[index].hashPower?.toStringAsFixed(2)}',
                   ),
                 ),
                 SizedBox(height: 5.h),

@@ -76,10 +76,10 @@ class Balance {
   Balance({this.eth, this.btc, this.rvn, this.ltct});
 
   Balance.fromJson(Map<String, dynamic> json) {
-    eth = json['eth'];
-    btc = json['btc'];
-    rvn = json['rvn'];
-    ltct = json['ltct'];
+    eth = json['eth'] + 0.0;
+    btc = json['btc'] + 0.0 ;
+    rvn = json['rvn'] + 0.0;
+    ltct = json['ltct'] + 0.0;
   }
 }
 
