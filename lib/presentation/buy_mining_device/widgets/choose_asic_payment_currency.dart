@@ -132,6 +132,48 @@ class ChooseAsicPaymentCurrency extends StatelessWidget {
                           onTap: () {
                             context
                                 .read<AsicsCubit>()
+                                .choosePaymentCurrency(Currency.rvn);
+                          },
+                          child: Container(
+                            width: (20.w),
+                            height: (4.h),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular((20)),
+                              color:
+                                  context.watch<AsicsCubit>().paymentCurrency ==
+                                          'RVN'
+                                      ? const Color(0xff302c3f)
+                                      : null,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  Strings.rvnIcon,
+                                  width: (3.5.w),
+                                  height: (3.5.h),
+                                ),
+                                SizedBox(
+                                  width: (1.w),
+                                ),
+                                Text(
+                                  'RVN',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        fontSize: (12.sp),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            context
+                                .read<AsicsCubit>()
                                 .choosePaymentCurrency(Currency.ltct);
                           },
                           child: Container(
@@ -148,9 +190,9 @@ class ChooseAsicPaymentCurrency extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SvgPicture.asset(
+                                Image.asset(
                                   Strings.ltctIcon,
-                                  width: (3.5.w),
+                                  width: (6.w),
                                   height: (3.5.h),
                                 ),
                                 SizedBox(

@@ -98,7 +98,7 @@ class DevicesChangeChartButton extends StatelessWidget {
             onTap: () async {
               context
                   .read<DevicesCubit>()
-                  .changeChartButton(Currency.ltct);
+                  .changeChartButton(Currency.rvn);
             },
             child: Container(
               width: (20.w),
@@ -106,7 +106,7 @@ class DevicesChangeChartButton extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular((20)),
                 color:
-                    context.watch<DevicesCubit>().currency == Currency.ltct
+                    context.watch<DevicesCubit>().currency == Currency.rvn
                         ? const Color(0xff302c3f)
                         : null,
               ),
@@ -114,7 +114,7 @@ class DevicesChangeChartButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset(
-                    Strings.ltctIcon,
+                    Strings.rvnIcon,
                     width: (3.5.w),
                     height: (3.5.h),
                   ),
@@ -122,12 +122,47 @@ class DevicesChangeChartButton extends StatelessWidget {
                     width: (1.w),
                   ),
                   Text(
-                    'LTCT',
+                    'RVN',
                     style:
                         Theme.of(context).textTheme.bodyText1!.copyWith(
                               fontSize: (12.sp),
                               fontWeight: FontWeight.bold,
                             ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () async {
+              context.read<DevicesCubit>().changeChartButton(Currency.ltct);
+            },
+            child: Container(
+              width: (20.w),
+              height: (4.h),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular((20)),
+                color: context.watch<DevicesCubit>().currency == Currency.ltct
+                    ? const Color(0xff302c3f)
+                    : null,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    Strings.ltctIcon,
+                    width: (6.w),
+                    height: (3.5.h),
+                  ),
+                  SizedBox(
+                    width: (1.w),
+                  ),
+                  Text(
+                    'LTCT',
+                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                          fontSize: (12.sp),
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ],
               ),

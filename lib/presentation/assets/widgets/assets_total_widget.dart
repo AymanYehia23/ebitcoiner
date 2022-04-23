@@ -50,7 +50,7 @@ class AssetsTotalWidget extends StatelessWidget {
                   ),
                   Builder(builder: (context) {
                     return Text(
-                      '\$${context.watch<AssetsCubit>().totalProfit}',
+                      '\$${context.watch<AssetsCubit>().totalBalance.toStringAsFixed(2)}',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
                             fontSize: (14.sp),
                             fontWeight: FontWeight.bold,
@@ -98,9 +98,17 @@ class AssetsTotalWidget extends StatelessWidget {
                 width: (2.w),
               ),
               SvgPicture.asset(
-                Strings.ltctIcon,
+                Strings.rvnIcon,
                 height: (4.5.h),
                 width: (5.w),
+              ),
+              SizedBox(
+                width: (2.w),
+              ),
+              Image.asset(
+                Strings.ltctIcon,
+                height: (4.5.h),
+                width: (8.w),
               ),
               const Spacer(),
               InkWell(
@@ -125,9 +133,8 @@ class AssetsTotalWidget extends StatelessWidget {
           ),
           AnimatedContainer(
             duration: const Duration(milliseconds: 300),
-            height: context.select((AssetsCubit a) => a.isExpanded)
-                ? (17.h)
-                : 0,
+            height:
+                context.select((AssetsCubit a) => a.isExpanded) ? (17.h) : 0,
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -202,9 +209,41 @@ class AssetsTotalWidget extends StatelessWidget {
                   Row(
                     children: [
                       SvgPicture.asset(
-                        Strings.ltctIcon,
+                        Strings.rvnIcon,
                         height: (3.5.h),
                         width: (3.5.w),
+                      ),
+                      SizedBox(
+                        width: (2.w),
+                      ),
+                      Text(
+                        'RVN',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: (13.sp),
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      const Spacer(),
+                      Builder(
+                        builder: (context) {
+                          return Text(
+                            '\$${context.watch<AssetsCubit>().totalRVN}',
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      fontSize: (13.sp),
+                                    ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  const Divider(color: Colors.grey),
+                  Row(
+                    children: [
+                      Image.asset(
+                        Strings.ltctIcon,
+                        width: (6.w),
+                        height: (6.h),
                       ),
                       SizedBox(
                         width: (2.w),

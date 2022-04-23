@@ -20,6 +20,8 @@ class HashRateScreen extends StatelessWidget {
       return Strings.btcIcon;
     } else if (currencyName == 'ETH') {
       return Strings.ethIcon;
+    } else if (currencyName == 'RVN') {
+      return Strings.rvnIcon;
     } else {
       return Strings.ltctIcon;
     }

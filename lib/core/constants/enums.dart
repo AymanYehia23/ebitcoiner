@@ -1,6 +1,7 @@
 enum Currency {
   btc,
   eth,
+  rvn,
   ltct,
 }
 

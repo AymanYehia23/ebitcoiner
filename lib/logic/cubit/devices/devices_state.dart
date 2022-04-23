@@ -19,4 +19,6 @@ class DevicesChartBtcState extends DevicesState{}
 
 class DevicesChartETHState extends DevicesState {}
 
-class DevicesChartLTCTState extends DevicesState {}
+class DevicesChartRVNState extends DevicesState {}
+
+class DevicesChartLTCTState extends DevicesState{}

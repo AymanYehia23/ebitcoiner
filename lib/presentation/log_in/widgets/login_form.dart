@@ -30,7 +30,7 @@ class LoginForm extends StatelessWidget {
           DefaultTextField(
             text: 'User name',
             validator: (val) {
-              if (val!.isEmpty) return 'Enter valid User name';
+              if (val!.isEmpty) return 'Enter valid user name';
               return null;
             },
             controller: _userNameController,
@@ -52,8 +52,8 @@ class LoginForm extends StatelessWidget {
                 },
               ),
               validator: (val) {
-                if (!val!.isValidPassword) {
-                  return 'Password must contain at least 8 characters\none uppercase letter and one lowercase letter';
+                if (val!.isEmpty) {
+                  return 'Enter valid Password';
                 }
                 return null;
               },

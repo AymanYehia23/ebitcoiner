@@ -17,7 +17,7 @@ class HashrateTotalWidget extends StatelessWidget {
         vertical: 2.w,
       ),
       height:
-          context.select((HashRateCubit h) => h.isTotalExpanded) ? 40.h : 17.h,
+          context.select((HashRateCubit h) => h.isTotalExpanded) ? 34.h : 17.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: const Color(0xff1d1a27),
@@ -84,9 +84,17 @@ class HashrateTotalWidget extends StatelessWidget {
                 width: 2.w,
               ),
               SvgPicture.asset(
-                Strings.ltctIcon,
+                Strings.rvnIcon,
                 height: (4.5.h),
                 width: (5.w),
+              ),
+              SizedBox(
+                width: 2.w,
+              ),
+              Image.asset(
+                Strings.ltctIcon,
+                height: (4.5.h),
+                width: (8.w),
               ),
               const Spacer(),
               InkWell(
@@ -112,7 +120,7 @@ class HashrateTotalWidget extends StatelessWidget {
           AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             height: context.select((HashRateCubit h) => h.isTotalExpanded)
-                ? 20.h
+                ? 17.h
                 : 0,
             child: SingleChildScrollView(
               child: Column(
@@ -214,9 +222,54 @@ class HashrateTotalWidget extends StatelessWidget {
                   Row(
                     children: [
                       SvgPicture.asset(
-                        Strings.ltctIcon,
+                        Strings.rvnIcon,
                         height: (3.5.h),
                         width: (3.5.w),
+                      ),
+                      SizedBox(
+                        width: 2.w,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'RVN',
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      fontSize: 11.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                          ),
+                          if (context.read<HashRateCubit>().rvnActivePlans > 0)
+                            Text(
+                              '${context.read<HashRateCubit>().rvnActivePlans} active plan',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
+                                    color: const Color(0xffff4980),
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                        ],
+                      ),
+                      const Spacer(),
+                      Text(
+                        '${context.watch<HashRateCubit>().totalRVNPower} MH/S',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 11.sp,
+                            ),
+                      ),
+                    ],
+                  ),
+                  const Divider(color: Colors.grey),
+                  Row(
+                    children: [
+                      Image.asset(
+                        Strings.ltctIcon,
+                        height: (6.h),
+                        width: (6.w),
                       ),
                       SizedBox(
                         width: 2.w,

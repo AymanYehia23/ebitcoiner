@@ -15,11 +15,13 @@ class HashRateCubit extends Cubit<HashRateState> {
   double totalPower = 0.0;
   double totalBTCPower = 0.0;
   double totalETHPower = 0.0;
+  double totalRVNPower = 0.0;
   double totalLTCTPower = 0.0;
   int btcActivePlans = 0;
   int ethActivePlans = 0;
+  int rvnActivePlans = 0;
   int ltctActivePlans = 0;
-  
+
   void changeTotalSize() {
     emit(HashRateTotalChangeSizeInitState());
     isTotalExpanded = !isTotalExpanded;
@@ -52,9 +54,11 @@ class HashRateCubit extends Cubit<HashRateState> {
     totalPower = 0.0;
     totalBTCPower = 0.0;
     totalETHPower = 0.0;
+    totalRVNPower = 0.0;
     totalLTCTPower = 0.0;
     btcActivePlans = 0;
     ethActivePlans = 0;
+    rvnActivePlans = 0;
     ltctActivePlans = 0;
 
     emit(HashRateGetTotalPowerLoadingState());
@@ -68,21 +72,26 @@ class HashRateCubit extends Cubit<HashRateState> {
           ethActivePlans += 1;
           totalETHPower += element.hashPower!;
           totalETHPower = double.parse((totalETHPower).toStringAsFixed(2));
-        } else if (element.cryptoName == 'LTCT') {
+        } else if (element.cryptoName == 'RVN') {
+          rvnActivePlans += 1;
+          totalRVNPower += element.hashPower!;
+          totalRVNPower = double.parse((totalRVNPower).toStringAsFixed(2));
+        } else {
           ltctActivePlans += 1;
           totalLTCTPower += element.hashPower!;
-          totalLTCTPower = double.parse((totalLTCTPower).toStringAsFixed(2));
+          totalLTCTPower = double.parse((totalRVNPower).toStringAsFixed(2));
         }
-        totalPower = totalBTCPower + totalETHPower + totalLTCTPower;
+        totalPower =
+            totalBTCPower + totalETHPower + totalRVNPower + totalLTCTPower;
         emit(HashRateGetTotalPowerSuccessState());
       }
     } else {
       totalPower = 0.0;
       totalBTCPower = 0.0;
       totalETHPower = 0.0;
+      totalRVNPower = 0.0;
       totalLTCTPower = 0.0;
       emit(HashRateGetTotalPowerEmptyState());
     }
   }
-
 }

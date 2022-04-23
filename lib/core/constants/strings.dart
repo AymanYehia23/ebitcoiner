@@ -50,7 +50,8 @@ class Strings {
   static const eliteMinersImage = 'assets/images/elite_miners_image.svg';
   static const btcIcon = 'assets/images/btc_icon.svg';
   static const ethIcon = 'assets/images/eth_icon.svg';
-  static const ltctIcon = 'assets/images/ltct_icon.svg';
+  static const rvnIcon = 'assets/images/rvn_icon.svg';
+  static const ltctIcon = 'assets/images/ltct_icon.png';
   static const featherChevronDownIcon =
       'assets/images/feather_chevron_down_icon.svg';
   static const featherChevronUp = 'assets/images/feather_chevron_up.svg';

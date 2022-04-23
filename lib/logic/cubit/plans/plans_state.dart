@@ -25,4 +25,4 @@ class PlansBTCState extends PlansState{}
 
 class PlansETHState extends PlansState{}
 
-class PlansLTCTState extends PlansState{}
+class PlansRVNState extends PlansState{}

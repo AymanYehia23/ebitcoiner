@@ -92,11 +92,17 @@ class ChooseDesiredPlanWidget extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SvgPicture.asset(
-                                currencyIcn,
-                                height: 5.w,
-                                width: 5.w,
-                              ),
+                              currencyName == 'LTCT'
+                                  ? Image.asset(
+                                      currencyIcn,
+                                      height: 5.w,
+                                      width: 5.w,
+                                    )
+                                  : SvgPicture.asset(
+                                      currencyIcn,
+                                      height: 5.w,
+                                      width: 5.w,
+                                    ),
                               SizedBox(
                                 width: 1.w,
                               ),

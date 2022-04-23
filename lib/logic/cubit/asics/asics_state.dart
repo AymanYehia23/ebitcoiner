@@ -25,6 +25,8 @@ class AsicsBtcState extends AsicsState{}
 
 class AsicsEthState extends AsicsState {}
 
-class AsicsLTCTState extends AsicsState {}
+class AsicsRVNState extends AsicsState {}
+
+class AsicsLTCTState extends AsicsState{}
 
 

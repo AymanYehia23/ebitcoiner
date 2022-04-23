@@ -26,7 +26,7 @@ class ActivePlansWidget extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: 2.h),
       padding: EdgeInsets.symmetric(
-        horizontal:4.w,
+        horizontal: 4.w,
         vertical: 2.h,
       ),
       height: 30.h,
@@ -42,11 +42,17 @@ class ActivePlansWidget extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                SvgPicture.asset(
-                  currencyPic,
-                  height: 8.5.w,
-                  width: 8.5.w,
-                ),
+                currency == 'LTCT'
+                    ? Image.asset(
+                        currencyPic,
+                        height: 8.5.w,
+                        width: 8.5.w,
+                      )
+                    : SvgPicture.asset(
+                        currencyPic,
+                        height: 8.5.w,
+                        width: 8.5.w,
+                      ),
                 SizedBox(
                   width: 1.w,
                 ),
@@ -171,7 +177,7 @@ class ActivePlansWidget extends StatelessWidget {
                       Text(
                         'Expired on',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize:10.sp,
+                              fontSize: 10.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),

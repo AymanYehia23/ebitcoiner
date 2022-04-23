@@ -43,7 +43,11 @@ class AsicsCubit extends Cubit<AsicsState> {
     } else if (currency == Currency.eth) {
       paymentCurrency = 'ETH';
       emit(AsicsEthState());
-    } else {
+    } else if (currency == Currency.rvn) {
+      paymentCurrency = 'RVN';
+      emit(AsicsRVNState());
+    }
+    else{
       paymentCurrency = 'LTCT';
       emit(AsicsLTCTState());
     }
@@ -58,7 +62,7 @@ class AsicsCubit extends Cubit<AsicsState> {
       return 'assets/images/eth_icon.svg';
     } else {
       uintOfPower = 'MH/S';
-      return 'assets/images/ltct_icon.svg';
+      return 'assets/images/rvn_icon.svg';
     }
   }
 }

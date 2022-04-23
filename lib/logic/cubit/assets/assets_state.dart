@@ -33,10 +33,14 @@ class AssetsChartBtcState extends AssetsState {}
 
 class AssetsChartEthState extends AssetsState {}
 
-class AssetsChartLTCTState extends AssetsState {}
+class AssetsChartRVNState extends AssetsState {}
+
+class AssetsChartLTCTState extends AssetsState{}
 
 class AssetsChartBtcDataState extends AssetsState {}
 
 class AssetsChartEthDataState extends AssetsState {}
+
+class AssetsChartRVNDataState extends AssetsState {}
 
 class AssetsChartLTCTDataState extends AssetsState {}

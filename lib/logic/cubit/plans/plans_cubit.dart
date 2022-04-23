@@ -79,6 +79,9 @@ class PlansCubit extends Cubit<PlansState> {
     } else if (currency == Currency.eth) {
       cryptoName = 'ETH';
       getPlans();
+    } else if (currency == Currency.rvn) {
+      cryptoName = 'RVN';
+      getPlans();
     } else {
       cryptoName = 'LTCT';
       getPlans();
@@ -92,9 +95,12 @@ class PlansCubit extends Cubit<PlansState> {
     } else if (currency == Currency.eth) {
       paymentCurrency = 'ETH';
       emit(PlansETHState());
+    } else if (currency == Currency.rvn) {
+      paymentCurrency = 'RVN';
+      emit(PlansRVNState());
     } else {
       paymentCurrency = 'LTCT';
-      emit(PlansLTCTState());
+      emit(PlansRVNState());
     }
   }
 
@@ -113,8 +119,10 @@ class PlansCubit extends Cubit<PlansState> {
       return 'assets/images/btc_icon.svg';
     } else if (cryptoName == 'ETH') {
       return 'assets/images/eth_icon.svg';
+    } else if (cryptoName == 'RVN') {
+      return 'assets/images/rvn_icon.svg';
     } else {
-      return 'assets/images/ltct_icon.svg';
+      return 'assets/images/ltct_icon.png';
     }
   }
 

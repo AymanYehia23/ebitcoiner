@@ -14,7 +14,7 @@ class AssetsChangeChartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: (4.w),vertical: 1.h),
+      padding: EdgeInsets.symmetric(horizontal: (4.w), vertical: 1.h),
       width: double.infinity,
       height: (12.h),
       color: const Color(0xff1d1a27),
@@ -27,17 +27,19 @@ class AssetsChangeChartButton extends StatelessWidget {
                 InkWell(
                   onTap: () async {
                     await context.read<AssetsCubit>().getAllChartData();
-                    context.read<AssetsCubit>().changeChartButton(Currency.btc);
+                    context
+                        .read<AssetsCubit>()
+                        .changeChartButton(Currency.btc);
                   },
                   child: Container(
                     width: (20.w),
                     height: (4.h),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular((20)),
-                      color:
-                          context.watch<AssetsCubit>().currency == Currency.btc
-                              ? const Color(0xff302c3f)
-                              : null,
+                      color: context.watch<AssetsCubit>().currency ==
+                              Currency.btc
+                          ? const Color(0xff302c3f)
+                          : null,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -52,11 +54,13 @@ class AssetsChangeChartButton extends StatelessWidget {
                         ),
                         Text(
                           'BTC',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: (12.sp),
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .copyWith(
+                                fontSize: (12.sp),
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
                       ],
                     ),
@@ -65,36 +69,40 @@ class AssetsChangeChartButton extends StatelessWidget {
                 InkWell(
                   onTap: () async {
                     await context.read<AssetsCubit>().getAllChartData();
-                    context.read<AssetsCubit>().changeChartButton(Currency.eth);
+                    context
+                        .read<AssetsCubit>()
+                        .changeChartButton(Currency.eth);
                   },
                   child: Container(
                     width: (20.w),
                     height: (4.h),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular((20)),
-                      color:
-                          context.watch<AssetsCubit>().currency == Currency.eth
-                              ? const Color(0xff302c3f)
-                              : null,
+                      color: context.watch<AssetsCubit>().currency ==
+                              Currency.eth
+                          ? const Color(0xff302c3f)
+                          : null,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
                           Strings.ethIcon,
-                          width: (24),
-                          height: (24),
+                          width: (3.w),
+                          height: (3.h),
                         ),
                         SizedBox(
                           width: (1.w),
                         ),
                         Text(
                           'ETH',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: (12.sp),
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .copyWith(
+                                fontSize: (12.sp),
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
                       ],
                     ),
@@ -103,23 +111,25 @@ class AssetsChangeChartButton extends StatelessWidget {
                 InkWell(
                   onTap: () async {
                     await context.read<AssetsCubit>().getAllChartData();
-                    context.read<AssetsCubit>().changeChartButton(Currency.ltct);
+                    context
+                        .read<AssetsCubit>()
+                        .changeChartButton(Currency.rvn);
                   },
                   child: Container(
                     width: (20.w),
                     height: (4.h),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular((20)),
-                      color:
-                          context.watch<AssetsCubit>().currency == Currency.ltct
-                              ? const Color(0xff302c3f)
-                              : null,
+                      color: context.watch<AssetsCubit>().currency ==
+                              Currency.rvn
+                          ? const Color(0xff302c3f)
+                          : null,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
-                          Strings.ltctIcon,
+                          Strings.rvnIcon,
                           width: (3.5.w),
                           height: (3.5.h),
                         ),
@@ -127,12 +137,56 @@ class AssetsChangeChartButton extends StatelessWidget {
                           width: (1.w),
                         ),
                         Text(
+                          'RVN',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .copyWith(
+                                fontSize: (12.sp),
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () async {
+                    await context.read<AssetsCubit>().getAllChartData();
+                    context
+                        .read<AssetsCubit>()
+                        .changeChartButton(Currency.ltct);
+                  },
+                  child: Container(
+                    width: (20.w),
+                    height: (4.h),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular((20)),
+                      color: context.watch<AssetsCubit>().currency ==
+                              Currency.ltct
+                          ? const Color(0xff302c3f)
+                          : null,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          Strings.ltctIcon,
+                          width: (6.w),
+                          height: (3.5.h),
+                        ),
+                        SizedBox(
+                          width: (1.w),
+                        ),
+                        Text(
                           'LTCT',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: (12.sp),
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .copyWith(
+                                fontSize: (12.sp),
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
                       ],
                     ),

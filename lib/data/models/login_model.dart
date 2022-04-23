@@ -22,24 +22,30 @@ class Jwt {
   }
 }
 
+
 class User {
   Balance? balance;
   DemoBalance? demoBalance;
-  String? sId;
+  Temporary? temporary;
   String? userName;
+  String? email;
+  String? phone;
   int? activePlans;
   int? activeDemoPlans;
   int? devices;
+  String? createdAt;
 
   User(
       {this.balance,
       this.demoBalance,
-      this.sId,
+      this.temporary,
       this.userName,
+      this.email,
+      this.phone,
       this.activePlans,
       this.activeDemoPlans,
       this.devices,
-      });
+      this.createdAt});
 
   User.fromJson(Map<String, dynamic> json) {
     balance =
@@ -47,37 +53,59 @@ class User {
     demoBalance = json['demoBalance'] != null
         ? DemoBalance.fromJson(json['demoBalance'])
         : null;
-    sId = json['_id'];
+    temporary = json['temporary'] != null
+        ? Temporary.fromJson(json['temporary'])
+        : null;
     userName = json['userName'];
+    email = json['email'];
+    phone = json['phone'];
     activePlans = json['activePlans'];
     activeDemoPlans = json['activeDemoPlans'];
     devices = json['devices'];
+    createdAt = json['createdAt'];
   }
 
 }
 
 class Balance {
-  double? ltct;
   double? eth;
   double? btc;
+  double? rvn;
+  double? ltct;
 
-  Balance({this.ltct, this.eth, this.btc});
+  Balance({this.eth, this.btc, this.rvn, this.ltct});
 
   Balance.fromJson(Map<String, dynamic> json) {
-    ltct = json['ltct'] + 0.0;
-    eth = json['eth'] + 0.0;
-    btc = json['btc'] + 0.0;
+    eth = json['eth'];
+    btc = json['btc'];
+    rvn = json['rvn'];
+    ltct = json['ltct'];
   }
 }
 
 class DemoBalance {
-  double? eth;
-  double? btc;
+  int? rvn;
+  int? ltct;
+  int? eth;
+  int? btc;
 
-  DemoBalance({this.eth, this.btc});
+  DemoBalance({this.rvn, this.ltct, this.eth, this.btc});
 
   DemoBalance.fromJson(Map<String, dynamic> json) {
-    eth = json['eth'] + 0.0;
-    btc = json['btc'] + 0.0;
+    rvn = json['rvn'];
+    ltct = json['ltct'];
+    eth = json['eth'];
+    btc = json['btc'];
+  }
+
+}
+
+class Temporary {
+  int? code;
+
+  Temporary({this.code});
+
+  Temporary.fromJson(Map<String, dynamic> json) {
+    code = json['code'];
   }
 }

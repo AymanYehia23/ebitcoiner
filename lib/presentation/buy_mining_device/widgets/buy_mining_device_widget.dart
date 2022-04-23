@@ -98,11 +98,17 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SvgPicture.asset(
-                                currencyIcon,
-                                height: 6.w,
-                                width: 6.w,
-                              ),
+                              currencyName == 'LTCT'
+                                  ? Image.asset(
+                                      currencyIcon,
+                                      height: 6.w,
+                                      width: 6.w,
+                                    )
+                                  : SvgPicture.asset(
+                                      currencyIcon,
+                                      height: 6.w,
+                                      width: 6.w,
+                                    ),
                               SizedBox(
                                 width: 1.w,
                               ),
@@ -278,15 +284,16 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                   ),
                             ),
                             onPressed: () {
-                             showModalBottomSheet(
+                              showModalBottomSheet(
                                 context: context,
-                                builder: (context) =>
-                                    ChooseAsicPaymentCurrency(asicId: asicId,),
+                                builder: (context) => ChooseAsicPaymentCurrency(
+                                  asicId: asicId,
+                                ),
                               );
                             },
                           )
                         : DefaultDisabledButton(
-                          height: 8.h,
+                            height: 8.h,
                             text: Text(
                               'Buy Device',
                               style: Theme.of(context)

@@ -21,6 +21,9 @@ class DevicesCubit extends Cubit<DevicesState> {
     } else if (selectedCurrency == Currency.eth) {
       currency = selectedCurrency;
       emit(DevicesChartETHState());
+    } else if (selectedCurrency == Currency.rvn) {
+      currency = selectedCurrency;
+      emit(DevicesChartRVNState());
     } else {
       currency = selectedCurrency;
       emit(DevicesChartLTCTState());
