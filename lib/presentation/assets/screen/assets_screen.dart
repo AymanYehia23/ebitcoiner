@@ -17,12 +17,9 @@ class AssetsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: context.read<AssetsCubit>().getAllAssetsData(),
+      future: context.read<AssetsCubit>().getUserData(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
-          }
           return SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),

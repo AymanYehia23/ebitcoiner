@@ -47,7 +47,7 @@ class DefaultGradientButton extends StatelessWidget {
           )
         : SizedBox(
             width: double.infinity,
-            height:8.h,
+            height: height ?? 8.h,
             child: OutlineGradientButton(
               gradient: const LinearGradient(
                 colors: [

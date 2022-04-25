@@ -60,6 +60,8 @@ class _FirstLogInScreenState extends State<FirstLogInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double _height = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).padding.top + kToolbarHeight);
     return Stack(
       children: [
         const GradientBackgroundContainer(),
@@ -102,97 +104,91 @@ class _FirstLogInScreenState extends State<FirstLogInScreen> {
               ],
             ),
             body: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 4.w,
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    Text(
-                      Strings.login,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 22.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    LoginForm(
-                      formKey: _formKey,
-                      userNameController: _userNameController,
-                      passwordController: _passwordController,
-                    ),
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushReplacementNamed(AppRouter.forgetPassword);
-                      },
-                      child: Text(
-                        Strings.forgetPassword,
+              child: SizedBox(
+                height: _height,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+                  child: Column(
+                    children: [
+                      Text(
+                        Strings.login,
+                        textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: 11.sp,
-                              color: const Color(0xffff4980),
+                              fontSize: 22.sp,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 32.h,
-                    ),
-                    Builder(
-                      builder: (context) {
-                        if (context.select((LoginCubit s) => s.isEmpty)) {
-                          return DefaultDisabledButton(
-                            text: Text(
-                              'Send OTP',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2!
-                                  .copyWith(
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                          );
-                        } else {
-                          return DefaultGradientButton(
-                            isFilled: true,
-                            text: BlocBuilder<LoginCubit, LoginState>(
-                              builder: (context, state) {
-                                if (state is FirstLoginLoadingState) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                } else {
-                                  return Text(
-                                    'Send OTP',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1!
-                                        .copyWith(
+                      SizedBox(
+                        height: 4.h,
+                      ),
+                      LoginForm(
+                        formKey: _formKey,
+                        userNameController: _userNameController,
+                        passwordController: _passwordController,
+                      ),
+                      SizedBox(
+                        height: 4.h,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushReplacementNamed(AppRouter.forgetPassword);
+                        },
+                        child: Text(
+                          Strings.forgetPassword,
+                          style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                                fontSize: 11.sp,
+                                color: const Color(0xffff4980),
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ),
+                      const Spacer(),
+                      Builder(
+                        builder: (context) {
+                          if (context.select((LoginCubit s) => s.isEmpty)) {
+                            return DefaultDisabledButton(
+                              text: Text(
+                                'Send OTP',
+                                style:
+                                    Theme.of(context).textTheme.bodyText2!.copyWith(
                                           fontSize: 13.sp,
                                           fontWeight: FontWeight.bold,
                                         ),
-                                  );
-                                }
+                              ),
+                            );
+                          } else {
+                            return DefaultGradientButton(
+                              isFilled: true,
+                              text: BlocBuilder<LoginCubit, LoginState>(
+                                builder: (context, state) {
+                                  if (state is FirstLoginLoadingState) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } else {
+                                    return Text(
+                                      'Send OTP',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1!
+                                          .copyWith(
+                                            fontSize: 13.sp,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    );
+                                  }
+                                },
+                              ),
+                              onPressed: () {
+                                _submit();
                               },
-                            ),
-                            onPressed: () {
-                              _submit();
-                            },
-                          );
-                        }
-                      },
-                    ),
-                  ],
+                            );
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

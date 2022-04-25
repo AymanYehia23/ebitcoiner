@@ -121,7 +121,7 @@ class DevicesScreen extends StatelessWidget {
                             return YourMinersWidget(
                               yourMinerPic: Strings.minerImage,
                               minerName: asicContractList[index].asicName!,
-                              startDate: asicContractList[index].startDate!.substring(0,10),
+                              startDate: asicContractList[index].startDate!,
                               totalMined: asicContractList[index].totalMined!.toStringAsFixed(2),
                               hostFees: '${asicContractList[index].hostFees}%',
                               status: context.read<DevicesCubit>().getAsicStatus(index),

@@ -109,7 +109,7 @@ class ActivePlansWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Avg Income Per Minute',
+                        'Avg Income/Minute',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.bold,
@@ -139,6 +139,7 @@ class ActivePlansWidget extends StatelessWidget {
                     children: [
                       Text(
                         'Current HashPower',
+                        textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.bold,

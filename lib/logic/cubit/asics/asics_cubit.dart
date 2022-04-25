@@ -12,8 +12,6 @@ class AsicsCubit extends Cubit<AsicsState> {
 
   final AsicsRepo _asicsRepo;
   List<AsicModel> asicsList = [];
-  String uintOfPower = '';
-  Currency currency = Currency.btc;
   String paymentCurrency = 'BTC';
 
   Future<void> getAsics() async {
@@ -51,13 +49,10 @@ class AsicsCubit extends Cubit<AsicsState> {
 
   String currencyIcon(int index) {
     if (asicsList[index].cryptoName == 'BTC') {
-      uintOfPower = 'TH/S';
       return 'assets/images/btc_icon.svg';
     } else if (asicsList[index].cryptoName == 'ETH') {
-      uintOfPower = 'MH/S';
       return 'assets/images/eth_icon.svg';
     } else {
-      uintOfPower = 'MH/S';
       return 'assets/images/rvn_icon.svg';
     }
   }

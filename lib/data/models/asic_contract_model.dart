@@ -33,7 +33,7 @@ class AsicContractModel {
     asicStatus = json['asicStatus'];
     expired = json['expired'];
     totalMined = json['totalMined'] + 0.0;
-    startDate = json['startDate'];
+    startDate = json['startDate'].toString().substring(0, 10);
     userID = json['userID'];
     asicID = json['asicID'];
     createdAt = json['createdAt'];

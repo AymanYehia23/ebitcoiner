@@ -20,6 +20,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../router/app_router.dart';
 import '../../shared_components/custom_icons.dart';
+import '../../wallet/screen/wallet_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -45,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       create: (context) => DevicesCubit(AsicContractApi()),
       child: const DevicesScreen(),
     ),
+    const WalletScreen(),
     MultiBlocProvider(
       providers: [
         BlocProvider<LogoutCubit>(
@@ -76,6 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
         color = Colors.black;
         isFloatingButton = true;
         navigatorName = AppRouter.buyMiningDevice;
+      } else if (_selectedIndex == 3) {
+        title = 'Wallet';
+        color = Colors.black;
       } else {
         title = '';
         color = Colors.transparent;
@@ -91,26 +96,25 @@ class _HomeScreenState extends State<HomeScreen> {
         const GradientBackgroundContainer(),
         Scaffold(
           appBar: AppBar(
-            title: Title(
-              color: Colors.white,
-              child: Text(
-                title,
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
+            title: Text(
+              title,
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             backgroundColor: color,
             centerTitle: true,
           ),
           body: screens[_selectedIndex],
           bottomNavigationBar: CurvedNavigationBar(
+            index: _selectedIndex,
             height: 7.h,
             items: const [
-              Icon(CustomIcons.assets_icon),
+              Icon(Icons.home_outlined),
               Icon(CustomIcons.hash_rate_icon),
               Icon(CustomIcons.devices_icon),
+              Icon(CustomIcons.assets_icon),
               Icon(Icons.person),
             ],
             backgroundColor: const Color(0xff1d1a27),

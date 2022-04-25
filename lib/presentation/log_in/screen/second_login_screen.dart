@@ -70,6 +70,8 @@ class _SecondLoginScreenState extends State<SecondLoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double _height = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).padding.top + kToolbarHeight);
     return Stack(
       children: [
         const GradientBackgroundContainer(),
@@ -115,139 +117,131 @@ class _SecondLoginScreenState extends State<SecondLoginScreen> {
               ),
             ),
             body: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 4.w,
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    Text(
-                      Strings.login,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 22.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    OtpForm(formKey: _formKey, otpController: _otpController),
-                    SizedBox(
-                      height: 5.h,
-                    ),
-                    CircularCountDownTimer(
-                      width: 20.w,
-                      height: 20.h,
-                      ringColor: Colors.grey[300]!,
-                      fillColor: const Color(0xffff4980),
-                      backgroundColor: Colors.transparent,
-                      strokeCap: StrokeCap.round,
-                      strokeWidth: 10.0,
-                      textFormat: CountdownTextFormat.S,
-                      textStyle:
-                          Theme.of(context).textTheme.bodyText1!.copyWith(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                      duration: _duration,
-                      initialDuration: 0,
-                      isReverse: true,
-                      isReverseAnimation: true,
-                      controller: _counterController,
-                      onComplete: () {
-                        setState(() {
-                          isTimeEnded = true;
-                        });
-                      },
-                    ),
-                    isTimeEnded
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'OTP Expired!',
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(
-                                      fontSize: 12.sp,
-                                    ),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  _resend();
-                                  _counterController.restart(
-                                      duration: _duration);
-                                },
-                                child: Text(
-                                  'Resend',
+              child: SizedBox(
+                height: _height,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+                  child: Column(
+                    children: [
+                      Text(
+                        Strings.login,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 22.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      SizedBox(
+                        height: 4.h,
+                      ),
+                      OtpForm(formKey: _formKey, otpController: _otpController),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      CircularCountDownTimer(
+                        width: 20.w,
+                        height: 20.h,
+                        ringColor: Colors.grey[300]!,
+                        fillColor: const Color(0xffff4980),
+                        backgroundColor: Colors.transparent,
+                        strokeCap: StrokeCap.round,
+                        strokeWidth: 10.0,
+                        textFormat: CountdownTextFormat.S,
+                        textStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                        duration: _duration,
+                        initialDuration: 0,
+                        isReverse: true,
+                        isReverseAnimation: true,
+                        controller: _counterController,
+                        onComplete: () {
+                          setState(() {
+                            isTimeEnded = true;
+                          });
+                        },
+                      ),
+                      isTimeEnded
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'OTP Expired!',
                                   textAlign: TextAlign.center,
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1!
                                       .copyWith(
                                         fontSize: 12.sp,
-                                        color: const Color(0xffff4980),
                                       ),
                                 ),
-                              ),
-                            ],
-                          )
-                        : const Text(''),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    Builder(
-                      builder: (context) {
-                        if (context.select((LoginCubit s) => s.isEmpty)) {
-                          return DefaultDisabledButton(
-                            text: Text(
-                              'Login',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2!
-                                  .copyWith(
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                          );
-                        } else {
-                          return DefaultGradientButton(
-                            isFilled: true,
-                            text: BlocBuilder<LoginCubit, LoginState>(
-                              builder: (context, state) {
-                                if (state is SecondeLoginLoadingState) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                } else {
-                                  return Text(
-                                    'Login',
+                                TextButton(
+                                  onPressed: () {
+                                    _resend();
+                                    _counterController.restart(duration: _duration);
+                                  },
+                                  child: Text(
+                                    'Resend',
+                                    textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyText1!
                                         .copyWith(
+                                          fontSize: 12.sp,
+                                          color: const Color(0xffff4980),
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          : const Text(''),
+                     const Spacer(),
+                      Builder(
+                        builder: (context) {
+                          if (context.select((LoginCubit s) => s.isEmpty)) {
+                            return DefaultDisabledButton(
+                              text: Text(
+                                'Login',
+                                style:
+                                    Theme.of(context).textTheme.bodyText2!.copyWith(
                                           fontSize: 13.sp,
                                           fontWeight: FontWeight.bold,
                                         ),
-                                  );
-                                }
+                              ),
+                            );
+                          } else {
+                            return DefaultGradientButton(
+                              isFilled: true,
+                              text: BlocBuilder<LoginCubit, LoginState>(
+                                builder: (context, state) {
+                                  if (state is SecondeLoginLoadingState) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } else {
+                                    return Text(
+                                      'Login',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1!
+                                          .copyWith(
+                                            fontSize: 13.sp,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    );
+                                  }
+                                },
+                              ),
+                              onPressed: () {
+                                _submit();
                               },
-                            ),
-                            onPressed: () {
-                              _submit();
-                            },
-                          );
-                        }
-                      },
-                    ),
-                  ],
+                            );
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

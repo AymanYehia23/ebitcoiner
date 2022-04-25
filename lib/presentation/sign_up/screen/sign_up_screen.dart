@@ -22,7 +22,6 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
-
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
@@ -74,6 +73,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double _height = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).padding.top + kToolbarHeight);
     return Stack(
       children: [
         const GradientBackgroundContainer(),
@@ -90,7 +91,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   );
                 }
                 if (state is SignUpSuccessState) {
-                  Navigator.of(context).pushReplacementNamed(AppRouter.firstLogin);
+                  Navigator.of(context)
+                      .pushReplacementNamed(AppRouter.firstLogin);
                 }
               },
             ),
@@ -100,7 +102,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, AppRouter.firstLogin);
+                    Navigator.pushReplacementNamed(
+                        context, AppRouter.firstLogin);
                   },
                   child: Text(
                     'Login',
@@ -112,135 +115,132 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ],
             ),
             body: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 4.w,
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    Text(
-                      Strings.createNewAccount,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText1!
-                          .copyWith(fontSize: 22.sp),
-                    ),
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    SignUpForm(
-                      formKey: _formKey,
-                      nameController: _userNameController,
-                      emailController: _emailController,
-                      phoneNumberController: _phoneNumberController,
-                      passwordController: _passwordController,
-                    ),
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    Text(
-                      'By continuing to register, you agree to',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2!
-                          .copyWith(fontSize: 11.sp),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        InkWell(
-                          onTap: () {},
-                          child: Text(
-                            'Terms & Conditions',
-                            textAlign: TextAlign.center,
-                            style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 11.sp,
-                                      color: const Color(0xffff4980),
-                                    ),
-                          ),
-                        ),
-                        Text(
-                          ' and ',
-                          textAlign: TextAlign.center,
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    fontSize: 11.sp,
-                                  ),
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          child: Text(
-                            'Privacy Policy',
-                            textAlign: TextAlign.center,
-                            style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 11.sp,
-                                      color: const Color(0xffff4980),
-                                    ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 14.h,
-                    ),
-                    Builder(
-                      builder: (context) {
-                        if (context.select((SignUpCubit s) => s.isEmpty)) {
-                          return DefaultDisabledButton(
-                            text: Text(
-                              'Sign Up',
+              child: SizedBox(
+                height: _height,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+                  child: Column(
+                    children: [
+                      Text(
+                        Strings.createNewAccount,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText1!
+                            .copyWith(fontSize: 22.sp),
+                      ),
+                      SizedBox(
+                        height: 4.h,
+                      ),
+                      SignUpForm(
+                        formKey: _formKey,
+                        nameController: _userNameController,
+                        emailController: _emailController,
+                        phoneNumberController: _phoneNumberController,
+                        passwordController: _passwordController,
+                      ),
+                      SizedBox(
+                        height: 4.h,
+                      ),
+                      Text(
+                        'By continuing to register, you agree to',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(fontSize: 11.sp),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child: Text(
+                              'Terms & Conditions',
+                              textAlign: TextAlign.center,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyText1!
                                   .copyWith(
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.bold,
+                                    fontSize: 11.sp,
+                                    color: const Color(0xffff4980),
                                   ),
                             ),
-                          );
-                        } else {
-                          return DefaultGradientButton(
-                            isFilled: true,
-                            text: Builder(builder: (context) {
-                              final signUpState =
-                                  context.watch<SignUpCubit>().state;
-
-                              if (signUpState is SignUpLoadingState) {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              }
-                              return Text(
+                          ),
+                          Text(
+                            ' and ',
+                            textAlign: TextAlign.center,
+                            style:
+                                Theme.of(context).textTheme.bodyText2!.copyWith(
+                                      fontSize: 11.sp,
+                                    ),
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Text(
+                              'Privacy Policy',
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
+                                    fontSize: 11.sp,
+                                    color: const Color(0xffff4980),
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      Builder(
+                        builder: (context) {
+                          if (context.select((SignUpCubit s) => s.isEmpty)) {
+                            return DefaultDisabledButton(
+                              text: Text(
                                 'Sign Up',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyText2!
                                     .copyWith(
                                       fontSize: 13.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
-                              );
-                            }),
-                            onPressed: () {
-                              _countryCode =
-                                  context.read<SignUpCubit>().countryCode;
-                              _submit();
-                            },
-                          );
-                        }
-                      },
-                    ),
-                    SizedBox(
-                      height: 2.h,
-                    ),
-                  ],
+                              ),
+                            );
+                          } else {
+                            return DefaultGradientButton(
+                              isFilled: true,
+                              text: Builder(builder: (context) {
+                                final signUpState =
+                                    context.watch<SignUpCubit>().state;
+
+                                if (signUpState is SignUpLoadingState) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                                return Text(
+                                  'Sign Up',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                );
+                              }),
+                              onPressed: () {
+                                _countryCode =
+                                    context.read<SignUpCubit>().countryCode;
+                                _submit();
+                              },
+                            );
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

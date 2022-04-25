@@ -85,8 +85,8 @@ class HashrateTotalWidget extends StatelessWidget {
               ),
               SvgPicture.asset(
                 Strings.rvnIcon,
-                height: (4.5.h),
-                width: (5.w),
+                height: (4.h),
+                width: (4.w),
               ),
               SizedBox(
                 width: 2.w,
@@ -166,7 +166,7 @@ class HashrateTotalWidget extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(
-                        '${context.watch<HashRateCubit>().totalBTCPower} TH/S',
+                        '${context.watch<HashRateCubit>().totalBTCPower} GH/S',
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
                               fontSize: 11.sp,
                             ),
@@ -211,7 +211,7 @@ class HashrateTotalWidget extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(
-                        '${context.watch<HashRateCubit>().totalETHPower} MH/S',
+                        '${context.watch<HashRateCubit>().totalETHPower} GH/S',
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
                               fontSize: 11.sp,
                             ),
@@ -223,8 +223,8 @@ class HashrateTotalWidget extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         Strings.rvnIcon,
-                        height: (3.5.h),
-                        width: (3.5.w),
+                         height: (3.h),
+                        width: (3.w),
                       ),
                       SizedBox(
                         width: 2.w,
@@ -256,7 +256,7 @@ class HashrateTotalWidget extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(
-                        '${context.watch<HashRateCubit>().totalRVNPower} MH/S',
+                        '${context.watch<HashRateCubit>().totalRVNPower} GH/S',
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
                               fontSize: 11.sp,
                             ),
@@ -301,7 +301,7 @@ class HashrateTotalWidget extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(
-                        '${context.watch<HashRateCubit>().totalLTCTPower} MH/S',
+                        '${context.watch<HashRateCubit>().totalLTCTPower} GH/S',
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
                               fontSize: 11.sp,
                             ),

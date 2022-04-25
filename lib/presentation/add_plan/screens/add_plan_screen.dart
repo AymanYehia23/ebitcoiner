@@ -160,7 +160,7 @@ class ChooseDesiredPlanScreen extends StatelessWidget {
                                         profitability:
                                             'From ${plansModel.plans![index].profitability.toString()}%',
                                         power:
-                                            '${plansModel.plansHashPower![index].hashrate!.toStringAsFixed(2)} ${context.read<PlansCubit>().unitOfPower()}',
+                                            '${plansModel.plansHashPower![index].hashrate!.toStringAsFixed(2)} GH/S',
                                         planDuration: context
                                                     .read<PlansCubit>()
                                                     .planType ==

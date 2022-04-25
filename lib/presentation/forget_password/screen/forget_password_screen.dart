@@ -54,6 +54,8 @@ class _ForgetPassScreenState extends State<ForgetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double _height = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).padding.top + kToolbarHeight);
     return Stack(
       children: [
         const GradientBackgroundContainer(),
@@ -90,91 +92,90 @@ class _ForgetPassScreenState extends State<ForgetPasswordScreen> {
                 )
               ],
             ),
-            body: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 4.w,
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    Text(
-                      'Forget Password',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 22.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    SizedBox(
-                      height: 1.h,
-                    ),
-                    Text(
-                      Strings.forgetMsg,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                            fontSize: 12.sp,
-                          ),
-                    ),
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    ForgetPasswordForm(
-                      formKey: _formKey,
-                      emailController: _emailController,
-                    ),
-                    SizedBox(
-                      height: 45.h,
-                    ),
-                    Builder(
-                      builder: (context) {
-                        if (context
-                            .select((ForgetPasswordCubit f) => f.isEmpty)) {
-                          return DefaultDisabledButton(
-                            text: Text(
-                              'Next',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2!
-                                  .copyWith(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+            body: SingleChildScrollView(
+              child: SizedBox(
+                height: _height,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 4.w,
+                    vertical: 2.h,
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Forget Password',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 22.sp,
+                              fontWeight: FontWeight.bold,
                             ),
-                          );
-                        } else {
-                          return DefaultGradientButton(
-                            isFilled: true,
-                            text: BlocBuilder<ForgetPasswordCubit,
-                                ForgetPasswordState>(
-                              builder: (context, state) {
-                                if (state is ForgetPasswordLoadingState) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
+                      ),
+                      SizedBox(
+                        height: 1.h,
+                      ),
+                      Text(
+                        Strings.forgetMsg,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                              fontSize: 12.sp,
+                            ),
+                      ),
+                      SizedBox(
+                        height: 4.h,
+                      ),
+                      ForgetPasswordForm(
+                        formKey: _formKey,
+                        emailController: _emailController,
+                      ),
+                      const Spacer(),
+                      Builder(
+                        builder: (context) {
+                          if (context
+                              .select((ForgetPasswordCubit f) => f.isEmpty)) {
+                            return DefaultDisabledButton(
+                              text: Text(
+                                'Next',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            );
+                          } else {
+                            return DefaultGradientButton(
+                              isFilled: true,
+                              text: BlocBuilder<ForgetPasswordCubit,
+                                  ForgetPasswordState>(
+                                builder: (context, state) {
+                                  if (state is ForgetPasswordLoadingState) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }
+                                  return Text(
+                                    'Next',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .copyWith(
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                   );
-                                }
-                                return Text(
-                                  'Next',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .copyWith(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                );
+                                },
+                              ),
+                              onPressed: () {
+                                _submit();
                               },
-                            ),
-                            onPressed: () {
-                              _submit();
-                            },
-                          );
-                        }
-                      },
-                    ),
-                  ],
+                            );
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

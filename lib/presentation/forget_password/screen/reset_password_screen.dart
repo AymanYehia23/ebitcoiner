@@ -55,6 +55,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double _height = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).padding.top + kToolbarHeight);
     return Stack(
       children: [
         const GradientBackgroundContainer(),
@@ -98,80 +100,79 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               ],
             ),
             body: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 4.w,
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 3.5.h,
-                    ),
-                    Text(
-                      'Enter new password',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 22.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    SizedBox(
-                      height: 5.h,
-                    ),
-                    ResetPasswordForm(
-                      formKey: _formKey,
-                      passwordController: _passwordController,
-                    ),
-                    SizedBox(
-                      height: 50.h,
-                    ),
-                    Builder(
-                      builder: (context) {
-                        if (context
-                            .select((ForgetPasswordCubit f) => f.isEmpty)) {
-                          return DefaultDisabledButton(
-                            text: Text(
-                              'Next',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2!
-                                  .copyWith(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+              child: SizedBox(
+                height: _height,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 4.w,
+                    vertical: 2.h,
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Enter new password',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 22.sp,
+                              fontWeight: FontWeight.bold,
                             ),
-                          );
-                        } else {
-                          return DefaultGradientButton(
-                            isFilled: true,
-                            text: BlocBuilder<ForgetPasswordCubit,
-                                ForgetPasswordState>(
-                              builder: (context, state) {
-                                if (state is ResetPasswordLoadingState) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      ResetPasswordForm(
+                        formKey: _formKey,
+                        passwordController: _passwordController,
+                      ),
+                      const Spacer(),
+                      Builder(
+                        builder: (context) {
+                          if (context
+                              .select((ForgetPasswordCubit f) => f.isEmpty)) {
+                            return DefaultDisabledButton(
+                              text: Text(
+                                'Next',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            );
+                          } else {
+                            return DefaultGradientButton(
+                              isFilled: true,
+                              text: BlocBuilder<ForgetPasswordCubit,
+                                  ForgetPasswordState>(
+                                builder: (context, state) {
+                                  if (state is ResetPasswordLoadingState) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }
+                                  return Text(
+                                    'Next',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .copyWith(
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                   );
-                                }
-                                return Text(
-                                  'Next',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .copyWith(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                );
+                                },
+                              ),
+                              onPressed: () {
+                                _submit();
                               },
-                            ),
-                            onPressed: () {
-                              _submit();
-                            },
-                          );
-                        }
-                      },
-                    ),
-                  ],
+                            );
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

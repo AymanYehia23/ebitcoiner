@@ -57,7 +57,7 @@ class HourlyGains {
 
   HourlyGains.fromJson(Map<String, dynamic> json) {
     date = json['date'];
-    profit = json['profit'];
+    profit = json['profit'] + 0.0;
     sId = json['_id'];
   }
 }

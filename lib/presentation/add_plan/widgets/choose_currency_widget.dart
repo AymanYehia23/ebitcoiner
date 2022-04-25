@@ -75,8 +75,8 @@ class ChooseCurrencyWidget extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         Strings.ethIcon,
-                        width: (24),
-                        height: (24),
+                       width: (3.w),
+                        height: (3.h),
                       ),
                       SizedBox(
                         width: (1.w),
@@ -110,8 +110,8 @@ class ChooseCurrencyWidget extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         Strings.rvnIcon,
-                        width: (3.5.w),
-                        height: (3.5.h),
+                       width: (3.w),
+                        height: (3.h),
                       ),
                       SizedBox(
                         width: (1.w),

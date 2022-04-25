@@ -101,7 +101,7 @@ class BuyMiningDeviceScreen extends StatelessWidget {
                                       currencyName: asicsList[index].cryptoName!,
                                       algorithm: asicsList[index].algorithm!,
                                       power:
-                                          '${asicsList[index].hashPower!.toStringAsFixed(0)} ${context.read<AsicsCubit>().uintOfPower}',
+                                          '${asicsList[index].hashPower!.toStringAsFixed(0)} GH/S',
                                       unitPrice:
                                           '\$${asicsList[index].price!.toString()}',
                                       maintenancePrice:

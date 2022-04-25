@@ -130,8 +130,8 @@ class AssetsChangeChartButton extends StatelessWidget {
                       children: [
                         SvgPicture.asset(
                           Strings.rvnIcon,
-                          width: (3.5.w),
-                          height: (3.5.h),
+                           width: (3.w),
+                          height: (3.h),
                         ),
                         SizedBox(
                           width: (1.w),

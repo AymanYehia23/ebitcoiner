@@ -2,14 +2,18 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/core/secure_storage/secure_storage.dart';
+import 'package:hash_store/data/data_providers/deposit_api.dart';
 import 'package:hash_store/data/data_providers/get_user_data_api.dart';
 import 'package:hash_store/data/data_providers/login_api.dart';
 import 'package:hash_store/data/data_providers/sign_up_api.dart';
 import 'package:hash_store/data/data_providers/forget_password_api.dart';
+import 'package:hash_store/data/data_providers/withdraw_api.dart';
 import 'package:hash_store/data/models/login_model.dart';
+import 'package:hash_store/logic/cubit/deposit/deposit_cubit.dart';
 import 'package:hash_store/logic/cubit/forget_password/forget_password_cubit.dart';
 import 'package:hash_store/logic/cubit/login/login_cubit.dart';
 import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
+import 'package:hash_store/logic/cubit/withdraw/withdraw_cubit.dart';
 import 'package:hash_store/logic/currency_converter.dart';
 import 'package:hash_store/presentation/Home/screen/home_screen.dart';
 import 'package:hash_store/presentation/splash/screen/splash_screen.dart';
@@ -76,8 +80,15 @@ class MyApp extends StatelessWidget {
             PlansModel(),
           ),
         ),
-         BlocProvider<AsicsCubit>(
+        BlocProvider<AsicsCubit>(
           create: (context) => AsicsCubit(AsicsApi()),
+        ),
+        BlocProvider<WithdrawCubit>(
+          create: (context) => WithdrawCubit(
+              context.read<AssetsCubit>().userData, WithdrawApi()),
+        ),
+        BlocProvider<DepositCubit>(
+          create: (context) => DepositCubit(DepositApi()),
         ),
       ],
       child: Sizer(

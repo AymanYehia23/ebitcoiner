@@ -19,17 +19,6 @@ class PlansModel {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (plans != null) {
-      data['plans'] = plans!.map((v) => v.toJson()).toList();
-    }
-    if (plansHashPower != null) {
-      data['PlansHashPower'] =
-          plansHashPower!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
 }
 
 class Plan {
@@ -38,9 +27,9 @@ class Plan {
   String? planName;
   String? cryptoName;
   String? algorithm;
-  int? planDuration;
-  int? profitability;
-  int? price;
+  double? planDuration;
+  double? profitability;
+  double? price;
   bool? availability;
   int? iV;
 
@@ -62,27 +51,14 @@ class Plan {
     planName = json['planName'];
     cryptoName = json['cryptoName'];
     algorithm = json['algorithm'];
-    planDuration = json['planDuration'];
-    profitability = json['profitability'];
-    price = json['price'];
+    planDuration = json['planDuration'] + 0.0;
+    profitability = json['profitability'] + 0.0;
+    price = json['price'] + 0.0;
     availability = json['availability'];
     iV = json['__v'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['_id'] = sId;
-    data['planType'] = planType;
-    data['planName'] = planName;
-    data['cryptoName'] = cryptoName;
-    data['algorithm'] = algorithm;
-    data['planDuration'] = planDuration;
-    data['profitability'] = profitability;
-    data['price'] = price;
-    data['availability'] = availability;
-    data['__v'] = iV;
-    return data;
-  }
+  
 }
 
 class PlansHashPower {

@@ -17,65 +17,60 @@ class SplashScreen extends StatelessWidget {
         Scaffold(
           appBar: AppBar(),
           body: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 4.w,
-            ),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 45.h,
-                    width: double.infinity,
-                    child: SvgPicture.asset(
-                      Strings.splashImage,
-                      fit: BoxFit.fill,
-                    ),
+            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 45.h,
+                  width: double.infinity,
+                  child: SvgPicture.asset(
+                    Strings.splashImage,
+                    fit: BoxFit.fill,
                   ),
-                  SizedBox(
-                    height: 3.5.h,
-                  ),
-                  Text(
-                    Strings.splashScreenDescription,
-                    textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 3.5.h,
+                ),
+                Text(
+                  Strings.splashScreenDescription,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                const Spacer(),
+                DefaultGradientButton(
+                  isFilled: true,
+                  text: Text(
+                    'Create an Account',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize:20.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
-                  SizedBox(
-                    height: 5.h,
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, AppRouter.signUp);
+                  },
+                ),
+                SizedBox(
+                  height: 2.h,
+                ),
+                DefaultGradientButton(
+                  isFilled: false,
+                  text: Text(
+                    'Sign In',
+                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
-                  DefaultGradientButton(
-                    isFilled: true,
-                    text: Text(
-                      'Create an Account',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, AppRouter.signUp);
-                    },
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  DefaultGradientButton(
-                    isFilled: false,
-                    text: Text(
-                      'Sign In',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, AppRouter.firstLogin);
-                    },
-                  ),
-                ],
-              ),
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(
+                        context, AppRouter.firstLogin);
+                  },
+                ),
+              ],
             ),
           ),
         ),

@@ -48,10 +48,10 @@ class PlansCubit extends Cubit<PlansState> {
   }
 
   void getMinerCategory() {
-    int sum = 0;
+    double sum = 0;
     double mid = 0;
-    int lNum = plansModel.plans![0].price!;
-    int mNum = 0;
+    double lNum = plansModel.plans![0].price!;
+    double mNum = 0;
     for (var element in plansModel.plans!) {
       if (element.price! < lNum) {
         lNum = element.price!;
@@ -63,10 +63,10 @@ class PlansCubit extends Cubit<PlansState> {
     }
     mid = sum / plansModel.plans!.length;
 
-    firstRange = lNum + 0.0;
+    firstRange = lNum;
     secondRange = (lNum + mid) / 2;
     thirdRange = (mNum + mid) / 2;
-    fourthRange = mNum + 0.0;
+    fourthRange = mNum;
 
     //print(
     //'First range: $firstRange\nSecond range: $secondRange\nThird range: $thirdRange\nFourth range: $fourthRange');
@@ -123,7 +123,7 @@ class PlansCubit extends Cubit<PlansState> {
     }
   }
 
-  String minersPic(int price) {
+  String minersPic(double price) {
     if (price >= firstRange && price < secondRange) {
       return Strings.liteMainersImage;
     } else if (price >= secondRange && price < thirdRange) {
@@ -134,14 +134,5 @@ class PlansCubit extends Cubit<PlansState> {
       return Strings.eliteMinersImage;
     }
   }
-
-  String unitOfPower() {
-    if (cryptoName == 'BTC') {
-      return 'TH/S';
-    } else if (cryptoName == 'ETH') {
-      return 'MH/S';
-    } else {
-      return 'MH/S';
-    }
-  }
+  
 }

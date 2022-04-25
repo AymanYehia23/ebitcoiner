@@ -12,7 +12,7 @@ class DefaultDisabledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: height ?? 6.8.h,
+        height: height ?? 8.h,
         width: double.infinity,
         alignment: Alignment.center,
         decoration: const BoxDecoration(

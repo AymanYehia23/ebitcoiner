@@ -57,6 +57,8 @@ class _RecoveryCodeScreenState extends State<RecoveryCodeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double _height = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).padding.top + kToolbarHeight);
     final _forgetPasswordCubit = context.read<ForgetPasswordCubit>();
     return Stack(
       children: [
@@ -96,106 +98,105 @@ class _RecoveryCodeScreenState extends State<RecoveryCodeScreen> {
               ],
             ),
             body: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 4.w,
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 3.5.h,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 25.w,
-                          width: 25.w,
-                          child: SvgPicture.asset(
-                            Strings.msgImage,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 2.h,
-                    ),
-                    Text(
-                      Strings.recoveryCodeSent,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 22.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    SizedBox(
-                      height: 1.h,
-                    ),
-                    Text(
-                      'We’ve sent the password recovery code to your email "${_forgetPasswordCubit.email}"',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                            fontSize: 12.sp,
-                          ),
-                    ),
-                    SizedBox(
-                      height: 5.h,
-                    ),
-                    RecoveryCodeForm(
-                      formKey: _formKey,
-                      recoveryCodeController: _codeController,
-                    ),
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    Builder(
-                      builder: (context) {
-                        if (context
-                            .select((ForgetPasswordCubit f) => f.isEmpty)) {
-                          return DefaultDisabledButton(
-                            text: Text(
-                              'Next',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2!
-                                  .copyWith(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+              child: SizedBox(
+                height: _height,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 4.w,
+                    vertical: 2.h,
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 25.w,
+                            width: 25.w,
+                            child: SvgPicture.asset(
+                              Strings.msgImage,
+                              fit: BoxFit.fill,
                             ),
-                          );
-                        } else {
-                          return DefaultGradientButton(
-                            isFilled: true,
-                            text: BlocBuilder<ForgetPasswordCubit,
-                                ForgetPasswordState>(
-                              builder: (context, state) {
-                                if (state is VerifyCodeLoadingState) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 2.h,
+                      ),
+                      Text(
+                        Strings.recoveryCodeSent,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 22.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      SizedBox(
+                        height: 1.h,
+                      ),
+                      Text(
+                        'We’ve sent the password recovery code to your email "${_forgetPasswordCubit.email}"',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                              fontSize: 12.sp,
+                            ),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      RecoveryCodeForm(
+                        formKey: _formKey,
+                        recoveryCodeController: _codeController,
+                      ),
+                     const Spacer(),
+                      Builder(
+                        builder: (context) {
+                          if (context
+                              .select((ForgetPasswordCubit f) => f.isEmpty)) {
+                            return DefaultDisabledButton(
+                              text: Text(
+                                'Next',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            );
+                          } else {
+                            return DefaultGradientButton(
+                              isFilled: true,
+                              text: BlocBuilder<ForgetPasswordCubit,
+                                  ForgetPasswordState>(
+                                builder: (context, state) {
+                                  if (state is VerifyCodeLoadingState) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }
+                                  return Text(
+                                    'Next',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .copyWith(
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                   );
-                                }
-                                return Text(
-                                  'Next',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .copyWith(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                );
+                                },
+                              ),
+                              onPressed: () {
+                                _submit();
                               },
-                            ),
-                            onPressed: () {
-                              _submit();
-                            },
-                          );
-                        }
-                      },
-                    ),
-                  ],
+                            );
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

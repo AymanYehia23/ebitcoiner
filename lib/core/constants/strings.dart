@@ -54,6 +54,8 @@ class Strings {
   static const ltctIcon = 'assets/images/ltct_icon.png';
   static const featherChevronDownIcon =
       'assets/images/feather_chevron_down_icon.svg';
+  static const arrowUpRightIcon = 'assets/images/arrow-up-right.svg';
+  static const plusIcon = 'assets/images/plus.svg';
   static const featherChevronUp = 'assets/images/feather_chevron_up.svg';
   static const minerImage = 'assets/images/antMinerE9_image.png';
 
@@ -77,4 +79,7 @@ class Strings {
   static const getAsicsEndPoint = 'asic';
   static const addAsicContractEndPoint = 'asic/x/contract/add';
   static const getAsicContractEndPoint = 'asic/x/contract';
+  static const getWithdrawsEndpoint = 'transaction/getwithdraws';
+  static const withdrawRequestEndPoint = 'transaction/setwithdrawrequest';
+  static const getDepositsEndpoint = 'transaction/getdeposits';
 }

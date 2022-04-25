@@ -84,18 +84,18 @@ class Balance {
 }
 
 class DemoBalance {
-  int? rvn;
-  int? ltct;
-  int? eth;
-  int? btc;
+  double? rvn;
+  double? ltct;
+  double? eth;
+  double? btc;
 
   DemoBalance({this.rvn, this.ltct, this.eth, this.btc});
 
   DemoBalance.fromJson(Map<String, dynamic> json) {
-    rvn = json['rvn'];
-    ltct = json['ltct'];
-    eth = json['eth'];
-    btc = json['btc'];
+    rvn = json['rvn'] + 0.0;
+    ltct = json['ltct'] + 0.0;
+    eth = json['eth'] + 0.0;
+    btc = json['btc'] + 0.0;
   }
 
 }

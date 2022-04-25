@@ -47,15 +47,10 @@ class AssetsCubit extends Cubit<AssetsState> {
   //Assets total UI logic
   bool isExpanded = false;
   String expandedIcon = Strings.featherChevronDownIcon;
-  double totalProfit = 0.0;
   double totalBTC = 0.0;
-  double totalMinedBTC = 0.0;
   double totalETH = 0.0;
-  double totalMinedETH = 0.0;
   double totalRVN = 0.0;
-  double totalMinedRVN = 0.0;
   double totalLTCT = 0.0;
-  double totalMinedLTCT = 0.0;
   double totalBalance = 0.0;
 
   Future<void> getUserBalance() async {
@@ -84,51 +79,6 @@ class AssetsCubit extends Cubit<AssetsState> {
     totalLTCT = double.parse((totalLTCT).toStringAsFixed(2));
 
     totalBalance = totalBTC + totalETH + totalRVN + totalLTCT;
-  }
-
-  Future<void> getTotalProfit() async {
-    totalMinedBTC = 0.0;
-    totalMinedETH = 0.0;
-    totalMinedRVN = 0.0;
-    totalMinedLTCT = 0.0;
-    totalProfit = 0.0;
-    await getPlanContract();
-    emit(AssetsGetTotalProfitLoadingState());
-    if (plansContractList.isNotEmpty) {
-      for (PlanContractModel element in plansContractList) {
-        if (element.cryptoName == 'BTC') {
-          totalMinedBTC += await _converter.convertCryptocurrencyToUSD(
-            currencyType: Currency.btc,
-            currencyAmount: (element.totalMined!),
-          );
-        } else if (element.cryptoName == 'ETH') {
-          totalMinedETH += await _converter.convertCryptocurrencyToUSD(
-            currencyType: Currency.eth,
-            currencyAmount: (element.totalMined!),
-          );
-        } else if (element.cryptoName == 'RVN') {
-          totalMinedRVN += await _converter.convertCryptocurrencyToUSD(
-              currencyType: Currency.rvn,
-              currencyAmount: (element.totalMined!));
-        } else {
-          totalMinedLTCT += await _converter.convertCryptocurrencyToUSD(
-              currencyType: Currency.ltct,
-              currencyAmount: (element.totalMined!));
-        }
-        totalProfit =
-            totalMinedBTC + totalMinedETH + totalMinedRVN + totalMinedLTCT;
-        totalProfit = double.parse((totalProfit).toStringAsFixed(2));
-      }
-      emit(AssetsGetTotalProfitSuccessState());
-    } else {
-      totalMinedBTC = 0.0;
-      totalMinedETH = 0.0;
-      totalMinedRVN = 0.0;
-      totalMinedLTCT = 0.0;
-      totalProfit = 0.0;
-      emit(AssetsGetTotalProfitEmptyState());
-    }
-    totalBalance += totalProfit;
   }
 
   void changeSize() {
@@ -234,7 +184,8 @@ class AssetsCubit extends Cubit<AssetsState> {
       return selectedChartData[0].y! * 2;
     }
   }
-    double getMinChartValue() {
+
+  double getMinChartValue() {
     if (selectedChartData.isEmpty) {
       return 0;
     } else {
@@ -242,7 +193,7 @@ class AssetsCubit extends Cubit<AssetsState> {
     }
   }
 
-   double getInterChartValue() {
+  double getInterChartValue() {
     if (selectedChartData.isEmpty) {
       return 0.10;
     } else {
@@ -314,12 +265,5 @@ class AssetsCubit extends Cubit<AssetsState> {
           .chartDataList;
       emit(AssetsChartLTCTDataState());
     }
-  }
-
-  Future<void> getAllAssetsData() async {
-    await getUserData();
-    await getUserBalance();
-    await getTotalProfit();
-    await getAllChartData();
   }
 }

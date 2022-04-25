@@ -61,11 +61,6 @@ class HashRateScreen extends StatelessWidget {
                 FutureBuilder(
                     future: context.read<HashRateCubit>().getTotalPower(),
                     builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
                       return const HashrateTotalWidget();
                     }),
                 SizedBox(
