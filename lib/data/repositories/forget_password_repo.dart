@@ -1,8 +1,10 @@
-abstract class ForgetPasswordRepo {
-  Future<dynamic> postForgetPassword({required String email});
+import '../models/forget_password_model.dart';
 
-  Future<dynamic> postVerifyCode({required String email, required String code});
+abstract class ForgetPasswordRepo {
+  Future<dynamic> postForgetPassword({required ForgetPasswordModel forgetPasswordModel});
+
+  Future<dynamic> postVerifyCode({required VerifyCodeModel verifyCodeModel});
 
   Future<dynamic> postResetPassword(
-      {required String newPassword, required String code, required String accessToken});
+      {required ResetPasswordModel resetPasswordModel});
 }

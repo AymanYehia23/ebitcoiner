@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/core/secure_storage/secure_storage.dart';
 import 'package:hash_store/data/models/login_model.dart';
 import 'package:hash_store/data/repositories/login_repo.dart';
@@ -19,47 +21,71 @@ class LoginCubit extends Cubit<LoginState> {
   final SecureStorageRepo _secureStorage;
   final LoginRepo _loginRepo;
   LoginResponseModel _loginResponseModel;
+  String userName = '';
+  String password = '';
 
   Future<void> firstLoginAuth(
-      {required String userName, required String password}) async {
+      {required FirstLoginRequestModel firstLoginRequestModel}) async {
+    String errorMessage = Strings.defaultErrorMessage;
     emit(FirstLoginLoadingState());
     try {
-      await _loginRepo.fPostLogin(userName: userName, password: password);
+      await _loginRepo.fPostLogin(
+        firstLoginRequestModel: firstLoginRequestModel,
+      );
       emit(FirstLoginSuccessState());
-    } on DioError catch (_) {
-      emit(FirstLoginErrorState());
+    } on DioError catch (error) {
+      if (error.response == null) {
+        errorMessage = Strings.noInternetErrorMessage;
+      } else if (error.response!.data['message'] == 'Wrong credentials') {
+        errorMessage = 'Invalid username or password';
+      }
+      emit(FirstLoginErrorState(errorMessage: errorMessage));
+    } catch (_) {
+      emit(FirstLoginErrorState(errorMessage: errorMessage));
     }
   }
 
   Future<void> secondeLoginAuth(
-      {required String userName, required String otp}) async {
+      {required SecondLoginRequestModel secondLoginRequestModel}) async {
+    String errorMessage = Strings.defaultErrorMessage;
     emit(SecondeLoginLoadingState());
     try {
-      _loginResponseModel = LoginResponseModel.fromJson(
-        await _loginRepo.sPostLogin(userName: userName, otp: otp),
+      _loginResponseModel = await _loginRepo.sPostLogin(
+        secondLoginRequestModel: secondLoginRequestModel,
       );
-      emit(SecondeLoginSuccessState());
-    } on DioError catch (_) {
-      emit(SecondeLoginErrorState());
+      await saveTokens();
+      emit(SecondLoginSuccessState());
+    } on DioError catch (error) {
+      if (error.response == null) {
+        errorMessage = Strings.noInternetErrorMessage;
+      } else if (error.response!.statusCode == 400) {
+        errorMessage = 'Wrong OTP';
+      }
+      emit(SecondLoginErrorState(errorMessage: errorMessage));
+    } catch (_) {
+      emit(SecondLoginErrorState(errorMessage: errorMessage));
     }
   }
 
   Future<void> saveTokens() async {
-    emit(SaveTokensLoadingState());
     await _secureStorage.addValue(
         key: 'accessToken', value: _loginResponseModel.jwt?.accessToken);
     await _secureStorage.addValue(
       key: 'refreshToken',
       value: _loginResponseModel.jwt?.refreshToken,
     );
-    emit(SaveTokensSuccessState());
   }
 
   Future<void> tryAutoLogin() async {
     emit(AutoLoginLoadingState());
     if (await _secureStorage.containsKey(key: 'accessToken')) {
-      print(await _secureStorage.getValue(key: 'accessToken'));
-      print(await _secureStorage.getValue(key: 'refreshToken'));
+      if (kDebugMode) {
+        print(await _secureStorage.getValue(key: 'accessToken'));
+      }
+      if (kDebugMode) {
+        print(await _secureStorage.getValue(key: 'refreshToken'));
+      }
+
       emit(AutoLoginSuccessState());
     } else {
       emit(AutoLoginFailedState());
@@ -67,27 +93,28 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   //UI logic
-  bool isEmpty = true;
-  bool isObscure = true;
-  IconData iconData = Icons.visibility_outlined;
-  String userName = '';
-  String password = '';
+  bool _isEmpty = true;
+  get isEmpty => _isEmpty;
+  bool _isObscure = true;
+  get isObscure => _isObscure;
+  IconData _iconData = Icons.visibility_outlined;
+  get iconData => _iconData;
 
   void changeIsEmpty(bool i) {
     if (i) {
-      isEmpty = true;
+      _isEmpty = true;
       emit(ChangeIsEmptyTrueState());
     } else {
-      isEmpty = false;
+      _isEmpty = false;
       emit(ChangeIsEmptyFalseState());
     }
   }
 
   void changePasswordVisibility() {
     emit(ChangePasswordVisibilityInitialState());
-    isObscure = !isObscure;
-    iconData =
-        isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    _isObscure = !_isObscure;
+    _iconData =
+        _isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(ChangePasswordVisibilitySuccessState());
   }
 }

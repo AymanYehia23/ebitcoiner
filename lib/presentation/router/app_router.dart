@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:hash_store/presentation/Home/screen/home_screen.dart';
-import 'package:hash_store/presentation/buy_mining_device/screens/buy_mining_device_screen.dart';
-import 'package:hash_store/presentation/add_plan/screens/add_plan_screen.dart';
-import 'package:hash_store/presentation/deposit/screen/deposit_screen.dart';
-import 'package:hash_store/presentation/forget_password/screen/forget_password_screen.dart';
-import 'package:hash_store/presentation/forget_password/screen/reset_password_screen.dart';
-import 'package:hash_store/presentation/log_in/screen/first_login_screen.dart';
-import 'package:hash_store/presentation/log_in/screen/second_login_screen.dart';
-import 'package:hash_store/presentation/withdraw/screen/withdraw_currency_screen.dart';
-import 'package:hash_store/presentation/withdraw/screen/withdraw_screen.dart';
+
 import '../../core/exceptions/route_exception.dart';
-import '../forget_password/screen/recovery_code_screen.dart';
-import '../sign_up/screen/sign_up_screen.dart';
+
+import '../devices/add_mining_device/screens/add_mining_device_screen.dart';
+import '../hashrate/add_plan/screen/add_plan_screen.dart';
+import '../home/home_screen.dart';
 import '../splash/screen/splash_screen.dart';
+import '../user_authentication/forget_password/screens/forget_password_screen.dart';
+import '../user_authentication/forget_password/screens/recovery_code_screen.dart';
+import '../user_authentication/forget_password/screens/reset_password_screen.dart';
+import '../user_authentication/log_in/screens/first_login_screen.dart';
+import '../user_authentication/log_in/screens/second_login_screen.dart';
+import '../user_authentication/sign_up/screen/sign_up_screen.dart';
+import '../wallet/deposit/screen/deposit_screen.dart';
+import '../wallet/withdraw/screen/withdraw_currency_screen.dart';
+import '../wallet/withdraw/screen/withdraw_screen.dart';
 
 class AppRouter {
   static const String signUp = 'signUp';

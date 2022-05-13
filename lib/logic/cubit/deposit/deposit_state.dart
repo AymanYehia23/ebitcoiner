@@ -13,15 +13,17 @@ class GetDepositAddressLoadingState extends DepositState {}
 
 class GetDepositAddressSuccessState extends DepositState {}
 
-class GetDepositAddressErrorState extends DepositState {}
+class GetDepositAddressErrorState extends DepositState {
+  final String errorMessage;
+  const GetDepositAddressErrorState({
+    required this.errorMessage,
+  });
+}
 
-
-class DepositBTCState extends DepositState{}
+class DepositBTCState extends DepositState {}
 
 class DepositETHState extends DepositState {}
 
 class DepositRVNState extends DepositState {}
 
 class DepositLTCTState extends DepositState {}
-
-

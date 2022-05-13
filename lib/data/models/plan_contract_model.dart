@@ -1,4 +1,20 @@
-class PlanContractModel {
+class AddPlanContractRequestModel {
+  String planId;
+  String currency;
+  AddPlanContractRequestModel({
+    required this.planId,
+    required this.currency,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'planID': planId,
+      'currency': currency,
+    };
+  }
+}
+
+class GetPlanContractResponseModel {
   String? sId;
   bool? demo;
   String? cryptoName;
@@ -12,39 +28,51 @@ class PlanContractModel {
   List<HourlyGains>? hourlyGains;
   int? iV;
 
-  PlanContractModel({
-    this.sId,
-    this.demo,
-    this.cryptoName,
-    this.startDate,
-    this.endDate,
-    this.totalMined,
-    this.planStatus,
-    this.hashPower,
-    this.userID,
-    this.planID,
+  GetPlanContractResponseModel({
+    this.sId = '',
+    this.demo = true,
+    this.cryptoName = '',
+    this.startDate = '',
+    this.endDate = '',
+    this.totalMined = 0.0,
+    this.planStatus = true,
+    this.hashPower = 0.0,
+    this.userID = '',
+    this.planID = '',
     this.hourlyGains,
-    this.iV,
+    this.iV = 0,
   });
 
-  PlanContractModel.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    demo = json['demo'];
-    cryptoName = json['cryptoName'];
-    startDate = json['startDate'].toString().substring(0,10);
-    endDate = json['endDate'].toString().substring(0, 10);
-    totalMined = json['totalMined'] + 0.0;
-    planStatus = json['planStatus'];
-    hashPower = json['hashPower'] + 0.0;
-    userID = json['userID'];
-    planID = json['planID'];
+  GetPlanContractResponseModel.fromJson(Map<String, dynamic> json) {
+    json['_id'] == null ? sId = '' : sId = json['_id'];
+    json['demo'] == null ? demo = true : demo = json['demo'];
+    json['cryptoName'] == null
+        ? cryptoName = ''
+        : cryptoName = json['cryptoName'];
+    json['startDate'] == null
+        ? startDate = ''
+        : startDate = json['startDate'].toString().substring(0, 10);
+    json['endDate'] == null
+        ? endDate = ''
+        : endDate = json['endDate'].toString().substring(0, 10);
+    json['totalMined'] == null
+        ? totalMined = 0.0
+        : totalMined = json['totalMined'] + 0.0;
+    json['planStatus'] == null
+        ? planStatus = true
+        : planStatus = json['planStatus'];
+    json['hashPower'] == null
+        ? hashPower = 0.0
+        : hashPower = json['hashPower'] + 0.0;
+    json['userID'] == null ? userID = '' : userID = json['userID'];
+    json['planID'] == null ? planID = '' : planID = json['planID'];
     if (json['hourlyGains'] != null) {
       hourlyGains = <HourlyGains>[];
       json['hourlyGains'].forEach((v) {
         hourlyGains!.add(HourlyGains.fromJson(v));
       });
     }
-    iV = json['__v'];
+    json['__v'] == null ? iV = 0 : iV = json['__v'];
   }
 }
 
@@ -53,11 +81,11 @@ class HourlyGains {
   double? profit;
   String? sId;
 
-  HourlyGains({this.date, this.profit, this.sId});
+  HourlyGains({this.date = '', this.profit = 0.0, this.sId = ''});
 
   HourlyGains.fromJson(Map<String, dynamic> json) {
-    date = json['date'];
-    profit = json['profit'] + 0.0;
-    sId = json['_id'];
+    json['date'] == null ? date = '' : date = json['date'];
+    json['profit'] == null ? profit = 0.0 : profit = json['profit'] + 0.0;
+    json['_id'] == null ? sId = '' : sId = json['_id'];
   }
 }

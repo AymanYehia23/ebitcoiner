@@ -9,7 +9,7 @@ import 'package:meta/meta.dart';
 
 import '../../../core/constants/strings.dart';
 import '../../../data/models/login_model.dart';
-import '../../currency_converter.dart';
+import '../../../data/data_providers/currency_converter_api.dart';
 
 part 'assets_state.dart';
 
@@ -21,26 +21,41 @@ class AssetsCubit extends Cubit<AssetsState> {
   final PlanContractRepo _planContractRepo;
   final UserDataRepo _userDataRepo;
   User userData;
-  List<PlanContractModel> plansContractList = [];
+  List<GetPlanContractResponseModel> plansContractList = [];
   final CurrencyConverter _converter;
 
   Future<void> getPlanContract() async {
+    String errorMessage = Strings.defaultErrorMessage;
     emit(AssetsGetPlanContractLoadingState());
     try {
       plansContractList = await _planContractRepo.getPlanContract();
       emit(AssetsGetPlanContractSuccessState());
-    } on DioError catch (_) {
-      emit(AssetsGetPlanContractErrorState());
+    } on DioError catch (error) {
+      if (error.response == null) {
+        errorMessage = Strings.noInternetErrorMessage;
+      }
+      emit(AssetsGetPlanContractErrorState(errorMessage: errorMessage));
+    } catch (_) {
+      emit(AssetsGetPlanContractErrorState(errorMessage: errorMessage));
     }
   }
 
   Future<void> getUserData() async {
+    String errorMessage = Strings.defaultErrorMessage;
     emit(AssetsGetUserDataLoadingState());
     try {
       userData = await _userDataRepo.getUserData();
       emit(AssetsGetUserDataSuccessState());
-    } on DioError catch (_) {
-      emit(AssetsGetUserDataErrorState());
+    } on DioError catch (error) {
+      if (error.response == null) {
+        errorMessage = Strings.noInternetErrorMessage;
+      } else if (error.response!.statusCode == 401) {
+        emit(UnauthorizedState());
+        return;
+      }
+      emit(AssetsGetUserDataErrorState(errorMessage: errorMessage));
+    } catch (_) {
+      emit(AssetsGetUserDataErrorState(errorMessage: errorMessage));
     }
   }
 
@@ -79,6 +94,7 @@ class AssetsCubit extends Cubit<AssetsState> {
     totalLTCT = double.parse((totalLTCT).toStringAsFixed(2));
 
     totalBalance = totalBTC + totalETH + totalRVN + totalLTCT;
+    totalBalance = double.parse((totalBalance).toStringAsFixed(2));
   }
 
   void changeSize() {
@@ -93,7 +109,7 @@ class AssetsCubit extends Cubit<AssetsState> {
 
   //Chart UI logic
   int selectedPlanButton = -1;
-  Currency currency = Currency.btc;
+  Currency currency = Currency.non;
   List<ChartData> selectedChartData = [];
   List<ChartData> btcChartData = [];
   List<ChartData> ethChartData = [];
@@ -109,6 +125,7 @@ class AssetsCubit extends Cubit<AssetsState> {
   int ltctPlanNumber = 0;
 
   Future<void> getAllChartData() async {
+    await getPlanContract();
     btcChartDataList = [];
     ethChartDataList = [];
     rvnChartDataList = [];
@@ -125,12 +142,12 @@ class AssetsCubit extends Cubit<AssetsState> {
     for (var plan in plansContractList) {
       if (plan.cryptoName == 'BTC' && plan.planStatus!) {
         for (var element in plan.hourlyGains!) {
-          btcChartData.add(ChartData(element.date, element.profit as double));
+          btcChartData.add(ChartData(element.date!, element.profit!));
         }
         btcChartDataList.add(
           ChartDataItem(
             'BTC Plan ${btcPlanNumber += 1}',
-            plan.cryptoName,
+            plan.cryptoName!,
             btcChartData,
           ),
         );
@@ -138,37 +155,37 @@ class AssetsCubit extends Cubit<AssetsState> {
         for (var element in plan.hourlyGains!) {
           ethChartData.add(
             ChartData(
-              element.date,
-              element.profit as double,
+              element.date!,
+              element.profit!,
             ),
           );
         }
         ethChartDataList.add(
           ChartDataItem(
             'ETH Plan ${ethPlanNumber += 1}',
-            plan.cryptoName,
+            plan.cryptoName!,
             ethChartData,
           ),
         );
       } else if (plan.cryptoName == 'RVN' && plan.planStatus!) {
         for (var element in plan.hourlyGains!) {
-          rvnChartData.add(ChartData(element.date, element.profit as double));
+          rvnChartData.add(ChartData(element.date!, element.profit!));
         }
         rvnChartDataList.add(
           ChartDataItem(
             'RVN Plan ${rvnPlanNumber += 1}',
-            plan.cryptoName,
+            plan.cryptoName!,
             rvnChartData,
           ),
         );
       } else if (plan.cryptoName == 'LTCT' && plan.planStatus!) {
         for (var element in plan.hourlyGains!) {
-          ltctChartData.add(ChartData(element.date, element.profit as double));
+          ltctChartData.add(ChartData(element.date!, element.profit!));
         }
         ltctChartDataList.add(
           ChartDataItem(
             'LTCT Plan ${ltctPlanNumber += 1}',
-            plan.cryptoName,
+            plan.cryptoName!,
             ltctChartData,
           ),
         );
@@ -181,7 +198,7 @@ class AssetsCubit extends Cubit<AssetsState> {
     if (selectedChartData.isEmpty) {
       return 1;
     } else {
-      return selectedChartData[0].y! * 2;
+      return selectedChartData[0].y * 2;
     }
   }
 
@@ -189,7 +206,7 @@ class AssetsCubit extends Cubit<AssetsState> {
     if (selectedChartData.isEmpty) {
       return 0;
     } else {
-      return selectedChartData[0].y! / 2;
+      return selectedChartData[0].y / 2;
     }
   }
 

@@ -1,19 +1,22 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/core/secure_storage/secure_storage.dart';
 
 class HttpService {
   static late Dio _dio;
-  static SecureStorage secureStorage = SecureStorage();
+  static final SecureStorage _secureStorage = SecureStorage();
 
   static init() async {
     _dio = Dio(
       BaseOptions(
         baseUrl: Strings.baseUrl,
         queryParameters: {'key': Strings.apiKey},
+        connectTimeout: 5000,
+        receiveTimeout: 3000,
       ),
     );
-    initializeInterceptors();
+    _initializeInterceptors();
   }
 
   static Future<Response> getRequest({
@@ -54,30 +57,39 @@ class HttpService {
     );
   }
 
-  static initializeInterceptors() {
+  static _initializeInterceptors() {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onError: (error, errorInterceptorHandler) async {
           if ((error.response?.statusCode == 401 &&
               error.response?.data == 'Unauthorized')) {
-            print('in if: ${error.response?.data}');
-            if (await secureStorage.containsKey(key: 'refreshToken')) {
-              print('find refreshToken');
-              await refreshToken();
-              return errorInterceptorHandler.resolve(
-                await _retry(error.requestOptions),
-              );
+            if (kDebugMode) {
+              print('in if: ${error.response?.data}');
+            }
+            if (await _secureStorage.containsKey(key: 'refreshToken')) {
+              if (kDebugMode) {
+                print('find refreshToken');
+              }
+              await _refreshToken();
+              if (await _secureStorage.containsKey(key: 'refreshToken')) {
+                return errorInterceptorHandler.resolve(
+                  await _retry(error.requestOptions),
+                );
+              } else {
+                return errorInterceptorHandler.next(error);
+              }
             }
           }
-          print('out of if: ${error.response!.data}');
           return errorInterceptorHandler.next(error);
         },
         onRequest: (request, requestInterceptorHandler) async {
           if (request.path != Strings.sLoginEndPoint ||
-              request.path != Strings.getNewAccessTokenEndPoint) {
+              request.path != Strings.getNewAccessTokenEndPoint ||
+              request.path != Strings.forgetPasswordEndPoint ||
+              request.path != Strings.verifyCodeEndPoint) {
             request.headers = {
               'Authorization':
-                  'Bearer ${await secureStorage.getValue(key: 'accessToken')}'
+                  'Bearer ${await _secureStorage.getValue(key: 'accessToken')}'
             };
           }
           return requestInterceptorHandler.next(request);
@@ -90,22 +102,31 @@ class HttpService {
     );
   }
 
-  static Future<void> refreshToken() async {
-    final refreshToken = await secureStorage.getValue(key: 'refreshToken');
-    print(refreshToken);
-    final response = await _dio
-        .post(Strings.getNewAccessTokenEndPoint, data: {'token': refreshToken});
-    if (response.statusCode == 202) {
-      // successfully got the new access token
-      print('successfully got the new access token');
-      print(response.data);
-      await secureStorage.deleteValue(key: 'accessToken');
-      await secureStorage.addValue(key: 'accessToken', value: response.data);
-    } else {
-      print('refresh token is wrong so log out user');
-      // refresh token is wrong so log out user.
-      await secureStorage.deleteValue(key: 'accessToken');
-      await secureStorage.deleteValue(key: 'refreshToken');
+  static Future<void> _refreshToken() async {
+    Dio dio = Dio(
+      BaseOptions(
+        baseUrl: Strings.baseUrl,
+        queryParameters: {'key': Strings.apiKey},
+        connectTimeout: 5000,
+        receiveTimeout: 3000,
+      ),
+    );
+    final refreshToken = await _secureStorage.getValue(key: 'refreshToken');
+    try {
+      final response = await dio.post(Strings.getNewAccessTokenEndPoint,
+          data: {'token': refreshToken});
+      if (kDebugMode) {
+        print('successfully got the new access token');
+      }
+      if (kDebugMode) {
+        print(response.data);
+      }
+      await _secureStorage.addValue(key: 'accessToken', value: response.data);
+    } on DioError catch (_) {
+      if (kDebugMode) {
+        print('refresh token is wrong so log out user');
+      }
+      await _secureStorage.deleteAll();
     }
   }
 
@@ -114,6 +135,7 @@ class HttpService {
       method: requestOptions.method,
       headers: requestOptions.headers,
     );
+
     return _dio.request<dynamic>(
       requestOptions.path,
       data: requestOptions.data,

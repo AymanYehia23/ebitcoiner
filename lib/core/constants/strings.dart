@@ -1,42 +1,9 @@
 class Strings {
   // App
-  static const appTitle = 'App Name';
-
-  //Home Screen
-  static const assets = 'Assets';
-
-  //Splash Screen
-  static const splashScreenDescription =
-      'Get Access to Real Mining Power Without Any Extra Effort';
-
-  // Signup Screen
-  static const successfulSignUpMessage =
-      'The account has been created successfully\nyou can log in now';
-  static const createNewAccount = 'Create New Account';
-
-  //Login Screen
-  static const login = 'Login';
-  static const forgetPassword = 'Forget your Password';
-
-  //Enter New Password & Reset Password Screen
-  static const enterNewPassword = 'Enter New Password';
-  static const forgetMsg =
-      'Enter your account email to send you password recovery code';
-
-  //Profile Screen
-  static const profile = 'Profile';
-
-  //Devices Screen
-  static const devices = 'Devices';
-
-  //HashRate Screen
-  static const hashRate = 'HashRate';
-
-  //Recovery Screen
-  static const recoveryCodeSent = 'Recovery code sent!';
+  static const appTitle = 'Hash Store';
 
   //images paths
-  static const splashImage = 'assets/images/splash_image.svg';
+  static const splashImage = 'assets/images/splash_image.jpg';
   static const msgImage = 'assets/images/msg_image.svg';
   static const filterIcon = 'assets/images/filter_icon.svg';
   static const assetsIcon = 'assets/images/assets_icon.svg';
@@ -48,9 +15,9 @@ class Strings {
   static const regularMinersImage = 'assets/images/regular_miners_image.svg';
   static const proMinersImage = 'assets/images/pro_miners_image.svg';
   static const eliteMinersImage = 'assets/images/elite_miners_image.svg';
-  static const btcIcon = 'assets/images/btc_icon.svg';
-  static const ethIcon = 'assets/images/eth_icon.svg';
-  static const rvnIcon = 'assets/images/rvn_icon.svg';
+  static const btcIcon = 'assets/images/btc_icon.png';
+  static const ethIcon = 'assets/images/eth_icon.png';
+  static const rvnIcon = 'assets/images/rvn_icon.png';
   static const ltctIcon = 'assets/images/ltct_icon.png';
   static const featherChevronDownIcon =
       'assets/images/feather_chevron_down_icon.svg';
@@ -82,4 +49,9 @@ class Strings {
   static const getWithdrawsEndpoint = 'transaction/getwithdraws';
   static const withdrawRequestEndPoint = 'transaction/setwithdrawrequest';
   static const getDepositsEndpoint = 'transaction/getdeposits';
+
+  //error messages
+  static const defaultErrorMessage = 'Sorry, an error occurred';
+  static const noInternetErrorMessage = 'Check your internet connection';
+  static const loginSessionError = 'Your login session has expired.';
 }

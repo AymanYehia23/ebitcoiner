@@ -1,4 +1,7 @@
+import '../models/delete_account_model.dart';
+
 abstract class DeleteAccountRepo {
-  Future<void> requestDeleteAccount(
-      {required String password, required String? refreshToken});
+  Future<dynamic> requestDeleteAccount({
+    required DeleteAccountModel deleteAccountModel,
+  });
 }

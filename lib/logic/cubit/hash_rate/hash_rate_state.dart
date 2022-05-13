@@ -9,7 +9,18 @@ abstract class HashRateState extends Equatable {
 
 class HashRateInitial extends HashRateState {}
 
-class HashRateGetTotalPowerLoadingState extends HashRateState{}
+class HashRateGetPlanContractLoadingState extends HashRateState {}
+
+class HashRateGetPlanContractSuccessState extends HashRateState {}
+
+class HashRateGetPlanContractErrorState extends HashRateState {
+  final String errorMessage;
+  const HashRateGetPlanContractErrorState({
+    required this.errorMessage,
+  });
+}
+
+class HashRateGetTotalPowerLoadingState extends HashRateState {}
 
 class HashRateGetTotalPowerSuccessState extends HashRateState {}
 
@@ -22,4 +33,3 @@ class HashRateTotalChangeSizeState extends HashRateState {}
 class HashRateExpiredChangeSizeInitState extends HashRateState {}
 
 class HashRateExpiredChangeSizeState extends HashRateState {}
-

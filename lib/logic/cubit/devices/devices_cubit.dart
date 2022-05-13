@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hash_store/core/constants/enums.dart';
+import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/data/models/asic_contract_model.dart';
 import 'package:hash_store/data/repositories/asic_contract_repo.dart';
 
@@ -14,50 +15,44 @@ class DevicesCubit extends Cubit<DevicesState> {
   double totalMined = 0.0;
   Currency currency = Currency.btc;
 
-  void changeChartButton(Currency selectedCurrency) {
-    if (selectedCurrency == Currency.btc) {
-      currency = selectedCurrency;
-      emit(DevicesChartBtcState());
-    } else if (selectedCurrency == Currency.eth) {
-      currency = selectedCurrency;
-      emit(DevicesChartETHState());
-    } else if (selectedCurrency == Currency.rvn) {
-      currency = selectedCurrency;
-      emit(DevicesChartRVNState());
-    } else {
-      currency = selectedCurrency;
-      emit(DevicesChartLTCTState());
-    }
-  }
-
   //Business Logic
   final AsicContractRepo _asicContractRepo;
-  List<AsicContractModel> asicContractList = [];
+  List<GetAsicContractResponseModel> asicContractList = [];
 
   Future<void> getAsicContract() async {
+    asicContractList = [];
+    String errorMessage = Strings.defaultErrorMessage;
     emit(GetAsicContractLoadingState());
     try {
       asicContractList = await _asicContractRepo.getAsicContract();
-      getTotalPower();
+      getTotalMined();
       emit(GetAsicContractSuccessState());
-    } on DioError catch (_) {
-      emit(GetAsicContractErrorState());
+    } on DioError catch (error) {
+      if (error.response == null) {
+        errorMessage = Strings.noInternetErrorMessage;
+      } else if (error.response!.statusCode == 401) {
+        emit(UnauthorizedState());
+        return;
+      }
+      emit(GetAsicContractErrorState(errorMessage: errorMessage));
+    } catch (_) {
+      emit(GetAsicContractErrorState(errorMessage: errorMessage));
     }
   }
 
-  void getTotalPower() {
-    for (AsicContractModel asic in asicContractList) {
+  void getTotalMined() {
+    for (GetAsicContractResponseModel asic in asicContractList) {
       totalMined += asic.totalMined!;
     }
   }
 
-  Status getAsicStatus(int index) {
+  AsicStatus getAsicStatus(int index) {
     if (asicContractList[index].asicStatus!) {
-      return Status.online;
+      return AsicStatus.online;
     } else if (asicContractList[index].expired!) {
-      return Status.offline;
+      return AsicStatus.offline;
     } else {
-      return Status.onDemand;
+      return AsicStatus.onDemand;
     }
   }
 }

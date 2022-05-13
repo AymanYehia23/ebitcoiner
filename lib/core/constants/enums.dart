@@ -3,6 +3,7 @@ enum Currency {
   eth,
   rvn,
   ltct,
+  non,
 }
 
 enum Period{
@@ -10,8 +11,14 @@ enum Period{
   short
 }
 
-enum Status{
+enum AsicStatus{
   online,
   offline,
   onDemand,
+}
+
+enum TransactionStatus{
+  processing,
+  sent,
+  failed,
 }

@@ -9,19 +9,25 @@ class AssetsGetUserDataLoadingState extends AssetsState {}
 
 class AssetsGetUserDataSuccessState extends AssetsState {}
 
-class AssetsGetUserDataErrorState extends AssetsState {}
+class AssetsGetUserDataErrorState extends AssetsState {
+  final String errorMessage;
+  AssetsGetUserDataErrorState({
+    required this.errorMessage,
+  });
+}
 
-class AssetsGetTotalProfitLoadingState extends AssetsState {}
-
-class AssetsGetTotalProfitSuccessState extends AssetsState {}
-
-class AssetsGetTotalProfitEmptyState extends AssetsState {}
+class UnauthorizedState extends AssetsState {}
 
 class AssetsGetPlanContractLoadingState extends AssetsState {}
 
 class AssetsGetPlanContractSuccessState extends AssetsState {}
 
-class AssetsGetPlanContractErrorState extends AssetsState {}
+class AssetsGetPlanContractErrorState extends AssetsState {
+  final String errorMessage;
+  AssetsGetPlanContractErrorState({
+    required this.errorMessage,
+  });
+}
 
 class AssetsTotalChangeSizeState extends AssetsState {}
 
@@ -35,7 +41,7 @@ class AssetsChartEthState extends AssetsState {}
 
 class AssetsChartRVNState extends AssetsState {}
 
-class AssetsChartLTCTState extends AssetsState{}
+class AssetsChartLTCTState extends AssetsState {}
 
 class AssetsChartBtcDataState extends AssetsState {}
 

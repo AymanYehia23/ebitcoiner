@@ -18,8 +18,11 @@ class FirstLoginSuccessState extends LoginState {
   List<Object?> get props => [FirstLoginSuccessState];
 }
 
-
 class FirstLoginErrorState extends LoginState {
+  final String errorMessage;
+  FirstLoginErrorState({
+    required this.errorMessage,
+  });
   @override
   List<Object?> get props => [FirstLoginErrorState];
 }
@@ -29,24 +32,18 @@ class SecondeLoginLoadingState extends LoginState {
   List<Object?> get props => [SecondeLoginLoadingState];
 }
 
-class SecondeLoginSuccessState extends LoginState {
+class SecondLoginSuccessState extends LoginState {
   @override
-  List<Object?> get props => [SecondeLoginSuccessState];
+  List<Object?> get props => [SecondLoginSuccessState];
 }
 
-class SecondeLoginErrorState extends LoginState {
+class SecondLoginErrorState extends LoginState {
+  final String errorMessage;
+  SecondLoginErrorState({
+    required this.errorMessage,
+  });
   @override
-  List<Object?> get props => [SecondeLoginErrorState];
-}
-
-class SaveTokensLoadingState extends LoginState {
-  @override
-  List<Object?> get props => [SaveTokensLoadingState];
-}
-
-class SaveTokensSuccessState extends LoginState {
-  @override
-  List<Object?> get props => [SaveTokensSuccessState];
+  List<Object?> get props => [SecondLoginErrorState];
 }
 
 class AutoLoginLoadingState extends LoginState {
@@ -63,7 +60,6 @@ class AutoLoginFailedState extends LoginState {
   @override
   List<Object?> get props => [AutoLoginFailedState];
 }
-
 
 class ChangeIsEmptyTrueState extends LoginState {
   @override

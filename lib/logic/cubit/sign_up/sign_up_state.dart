@@ -19,24 +19,24 @@ class SignUpSuccessState extends SignUpState {
 }
 
 class SignUpErrorState extends SignUpState {
-  final String error;
+  final String errorMessage;
 
-  SignUpErrorState({required this.error});
+  SignUpErrorState({required this.errorMessage});
 
   @override
   List<Object?> get props => [SignUpErrorState];
 }
 
-class ChangeIsEmptyTrueState extends SignUpState{
+class ChangeIsEmptyTrueState extends SignUpState {
   @override
   List<Object?> get props => [ChangeIsEmptyTrueState];
 }
 
-class ChangeIsEmptyFalseState extends SignUpState{
+class ChangeIsEmptyFalseState extends SignUpState {
   @override
   List<Object?> get props => [ChangeIsEmptyFalseState];
-
 }
+
 class ChangePasswordVisibilityLoadingState extends SignUpState {
   @override
   List<Object?> get props => [ChangePasswordVisibilityLoadingState];

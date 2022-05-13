@@ -1,11 +1,10 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/presentation/router/app_router.dart';
-import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../shared_components/default_gradient_button.dart';
+import '../../shared_components/gradient_background_container.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -23,16 +22,16 @@ class SplashScreen extends StatelessWidget {
                 SizedBox(
                   height: 45.h,
                   width: double.infinity,
-                  child: SvgPicture.asset(
-                    Strings.splashImage,
-                    fit: BoxFit.fill,
+                  child: const FlareActor(
+                    'assets/flares/cloud_loading.flr',
+                    animation: 'Sync',
                   ),
                 ),
                 SizedBox(
                   height: 3.5.h,
                 ),
                 Text(
-                  Strings.splashScreenDescription,
+                  'Get Access to Real Mining Power Without Any Extra Effort',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontSize: 20.sp,
@@ -50,7 +49,8 @@ class SplashScreen extends StatelessWidget {
                         ),
                   ),
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, AppRouter.signUp);
+                    Navigator.of(context)
+                        .pushReplacementNamed(AppRouter.signUp);
                   },
                 ),
                 SizedBox(
@@ -66,8 +66,8 @@ class SplashScreen extends StatelessWidget {
                         ),
                   ),
                   onPressed: () {
-                    Navigator.pushReplacementNamed(
-                        context, AppRouter.firstLogin);
+                    Navigator.of(context)
+                        .pushReplacementNamed(AppRouter.firstLogin);
                   },
                 ),
               ],

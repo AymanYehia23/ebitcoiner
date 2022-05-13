@@ -16,6 +16,24 @@ class AssetsTotalWidget extends StatelessWidget {
     return FutureBuilder(
         future: context.read<AssetsCubit>().getUserBalance(),
         builder: (context, snapshot) {
+          String _totalBalance = '';
+          String _totalBTC = '';
+          String _totalETH ='';
+          String _totalRVN = '';
+          String _totalLTCT = '';
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            _totalBalance = '';
+            _totalBTC = '';
+            _totalETH = '';
+            _totalRVN = '';
+            _totalLTCT = '';
+          } else if (snapshot.connectionState == ConnectionState.done) {
+            _totalBalance = context.watch<AssetsCubit>().totalBalance.toString();
+            _totalBTC = context.watch<AssetsCubit>().totalBTC.toString();
+            _totalETH = context.watch<AssetsCubit>().totalETH.toString();
+            _totalRVN = context.watch<AssetsCubit>().totalRVN.toString();
+            _totalLTCT = context.watch<AssetsCubit>().totalLTCT.toString();
+          }
           return AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
@@ -55,7 +73,7 @@ class AssetsTotalWidget extends StatelessWidget {
                         ),
                         Builder(builder: (context) {
                           return Text(
-                            '\$${context.watch<AssetsCubit>().totalBalance.toStringAsFixed(2)}',
+                            '\$$_totalBalance',
                             style:
                                 Theme.of(context).textTheme.bodyText1!.copyWith(
                                       fontSize: (14.sp),
@@ -72,26 +90,26 @@ class AssetsTotalWidget extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    SvgPicture.asset(
+                    Image.asset(
                       Strings.btcIcon,
-                      height: (4.h),
-                      width: (4.w),
+                      height: (4.5.h),
+                      width: (8.w),
                     ),
                     SizedBox(
                       width: (2.w),
                     ),
-                    SvgPicture.asset(
+                    Image.asset(
                       Strings.ethIcon,
-                      height: (4.h),
-                      width: (4.w),
+                      height: (4.5.h),
+                      width: (8.w),
                     ),
                     SizedBox(
                       width: (2.w),
                     ),
-                    SvgPicture.asset(
+                    Image.asset(
                       Strings.rvnIcon,
-                      height: (4.h),
-                      width: (4.w),
+                      height: (4.5.h),
+                      width: (8.w),
                     ),
                     SizedBox(
                       width: (2.w),
@@ -136,10 +154,10 @@ class AssetsTotalWidget extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            SvgPicture.asset(
+                            Image.asset(
                               Strings.btcIcon,
+                              width: (6.w),
                               height: (3.h),
-                              width: (3.w),
                             ),
                             SizedBox(
                               width: (2.w),
@@ -158,7 +176,7 @@ class AssetsTotalWidget extends StatelessWidget {
                             Builder(
                               builder: (context) {
                                 return Text(
-                                  '\$${context.watch<AssetsCubit>().totalBTC}',
+                                  '\$$_totalBTC',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1!
@@ -173,10 +191,10 @@ class AssetsTotalWidget extends StatelessWidget {
                         const Divider(color: Colors.grey),
                         Row(
                           children: [
-                            SvgPicture.asset(
+                            Image.asset(
                               Strings.ethIcon,
+                             width: (6.w),
                               height: (3.h),
-                              width: (3.w),
                             ),
                             SizedBox(
                               width: (2.w),
@@ -195,7 +213,7 @@ class AssetsTotalWidget extends StatelessWidget {
                             Builder(
                               builder: (context) {
                                 return Text(
-                                  '\$${context.watch<AssetsCubit>().totalETH}',
+                                  '\$$_totalETH',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1!
@@ -210,10 +228,10 @@ class AssetsTotalWidget extends StatelessWidget {
                         const Divider(color: Colors.grey),
                         Row(
                           children: [
-                            SvgPicture.asset(
+                            Image.asset(
                               Strings.rvnIcon,
+                              width: (6.w),
                               height: (3.h),
-                              width: (3.w),
                             ),
                             SizedBox(
                               width: (2.w),
@@ -232,7 +250,7 @@ class AssetsTotalWidget extends StatelessWidget {
                             Builder(
                               builder: (context) {
                                 return Text(
-                                  '\$${context.watch<AssetsCubit>().totalRVN}',
+                                  '\$$_totalRVN',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1!
@@ -250,7 +268,7 @@ class AssetsTotalWidget extends StatelessWidget {
                             Image.asset(
                               Strings.ltctIcon,
                               width: (6.w),
-                              height: (6.h),
+                              height: (3.h),
                             ),
                             SizedBox(
                               width: (2.w),
@@ -269,7 +287,7 @@ class AssetsTotalWidget extends StatelessWidget {
                             Builder(
                               builder: (context) {
                                 return Text(
-                                  '\$${context.watch<AssetsCubit>().totalLTCT}',
+                                  '\$$_totalLTCT',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1!

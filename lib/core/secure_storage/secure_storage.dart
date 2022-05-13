@@ -10,15 +10,14 @@ abstract class SecureStorageRepo {
   Future<void> deleteValue({
     required String key,
   });
+  Future<void> deleteAll();
 
   Future<bool> containsKey({
     required String key,
   });
 }
 
-
 class SecureStorage implements SecureStorageRepo {
-  
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
   @override
@@ -38,6 +37,11 @@ class SecureStorage implements SecureStorageRepo {
     required String key,
   }) async {
     return await _secureStorage.delete(key: key);
+  }
+
+  @override
+  Future<void> deleteAll() async {
+    return await _secureStorage.deleteAll();
   }
 
   @override

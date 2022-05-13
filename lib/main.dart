@@ -1,12 +1,18 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/core/secure_storage/secure_storage.dart';
+import 'package:hash_store/data/data_providers/asic_contract_api.dart';
+import 'package:hash_store/data/data_providers/delete_account_api.dart';
 import 'package:hash_store/data/data_providers/deposit_api.dart';
 import 'package:hash_store/data/data_providers/get_user_data_api.dart';
 import 'package:hash_store/data/data_providers/login_api.dart';
+import 'package:hash_store/data/data_providers/logout_api.dart';
 import 'package:hash_store/data/data_providers/sign_up_api.dart';
 import 'package:hash_store/data/data_providers/forget_password_api.dart';
+import 'package:hash_store/data/data_providers/update_password_api.dart';
 import 'package:hash_store/data/data_providers/withdraw_api.dart';
 import 'package:hash_store/data/models/login_model.dart';
 import 'package:hash_store/logic/cubit/deposit/deposit_cubit.dart';
@@ -14,8 +20,7 @@ import 'package:hash_store/logic/cubit/forget_password/forget_password_cubit.dar
 import 'package:hash_store/logic/cubit/login/login_cubit.dart';
 import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 import 'package:hash_store/logic/cubit/withdraw/withdraw_cubit.dart';
-import 'package:hash_store/logic/currency_converter.dart';
-import 'package:hash_store/presentation/Home/screen/home_screen.dart';
+import 'package:hash_store/data/data_providers/currency_converter_api.dart';
 import 'package:hash_store/presentation/splash/screen/splash_screen.dart';
 import 'package:sizer/sizer.dart';
 import 'core/constants/strings.dart';
@@ -24,14 +29,16 @@ import 'data/data_providers/asics_api.dart';
 import 'data/data_providers/plan_contract_api.dart';
 import 'data/data_providers/plans_api.dart';
 import 'data/http/http_service.dart';
-import 'data/models/plans_model.dart';
-import 'logic/cubit/asics/asics_cubit.dart';
+import 'data/models/plan_model.dart';
+import 'logic/cubit/asic_contract/asic_contract_cubit.dart';
 import 'logic/cubit/assets/assets_cubit.dart';
-import 'logic/cubit/plans/plans_cubit.dart';
+import 'logic/cubit/plan_contract/plan_contract_cubit.dart';
+import 'logic/cubit/profile/profile_cubit.dart';
 import 'logic/debug/app_bloc_observer.dart';
+import 'presentation/home/home_screen.dart';
 import 'presentation/router/app_router.dart';
 
-void main() {
+Future<void> main() async {
   HttpService.init();
   BlocOverrides.runZoned(
     () {
@@ -64,31 +71,46 @@ class MyApp extends StatelessWidget {
           )..tryAutoLogin(),
         ),
         BlocProvider<ForgetPasswordCubit>(
-          create: (context) => ForgetPasswordCubit(ForgetPasswordApi()),
+          create: (context) =>
+              ForgetPasswordCubit(ForgetPasswordApi(), SecureStorage()),
         ),
         BlocProvider<AssetsCubit>(
           create: (context) => AssetsCubit(
             PlanContractApi(),
             UserDataApi(),
-            User(),
+            User(balance: Balance()),
             CurrencyConverter(),
           ),
         ),
-        BlocProvider<PlansCubit>(
-          create: (context) => PlansCubit(
+        BlocProvider<PlanContractCubit>(
+          create: (context) => PlanContractCubit(
             PlansApi(),
-            PlansModel(),
+            PlanContractApi(),
+            PlansResponseModel(plans: [], plansHashPower: []),
           ),
         ),
-        BlocProvider<AsicsCubit>(
-          create: (context) => AsicsCubit(AsicsApi()),
+        BlocProvider<AsicContractCubit>(
+          create: (context) => AsicContractCubit(AsicsApi(), AsicContractApi()),
         ),
         BlocProvider<WithdrawCubit>(
           create: (context) => WithdrawCubit(
-              context.read<AssetsCubit>().userData, WithdrawApi()),
+            UserDataApi(),
+            User(
+              balance: Balance(),
+            ),
+            WithdrawApi(),
+          ),
         ),
         BlocProvider<DepositCubit>(
           create: (context) => DepositCubit(DepositApi()),
+        ),
+        BlocProvider<ProfileCubit>(
+          create: (context) => ProfileCubit(
+            DeleteAccountApi(),
+            UpdatePasswordApi(),
+            LogoutApi(),
+            SecureStorage(),
+          ),
         ),
       ],
       child: Sizer(
@@ -103,10 +125,14 @@ class MyApp extends StatelessWidget {
             builder: DevicePreview.appBuilder,
             home: BlocBuilder<LoginCubit, LoginState>(
               builder: (context, state) {
-                if (state is AutoLoginSuccessState) {
-                  return const HomeScreen();
+                if (state is AutoLoginLoadingState) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is AutoLoginSuccessState) {
+                  return HomeScreen();
                 } else {
-                  return const SplashScreen();
+                  return SplashScreen();
                 }
               },
             ),

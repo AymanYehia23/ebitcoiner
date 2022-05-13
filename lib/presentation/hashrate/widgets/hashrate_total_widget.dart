@@ -67,26 +67,26 @@ class HashrateTotalWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              SvgPicture.asset(
+              Image.asset(
                 Strings.btcIcon,
-                height: (4.h),
-                width: (4.w),
+                height: (4.5.h),
+                width: (8.w),
               ),
               SizedBox(
                 width: 2.w,
               ),
-              SvgPicture.asset(
+              Image.asset(
                 Strings.ethIcon,
-                height: (4.h),
-                width: (4.w),
+                height: (4.5.h),
+                width: (8.w),
               ),
               SizedBox(
                 width: 2.w,
               ),
-              SvgPicture.asset(
+              Image.asset(
                 Strings.rvnIcon,
-                height: (4.h),
-                width: (4.w),
+                height: (4.5.h),
+                width: (8.w),
               ),
               SizedBox(
                 width: 2.w,
@@ -131,10 +131,10 @@ class HashrateTotalWidget extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      SvgPicture.asset(
+                      Image.asset(
                         Strings.btcIcon,
                         height: (3.h),
-                        width: (3.w),
+                        width: (6.w),
                       ),
                       SizedBox(
                         width: 2.w,
@@ -176,10 +176,10 @@ class HashrateTotalWidget extends StatelessWidget {
                   const Divider(color: Colors.grey),
                   Row(
                     children: [
-                      SvgPicture.asset(
+                      Image.asset(
                         Strings.ethIcon,
                         height: (3.h),
-                        width: (3.w),
+                        width: (6.w),
                       ),
                       SizedBox(
                         width: 2.w,
@@ -221,10 +221,10 @@ class HashrateTotalWidget extends StatelessWidget {
                   const Divider(color: Colors.grey),
                   Row(
                     children: [
-                      SvgPicture.asset(
+                      Image.asset(
                         Strings.rvnIcon,
-                         height: (3.h),
-                        width: (3.w),
+                        height: (3.h),
+                        width: (6.w),
                       ),
                       SizedBox(
                         width: 2.w,
@@ -268,7 +268,7 @@ class HashrateTotalWidget extends StatelessWidget {
                     children: [
                       Image.asset(
                         Strings.ltctIcon,
-                        height: (6.h),
+                        height: (3.h),
                         width: (6.w),
                       ),
                       SizedBox(

@@ -1,6 +1,8 @@
+import '../models/login_model.dart';
+
 abstract class LoginRepo {
   Future<dynamic> fPostLogin(
-      {required String userName, required String password});
+      {required FirstLoginRequestModel firstLoginRequestModel});
 
-  Future<dynamic> sPostLogin({required String userName, required String otp});
+  Future<LoginResponseModel> sPostLogin({required SecondLoginRequestModel secondLoginRequestModel});
 }

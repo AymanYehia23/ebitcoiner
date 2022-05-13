@@ -1,147 +1,128 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/logic/cubit/delete_account/delete_account_cubit.dart';
-import 'package:hash_store/logic/cubit/logout/logout_cubit.dart';
-import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
-import 'package:hash_store/presentation/shared_components/default_textfield.dart';
+import 'package:hash_store/data/models/logout_model.dart';
+import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
+import 'package:hash_store/presentation/profile/widgets/password_info_widget.dart';
+import 'package:hash_store/presentation/profile/widgets/personal_info_widget.dart';
+import 'package:hash_store/presentation/router/app_router.dart';
+import 'package:hash_store/presentation/shared_components/default_toast.dart';
+
+import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../router/app_router.dart';
+import '../../../logic/cubit/profile/profile_cubit.dart';
 
 class ProfileScreen extends StatelessWidget {
-  ProfileScreen({Key? key}) : super(key: key);
-  final TextEditingController _passwordController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey();
+  const ProfileScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocListener(
-      listeners: [
-        BlocListener<LogoutCubit, LogoutState>(
-          listener: (context, state) async {
-            if (state is LogoutSuccessState) {
-              await context.read<LogoutCubit>().deleteSavedTokens();
-              Navigator.of(context).pushReplacementNamed(AppRouter.splash);
-            } else if (state is LogoutErrorState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Failed to logout'),
-                  duration: Duration(seconds: 3),
-                ),
-              );
-            }
-          },
-        ),
-        BlocListener<DeleteAccountCubit, DeleteAccountState>(
-          listener: (context, state) async {
-            if (state is DeleteAccountSuccessState) {
-              await context.read<LogoutCubit>().deleteSavedTokens();
-              Navigator.of(context).pushReplacementNamed(AppRouter.splash);
-            } else if (state is DeleteAccountErrorState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Failed to delete account'),
-                  duration: Duration(seconds: 3),
-                ),
-              );
-            }
-          },
-        ),
-      ],
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4.w),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Center(
-                child: Text(
-                  Strings.profile,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(fontSize: 44.sp),
-                ),
+    RefreshController _refreshController =
+        RefreshController(initialRefresh: false);
+    void _onRefresh() async {
+      await context.read<AssetsCubit>().getUserData();
+      _refreshController.refreshCompleted();
+    }
+
+    return BlocListener<ProfileCubit, ProfileState>(
+      listener: (context, state) {
+        if (state is DeleteSavedRefreshTokenSuccessState) {
+          Navigator.of(context).popAndPushNamed(AppRouter.splash);
+        }
+        if (state is LogoutErrorState) {
+          defaultToast(
+            text: state.errorMessage,
+            isError: true,
+          );
+        }
+      },
+      child: Stack(
+        children: [
+          const GradientBackgroundContainer(),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 4.h),
+            child: SmartRefresher(
+              controller: _refreshController,
+              enablePullDown: true,
+              header: WaterDropMaterialHeader(
+                backgroundColor: const Color(0xffFF4980).withOpacity(0.8),
               ),
-              SizedBox(
-                height: 2.h,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 17.w),
-                child: DefaultGradientButton(
-                  isFilled: true,
-                  onPressed: () async {
-                    await context.read<LogoutCubit>().logout();
-                  },
-                  text: Builder(builder: (context) {
-                    final logoutState = context.watch<LogoutCubit>().state;
-                    if (logoutState is LogoutLoadingState) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return Text(
-                      'Logout',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText1!
-                          .copyWith(fontSize: 22.sp),
-                    );
-                  }),
-                ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Form(
-                key: _formKey,
-                child: DefaultTextField(
-                  text: 'Password',
-                  controller: _passwordController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'You must enter your password';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              SizedBox(
-                height: 3.h,
-              ),
-              DefaultGradientButton(
-                isFilled: false,
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    await context.read<DeleteAccountCubit>().deleteAccount(
-                          password: _passwordController.text,
-                          refreshToken: await context
-                              .read<LogoutCubit>()
-                              .getSavedRefreshToken(),
-                        );
-                  }
-                },
-                text: Builder(builder: (context) {
-                  final deleteAccountState =
-                      context.watch<DeleteAccountCubit>().state;
-                  if (deleteAccountState is DeleteAccountLoadingState) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  return Text(
-                    'Delete Account',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1!
-                        .copyWith(fontSize: 30),
-                  );
-                }),
-              ),
-            ],
+              onRefresh: _onRefresh,
+              child: Builder(builder: (context) {
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      PersonalInfoWidget(
+                        email: context.watch<AssetsCubit>().userData.email!,
+                        phoneNum: context.watch<AssetsCubit>().userData.phone!,
+                      ),
+                      SizedBox(
+                        height: 2.h,
+                      ),
+                      const PasswordInfoWidget(password: ' ••••••••• '),
+                      SizedBox(
+                        height: 2.h,
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          await context.read<ProfileCubit>().logout(
+                                logoutModel: LogoutModel(
+                                  refreshToken: await context
+                                      .read<ProfileCubit>()
+                                      .getSavedRefreshToken(),
+                                ),
+                              );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 6.w, vertical: 2.h),
+                          height: (8.h),
+                          color: const Color(0xff1d1a27),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.logout_outlined,
+                                color: Colors.red,
+                              ),
+                              SizedBox(
+                                width: 2.w,
+                              ),
+                              BlocBuilder<ProfileCubit, ProfileState>(
+                                builder: (context, state) {
+                                  if (state is LogoutLoadingState ||
+                                      state
+                                          is DeleteSavedRefreshTokenLoadingState) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }
+                                  return Text(
+                                    'Logout',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .copyWith(
+                                          fontSize: 12.sp,
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

@@ -9,16 +9,23 @@ abstract class DevicesState extends Equatable {
 
 class DevicesInitial extends DevicesState {}
 
-class GetAsicContractLoadingState extends DevicesState{}
+class GetAsicContractLoadingState extends DevicesState {}
 
 class GetAsicContractSuccessState extends DevicesState {}
 
-class GetAsicContractErrorState extends DevicesState {}
+class GetAsicContractErrorState extends DevicesState {
+  final String errorMessage;
+  const GetAsicContractErrorState({
+    required this.errorMessage,
+  });
+}
 
-class DevicesChartBtcState extends DevicesState{}
+class UnauthorizedState extends DevicesState{}
+
+class DevicesChartBtcState extends DevicesState {}
 
 class DevicesChartETHState extends DevicesState {}
 
 class DevicesChartRVNState extends DevicesState {}
 
-class DevicesChartLTCTState extends DevicesState{}
+class DevicesChartLTCTState extends DevicesState {}

@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hash_store/data/repositories/plan_contract_repo.dart';
 
 import '../../../core/constants/strings.dart';
 import '../../../data/models/plan_contract_model.dart';
@@ -7,7 +9,7 @@ import '../../../data/models/plan_contract_model.dart';
 part 'hash_rate_state.dart';
 
 class HashRateCubit extends Cubit<HashRateState> {
-  HashRateCubit(this.plansContractList) : super(HashRateInitial());
+  HashRateCubit(this._planContractRepo) : super(HashRateInitial());
 
   //HashRate total UI logic
   bool isTotalExpanded = false;
@@ -47,12 +49,80 @@ class HashRateCubit extends Cubit<HashRateState> {
     emit(HashRateExpiredChangeSizeState());
   }
 
+  String getCurrencyPic({required int index, required bool isActive}) {
+    if (isActive) {
+      if (activePlans[index].cryptoName == 'BTC') {
+        return Strings.btcIcon;
+      } else if (activePlans[index].cryptoName == 'ETH') {
+        return Strings.ethIcon;
+      } else if (activePlans[index].cryptoName == 'RVN') {
+        return Strings.rvnIcon;
+      } else {
+        return Strings.ltctIcon;
+      }
+    } else {
+      if (expiredPlans[index].cryptoName == 'BTC') {
+        return Strings.btcIcon;
+      } else if (expiredPlans[index].cryptoName == 'ETH') {
+        return Strings.ethIcon;
+      } else if (expiredPlans[index].cryptoName == 'RVN') {
+        return Strings.rvnIcon;
+      } else {
+        return Strings.ltctIcon;
+      }
+    }
+  }
+
+  String getHourlyProfits({required int index, required bool isActive}) {
+    if (isActive) {
+      double total = 0.0;
+      int minutes = 0;
+      if (activePlans[index].hourlyGains!.isNotEmpty) {
+        for (var element in activePlans[index].hourlyGains!) {
+          total += element.profit!;
+          minutes += 5;
+        }
+        return (total / minutes).toStringAsFixed(6);
+      }
+      return '0.000000';
+    } else {
+      double total = 0.0;
+      int minutes = 0;
+      if (expiredPlans[index].hourlyGains!.isNotEmpty) {
+        for (var element in expiredPlans[index].hourlyGains!) {
+          total += element.profit!;
+          minutes += 5;
+        }
+        return (total / minutes).toStringAsFixed(6);
+      }
+      return '0.000000';
+    }
+  }
+
   //HashRate business logic
-  final List<PlanContractModel> plansContractList;
-  List<PlanContractModel> activePlans = [];
-  List<PlanContractModel> expiredPlans = [];
+  final PlanContractRepo _planContractRepo;
+  List<GetPlanContractResponseModel> plansContractList = [];
+  List<GetPlanContractResponseModel> activePlans = [];
+  List<GetPlanContractResponseModel> expiredPlans = [];
+
+  Future<void> getPlanContract() async {
+    String errorMessage = Strings.defaultErrorMessage;
+    emit(HashRateGetPlanContractLoadingState());
+    try {
+      plansContractList = await _planContractRepo.getPlanContract();
+      emit(HashRateGetPlanContractSuccessState());
+    } on DioError catch (error) {
+      if (error.response == null) {
+        errorMessage = Strings.noInternetErrorMessage;
+      }
+      emit(HashRateGetPlanContractErrorState(errorMessage: errorMessage));
+    } catch (_) {
+      emit(HashRateGetPlanContractErrorState(errorMessage: errorMessage));
+    }
+  }
 
   Future<void> getTotalPower() async {
+    await getPlanContract();
     activePlans = [];
     expiredPlans = [];
     totalPower = 0.0;
@@ -64,10 +134,9 @@ class HashRateCubit extends Cubit<HashRateState> {
     ethActivePlans = 0;
     rvnActivePlans = 0;
     ltctActivePlans = 0;
-
     emit(HashRateGetTotalPowerLoadingState());
     if (plansContractList.isNotEmpty) {
-      for (PlanContractModel element in plansContractList) {
+      for (GetPlanContractResponseModel element in plansContractList) {
         if (element.cryptoName == 'BTC') {
           if (element.planStatus!) {
             activePlans.add(element);

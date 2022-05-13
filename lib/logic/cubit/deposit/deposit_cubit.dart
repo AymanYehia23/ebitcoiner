@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/data/models/deposit_model.dart';
 import 'package:hash_store/data/repositories/deposit_repo.dart';
 
@@ -12,16 +13,24 @@ class DepositCubit extends Cubit<DepositState> {
   DepositCubit(this._depositRepo) : super(DepositInitial());
 
   final DepositRepo _depositRepo;
-  DepositAddressModel depositAddressModel = DepositAddressModel(address: '');
+  DepositAddressResponseModel depositAddressResponseModel =
+      DepositAddressResponseModel(address: '');
 
   Future<void> getDepositAddress() async {
+    String errorMessage = Strings.defaultErrorMessage;
     emit(GetDepositAddressLoadingState());
     try {
-      depositAddressModel =
-          await _depositRepo.getDepositAddress(depositCurrency);
+      depositAddressResponseModel = await _depositRepo.getDepositAddress(
+          depositAddressRequestModel:
+              DepositAddressRequestModel(currency: depositCurrency));
       emit(GetDepositAddressSuccessState());
-    } on DioError catch (_) {
-      emit(GetDepositAddressErrorState());
+    } on DioError catch (error) {
+      if (error.response == null) {
+        errorMessage = Strings.noInternetErrorMessage;
+      }
+      emit(GetDepositAddressErrorState(errorMessage: errorMessage));
+    } catch (_) {
+      emit(GetDepositAddressErrorState(errorMessage: errorMessage));
     }
   }
 

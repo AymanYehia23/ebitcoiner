@@ -2,13 +2,16 @@ import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/data/http/http_service.dart';
 import 'package:hash_store/data/repositories/login_repo.dart';
 
+import '../models/login_model.dart';
+
 class LoginApi implements LoginRepo {
   @override
   Future<dynamic> fPostLogin(
-      {required String userName, required String password}) async {
+      {required FirstLoginRequestModel firstLoginRequestModel}) async {
     return await HttpService.postRequest(
-        endPoint: Strings.fLoginEndPoint,
-        data: {'userName': userName, 'password': password}).then(
+      endPoint: Strings.fLoginEndPoint,
+      data: firstLoginRequestModel.toMap(),
+    ).then(
       (value) {
         return value.data;
       },
@@ -16,13 +19,14 @@ class LoginApi implements LoginRepo {
   }
 
   @override
-  Future<dynamic> sPostLogin(
-      {required String userName, required String otp}) async {
+  Future<LoginResponseModel> sPostLogin(
+      {required SecondLoginRequestModel secondLoginRequestModel}) async {
     return await HttpService.postRequest(
-        endPoint: Strings.sLoginEndPoint,
-        data: {'userName': userName, 'otp': otp}).then(
+      endPoint: Strings.sLoginEndPoint,
+      data: secondLoginRequestModel.toMap(),
+    ).then(
       (value) {
-        return value.data;
+        return LoginResponseModel.fromJson(value.data);
       },
     );
   }
