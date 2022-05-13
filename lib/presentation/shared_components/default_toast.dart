@@ -5,12 +5,13 @@ Future defaultToast({
   required String text,
   bool isError = false,
 }) {
+  Fluttertoast.cancel();
   return Fluttertoast.showToast(
     msg: text,
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.TOP,
     timeInSecForIosWeb: 1,
-    backgroundColor: isError ?Colors.red : Colors.green,
+    backgroundColor: isError ? Colors.red : Colors.green,
     textColor: Colors.white,
     fontSize: 16.0,
   );
