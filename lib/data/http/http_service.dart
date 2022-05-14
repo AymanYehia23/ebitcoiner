@@ -12,8 +12,8 @@ class HttpService {
       BaseOptions(
         baseUrl: Strings.baseUrl,
         queryParameters: {'key': Strings.apiKey},
-        connectTimeout: 5000,
-        receiveTimeout: 3000,
+        connectTimeout: 15000,
+        receiveTimeout: 15000,
       ),
     );
     _initializeInterceptors();

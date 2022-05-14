@@ -4,6 +4,8 @@ import 'package:hash_store/presentation/shared_components/default_toast.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../logic/cubit/assets/assets_cubit.dart';
+import '../../../../logic/cubit/hash_rate/hash_rate_cubit.dart';
 import '../../../../logic/cubit/plan_contract/plan_contract_cubit.dart';
 import '../widgets/buy_plan_widget.dart';
 import '../../add_plan/widgets/contract_period_widget.dart';
@@ -17,9 +19,11 @@ class ChooseDesiredPlanScreen extends StatelessWidget {
       children: [
         const GradientBackgroundContainer(),
         BlocListener<PlanContractCubit, PlanContractState>(
-          listener: (context, state) {
+          listener: (context, state) async {
             if (state is AddPlanContractSuccessState) {
-              defaultToast( text: 'Purchased successfully');
+              defaultToast(text: 'Purchased successfully');
+              await context.read<HashRateCubit>().getTotalPower();
+              await context.read<AssetsCubit>().getUserData();
               Navigator.of(context).pop();
             }
             if (state is AddPlanContractErrorState) {

@@ -32,8 +32,11 @@ import 'data/http/http_service.dart';
 import 'data/models/plan_model.dart';
 import 'logic/cubit/asic_contract/asic_contract_cubit.dart';
 import 'logic/cubit/assets/assets_cubit.dart';
+import 'logic/cubit/devices/devices_cubit.dart';
+import 'logic/cubit/hash_rate/hash_rate_cubit.dart';
 import 'logic/cubit/plan_contract/plan_contract_cubit.dart';
 import 'logic/cubit/profile/profile_cubit.dart';
+import 'logic/cubit/wallet/wallet_cubit.dart';
 import 'logic/debug/app_bloc_observer.dart';
 import 'presentation/home/home_screen.dart';
 import 'presentation/router/app_router.dart';
@@ -81,6 +84,16 @@ class MyApp extends StatelessWidget {
             User(balance: Balance()),
             CurrencyConverter(),
           ),
+        ),
+         BlocProvider<HashRateCubit>(
+          create: (context) => HashRateCubit(PlanContractApi()),
+        ),
+        BlocProvider<DevicesCubit>(
+          create: (context) => DevicesCubit(AsicContractApi()),
+        ),
+        BlocProvider<WalletCubit>(
+          create: (context) =>
+              WalletCubit(DepositApi(), WithdrawApi()),
         ),
         BlocProvider<PlanContractCubit>(
           create: (context) => PlanContractCubit(

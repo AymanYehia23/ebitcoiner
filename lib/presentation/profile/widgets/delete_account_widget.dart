@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/extensions/input_validation.dart';
 import 'package:hash_store/data/models/delete_account_model.dart';
 import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
@@ -67,7 +68,7 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
           Navigator.of(context).popAndPushNamed(AppRouter.splash);
         } else if (state is DeleteAccountErrorState) {
           Navigator.of(context).pop();
-           defaultToast(
+          defaultToast(
             text: state.errorMessage,
             isError: true,
           );
@@ -102,6 +103,12 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                   key: _formKey,
                   child: DefaultTextField(
                     text: 'Password',
+                    validator: (val) {
+                      if (!val!.isValidPassword) {
+                        return 'Password must contain at least 8 characters\none uppercase letter and one lowercase letter';
+                      }
+                      return null;
+                    },
                     isObscureText: context.watch<ProfileCubit>().isObscure,
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -112,12 +119,6 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                         context.read<ProfileCubit>().changePasswordVisibility();
                       },
                     ),
-                    validator: (val) {
-                      if (val!.isEmpty) {
-                        return 'Enter valid Password';
-                      }
-                      return null;
-                    },
                     controller: _passwordController,
                   ),
                 ),

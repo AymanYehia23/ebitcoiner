@@ -1,13 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/data/data_providers/asic_contract_api.dart';
-import 'package:hash_store/data/data_providers/deposit_api.dart';
-import 'package:hash_store/data/data_providers/plan_contract_api.dart';
-import 'package:hash_store/data/data_providers/withdraw_api.dart';
-import 'package:hash_store/logic/cubit/devices/devices_cubit.dart';
-import 'package:hash_store/logic/cubit/hash_rate/hash_rate_cubit.dart';
-import 'package:hash_store/logic/cubit/wallet/wallet_cubit.dart';
 import 'package:hash_store/presentation/assets/screen/assets_screen.dart';
 import 'package:hash_store/presentation/devices/screen/devices_screen.dart';
 import 'package:hash_store/presentation/hashrate/screen/hashrate_screen.dart';
@@ -64,19 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<Widget> screens = [
     const AssetsScreen(),
-    BlocProvider<HashRateCubit>(
-      create: (context) => HashRateCubit(PlanContractApi()),
-      child: const HashRateScreen(),
-    ),
-    BlocProvider<DevicesCubit>(
-      create: (context) => DevicesCubit(AsicContractApi()),
-      child: const DevicesScreen(),
-    ),
-    BlocProvider<WalletCubit>(
-      create: (context) =>
-          WalletCubit(DepositApi(), WithdrawApi())..getDeposits(),
-      child: const WalletScreen(),
-    ),
+    const HashRateScreen(),
+    const DevicesScreen(),
+    const WalletScreen(),
     const ProfileScreen()
   ];
 

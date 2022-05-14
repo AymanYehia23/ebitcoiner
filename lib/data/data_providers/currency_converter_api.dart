@@ -3,10 +3,15 @@ import 'package:hash_store/core/constants/enums.dart';
 
 class CurrencyConverter {
   Dio dio = Dio(
-    BaseOptions(baseUrl: "https://min-api.cryptocompare.com/", headers: {
-      'api_key':
-          '3ccbc9d8557b907ce54e3c11dd330b350210fbe96c21adb82361f58a15d4a21a',
-    }),
+    BaseOptions(
+      baseUrl: "https://min-api.cryptocompare.com/",
+      headers: {
+        'api_key':
+            '3ccbc9d8557b907ce54e3c11dd330b350210fbe96c21adb82361f58a15d4a21a',
+      },
+      connectTimeout: 15000,
+      receiveTimeout: 15000,
+    ),
   );
 
   Future<dynamic> getCryptocurrencyPerUSDPrice(

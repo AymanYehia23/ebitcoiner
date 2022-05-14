@@ -19,7 +19,7 @@ class DevicesScreen extends StatelessWidget {
     RefreshController _refreshController =
         RefreshController(initialRefresh: false);
     void _onRefresh() async {
-      context.read<DevicesCubit>().getAsicContract();
+      await context.read<DevicesCubit>().getAsicContract();
       _refreshController.refreshCompleted();
     }
 

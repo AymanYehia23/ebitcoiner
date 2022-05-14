@@ -5,6 +5,7 @@ import 'package:hash_store/presentation/shared_components/gradient_background_co
 import 'package:sizer/sizer.dart';
 
 import '../../../../logic/cubit/asic_contract/asic_contract_cubit.dart';
+import '../../../../logic/cubit/devices/devices_cubit.dart';
 import '../../../shared_components/default_toast.dart';
 import '../widgets/buy_mining_device_widget.dart';
 
@@ -17,9 +18,10 @@ class BuyMiningDeviceScreen extends StatelessWidget {
       children: [
         const GradientBackgroundContainer(),
         BlocListener<AsicContractCubit, AsicContractState>(
-          listener: (context, state) {
+          listener: (context, state) async {
             if (state is AddAsicContractSuccessState) {
               defaultToast(text: 'Purchased successfully');
+              await context.read<DevicesCubit>().getAsicContract();
               Navigator.of(context).pop();
             }
             if (state is AddAsicContractErrorState) {

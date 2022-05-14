@@ -71,8 +71,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
       listener: (context, state) {
         if (state is UpdatePasswordSuccessState) {
           Navigator.of(context).pop();
-          defaultToast(
-              text: 'Password changed successfully');
+          defaultToast(text: 'Password changed successfully');
         } else if (state is UpdatePasswordErrorState) {
           defaultToast(
             text: state.errorMessage,
@@ -83,7 +82,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
       child: Padding(
         padding: MediaQuery.of(context).viewInsets,
         child: Container(
-          height: 55.h,
+          height: 63.h,
           padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
           color: const Color(0xff1d1a27),
           child: Column(
@@ -104,7 +103,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                 height: 2.h,
               ),
               Expanded(
-                flex: 4,
+                flex: 5,
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -124,7 +123,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                           },
                         ),
                         validator: (val) {
-                          if (val!.isValidPassword) {
+                          if (!val!.isValidPassword) {
                             return 'Password must contain at least 8 characters\none uppercase letter and one lowercase letter';
                           }
                           return null;
@@ -150,7 +149,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                           },
                         ),
                         validator: (val) {
-                          if (val!.isValidPassword) {
+                          if (!val!.isValidPassword) {
                             return 'Password must contain at least 8 characters\none uppercase letter and one lowercase letter';
                           }
                           return null;
@@ -176,9 +175,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                           },
                         ),
                         validator: (val) {
-                          if (val!.isEmpty) {
-                            return 'Enter valid Password';
-                          } else if (val != _newPasswordController.text) {
+                          if (val != _newPasswordController.text) {
                             return 'Password does not match';
                           }
                           return null;
