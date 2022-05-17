@@ -8,7 +8,9 @@ import 'package:hash_store/presentation/shared_components/default_toast.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../main.dart';
 import '../../../shared_components/default_disabled_button.dart';
+import '../../../shared_components/loading_widget.dart';
 import '../widgets/sign_up_form.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -81,18 +83,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
         MultiBlocListener(
           listeners: [
             BlocListener<SignUpCubit, SignUpState>(
-              listener: (context, state) async {
-                if (state is SignUpErrorState) {
+              listener: (context, state) {
+                if (state is SignUpSuccessState) {
+                  navigatorKey.currentState!.popUntil((route) => route.isFirst);
+                  defaultToast(text: 'Account successfully created');
+                  Navigator.of(context)
+                      .pushReplacementNamed(AppRouter.firstLogin);
+                } else if (state is SignUpLoadingState) {
+                  showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return WillPopScope(
+                        onWillPop: () => Future.value(false),
+                        child: const Dialog(
+                          child: LoadingWidget(),
+                          backgroundColor: Colors.transparent,
+                        ),
+                      );
+                    },
+                  );
+                } else if (state is SignUpErrorState) {
+                  navigatorKey.currentState!.popUntil((route) => route.isFirst);
                   defaultToast(
                     text: state.errorMessage,
                     isError: true,
                   );
-                }
-                if (state is SignUpSuccessState) {
-                  defaultToast(
-                       text: 'Account successfully created');
-                  Navigator.of(context)
-                      .pushReplacementNamed(AppRouter.firstLogin);
                 }
               },
             ),
@@ -116,7 +132,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
-                  Navigator.of(context).popAndPushNamed(AppRouter.splash);
+                  Navigator.of(context).popAndPushNamed(AppRouter.onboarding);
                 },
               ),
             ),
@@ -216,26 +232,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           } else {
                             return DefaultGradientButton(
                               isFilled: true,
-                              text: Builder(builder: (context) {
-                                final signUpState =
-                                    context.watch<SignUpCubit>().state;
-
-                                if (signUpState is SignUpLoadingState) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                }
-                                return Text(
-                                  'Sign Up',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .copyWith(
-                                        fontSize: 13.sp,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                );
-                              }),
+                              text: Text(
+                                'Sign Up',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                      fontSize: 13.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
                               onPressed: () {
                                 _countryCode =
                                     context.read<SignUpCubit>().countryCode;

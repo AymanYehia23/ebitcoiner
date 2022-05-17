@@ -6,8 +6,10 @@ import 'package:hash_store/presentation/shared_components/default_gradient_butto
 import 'package:hash_store/presentation/shared_components/default_toast.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../main.dart';
 import '../../../shared_components/default_disabled_button.dart';
 import '../../../shared_components/gradient_background_container.dart';
+import '../../../shared_components/loading_widget.dart';
 import '../../withdraw/widgets/withdraw_form.dart';
 
 class WithdrawCurrencyScreen extends StatefulWidget {
@@ -24,9 +26,8 @@ class _WithdrawCurrencyScreenState extends State<WithdrawCurrencyScreen> {
 
   void _submit() async {
     if (_formKey.currentState!.validate()) {
-      await context
-          .read<WithdrawCubit>()
-          .withdrawRequest(_addressController.text.trim(), _amountController.text.trim());
+      await context.read<WithdrawCubit>().withdrawRequest(
+          _addressController.text.trim(), _amountController.text.trim());
     }
   }
 
@@ -80,10 +81,25 @@ class _WithdrawCurrencyScreenState extends State<WithdrawCurrencyScreen> {
           body: BlocListener<WithdrawCubit, WithdrawState>(
             listener: (context, state) {
               if (state is WithdrawRequestSuccessState) {
-                defaultToast(
-                    text: 'Withdrawal request completed successfully');
+                navigatorKey.currentState!.popUntil((route) => route.isFirst);
+                defaultToast(text: 'Withdrawal request completed successfully');
                 Navigator.of(context).pushReplacementNamed(AppRouter.home);
+              } else if (state is WithdrawRequestLoadingState) {
+               showDialog(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return WillPopScope(
+                      onWillPop: () => Future.value(false),
+                      child: const Dialog(
+                        child: LoadingWidget(),
+                        backgroundColor: Colors.transparent,
+                      ),
+                    );
+                  },
+                );
               } else if (state is WithdrawRequestErrorState) {
+                navigatorKey.currentState!.popUntil((route) => route.isFirst);
                 defaultToast(
                   text: state.errorMessage,
                   isError: true,
@@ -183,24 +199,13 @@ class _WithdrawCurrencyScreenState extends State<WithdrawCurrencyScreen> {
                         }
                         return DefaultGradientButton(
                           isFilled: true,
-                          text: BlocBuilder<WithdrawCubit, WithdrawState>(
-                            builder: (context, state) {
-                              if (state is WithdrawRequestLoadingState) {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              }
-                              return Text(
-                                'Withdraw',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(
+                          text: Text(
+                            'Withdraw',
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
-                              );
-                            },
                           ),
                           onPressed: () {
                             _submit();

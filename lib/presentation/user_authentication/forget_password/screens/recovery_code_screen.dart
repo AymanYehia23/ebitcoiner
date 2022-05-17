@@ -7,6 +7,8 @@ import 'package:hash_store/presentation/shared_components/default_toast.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../main.dart';
+import '../../../shared_components/loading_widget.dart';
 import '../../forget_password/widgets/recovery_code_form.dart';
 import '../../../router/app_router.dart';
 import '../../../shared_components/default_disabled_button.dart';
@@ -67,11 +69,26 @@ class _RecoveryCodeScreenState extends State<RecoveryCodeScreen> {
         BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
           listener: (context, state) {
             if (state is VerifyCodeSuccessState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               context.read<ForgetPasswordCubit>().recoveryCode =
                   _codeController.text;
               Navigator.pushReplacementNamed(context, AppRouter.resetPassword);
-            }
-            if (state is VerifyCodeErrorState) {
+            } else if (state is VerifyCodeLoadingState) {
+              showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) {
+                  return WillPopScope(
+                    onWillPop: () => Future.value(false),
+                    child: const Dialog(
+                      child: LoadingWidget(),
+                      backgroundColor: Colors.transparent,
+                    ),
+                  );
+                },
+              );
+            } else if (state is VerifyCodeErrorState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               defaultToast(
                 text: state.errorMessage,
                 isError: true,
@@ -167,25 +184,15 @@ class _RecoveryCodeScreenState extends State<RecoveryCodeScreen> {
                           } else {
                             return DefaultGradientButton(
                               isFilled: true,
-                              text: BlocBuilder<ForgetPasswordCubit,
-                                  ForgetPasswordState>(
-                                builder: (context, state) {
-                                  if (state is VerifyCodeLoadingState) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  }
-                                  return Text(
-                                    'Next',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1!
-                                        .copyWith(
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  );
-                                },
+                              text: Text(
+                                'Next',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
                               onPressed: () {
                                 _submit();

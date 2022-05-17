@@ -5,9 +5,11 @@ import 'package:hash_store/presentation/shared_components/default_toast.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../main.dart';
 import '../../../router/app_router.dart';
 import '../../../shared_components/default_disabled_button.dart';
 import '../../../shared_components/default_gradient_button.dart';
+import '../../../shared_components/loading_widget.dart';
 import '../widgets/reset_password_form.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -64,13 +66,28 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
           listener: (context, state) {
             if (state is ResetPasswordSuccessState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               defaultToast(
                 text:
                     'The password has been changed successfully, you can login now',
               );
               Navigator.pushReplacementNamed(context, AppRouter.firstLogin);
-            }
-            if (state is ResetPasswordErrorState) {
+            } else if (state is ResetPasswordLoadingState) {
+              showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) {
+                  return WillPopScope(
+                    onWillPop: () => Future.value(false),
+                    child: const Dialog(
+                      child: LoadingWidget(),
+                      backgroundColor: Colors.transparent,
+                    ),
+                  );
+                },
+              );
+            } else if (state is ResetPasswordErrorState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               defaultToast(
                 text: state.errorMessage,
                 isError: true,
@@ -140,25 +157,15 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           } else {
                             return DefaultGradientButton(
                               isFilled: true,
-                              text: BlocBuilder<ForgetPasswordCubit,
-                                  ForgetPasswordState>(
-                                builder: (context, state) {
-                                  if (state is ResetPasswordLoadingState) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  }
-                                  return Text(
-                                    'Next',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1!
-                                        .copyWith(
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  );
-                                },
+                              text: Text(
+                                'Next',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
                               onPressed: () {
                                 _submit();

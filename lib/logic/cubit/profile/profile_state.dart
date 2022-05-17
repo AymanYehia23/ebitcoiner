@@ -51,6 +51,6 @@ class LogoutErrorState extends ProfileState {
 
 }
 
-class DeleteSavedRefreshTokenLoadingState extends ProfileState {}
+class DeleteSavedTokensLoadingState extends ProfileState {}
 
-class DeleteSavedRefreshTokenSuccessState extends ProfileState {}
+class DeleteSavedTokensSuccessState extends ProfileState {}

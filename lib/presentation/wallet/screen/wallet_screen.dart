@@ -15,6 +15,7 @@ import '../../../logic/cubit/assets/assets_cubit.dart';
 import '../../shared_components/default_gradient_button.dart';
 import '../../shared_components/default_toast.dart';
 import '../../shared_components/gradient_background_container.dart';
+import '../../shared_components/loading_widget.dart';
 
 class WalletScreen extends StatelessWidget {
   const WalletScreen({Key? key}) : super(key: key);
@@ -61,9 +62,7 @@ class WalletScreen extends StatelessWidget {
                       : context.read<WalletCubit>().getWithdraws(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
+                      return const LoadingWidget();
                     }
                     return SingleChildScrollView(
                       child: Column(

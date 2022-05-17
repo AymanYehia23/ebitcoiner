@@ -8,6 +8,8 @@ import 'package:hash_store/presentation/shared_components/gradient_background_co
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../shared_components/loading_widget.dart';
+
 class WithdrawScreen extends StatelessWidget {
   const WithdrawScreen({Key? key}) : super(key: key);
 
@@ -46,9 +48,7 @@ class WithdrawScreen extends StatelessWidget {
                 future: context.read<WithdrawCubit>().getUserData(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
+                    return const LoadingWidget();
                   }
                   return Container(
                     padding:

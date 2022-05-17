@@ -8,7 +8,9 @@ import 'package:hash_store/presentation/shared_components/default_textfield.dart
 import 'package:sizer/sizer.dart';
 
 import '../../../logic/cubit/profile/profile_cubit.dart';
+import '../../../main.dart';
 import '../../shared_components/default_disabled_button.dart';
+import '../../shared_components/loading_widget.dart';
 
 class ChangePasswordWidget extends StatefulWidget {
   const ChangePasswordWidget({Key? key}) : super(key: key);
@@ -70,9 +72,25 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
     return BlocListener<ProfileCubit, ProfileState>(
       listener: (context, state) {
         if (state is UpdatePasswordSuccessState) {
+          navigatorKey.currentState!.popUntil((route) => route.isFirst);
           Navigator.of(context).pop();
           defaultToast(text: 'Password changed successfully');
+        } else if (state is UpdatePasswordLoadingState) {
+          showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (BuildContext context) {
+              return WillPopScope(
+                onWillPop: () => Future.value(false),
+                child: const Dialog(
+                  child: LoadingWidget(),
+                  backgroundColor: Colors.transparent,
+                ),
+              );
+            },
+          );
         } else if (state is UpdatePasswordErrorState) {
+          navigatorKey.currentState!.popUntil((route) => route.isFirst);
           defaultToast(
             text: state.errorMessage,
             isError: true,
@@ -204,22 +222,13 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                     }
                     return DefaultGradientButton(
                       isFilled: true,
-                      text: BlocBuilder<ProfileCubit, ProfileState>(
-                          builder: (context, state) {
-                        if (state is UpdatePasswordLoadingState) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                        return Text(
-                          'Change Password',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        );
-                      }),
+                      text: Text(
+                        'Change Password',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
                       onPressed: _submit,
                     );
                   },

@@ -7,6 +7,8 @@ import 'package:sizer/sizer.dart';
 import '../../../../logic/cubit/assets/assets_cubit.dart';
 import '../../../../logic/cubit/hash_rate/hash_rate_cubit.dart';
 import '../../../../logic/cubit/plan_contract/plan_contract_cubit.dart';
+import '../../../../main.dart';
+import '../../../shared_components/loading_widget.dart';
 import '../widgets/buy_plan_widget.dart';
 import '../../add_plan/widgets/contract_period_widget.dart';
 import '../widgets/plan_currency_widget.dart';
@@ -21,12 +23,27 @@ class ChooseDesiredPlanScreen extends StatelessWidget {
         BlocListener<PlanContractCubit, PlanContractState>(
           listener: (context, state) async {
             if (state is AddPlanContractSuccessState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               defaultToast(text: 'Purchased successfully');
               await context.read<HashRateCubit>().getTotalPower();
               await context.read<AssetsCubit>().getUserData();
               Navigator.of(context).pop();
-            }
-            if (state is AddPlanContractErrorState) {
+            } else if (state is AddPlanContractLoadingState) {
+              showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) {
+                  return WillPopScope(
+                    onWillPop: () => Future.value(false),
+                    child: const Dialog(
+                      child: LoadingWidget(),
+                      backgroundColor: Colors.transparent,
+                    ),
+                  );
+                },
+              );
+            } else if (state is AddPlanContractErrorState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               defaultToast(
                 text: state.errorMessage,
                 isError: true,
@@ -129,9 +146,7 @@ class ChooseDesiredPlanScreen extends StatelessWidget {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
-                                );
+                                return const LoadingWidget();
                               }
                               return BlocBuilder<PlanContractCubit,
                                   PlanContractState>(
@@ -140,9 +155,7 @@ class ChooseDesiredPlanScreen extends StatelessWidget {
                                       .read<PlanContractCubit>()
                                       .plansModel;
                                   if (state is GetPlansLoadingState) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
+                                    return const LoadingWidget();
                                   }
                                   return ListView.builder(
                                     shrinkWrap: true,

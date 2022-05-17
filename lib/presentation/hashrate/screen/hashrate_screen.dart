@@ -9,6 +9,7 @@ import 'package:hash_store/presentation/shared_components/gradient_background_co
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sizer/sizer.dart';
 import '../../../logic/cubit/assets/assets_cubit.dart';
+import '../../shared_components/loading_widget.dart';
 
 class HashRateScreen extends StatelessWidget {
   const HashRateScreen({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class HashRateScreen extends StatelessWidget {
       await context.read<AssetsCubit>().getUserData();
       _refreshController.refreshCompleted();
     }
+
     return BlocListener<HashRateCubit, HashRateState>(
       listener: (context, state) {
         if (state is HashRateGetPlanContractErrorState) {
@@ -49,9 +51,7 @@ class HashRateScreen extends StatelessWidget {
                   future: context.read<HashRateCubit>().getTotalPower(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
+                      return const LoadingWidget();
                     }
                     return SingleChildScrollView(
                       primary: true,

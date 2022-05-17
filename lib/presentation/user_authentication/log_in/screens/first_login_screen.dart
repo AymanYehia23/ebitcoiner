@@ -7,8 +7,10 @@ import 'package:hash_store/presentation/shared_components/gradient_background_co
 import 'package:sizer/sizer.dart';
 
 import '../../../../logic/cubit/login/login_cubit.dart';
+import '../../../../main.dart';
 import '../../../router/app_router.dart';
 import '../../../shared_components/default_gradient_button.dart';
+import '../../../shared_components/loading_widget.dart';
 import '../widgets/first_login_form.dart';
 
 class FirstLogInScreen extends StatefulWidget {
@@ -71,14 +73,29 @@ class _FirstLogInScreenState extends State<FirstLogInScreen> {
         BlocListener<LoginCubit, LoginState>(
           listener: (context, state) async {
             if (state is FirstLoginSuccessState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               defaultToast(
                 text: 'The OTP has been sent to your email',
               );
               context.read<LoginCubit>().userName = _userNameController.text;
               context.read<LoginCubit>().password = _passwordController.text;
               Navigator.of(context).pushReplacementNamed(AppRouter.secondLogin);
-            }
-            if (state is FirstLoginErrorState) {
+            } else if (state is FirstLoginLoadingState) {
+              showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) {
+                  return WillPopScope(
+                    onWillPop: () => Future.value(false),
+                    child: const Dialog(
+                      child: LoadingWidget(),
+                      backgroundColor: Colors.transparent,
+                    ),
+                  );
+                },
+              );
+            } else if (state is FirstLoginErrorState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               defaultToast(
                 text: state.errorMessage,
                 isError: true,
@@ -104,7 +121,7 @@ class _FirstLogInScreenState extends State<FirstLogInScreen> {
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
-                  Navigator.of(context).popAndPushNamed(AppRouter.splash);
+                  Navigator.of(context).popAndPushNamed(AppRouter.onboarding);
                 },
               ),
             ),
@@ -168,25 +185,15 @@ class _FirstLogInScreenState extends State<FirstLogInScreen> {
                           } else {
                             return DefaultGradientButton(
                               isFilled: true,
-                              text: BlocBuilder<LoginCubit, LoginState>(
-                                builder: (context, state) {
-                                  if (state is FirstLoginLoadingState) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  } else {
-                                    return Text(
-                                      'Send OTP',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1!
-                                          .copyWith(
-                                            fontSize: 13.sp,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    );
-                                  }
-                                },
+                              text: Text(
+                                'Send OTP',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                      fontSize: 13.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
                               onPressed: () {
                                 _submit();

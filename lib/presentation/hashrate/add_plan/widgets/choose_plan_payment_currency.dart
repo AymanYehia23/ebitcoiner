@@ -4,6 +4,7 @@ import 'package:hash_store/presentation/shared_components/default_gradient_butto
 import 'package:sizer/sizer.dart';
 
 import '../../../../logic/cubit/plan_contract/plan_contract_cubit.dart';
+import '../../../shared_components/loading_widget.dart';
 import '/core/constants/enums.dart';
 import '/core/constants/strings.dart';
 
@@ -20,9 +21,7 @@ class ChoosePlanPaymentCurrency extends StatelessWidget {
       child: BlocBuilder<PlanContractCubit, PlanContractState>(
         builder: (context, state) {
           if (state is AddPlanContractLoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const LoadingWidget();
           }
           return Column(
             children: [
@@ -55,11 +54,12 @@ class ChoosePlanPaymentCurrency extends StatelessWidget {
                             height: (4.h),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular((20)),
-                              color:
-                                  context.watch<PlanContractCubit>().paymentCurrency ==
-                                          'BTC'
-                                      ? const Color(0xff302c3f)
-                                      : null,
+                              color: context
+                                          .watch<PlanContractCubit>()
+                                          .paymentCurrency ==
+                                      'BTC'
+                                  ? const Color(0xff302c3f)
+                                  : null,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -97,18 +97,19 @@ class ChoosePlanPaymentCurrency extends StatelessWidget {
                             height: (4.h),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular((20)),
-                              color:
-                                  context.watch<PlanContractCubit>().paymentCurrency ==
-                                          'ETH'
-                                      ? const Color(0xff302c3f)
-                                      : null,
+                              color: context
+                                          .watch<PlanContractCubit>()
+                                          .paymentCurrency ==
+                                      'ETH'
+                                  ? const Color(0xff302c3f)
+                                  : null,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   Strings.ethIcon,
-                                   width: (6.w),
+                                  width: (6.w),
                                   height: (6.h),
                                 ),
                                 SizedBox(
@@ -139,11 +140,12 @@ class ChoosePlanPaymentCurrency extends StatelessWidget {
                             height: (4.h),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular((20)),
-                              color:
-                                  context.watch<PlanContractCubit>().paymentCurrency ==
-                                          'RVN'
-                                      ? const Color(0xff302c3f)
-                                      : null,
+                              color: context
+                                          .watch<PlanContractCubit>()
+                                          .paymentCurrency ==
+                                      'RVN'
+                                  ? const Color(0xff302c3f)
+                                  : null,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -187,7 +189,9 @@ class ChoosePlanPaymentCurrency extends StatelessWidget {
                         ),
                   ),
                   onPressed: () async {
-                    await context.read<PlanContractCubit>().addPlanContract(planId);
+                    await context
+                        .read<PlanContractCubit>()
+                        .addPlanContract(planId);
                     Navigator.of(context).pop();
                   },
                 ),

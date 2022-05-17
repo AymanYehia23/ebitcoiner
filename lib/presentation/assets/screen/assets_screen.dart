@@ -9,6 +9,7 @@ import '../../../logic/cubit/assets/assets_cubit.dart';
 import '../../router/app_router.dart';
 import '../../shared_components/default_gradient_button.dart';
 import '../../shared_components/gradient_background_container.dart';
+import '../../shared_components/loading_widget.dart';
 import '../widgets/assets_change_chart_button.dart';
 import '../widgets/assets_chart_widget.dart';
 import '../widgets/assets_header_widget.dart';
@@ -27,6 +28,7 @@ class AssetsScreen extends StatelessWidget {
       await context.read<AssetsCubit>().getAllChartData();
       _refreshController.refreshCompleted();
     }
+
     return BlocListener<AssetsCubit, AssetsState>(
       listener: (context, state) {
         if (state is UnauthorizedState) {
@@ -200,9 +202,7 @@ class AssetsScreen extends StatelessWidget {
                     ),
                   );
                 }
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return const LoadingWidget();
               },
             ),
           ),

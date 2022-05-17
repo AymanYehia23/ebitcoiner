@@ -8,8 +8,10 @@ import 'package:hash_store/presentation/shared_components/default_textfield.dart
 import 'package:sizer/sizer.dart';
 
 import '../../../logic/cubit/profile/profile_cubit.dart';
+import '../../../main.dart';
 import '../../router/app_router.dart';
 import '../../shared_components/default_toast.dart';
+import '../../shared_components/loading_widget.dart';
 
 class DeleteAccountWidget extends StatefulWidget {
   const DeleteAccountWidget({
@@ -63,10 +65,27 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
   Widget build(BuildContext context) {
     return BlocListener<ProfileCubit, ProfileState>(
       listener: (context, state) {
-        if (state is DeleteSavedRefreshTokenSuccessState) {
+        if (state is DeleteSavedTokensSuccessState) {
+          navigatorKey.currentState!.popUntil((route) => route.isFirst);
           Navigator.of(context).pop();
-          Navigator.of(context).popAndPushNamed(AppRouter.splash);
+          Navigator.of(context).popAndPushNamed(AppRouter.onboarding);
+        } else if (state is DeleteSavedTokensLoadingState ||
+            state is DeleteAccountLoadingState) {
+          showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (BuildContext context) {
+              return WillPopScope(
+                onWillPop: () => Future.value(false),
+                child: const Dialog(
+                  child: LoadingWidget(),
+                  backgroundColor: Colors.transparent,
+                ),
+              );
+            },
+          );
         } else if (state is DeleteAccountErrorState) {
+          navigatorKey.currentState!.popUntil((route) => route.isFirst);
           Navigator.of(context).pop();
           defaultToast(
             text: state.errorMessage,
@@ -142,23 +161,12 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                   }
                   return DefaultGradientButton(
                     isFilled: true,
-                    text: BlocBuilder<ProfileCubit, ProfileState>(
-                      builder: (context, state) {
-                        if (state is DeleteAccountLoadingState ||
-                            state is DeleteSavedRefreshTokenLoadingState) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                        return Text(
-                          'Delete',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        );
-                      },
+                    text: Text(
+                      'Delete',
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                     onPressed: _submit,
                   );

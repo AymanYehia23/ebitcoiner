@@ -6,8 +6,10 @@ import 'package:hash_store/presentation/shared_components/gradient_background_co
 import 'package:sizer/sizer.dart';
 
 import '../../../../logic/cubit/forget_password/forget_password_cubit.dart';
+import '../../../../main.dart';
 import '../../../router/app_router.dart';
 import '../../../shared_components/default_gradient_button.dart';
+import '../../../shared_components/loading_widget.dart';
 import '../widgets/forget_password_form.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
@@ -62,10 +64,25 @@ class _ForgetPassScreenState extends State<ForgetPasswordScreen> {
         BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
           listener: (context, state) {
             if (state is ForgetPasswordSuccessState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               context.read<ForgetPasswordCubit>().email = _emailController.text;
               Navigator.pushReplacementNamed(context, AppRouter.recoveryLink);
-            }
-            if (state is ForgetPasswordErrorState) {
+            } else if (state is ForgetPasswordLoadingState) {
+              showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) {
+                  return WillPopScope(
+                    onWillPop: () => Future.value(false),
+                    child: const Dialog(
+                      child: LoadingWidget(),
+                      backgroundColor: Colors.transparent,
+                    ),
+                  );
+                },
+              );
+            } else if (state is ForgetPasswordErrorState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               defaultToast(
                 text: state.errorMessage,
                 isError: true,
@@ -145,25 +162,15 @@ class _ForgetPassScreenState extends State<ForgetPasswordScreen> {
                           } else {
                             return DefaultGradientButton(
                               isFilled: true,
-                              text: BlocBuilder<ForgetPasswordCubit,
-                                  ForgetPasswordState>(
-                                builder: (context, state) {
-                                  if (state is ForgetPasswordLoadingState) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  }
-                                  return Text(
-                                    'Next',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1!
-                                        .copyWith(
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  );
-                                },
+                              text: Text(
+                                'Next',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
                               onPressed: () {
                                 _submit();

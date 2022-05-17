@@ -17,27 +17,25 @@ class ContractPeriodWidget extends StatelessWidget {
           Expanded(
             child: InkWell(
               onTap: () {
-                context.read<PlanContractCubit>().chooseContractPeriod(Period.long);
+                context
+                    .read<PlanContractCubit>()
+                    .chooseContractPeriod(Period.long);
               },
               child: Builder(
                 builder: (context) {
                   if (context.watch<PlanContractCubit>().planType == 'long') {
                     return DefaultGradientButton(
-                        isFilled: false,
-                        radius: 8.0,
-                        text: Text(
-                          'Long',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: 13.5.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                        onPressed: () {
-                          context
-                              .read<PlanContractCubit>()
-                              .chooseContractPeriod(Period.short);
-                        });
+                      isFilled: false,
+                      radius: 8.0,
+                      text: Text(
+                        'Long',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 13.5.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      onPressed: () {},
+                    );
                   }
                   return Container(
                     width: 40.w,
@@ -68,27 +66,25 @@ class ContractPeriodWidget extends StatelessWidget {
           Expanded(
             child: InkWell(
               onTap: () {
-                context.read<PlanContractCubit>().chooseContractPeriod(Period.short);
+                context
+                    .read<PlanContractCubit>()
+                    .chooseContractPeriod(Period.short);
               },
               child: Builder(
                 builder: (context) {
                   if (context.watch<PlanContractCubit>().planType == 'short') {
                     return DefaultGradientButton(
-                        radius: 8.0,
-                        isFilled: false,
-                        text: Text(
-                          'Short',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: 13.5.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                        onPressed: () {
-                          context
-                              .read<PlanContractCubit>()
-                              .chooseContractPeriod(Period.long);
-                        });
+                      radius: 8.0,
+                      isFilled: false,
+                      text: Text(
+                        'Short',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 13.5.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      onPressed: () {},
+                    );
                   }
                   return Container(
                     width: 40.w,

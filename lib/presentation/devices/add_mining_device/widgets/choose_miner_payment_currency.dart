@@ -6,10 +6,11 @@ import '../../../../core/constants/enums.dart';
 import '../../../../core/constants/strings.dart';
 import '../../../../logic/cubit/asic_contract/asic_contract_cubit.dart';
 import '../../../shared_components/default_gradient_button.dart';
-
+import '../../../shared_components/loading_widget.dart';
 
 class ChooseMinerPaymentCurrency extends StatelessWidget {
-  const ChooseMinerPaymentCurrency({Key? key,required this.asicId}) : super(key: key);
+  const ChooseMinerPaymentCurrency({Key? key, required this.asicId})
+      : super(key: key);
   final String asicId;
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,7 @@ class ChooseMinerPaymentCurrency extends StatelessWidget {
       child: BlocBuilder<AsicContractCubit, AsicContractState>(
         builder: (context, state) {
           if (state is AddAsicContractLoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const LoadingWidget();
           }
           return Column(
             children: [
@@ -55,11 +54,12 @@ class ChooseMinerPaymentCurrency extends StatelessWidget {
                             height: (4.h),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular((20)),
-                              color:
-                                  context.watch<AsicContractCubit>().paymentCurrency ==
-                                          'BTC'
-                                      ? const Color(0xff302c3f)
-                                      : null,
+                              color: context
+                                          .watch<AsicContractCubit>()
+                                          .paymentCurrency ==
+                                      'BTC'
+                                  ? const Color(0xff302c3f)
+                                  : null,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -97,18 +97,19 @@ class ChooseMinerPaymentCurrency extends StatelessWidget {
                             height: (4.h),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular((20)),
-                              color:
-                                  context.watch<AsicContractCubit>().paymentCurrency ==
-                                          'ETH'
-                                      ? const Color(0xff302c3f)
-                                      : null,
+                              color: context
+                                          .watch<AsicContractCubit>()
+                                          .paymentCurrency ==
+                                      'ETH'
+                                  ? const Color(0xff302c3f)
+                                  : null,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   Strings.ethIcon,
-                                    width: (6.w),
+                                  width: (6.w),
                                   height: (6.h),
                                 ),
                                 SizedBox(
@@ -139,18 +140,19 @@ class ChooseMinerPaymentCurrency extends StatelessWidget {
                             height: (4.h),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular((20)),
-                              color:
-                                  context.watch<AsicContractCubit>().paymentCurrency ==
-                                          'RVN'
-                                      ? const Color(0xff302c3f)
-                                      : null,
+                              color: context
+                                          .watch<AsicContractCubit>()
+                                          .paymentCurrency ==
+                                      'RVN'
+                                  ? const Color(0xff302c3f)
+                                  : null,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   Strings.rvnIcon,
-                                   width: (6.w),
+                                  width: (6.w),
                                   height: (6.h),
                                 ),
                                 SizedBox(
@@ -170,7 +172,6 @@ class ChooseMinerPaymentCurrency extends StatelessWidget {
                             ),
                           ),
                         ),
-                        
                       ],
                     ),
                   ],
@@ -188,7 +189,9 @@ class ChooseMinerPaymentCurrency extends StatelessWidget {
                         ),
                   ),
                   onPressed: () async {
-                    await context.read<AsicContractCubit>().addAsicContract(asicId);
+                    await context
+                        .read<AsicContractCubit>()
+                        .addAsicContract(asicId);
                     Navigator.of(context).pop();
                   },
                 ),

@@ -10,6 +10,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../core/constants/strings.dart';
 import '../../shared_components/default_toast.dart';
+import '../../shared_components/loading_widget.dart';
 
 class DevicesScreen extends StatelessWidget {
   const DevicesScreen({Key? key}) : super(key: key);
@@ -69,9 +70,7 @@ class DevicesScreen extends StatelessWidget {
               future: context.read<DevicesCubit>().getAsicContract(),
               builder: ((context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return const LoadingWidget();
                 }
                 final asicContractList =
                     context.watch<DevicesCubit>().asicContractList;

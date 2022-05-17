@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hash_store/presentation/onboarding/screen/onboarding_screen.dart';
 
 import '../../core/exceptions/route_exception.dart';
 
 import '../devices/add_mining_device/screens/add_mining_device_screen.dart';
 import '../hashrate/add_plan/screen/add_plan_screen.dart';
 import '../home/home_screen.dart';
-import '../splash/screen/splash_screen.dart';
 import '../user_authentication/forget_password/screens/forget_password_screen.dart';
 import '../user_authentication/forget_password/screens/recovery_code_screen.dart';
 import '../user_authentication/forget_password/screens/reset_password_screen.dart';
@@ -18,7 +18,7 @@ import '../wallet/withdraw/screen/withdraw_screen.dart';
 
 class AppRouter {
   static const String signUp = 'signUp';
-  static const String splash = 'splash';
+  static const String onboarding = 'onboarding';
   static const String firstLogin = 'firstLogin';
   static const String secondLogin = 'secondLogin';
   static const String forgetPassword = 'forgetPassword';
@@ -33,8 +33,8 @@ class AppRouter {
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case splash:
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
+      case onboarding:
+        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
       case firstLogin:
         return MaterialPageRoute(builder: (_) => const FirstLogInScreen());
       case secondLogin:

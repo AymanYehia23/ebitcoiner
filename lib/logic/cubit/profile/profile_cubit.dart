@@ -98,10 +98,10 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<void> deleteSavedTokens() async {
-    emit(DeleteSavedRefreshTokenLoadingState());
+    emit(DeleteSavedTokensLoadingState());
     await _secureStorage.deleteValue(key: 'accessToken');
     await _secureStorage.deleteValue(key: 'refreshToken');
-    emit(DeleteSavedRefreshTokenSuccessState());
+    emit(DeleteSavedTokensSuccessState());
   }
 
   //UI logic

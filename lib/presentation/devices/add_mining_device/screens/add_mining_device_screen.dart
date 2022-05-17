@@ -6,7 +6,9 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../logic/cubit/asic_contract/asic_contract_cubit.dart';
 import '../../../../logic/cubit/devices/devices_cubit.dart';
+import '../../../../main.dart';
 import '../../../shared_components/default_toast.dart';
+import '../../../shared_components/loading_widget.dart';
 import '../widgets/buy_mining_device_widget.dart';
 
 class BuyMiningDeviceScreen extends StatelessWidget {
@@ -20,11 +22,26 @@ class BuyMiningDeviceScreen extends StatelessWidget {
         BlocListener<AsicContractCubit, AsicContractState>(
           listener: (context, state) async {
             if (state is AddAsicContractSuccessState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               defaultToast(text: 'Purchased successfully');
               await context.read<DevicesCubit>().getAsicContract();
               Navigator.of(context).pop();
-            }
-            if (state is AddAsicContractErrorState) {
+            } else if (state is AddAsicContractLoadingState) {
+              showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) {
+                  return WillPopScope(
+                    onWillPop: () => Future.value(false),
+                    child: const Dialog(
+                      child: LoadingWidget(),
+                      backgroundColor: Colors.transparent,
+                    ),
+                  );
+                },
+              );
+            } else if (state is AddAsicContractErrorState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               defaultToast(
                 text: state.errorMessage,
                 isError: true,
@@ -82,9 +99,7 @@ class BuyMiningDeviceScreen extends StatelessWidget {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
+                            return const LoadingWidget();
                           }
                           final asicsList =
                               context.read<AsicContractCubit>().asicsList;

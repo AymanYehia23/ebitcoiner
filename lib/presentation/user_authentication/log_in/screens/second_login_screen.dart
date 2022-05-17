@@ -7,6 +7,8 @@ import 'package:hash_store/presentation/shared_components/default_toast.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../logic/cubit/login/login_cubit.dart';
+import '../../../../main.dart';
+import '../../../shared_components/loading_widget.dart';
 import '../widgets/second_login_form.dart';
 import '../../../shared_components/default_disabled_button.dart';
 import '../../../shared_components/default_gradient_button.dart';
@@ -83,20 +85,42 @@ class _SecondLoginScreenState extends State<SecondLoginScreen> {
         BlocListener<LoginCubit, LoginState>(
           listener: (context, state) async {
             if (state is SecondLoginSuccessState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               Navigator.of(context).pushReplacementNamed(AppRouter.home);
-            }
-            if (state is SecondLoginErrorState) {
+            } else if (state is SecondeLoginLoadingState) {
+             showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) {
+                  return WillPopScope(
+                    onWillPop: () => Future.value(false),
+                    child: const Dialog(
+                      child: LoadingWidget(),
+                      backgroundColor: Colors.transparent,
+                    ),
+                  );
+                },
+              );
+            } else if (state is SecondLoginErrorState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               defaultToast(
                 text: state.errorMessage,
                 isError: true,
               );
             }
             if (state is FirstLoginSuccessState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               defaultToast(
                 text: 'The OTP has been resent to your email',
               );
+            } else if (state is FirstLoginLoadingState) {
+              showDialog(
+                context: context,
+                builder: (context) => const LoadingWidget(),
+              );
             }
-            if (state is FirstLoginErrorState) {
+            else if (state is FirstLoginErrorState) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
               defaultToast(
                 text: state.errorMessage,
                 isError: true,
@@ -215,25 +239,15 @@ class _SecondLoginScreenState extends State<SecondLoginScreen> {
                           } else {
                             return DefaultGradientButton(
                               isFilled: true,
-                              text: BlocBuilder<LoginCubit, LoginState>(
-                                builder: (context, state) {
-                                  if (state is SecondeLoginLoadingState) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  } else {
-                                    return Text(
-                                      'Login',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1!
-                                          .copyWith(
-                                            fontSize: 13.sp,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    );
-                                  }
-                                },
+                              text: Text(
+                                'Login',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                      fontSize: 13.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
                               onPressed: () {
                                 _submit();

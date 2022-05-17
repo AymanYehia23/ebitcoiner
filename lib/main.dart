@@ -3,6 +3,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hash_store/core/secure_storage/secure_storage.dart';
 import 'package:hash_store/data/data_providers/asic_contract_api.dart';
 import 'package:hash_store/data/data_providers/delete_account_api.dart';
@@ -21,7 +22,7 @@ import 'package:hash_store/logic/cubit/login/login_cubit.dart';
 import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 import 'package:hash_store/logic/cubit/withdraw/withdraw_cubit.dart';
 import 'package:hash_store/data/data_providers/currency_converter_api.dart';
-import 'package:hash_store/presentation/splash/screen/splash_screen.dart';
+import 'package:hash_store/presentation/onboarding/screen/onboarding_screen.dart';
 import 'package:sizer/sizer.dart';
 import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
@@ -42,6 +43,8 @@ import 'presentation/home/home_screen.dart';
 import 'presentation/router/app_router.dart';
 
 Future<void> main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   HttpService.init();
   BlocOverrides.runZoned(
     () {
@@ -55,6 +58,8 @@ Future<void> main() async {
     blocObserver: AppBlocObserver(),
   );
 }
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -85,15 +90,14 @@ class MyApp extends StatelessWidget {
             CurrencyConverter(),
           ),
         ),
-         BlocProvider<HashRateCubit>(
+        BlocProvider<HashRateCubit>(
           create: (context) => HashRateCubit(PlanContractApi()),
         ),
         BlocProvider<DevicesCubit>(
           create: (context) => DevicesCubit(AsicContractApi()),
         ),
         BlocProvider<WalletCubit>(
-          create: (context) =>
-              WalletCubit(DepositApi(), WithdrawApi()),
+          create: (context) => WalletCubit(DepositApi(), WithdrawApi()),
         ),
         BlocProvider<PlanContractCubit>(
           create: (context) => PlanContractCubit(
@@ -129,6 +133,7 @@ class MyApp extends StatelessWidget {
       child: Sizer(
         builder: (context, orientation, deviceType) {
           return MaterialApp(
+            navigatorKey: navigatorKey,
             title: Strings.appTitle,
             theme: AppTheme.lightTheme,
             debugShowCheckedModeBanner: false,
@@ -138,14 +143,12 @@ class MyApp extends StatelessWidget {
             builder: DevicePreview.appBuilder,
             home: BlocBuilder<LoginCubit, LoginState>(
               builder: (context, state) {
-                if (state is AutoLoginLoadingState) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state is AutoLoginSuccessState) {
+                if (state is AutoLoginSuccessState) {
+                  FlutterNativeSplash.remove();
                   return HomeScreen();
                 } else {
-                  return SplashScreen();
+                  FlutterNativeSplash.remove();
+                  return OnboardingScreen();
                 }
               },
             ),

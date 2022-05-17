@@ -6,8 +6,8 @@ import 'package:sizer/sizer.dart';
 import '../../shared_components/default_gradient_button.dart';
 import '../../shared_components/gradient_background_container.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class OnboardingScreen extends StatelessWidget {
+  const OnboardingScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(

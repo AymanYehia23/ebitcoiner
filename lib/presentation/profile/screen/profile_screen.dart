@@ -12,6 +12,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../logic/cubit/profile/profile_cubit.dart';
+import '../../../main.dart';
+import '../../shared_components/loading_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
@@ -29,10 +31,26 @@ class ProfileScreen extends StatelessWidget {
 
     return BlocListener<ProfileCubit, ProfileState>(
       listener: (context, state) {
-        if (state is DeleteSavedRefreshTokenSuccessState) {
-          Navigator.of(context).popAndPushNamed(AppRouter.splash);
-        }
-        if (state is LogoutErrorState) {
+        if (state is DeleteSavedTokensSuccessState) {
+          navigatorKey.currentState!.popUntil((route) => route.isFirst);
+          Navigator.of(context).popAndPushNamed(AppRouter.onboarding);
+        } else if (state is DeleteSavedTokensLoadingState ||
+            state is LogoutLoadingState) {
+          showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (BuildContext context) {
+              return WillPopScope(
+                onWillPop: () => Future.value(false),
+                child: const Dialog(
+                  child: LoadingWidget(),
+                  backgroundColor: Colors.transparent,
+                ),
+              );
+            },
+          );
+        } else if (state is LogoutErrorState) {
+          navigatorKey.currentState!.popUntil((route) => route.isFirst);
           defaultToast(
             text: state.errorMessage,
             isError: true,
@@ -90,27 +108,16 @@ class ProfileScreen extends StatelessWidget {
                               SizedBox(
                                 width: 2.w,
                               ),
-                              BlocBuilder<ProfileCubit, ProfileState>(
-                                builder: (context, state) {
-                                  if (state is LogoutLoadingState ||
-                                      state
-                                          is DeleteSavedRefreshTokenLoadingState) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  }
-                                  return Text(
-                                    'Logout',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1!
-                                        .copyWith(
-                                          fontSize: 12.sp,
-                                          color: Colors.red,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  );
-                                },
+                              Text(
+                                'Logout',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                      fontSize: 12.sp,
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
                             ],
                           ),

@@ -198,8 +198,8 @@ void main() {
         ),
         expect: () => <ProfileState>[
           DeleteAccountLoadingState(),
-          DeleteSavedRefreshTokenLoadingState(),
-          DeleteSavedRefreshTokenSuccessState(),
+          DeleteSavedTokensLoadingState(),
+          DeleteSavedTokensSuccessState(),
           DeleteAccountSuccessState(),
         ],
       );
@@ -256,8 +256,8 @@ void main() {
         act: (_) => sut.logout(logoutModel: logoutModel),
         expect: () => <ProfileState>[
           LogoutLoadingState(),
-          DeleteSavedRefreshTokenLoadingState(),
-          DeleteSavedRefreshTokenSuccessState(),
+          DeleteSavedTokensLoadingState(),
+          DeleteSavedTokensSuccessState(),
           LogoutSuccessState(),
         ],
       );
@@ -312,8 +312,8 @@ void main() {
         build: () => sut,
         act: (_) => sut.deleteSavedTokens(),
         expect: () => <ProfileState>[
-          DeleteSavedRefreshTokenLoadingState(),
-          DeleteSavedRefreshTokenSuccessState()
+          DeleteSavedTokensLoadingState(),
+          DeleteSavedTokensSuccessState(),
         ],
       );
     },
