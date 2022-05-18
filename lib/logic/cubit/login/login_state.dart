@@ -46,6 +46,11 @@ class SecondLoginErrorState extends LoginState {
   List<Object?> get props => [SecondLoginErrorState];
 }
 
+class AuthErrorState extends LoginState{
+  @override
+  List<Object?> get props => [AuthErrorState];
+
+}
 class AutoLoginLoadingState extends LoginState {
   @override
   List<Object?> get props => [AutoLoginLoadingState];

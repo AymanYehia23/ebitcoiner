@@ -20,7 +20,7 @@ class GetAsicContractErrorState extends DevicesState {
   });
 }
 
-class UnauthorizedState extends DevicesState{}
+class UnauthorizedDevicesState extends DevicesState{}
 
 class DevicesChartBtcState extends DevicesState {}
 

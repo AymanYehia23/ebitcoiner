@@ -67,7 +67,6 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
       listener: (context, state) {
         if (state is DeleteSavedTokensSuccessState) {
           navigatorKey.currentState!.popUntil((route) => route.isFirst);
-          Navigator.of(context).pop();
           Navigator.of(context).popAndPushNamed(AppRouter.onboarding);
         } else if (state is DeleteSavedTokensLoadingState ||
             state is DeleteAccountLoadingState) {

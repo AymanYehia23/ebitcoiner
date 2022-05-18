@@ -25,7 +25,6 @@ class BuyMiningDeviceScreen extends StatelessWidget {
               navigatorKey.currentState!.popUntil((route) => route.isFirst);
               defaultToast(text: 'Purchased successfully');
               await context.read<DevicesCubit>().getAsicContract();
-              Navigator.of(context).pop();
             } else if (state is AddAsicContractLoadingState) {
               showDialog(
                 barrierDismissible: false,

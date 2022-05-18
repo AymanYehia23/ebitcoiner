@@ -11,6 +11,7 @@ import 'package:hash_store/presentation/shared_components/gradient_background_co
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../core/constants/strings.dart';
 import '../../../logic/cubit/profile/profile_cubit.dart';
 import '../../../main.dart';
 import '../../shared_components/loading_widget.dart';
@@ -31,6 +32,30 @@ class ProfileScreen extends StatelessWidget {
 
     return BlocListener<ProfileCubit, ProfileState>(
       listener: (context, state) {
+         if (state is UnauthorizedProfileState) {
+          showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (BuildContext context) {
+              return WillPopScope(
+                onWillPop: () => Future.value(false),
+                child: AlertDialog(
+                  title: const Text('Session expired'),
+                  content: const Text(Strings.loginSessionError),
+                  actions: [
+                    TextButton(
+                      child: const Text("Login"),
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushReplacementNamed(AppRouter.firstLogin);
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        }
         if (state is DeleteSavedTokensSuccessState) {
           navigatorKey.currentState!.popUntil((route) => route.isFirst);
           Navigator.of(context).popAndPushNamed(AppRouter.onboarding);

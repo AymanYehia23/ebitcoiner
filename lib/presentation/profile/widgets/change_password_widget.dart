@@ -73,7 +73,6 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
       listener: (context, state) {
         if (state is UpdatePasswordSuccessState) {
           navigatorKey.currentState!.popUntil((route) => route.isFirst);
-          Navigator.of(context).pop();
           defaultToast(text: 'Password changed successfully');
         } else if (state is UpdatePasswordLoadingState) {
           showDialog(

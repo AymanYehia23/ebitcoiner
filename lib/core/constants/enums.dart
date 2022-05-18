@@ -22,3 +22,9 @@ enum TransactionStatus{
   sent,
   failed,
 }
+
+enum LocalAuth{
+  authenticated,
+  notAuthenticate,
+  securityRequired,
+}

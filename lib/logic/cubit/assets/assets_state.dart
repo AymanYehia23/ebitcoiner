@@ -16,7 +16,7 @@ class AssetsGetUserDataErrorState extends AssetsState {
   });
 }
 
-class UnauthorizedState extends AssetsState {}
+class UnauthorizedAssetsState extends AssetsState {}
 
 class AssetsGetPlanContractLoadingState extends AssetsState {}
 

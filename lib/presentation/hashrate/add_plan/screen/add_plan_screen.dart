@@ -27,7 +27,6 @@ class ChooseDesiredPlanScreen extends StatelessWidget {
               defaultToast(text: 'Purchased successfully');
               await context.read<HashRateCubit>().getTotalPower();
               await context.read<AssetsCubit>().getUserData();
-              Navigator.of(context).pop();
             } else if (state is AddPlanContractLoadingState) {
               showDialog(
                 barrierDismissible: false,

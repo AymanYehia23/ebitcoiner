@@ -22,6 +22,7 @@ import 'package:hash_store/logic/cubit/login/login_cubit.dart';
 import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 import 'package:hash_store/logic/cubit/withdraw/withdraw_cubit.dart';
 import 'package:hash_store/data/data_providers/currency_converter_api.dart';
+import 'package:hash_store/presentation/auth_dialog/auth_dialog.dart';
 import 'package:hash_store/presentation/onboarding/screen/onboarding_screen.dart';
 import 'package:sizer/sizer.dart';
 import 'core/constants/strings.dart';
@@ -41,6 +42,7 @@ import 'logic/cubit/wallet/wallet_cubit.dart';
 import 'logic/debug/app_bloc_observer.dart';
 import 'presentation/home/home_screen.dart';
 import 'presentation/router/app_router.dart';
+import 'presentation/shared_components/loading_widget.dart';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -146,7 +148,16 @@ class MyApp extends StatelessWidget {
                 if (state is AutoLoginSuccessState) {
                   FlutterNativeSplash.remove();
                   return HomeScreen();
-                } else {
+                } else if (state is AutoLoginFailedState) {
+                  FlutterNativeSplash.remove();
+                  return OnboardingScreen();
+                } else if (state is AuthErrorState) {
+                  FlutterNativeSplash.remove();
+                  return AuthDialog();
+                } else if (state is AutoLoginLoadingState) {
+                  return LoadingWidget();
+                }
+                else{
                   FlutterNativeSplash.remove();
                   return OnboardingScreen();
                 }

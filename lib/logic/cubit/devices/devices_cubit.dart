@@ -31,7 +31,7 @@ class DevicesCubit extends Cubit<DevicesState> {
       if (error.response == null) {
         errorMessage = Strings.noInternetErrorMessage;
       } else if (error.response!.statusCode == 401) {
-        emit(UnauthorizedState());
+        emit(UnauthorizedDevicesState());
         return;
       }
       emit(GetAsicContractErrorState(errorMessage: errorMessage));

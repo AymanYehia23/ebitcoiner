@@ -83,6 +83,8 @@ class ProfileCubit extends Cubit<ProfileState> {
     } on DioError catch (error) {
       if (error.response == null) {
         errorMessage = Strings.noInternetErrorMessage;
+      } else if (error.response!.statusCode == 401) {
+        emit(UnauthorizedProfileState());
       }
       emit(LogoutErrorState(errorMessage: errorMessage));
     } catch (_) {

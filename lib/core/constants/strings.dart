@@ -53,5 +53,6 @@ class Strings {
   //error messages
   static const defaultErrorMessage = 'Sorry, an error occurred';
   static const noInternetErrorMessage = 'Check your internet connection';
-  static const loginSessionError = 'Your login session has expired.';
+  static const loginSessionError = 'Please login again.';
+  static const authErrorMessage = 'Please active a security method e.g.(finger print,PIN,pattern,face recognition).';
 }

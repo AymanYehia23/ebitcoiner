@@ -50,7 +50,7 @@ class AssetsCubit extends Cubit<AssetsState> {
       if (error.response == null) {
         errorMessage = Strings.noInternetErrorMessage;
       } else if (error.response!.statusCode == 401) {
-        emit(UnauthorizedState());
+        emit(UnauthorizedAssetsState());
         return;
       }
       emit(AssetsGetUserDataErrorState(errorMessage: errorMessage));

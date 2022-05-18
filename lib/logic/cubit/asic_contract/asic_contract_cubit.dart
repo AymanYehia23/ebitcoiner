@@ -42,7 +42,9 @@ class AsicContractCubit extends Cubit<AsicContractState> {
     try {
       await _asicContractRepo.addAsicContract(
         addAsicContractRequestModel: AddAsicContractRequestModel(
-            asicID: asicID, currency: paymentCurrency),
+          asicID: asicID,
+          currency: paymentCurrency,
+        ),
       );
       emit(AddAsicContractSuccessState());
     } on DioError catch (error) {

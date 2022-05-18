@@ -37,54 +37,70 @@ class PersonalInfoWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(
-                  Icons.person,
-                  size: (1.h * 2.w),
-                  color: Colors.grey,
+                Expanded(
+                  flex: 1,
+                  child: Icon(
+                    Icons.person,
+                    size: (1.h * 2.w),
+                    color: Colors.grey,
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.email_outlined,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          width: 4.w,
-                        ),
-                        Text(
-                          email,
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                Expanded(
+                  flex: 4,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.email_outlined,
+                            color: Colors.grey,
+                          ),
+                          SizedBox(
+                            width: 2.w,
+                          ),
+                          Expanded(
+                            child: Text(
+                              email,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
                                     fontSize: 13.sp,
                                   ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 1.h,
-                    ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.phone_android,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          width: 4.w,
-                        ),
-                        Text(
-                          phoneNum,
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 1.h,
+                      ),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.phone_android,
+                            color: Colors.grey,
+                          ),
+                          SizedBox(
+                            width: 2.w,
+                          ),
+                          Expanded(
+                            child: Text(
+                              phoneNum,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
                                     fontSize: 13.sp,
                                   ),
-                        ),
-                      ],
-                    ),
-                  ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -104,7 +120,7 @@ class PersonalInfoWidget extends StatelessWidget {
                   showModalBottomSheet(
                     context: context,
                     isScrollControlled: true,
-                    builder: (context) =>  const DeleteAccountWidget(),
+                    builder: (context) => const DeleteAccountWidget(),
                   );
                 }),
           )

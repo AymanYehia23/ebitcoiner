@@ -1,12 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/enums.dart';
 import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/core/secure_storage/secure_storage.dart';
 import 'package:hash_store/data/models/login_model.dart';
 import 'package:hash_store/data/repositories/login_repo.dart';
+
+import '../../../core/local_auth/local_auth_api.dart';
 
 part 'login_state.dart';
 
@@ -78,15 +81,18 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> tryAutoLogin() async {
     emit(AutoLoginLoadingState());
-    if (await _secureStorage.containsKey(key: 'accessToken')) {
-      if (kDebugMode) {
-        print(await _secureStorage.getValue(key: 'accessToken'));
+    if (await _secureStorage.containsKey(key: 'accessToken') &&
+        await _secureStorage.containsKey(key: 'refreshToken')) {
+      final isAuthenticated = await LocalAuthApi.authenticate();
+      if (isAuthenticated == LocalAuth.authenticated) {
+        emit(AutoLoginSuccessState());
+      } else {
+        if (isAuthenticated == LocalAuth.securityRequired) {
+          emit(AuthErrorState());
+        } else {
+          SystemNavigator.pop();
+        }
       }
-      if (kDebugMode) {
-        print(await _secureStorage.getValue(key: 'refreshToken'));
-      }
-
-      emit(AutoLoginSuccessState());
     } else {
       emit(AutoLoginFailedState());
     }

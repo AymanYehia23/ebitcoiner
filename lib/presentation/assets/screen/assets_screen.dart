@@ -31,7 +31,7 @@ class AssetsScreen extends StatelessWidget {
 
     return BlocListener<AssetsCubit, AssetsState>(
       listener: (context, state) {
-        if (state is UnauthorizedState) {
+        if (state is UnauthorizedAssetsState) {
           showDialog(
             barrierDismissible: false,
             context: context,
@@ -39,6 +39,7 @@ class AssetsScreen extends StatelessWidget {
               return WillPopScope(
                 onWillPop: () => Future.value(false),
                 child: AlertDialog(
+                  title: const Text('Session expired'),
                   content: const Text(Strings.loginSessionError),
                   actions: [
                     TextButton(
