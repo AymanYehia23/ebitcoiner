@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hash_store/core/constants/enums.dart';
 
 class CurrencyConverter {
@@ -7,7 +8,7 @@ class CurrencyConverter {
       baseUrl: "https://min-api.cryptocompare.com/",
       headers: {
         'api_key':
-            '3ccbc9d8557b907ce54e3c11dd330b350210fbe96c21adb82361f58a15d4a21a',
+            dotenv.env['SUB_API_KEY'],
       },
       connectTimeout: 15000,
       receiveTimeout: 15000,

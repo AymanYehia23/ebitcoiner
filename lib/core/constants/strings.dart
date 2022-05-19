@@ -1,3 +1,5 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class Strings {
   // App
   static const appTitle = 'Hash Store';
@@ -28,8 +30,7 @@ class Strings {
 
   //API
   static const baseUrl = 'https://cominer.herokuapp.com/api/';
-  static const apiKey =
-      'c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4';
+  static final apiKey = dotenv.env['MAIN_API_KEY'];
   static const signUpEndPoint = 'user/register';
   static const deleteAccountEndPoint = 'user/deleteAccount';
   static const fLoginEndPoint = 'user/FFactorAuth';

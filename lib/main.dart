@@ -3,6 +3,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hash_store/core/secure_storage/secure_storage.dart';
 import 'package:hash_store/data/data_providers/asic_contract_api.dart';
@@ -45,6 +46,7 @@ import 'presentation/router/app_router.dart';
 import 'presentation/shared_components/loading_widget.dart';
 
 Future<void> main() async {
+  await dotenv.load(fileName: ".env");
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   HttpService.init();
@@ -156,8 +158,7 @@ class MyApp extends StatelessWidget {
                   return AuthDialog();
                 } else if (state is AutoLoginLoadingState) {
                   return LoadingWidget();
-                }
-                else{
+                } else {
                   FlutterNativeSplash.remove();
                   return OnboardingScreen();
                 }
