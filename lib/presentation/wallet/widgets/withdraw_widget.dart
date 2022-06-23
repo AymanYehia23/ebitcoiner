@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/core/constants/enums.dart';
 import 'package:sizer/sizer.dart';
 
@@ -21,11 +22,11 @@ class WithdrawWidget extends StatelessWidget {
 
   Color getStatusColor() {
     if (status == TransactionStatus.processing) {
-      return Colors.blue;
+      return ColorManager.blue;
     } else if (status == TransactionStatus.sent) {
-      return Colors.green;
+      return ColorManager.green;
     } else {
-      return Colors.red;
+      return ColorManager.red;
     }
   }
 
@@ -36,7 +37,7 @@ class WithdrawWidget extends StatelessWidget {
         Container(
           padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
           height: 16.h,
-          color: const Color(0xff1D1A27),
+          color: ColorManager.primary,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

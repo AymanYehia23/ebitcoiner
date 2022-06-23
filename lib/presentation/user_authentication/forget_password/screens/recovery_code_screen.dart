@@ -7,7 +7,7 @@ import 'package:hash_store/presentation/shared_components/default_toast.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../main.dart';
+import '../../../shared_components/loading_dialog.dart';
 import '../../../shared_components/loading_widget.dart';
 import '../../forget_password/widgets/recovery_code_form.dart';
 import '../../../router/app_router.dart';
@@ -69,26 +69,14 @@ class _RecoveryCodeScreenState extends State<RecoveryCodeScreen> {
         BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
           listener: (context, state) {
             if (state is VerifyCodeSuccessState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               context.read<ForgetPasswordCubit>().recoveryCode =
                   _codeController.text;
               Navigator.pushReplacementNamed(context, AppRouter.resetPassword);
             } else if (state is VerifyCodeLoadingState) {
-              showDialog(
-                barrierDismissible: false,
-                context: context,
-                builder: (BuildContext context) {
-                  return WillPopScope(
-                    onWillPop: () => Future.value(false),
-                    child: const Dialog(
-                      child: LoadingWidget(),
-                      backgroundColor: Colors.transparent,
-                    ),
-                  );
-                },
-              );
+              loadingDialog(context: context);
             } else if (state is VerifyCodeErrorState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               defaultToast(
                 text: state.errorMessage,
                 isError: true,

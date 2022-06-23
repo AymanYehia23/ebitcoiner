@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/core/constants/strings.dart';
 import 'package:sizer/sizer.dart';
 
@@ -42,7 +43,7 @@ class AssetsTotalWidget extends StatelessWidget {
                 : (17.h),
             width: double.infinity,
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.white),
+              border: Border.all(color: ColorManager.white),
               borderRadius: BorderRadius.circular(
                 8,
               ),
@@ -128,7 +129,7 @@ class AssetsTotalWidget extends StatelessWidget {
                         width: (8.w),
                         height: (8.w),
                         decoration: BoxDecoration(
-                          color: const Color(0xff302c3f),
+                          color: ColorManager.darkPurple,
                           borderRadius: BorderRadius.circular(
                             (32),
                           ),
@@ -188,7 +189,7 @@ class AssetsTotalWidget extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const Divider(color: Colors.grey),
+                        const Divider(color: ColorManager.gray),
                         Row(
                           children: [
                             Image.asset(
@@ -225,7 +226,7 @@ class AssetsTotalWidget extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const Divider(color: Colors.grey),
+                        const Divider(color: ColorManager.gray),
                         Row(
                           children: [
                             Image.asset(
@@ -262,7 +263,7 @@ class AssetsTotalWidget extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const Divider(color: Colors.grey),
+                        const Divider(color: ColorManager.gray),
                         Row(
                           children: [
                             Image.asset(

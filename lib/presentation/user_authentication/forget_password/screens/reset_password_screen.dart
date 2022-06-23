@@ -5,10 +5,10 @@ import 'package:hash_store/presentation/shared_components/default_toast.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../main.dart';
 import '../../../router/app_router.dart';
 import '../../../shared_components/default_disabled_button.dart';
 import '../../../shared_components/default_gradient_button.dart';
+import '../../../shared_components/loading_dialog.dart';
 import '../../../shared_components/loading_widget.dart';
 import '../widgets/reset_password_form.dart';
 
@@ -66,28 +66,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
           listener: (context, state) {
             if (state is ResetPasswordSuccessState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               defaultToast(
                 text:
                     'The password has been changed successfully, you can login now',
               );
               Navigator.pushReplacementNamed(context, AppRouter.firstLogin);
             } else if (state is ResetPasswordLoadingState) {
-              showDialog(
-                barrierDismissible: false,
-                context: context,
-                builder: (BuildContext context) {
-                  return WillPopScope(
-                    onWillPop: () => Future.value(false),
-                    child: const Dialog(
-                      child: LoadingWidget(),
-                      backgroundColor: Colors.transparent,
-                    ),
-                  );
-                },
-              );
+              loadingDialog(context: context);
             } else if (state is ResetPasswordErrorState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               defaultToast(
                 text: state.errorMessage,
                 isError: true,

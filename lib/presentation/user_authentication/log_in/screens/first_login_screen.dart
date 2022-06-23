@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/data/models/login_model.dart';
 import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
 import 'package:hash_store/presentation/shared_components/default_toast.dart';
@@ -7,10 +8,9 @@ import 'package:hash_store/presentation/shared_components/gradient_background_co
 import 'package:sizer/sizer.dart';
 
 import '../../../../logic/cubit/login/login_cubit.dart';
-import '../../../../main.dart';
 import '../../../router/app_router.dart';
 import '../../../shared_components/default_gradient_button.dart';
-import '../../../shared_components/loading_widget.dart';
+import '../../../shared_components/loading_dialog.dart';
 import '../widgets/first_login_form.dart';
 
 class FirstLogInScreen extends StatefulWidget {
@@ -73,7 +73,7 @@ class _FirstLogInScreenState extends State<FirstLogInScreen> {
         BlocListener<LoginCubit, LoginState>(
           listener: (context, state) async {
             if (state is FirstLoginSuccessState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               defaultToast(
                 text: 'The OTP has been sent to your email',
               );
@@ -81,21 +81,9 @@ class _FirstLogInScreenState extends State<FirstLogInScreen> {
               context.read<LoginCubit>().password = _passwordController.text;
               Navigator.of(context).pushReplacementNamed(AppRouter.secondLogin);
             } else if (state is FirstLoginLoadingState) {
-              showDialog(
-                barrierDismissible: false,
-                context: context,
-                builder: (BuildContext context) {
-                  return WillPopScope(
-                    onWillPop: () => Future.value(false),
-                    child: const Dialog(
-                      child: LoadingWidget(),
-                      backgroundColor: Colors.transparent,
-                    ),
-                  );
-                },
-              );
+              loadingDialog(context: context);
             } else if (state is FirstLoginErrorState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               defaultToast(
                 text: state.errorMessage,
                 isError: true,
@@ -161,7 +149,7 @@ class _FirstLogInScreenState extends State<FirstLogInScreen> {
                           style:
                               Theme.of(context).textTheme.bodyText1!.copyWith(
                                     fontSize: 11.sp,
-                                    color: const Color(0xffff4980),
+                                    color: ColorManager.secondary,
                                     fontWeight: FontWeight.bold,
                                   ),
                         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/constants/enums.dart';
@@ -15,7 +16,7 @@ class ChooseMinerPaymentCurrency extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-      color: Colors.black54,
+      color: ColorManager.lightBlack,
       height: 25.h,
       child: Column(
         children: [
@@ -52,7 +53,7 @@ class ChooseMinerPaymentCurrency extends StatelessWidget {
                                       .watch<AsicContractCubit>()
                                       .paymentCurrency ==
                                   'BTC'
-                              ? const Color(0xff302c3f)
+                              ? ColorManager.darkPurple
                               : null,
                         ),
                         child: Row(
@@ -95,7 +96,7 @@ class ChooseMinerPaymentCurrency extends StatelessWidget {
                                       .watch<AsicContractCubit>()
                                       .paymentCurrency ==
                                   'ETH'
-                              ? const Color(0xff302c3f)
+                              ? ColorManager.darkPurple
                               : null,
                         ),
                         child: Row(
@@ -138,7 +139,7 @@ class ChooseMinerPaymentCurrency extends StatelessWidget {
                                       .watch<AsicContractCubit>()
                                       .paymentCurrency ==
                                   'RVN'
-                              ? const Color(0xff302c3f)
+                              ? ColorManager.darkPurple
                               : null,
                         ),
                         child: Row(

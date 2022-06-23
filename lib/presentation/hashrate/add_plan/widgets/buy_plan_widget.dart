@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
 import 'package:sizer/sizer.dart';
 
@@ -39,9 +40,9 @@ class BuyPlanWidget extends StatelessWidget {
           height: 41.h,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: const Color(0xff1d1a27),
+            color: ColorManager.primary,
             border: Border.all(
-              color: const Color(0xff302C3F),
+              color: ColorManager.darkPurple,
             ),
             borderRadius: BorderRadius.circular((8.0)),
           ),

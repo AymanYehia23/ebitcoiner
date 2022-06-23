@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/logic/cubit/wallet/wallet_cubit.dart';
 import 'package:hash_store/presentation/assets/widgets/assets_total_widget.dart';
 import 'package:hash_store/presentation/router/app_router.dart';
@@ -53,7 +54,7 @@ class WalletScreen extends StatelessWidget {
               controller: _refreshController,
               enablePullDown: true,
               header: WaterDropMaterialHeader(
-                backgroundColor: const Color(0xffFF4980).withOpacity(0.8),
+                backgroundColor: ColorManager.secondary.withOpacity(0.8),
               ),
               onRefresh: _onRefresh,
               child: FutureBuilder(

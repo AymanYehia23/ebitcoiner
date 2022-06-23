@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/core/constants/enums.dart';
 import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/logic/cubit/withdraw/withdraw_cubit.dart';
@@ -28,7 +29,7 @@ class WithdrawScreen extends StatelessWidget {
         Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            backgroundColor: Colors.black,
+            backgroundColor: ColorManager.black,
             title: Text(
               'Withdraw',
               style: Theme.of(context).textTheme.bodyText1!.copyWith(
@@ -41,7 +42,7 @@ class WithdrawScreen extends StatelessWidget {
             controller: _refreshController,
             enablePullDown: true,
             header: WaterDropMaterialHeader(
-              backgroundColor: const Color(0xffFF4980).withOpacity(0.8),
+              backgroundColor: ColorManager.secondary.withOpacity(0.8),
             ),
             onRefresh: _onRefresh,
             child: FutureBuilder(
@@ -55,7 +56,7 @@ class WithdrawScreen extends StatelessWidget {
                         EdgeInsets.symmetric(vertical: 1.h, horizontal: 4.w),
                     height: 40.h,
                     width: double.infinity,
-                    color: const Color(0xff1d1a27),
+                    color: ColorManager.primary,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/logic/cubit/hash_rate/hash_rate_cubit.dart';
 import 'package:hash_store/presentation/hashrate/widgets/plan_widget.dart';
 import 'package:hash_store/presentation/hashrate/widgets/hashrate_total_widget.dart';
@@ -44,7 +45,7 @@ class HashRateScreen extends StatelessWidget {
               controller: _refreshController,
               enablePullDown: true,
               header: WaterDropMaterialHeader(
-                backgroundColor: const Color(0xffFF4980).withOpacity(0.8),
+                backgroundColor: ColorManager.secondary.withOpacity(0.8),
               ),
               onRefresh: _onRefresh,
               child: FutureBuilder(
@@ -124,7 +125,7 @@ class HashRateScreen extends StatelessWidget {
                                 : 9.h,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                color: const Color(0xff302C3F),
+                                color: ColorManager.darkPurple,
                               ),
                               borderRadius: BorderRadius.circular((8)),
                             ),
@@ -156,7 +157,7 @@ class HashRateScreen extends StatelessWidget {
                                         width: 8.w,
                                         height: 8.w,
                                         decoration: BoxDecoration(
-                                          color: const Color(0xff302c3f),
+                                          color: ColorManager.darkPurple,
                                           borderRadius: BorderRadius.circular(
                                             (32),
                                           ),

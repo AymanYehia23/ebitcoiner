@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/core/constants/enums.dart';
 import 'package:sizer/sizer.dart';
 
@@ -22,11 +23,11 @@ class MinerWidget extends StatelessWidget {
 
   Color borderColor() {
     if (status == AsicStatus.online) {
-      return Colors.green;
+      return ColorManager.green;
     } else if (status == AsicStatus.offline) {
-      return Colors.red;
+      return ColorManager.red;
     } else {
-      return Colors.blue;
+      return ColorManager.blue;
     }
   }
 
@@ -37,7 +38,7 @@ class MinerWidget extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 2.h),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xff1d1a27),
+        color: ColorManager.primary,
         border: Border.all(color: borderColor()),
         borderRadius: BorderRadius.circular((8.0)),
       ),

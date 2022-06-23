@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/presentation/profile/widgets/delete_account_widget.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:sizer/sizer.dart';
@@ -17,7 +18,7 @@ class PersonalInfoWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
       height: (26.h),
-      color: const Color(0xff1d1a27),
+      color: ColorManager.primary,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,7 +43,7 @@ class PersonalInfoWidget extends StatelessWidget {
                   child: Icon(
                     Icons.person,
                     size: (1.h * 2.w),
-                    color: Colors.grey,
+                    color: ColorManager.gray,
                   ),
                 ),
                 Expanded(
@@ -54,7 +55,7 @@ class PersonalInfoWidget extends StatelessWidget {
                         children: [
                           const Icon(
                             Icons.email_outlined,
-                            color: Colors.grey,
+                            color: ColorManager.gray,
                           ),
                           SizedBox(
                             width: 2.w,
@@ -80,7 +81,7 @@ class PersonalInfoWidget extends StatelessWidget {
                         children: [
                           const Icon(
                             Icons.phone_android,
-                            color: Colors.grey,
+                            color: ColorManager.gray,
                           ),
                           SizedBox(
                             width: 2.w,

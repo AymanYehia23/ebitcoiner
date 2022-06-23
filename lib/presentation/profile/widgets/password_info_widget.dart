@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/presentation/profile/widgets/change_password_widget.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:sizer/sizer.dart';
@@ -16,7 +17,7 @@ class PasswordInfoWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
       width: double.infinity,
       height: (22.h),
-      color: const Color(0xff1d1a27),
+      color: ColorManager.primary,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

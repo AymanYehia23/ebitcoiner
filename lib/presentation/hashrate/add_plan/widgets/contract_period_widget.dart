@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/core/constants/enums.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:sizer/sizer.dart';
@@ -41,7 +42,7 @@ class ContractPeriodWidget extends StatelessWidget {
                     width: 40.w,
                     height: 9.h,
                     decoration: BoxDecoration(
-                      color: const Color(0xff302c3f),
+                      color: ColorManager.darkPurple,
                       borderRadius: BorderRadius.circular(
                         (8.0),
                       ),
@@ -90,7 +91,7 @@ class ContractPeriodWidget extends StatelessWidget {
                     width: 40.w,
                     height: 9.h,
                     decoration: BoxDecoration(
-                      color: const Color(0xff302c3f),
+                      color: ColorManager.darkPurple,
                       borderRadius: BorderRadius.circular(
                         (8.0),
                       ),

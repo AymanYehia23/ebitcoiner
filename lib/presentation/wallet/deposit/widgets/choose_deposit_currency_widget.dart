@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/constants/enums.dart';
@@ -34,7 +35,7 @@ class ChooseDepositCurrencyWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular((20)),
                     color:
                         context.watch<DepositCubit>().depositCurrency == 'BTC'
-                            ? const Color(0xff302c3f)
+                            ? ColorManager.darkPurple
                             : null,
                   ),
                   child: Row(
@@ -73,7 +74,7 @@ class ChooseDepositCurrencyWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular((20)),
                     color:
                         context.watch<DepositCubit>().depositCurrency == 'ETH'
-                            ? const Color(0xff302c3f)
+                            ? ColorManager.darkPurple
                             : null,
                   ),
                   child: Row(
@@ -112,7 +113,7 @@ class ChooseDepositCurrencyWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular((20)),
                     color:
                         context.watch<DepositCubit>().depositCurrency == 'RVN'
-                            ? const Color(0xff302c3f)
+                            ? ColorManager.darkPurple
                             : null,
                   ),
                   child: Row(
@@ -151,7 +152,7 @@ class ChooseDepositCurrencyWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular((20)),
                     color:
                         context.watch<DepositCubit>().depositCurrency == 'LTCT'
-                            ? const Color(0xff302c3f)
+                            ? ColorManager.darkPurple
                             : null,
                   ),
                   child: Row(

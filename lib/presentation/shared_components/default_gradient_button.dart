@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
 import 'package:sizer/sizer.dart';
 
@@ -36,8 +37,8 @@ class DefaultGradientButton extends StatelessWidget {
                   ),
                   gradient: LinearGradient(
                     colors: [
-                      Color(0xffff4980),
-                      Color(0xff4f56ff),
+                      ColorManager.secondary,
+                      ColorManager.purple,
                     ],
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
@@ -51,8 +52,8 @@ class DefaultGradientButton extends StatelessWidget {
             child: OutlineGradientButton(
               gradient: const LinearGradient(
                 colors: [
-                  Color(0xffff4980),
-                  Color(0xff4f56ff),
+                  ColorManager.secondary,
+                  ColorManager.purple,
                 ],
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class DefaultDisabledButton extends StatelessWidget {
@@ -21,7 +22,7 @@ class DefaultDisabledButton extends StatelessWidget {
               (56.0),
             ),
           ),
-          color: Color(0xff302c3f),
+          color: ColorManager.darkPurple,
         ),
         child: text);
   }

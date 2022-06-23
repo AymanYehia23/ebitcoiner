@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/core/extensions/input_validation.dart';
 import 'package:hash_store/data/models/delete_account_model.dart';
 import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
@@ -8,9 +9,9 @@ import 'package:hash_store/presentation/shared_components/default_textfield.dart
 import 'package:sizer/sizer.dart';
 
 import '../../../logic/cubit/profile/profile_cubit.dart';
-import '../../../main.dart';
 import '../../router/app_router.dart';
 import '../../shared_components/default_toast.dart';
+import '../../shared_components/loading_dialog.dart';
 import '../../shared_components/loading_widget.dart';
 
 class DeleteAccountWidget extends StatefulWidget {
@@ -66,25 +67,13 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
     return BlocListener<ProfileCubit, ProfileState>(
       listener: (context, state) {
         if (state is DeleteSavedTokensSuccessState) {
-          navigatorKey.currentState!.popUntil((route) => route.isFirst);
+          Navigator.of(context).pop();
           Navigator.of(context).popAndPushNamed(AppRouter.onboarding);
         } else if (state is DeleteSavedTokensLoadingState ||
             state is DeleteAccountLoadingState) {
-          showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (BuildContext context) {
-              return WillPopScope(
-                onWillPop: () => Future.value(false),
-                child: const Dialog(
-                  child: LoadingWidget(),
-                  backgroundColor: Colors.transparent,
-                ),
-              );
-            },
-          );
+          loadingDialog(context: context);
         } else if (state is DeleteAccountErrorState) {
-          navigatorKey.currentState!.popUntil((route) => route.isFirst);
+          Navigator.of(context).pop();
           Navigator.of(context).pop();
           defaultToast(
             text: state.errorMessage,
@@ -96,7 +85,7 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
         padding: MediaQuery.of(context).viewInsets,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-          color: const Color(0xff1d1a27),
+          color: ColorManager.primary,
           height: 35.h,
           child: Column(
             children: [
@@ -131,7 +120,7 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                     suffixIcon: IconButton(
                       icon: Icon(
                         context.read<ProfileCubit>().iconData,
-                        color: Colors.white,
+                        color: ColorManager.white,
                       ),
                       onPressed: () {
                         context.read<ProfileCubit>().changePasswordVisibility();

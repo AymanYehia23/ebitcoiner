@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/core/constants/enums.dart';
 import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
@@ -16,7 +17,7 @@ class AssetsChangeChartButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: (4.w), vertical: 1.h),
       width: double.infinity,
       height: (12.h),
-      color: const Color(0xff1d1a27),
+      color: ColorManager.primary,
       child: Column(
         children: [
           Expanded(
@@ -35,7 +36,7 @@ class AssetsChangeChartButton extends StatelessWidget {
                       borderRadius: BorderRadius.circular((20)),
                       color:
                           context.watch<AssetsCubit>().currency == Currency.btc
-                              ? const Color(0xff302c3f)
+                              ? ColorManager.darkPurple
                               : null,
                     ),
                     child: Row(
@@ -73,7 +74,7 @@ class AssetsChangeChartButton extends StatelessWidget {
                       borderRadius: BorderRadius.circular((20)),
                       color:
                           context.watch<AssetsCubit>().currency == Currency.eth
-                              ? const Color(0xff302c3f)
+                              ? ColorManager.darkPurple
                               : null,
                     ),
                     child: Row(
@@ -111,7 +112,7 @@ class AssetsChangeChartButton extends StatelessWidget {
                       borderRadius: BorderRadius.circular((20)),
                       color:
                           context.watch<AssetsCubit>().currency == Currency.rvn
-                              ? const Color(0xff302c3f)
+                              ? ColorManager.darkPurple
                               : null,
                     ),
                     child: Row(
@@ -151,7 +152,7 @@ class AssetsChangeChartButton extends StatelessWidget {
                       borderRadius: BorderRadius.circular((20)),
                       color:
                           context.watch<AssetsCubit>().currency == Currency.ltct
-                              ? const Color(0xff302c3f)
+                              ? ColorManager.darkPurple
                               : null,
                     ),
                     child: Row(
@@ -200,8 +201,8 @@ class AssetsChangeChartButton extends StatelessWidget {
                         color:
                             context.watch<AssetsCubit>().selectedPlanButton ==
                                     index
-                                ? const Color(0xffFF4980)
-                                : Colors.transparent,
+                                ? ColorManager.secondary
+                                : ColorManager.transparent,
                       ),
                     ),
                   ),

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../logic/cubit/asic_contract/asic_contract_cubit.dart';
 import '../../../../logic/cubit/devices/devices_cubit.dart';
-import '../../../../main.dart';
 import '../../../shared_components/default_toast.dart';
+import '../../../shared_components/loading_dialog.dart';
 import '../../../shared_components/loading_widget.dart';
 import '../widgets/buy_mining_device_widget.dart';
 
@@ -22,25 +23,13 @@ class BuyMiningDeviceScreen extends StatelessWidget {
         BlocListener<AsicContractCubit, AsicContractState>(
           listener: (context, state) async {
             if (state is AddAsicContractSuccessState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               defaultToast(text: 'Purchased successfully');
               await context.read<DevicesCubit>().getAsicContract();
             } else if (state is AddAsicContractLoadingState) {
-              showDialog(
-                barrierDismissible: false,
-                context: context,
-                builder: (BuildContext context) {
-                  return WillPopScope(
-                    onWillPop: () => Future.value(false),
-                    child: const Dialog(
-                      child: LoadingWidget(),
-                      backgroundColor: Colors.transparent,
-                    ),
-                  );
-                },
-              );
+              loadingDialog(context: context);
             } else if (state is AddAsicContractErrorState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               defaultToast(
                 text: state.errorMessage,
                 isError: true,
@@ -59,7 +48,7 @@ class BuyMiningDeviceScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                icon: const Icon(Icons.close_rounded, color: Colors.white),
+                icon: const Icon(Icons.close_rounded, color: ColorManager.white),
               ),
               title: Title(
                 child: Text(
@@ -69,7 +58,7 @@ class BuyMiningDeviceScreen extends StatelessWidget {
                       .bodyText1!
                       .copyWith(fontSize: 13.sp),
                 ),
-                color: Colors.white,
+                color: ColorManager.white,
               ),
               centerTitle: true,
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/logic/cubit/devices/devices_cubit.dart';
 import 'package:hash_store/presentation/devices/widgets/miners_total_widget.dart';
 import 'package:hash_store/presentation/devices/widgets/miner_widget.dart';
@@ -10,7 +11,9 @@ import 'package:sizer/sizer.dart';
 
 import '../../../core/constants/strings.dart';
 import '../../shared_components/default_toast.dart';
+import '../../shared_components/loading_dialog.dart';
 import '../../shared_components/loading_widget.dart';
+import '../../shared_components/session_expired.dart';
 
 class DevicesScreen extends StatelessWidget {
   const DevicesScreen({Key? key}) : super(key: key);
@@ -27,28 +30,7 @@ class DevicesScreen extends StatelessWidget {
     return BlocListener<DevicesCubit, DevicesState>(
       listener: (context, state) {
         if (state is UnauthorizedDevicesState) {
-          showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (BuildContext context) {
-              return WillPopScope(
-                onWillPop: () => Future.value(false),
-                child: AlertDialog(
-                  title: const Text('Session expired'),
-                  content: const Text(Strings.loginSessionError),
-                  actions: [
-                    TextButton(
-                      child: const Text("Login"),
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushReplacementNamed(AppRouter.firstLogin);
-                      },
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
+          loadingDialog(context: context);
         }
         if (state is GetAsicContractErrorState) {
           defaultToast(
@@ -64,7 +46,7 @@ class DevicesScreen extends StatelessWidget {
             controller: _refreshController,
             enablePullDown: true,
             header: WaterDropMaterialHeader(
-              backgroundColor: const Color(0xffFF4980).withOpacity(0.8),
+              backgroundColor: ColorManager.secondary.withOpacity(0.8),
             ),
             onRefresh: _onRefresh,
             child: FutureBuilder(

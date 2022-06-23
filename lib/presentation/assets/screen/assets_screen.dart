@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/presentation/shared_components/default_toast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -10,6 +11,7 @@ import '../../router/app_router.dart';
 import '../../shared_components/default_gradient_button.dart';
 import '../../shared_components/gradient_background_container.dart';
 import '../../shared_components/loading_widget.dart';
+import '../../shared_components/session_expired.dart';
 import '../widgets/assets_change_chart_button.dart';
 import '../widgets/assets_chart_widget.dart';
 import '../widgets/assets_header_widget.dart';
@@ -32,28 +34,7 @@ class AssetsScreen extends StatelessWidget {
     return BlocListener<AssetsCubit, AssetsState>(
       listener: (context, state) {
         if (state is UnauthorizedAssetsState) {
-          showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (BuildContext context) {
-              return WillPopScope(
-                onWillPop: () => Future.value(false),
-                child: AlertDialog(
-                  title: const Text('Session expired'),
-                  content: const Text(Strings.loginSessionError),
-                  actions: [
-                    TextButton(
-                      child: const Text("Login"),
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushReplacementNamed(AppRouter.firstLogin);
-                      },
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
+          sessionExpiredDialog(context: context);
         } else if (state is AssetsGetUserDataErrorState) {
           defaultToast(
             text: state.errorMessage,
@@ -73,7 +54,7 @@ class AssetsScreen extends StatelessWidget {
             controller: _refreshController,
             enablePullDown: true,
             header: WaterDropMaterialHeader(
-              backgroundColor: const Color(0xffFF4980).withOpacity(0.8),
+              backgroundColor: ColorManager.secondary.withOpacity(0.8),
             ),
             onRefresh: _onRefresh,
             child: FutureBuilder(
@@ -107,11 +88,11 @@ class AssetsScreen extends StatelessWidget {
                             width: double.infinity,
                             height: (8.h),
                             decoration: const BoxDecoration(
-                              color: Color(0xff1d1a27),
+                              color: ColorManager.primary,
                               border: Border(
                                 bottom: BorderSide(
                                   width: 0.3,
-                                  color: Colors.grey,
+                                  color: ColorManager.gray,
                                 ),
                               ),
                             ),
@@ -136,7 +117,7 @@ class AssetsScreen extends StatelessWidget {
                                   ),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular((40)),
-                                    color: const Color(0xff302c3f),
+                                    color: ColorManager.darkPurple,
                                   ),
                                   child: SvgPicture.asset(
                                     Strings.filterIcon,
@@ -149,7 +130,7 @@ class AssetsScreen extends StatelessWidget {
                           const AssetsChartWidget(),
                           Container(
                             height: 10.h,
-                            color: const Color(0xff1d1a27),
+                            color: ColorManager.primary,
                             padding: EdgeInsets.symmetric(
                                 vertical: 2.h, horizontal: 4.w),
                             child: DefaultGradientButton(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class PlanWidget extends StatelessWidget {
@@ -35,7 +36,7 @@ class PlanWidget extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(
-          color: isExpired ? Colors.red : const Color(0xff302C3F),
+          color: isExpired ? ColorManager.red : ColorManager.darkPurple,
         ),
         borderRadius: BorderRadius.circular((8)),
       ),

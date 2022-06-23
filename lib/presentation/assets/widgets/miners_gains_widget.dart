@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/core/constants/strings.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:sizer/sizer.dart';
@@ -18,36 +19,36 @@ class MinersGainsWidget extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [
-            Color(0xff4f56ff),
-            Color(0xffff4980),
+            ColorManager.purple,
+            ColorManager.secondary,
           ],
         ),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xff4f56ff).withOpacity(0.4),
+            color: ColorManager.purple.withOpacity(0.4),
             blurRadius: (20),
           ),
           BoxShadow(
-            color: const Color(0xffff4980).withOpacity(0.4),
+            color: ColorManager.secondary.withOpacity(0.4),
             blurRadius: (20),
           ),
         ],
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 1.w,vertical: 0.5.h),
+        padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.5.h),
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: const Color(0xff1d1a27),
+            color: ColorManager.primary,
             borderRadius: BorderRadius.circular((8)),
           ),
           child: Container(
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 colors: [
-                  Color(0x00302c3f),
-                  Color(0xff302c3f),
-                  Color(0x00302c3f),
+                  ColorManager.backGround,
+                  ColorManager.darkPurple,
+                  ColorManager.backGround,
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -89,7 +90,7 @@ class MinersGainsWidget extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
                           fontSize: (15.sp),
                           fontWeight: FontWeight.bold,
-                          color: const Color(0xffff4980),
+                          color: ColorManager.secondary,
                         ),
                     textAlign: TextAlign.center,
                   ),
@@ -121,10 +122,12 @@ class MinersGainsWidget extends StatelessWidget {
                     ),
                     onPressed: () {
                       Navigator.of(context)
-                            .pushNamed(AppRouter.buyMiningDevice);
+                          .pushNamed(AppRouter.buyMiningDevice);
                     },
                   ),
-                  SizedBox(height: 0.2.h,)
+                  SizedBox(
+                    height: 0.2.h,
+                  )
                 ],
               ),
             ),

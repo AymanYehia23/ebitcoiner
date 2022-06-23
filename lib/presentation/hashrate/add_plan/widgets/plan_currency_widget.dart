@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/core/constants/enums.dart';
 import 'package:sizer/sizer.dart';
 
@@ -15,7 +16,7 @@ class PlanCurrencyWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: (4.w), vertical: 1.h),
       width: double.infinity,
       height: (6.h),
-      color: const Color(0xff1d1a27),
+      color: ColorManager.primary,
       child: Column(
         children: [
           Row(
@@ -31,7 +32,7 @@ class PlanCurrencyWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular((20)),
                     color: context.watch<PlanContractCubit>().cryptoName == 'BTC'
-                        ? const Color(0xff302c3f)
+                        ? ColorManager.darkPurple
                         : null,
                   ),
                   child: Row(
@@ -66,7 +67,7 @@ class PlanCurrencyWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular((20)),
                      color: context.watch<PlanContractCubit>().cryptoName == 'ETH'
-                        ? const Color(0xff302c3f)
+                        ? ColorManager.darkPurple
                         : null,
                   ),
                   child: Row(
@@ -101,7 +102,7 @@ class PlanCurrencyWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular((20)),
                     color: context.watch<PlanContractCubit>().cryptoName == 'RVN'
-                        ? const Color(0xff302c3f)
+                        ? ColorManager.darkPurple
                         : null,
                   ),
                   child: Row(
@@ -136,7 +137,7 @@ class PlanCurrencyWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular((20)),
                     color: context.watch<PlanContractCubit>().cryptoName == 'LTCT'
-                        ? const Color(0xff302c3f)
+                        ? ColorManager.darkPurple
                         : null,
                   ),
                   child: Row(

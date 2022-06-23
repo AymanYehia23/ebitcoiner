@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/logic/cubit/hash_rate/hash_rate_cubit.dart';
 import 'package:sizer/sizer.dart';
 
@@ -20,9 +21,9 @@ class HashrateTotalWidget extends StatelessWidget {
           context.select((HashRateCubit h) => h.isTotalExpanded) ? 34.h : 17.h,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xff1d1a27),
+        color: ColorManager.primary,
         border: Border.all(
-          color: Colors.white,
+          color: ColorManager.white,
         ),
         borderRadius: BorderRadius.circular((8)),
       ),
@@ -105,7 +106,7 @@ class HashrateTotalWidget extends StatelessWidget {
                   width: (8.w),
                   height: (8.w),
                   decoration: BoxDecoration(
-                    color: const Color(0xff302c3f),
+                    color: ColorManager.darkPurple,
                     borderRadius: BorderRadius.circular(
                       (32),
                     ),
@@ -157,7 +158,7 @@ class HashrateTotalWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    color: const Color(0xffff4980),
+                                    color: ColorManager.secondary,
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -173,7 +174,7 @@ class HashrateTotalWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const Divider(color: Colors.grey),
+                  const Divider(color: ColorManager.gray),
                   Row(
                     children: [
                       Image.asset(
@@ -202,7 +203,7 @@ class HashrateTotalWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    color: const Color(0xffff4980),
+                                    color: ColorManager.secondary,
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -218,7 +219,7 @@ class HashrateTotalWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const Divider(color: Colors.grey),
+                  const Divider(color: ColorManager.gray),
                   Row(
                     children: [
                       Image.asset(
@@ -247,7 +248,7 @@ class HashrateTotalWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    color: const Color(0xffff4980),
+                                    color: ColorManager.secondary,
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -263,7 +264,7 @@ class HashrateTotalWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const Divider(color: Colors.grey),
+                  const Divider(color: ColorManager.gray),
                   Row(
                     children: [
                       Image.asset(
@@ -292,7 +293,7 @@ class HashrateTotalWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyText2!
                                   .copyWith(
-                                    color: const Color(0xffff4980),
+                                    color: ColorManager.secondary,
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.bold,
                                   ),

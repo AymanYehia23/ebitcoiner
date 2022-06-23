@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/core/extensions/input_validation.dart';
 import 'package:hash_store/logic/cubit/forget_password/forget_password_cubit.dart';
 
+import '../../../../core/constants/colors.dart';
 import '../../../shared_components/default_textfield.dart';
 
 class ResetPasswordForm extends StatelessWidget {
@@ -21,7 +22,7 @@ class ResetPasswordForm extends StatelessWidget {
         suffixIcon: IconButton(
           icon: Icon(
             context.read<ForgetPasswordCubit>().iconData,
-            color: Colors.white,
+            color: ColorManager.white,
           ),
           onPressed: () {
             context.read<ForgetPasswordCubit>().changePasswordVisibility();

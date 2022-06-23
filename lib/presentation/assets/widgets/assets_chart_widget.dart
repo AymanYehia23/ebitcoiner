@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
 import 'package:sizer/sizer.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -22,13 +23,13 @@ class AssetsChartWidget extends StatelessWidget {
           builder: (context, state) {
             if (state is AssetsGetPlanContractLoadingState) {
               return Container(
-                color: const Color(0xff1d1a27),
+                color: ColorManager.primary,
                 width: double.infinity,
                 height: 30.h,
               );
             }
             return Container(
-              color: const Color(0xff1d1a27),
+              color: ColorManager.primary,
               width: double.infinity,
               height: 30.h,
               child: SfCartesianChart(
@@ -53,7 +54,7 @@ class AssetsChartWidget extends StatelessWidget {
                     xValueMapper: (ChartData data, _) =>
                         data.x.isNotEmpty ? data.x.substring(14, 19) : data.x,
                     yValueMapper: (ChartData data, _) => data.y,
-                    color: const Color(0xffff4980),
+                    color: ColorManager.secondary,
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular((5)),
                       topRight: Radius.circular((5)),

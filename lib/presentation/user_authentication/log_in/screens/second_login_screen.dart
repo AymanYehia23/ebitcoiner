@@ -1,13 +1,14 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/data/models/login_model.dart';
 import 'package:hash_store/presentation/router/app_router.dart';
 import 'package:hash_store/presentation/shared_components/default_toast.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../logic/cubit/login/login_cubit.dart';
-import '../../../../main.dart';
+import '../../../shared_components/loading_dialog.dart';
 import '../../../shared_components/loading_widget.dart';
 import '../widgets/second_login_form.dart';
 import '../../../shared_components/default_disabled_button.dart';
@@ -85,42 +86,26 @@ class _SecondLoginScreenState extends State<SecondLoginScreen> {
         BlocListener<LoginCubit, LoginState>(
           listener: (context, state) async {
             if (state is SecondLoginSuccessState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               Navigator.of(context).pushReplacementNamed(AppRouter.home);
             } else if (state is SecondeLoginLoadingState) {
-             showDialog(
-                barrierDismissible: false,
-                context: context,
-                builder: (BuildContext context) {
-                  return WillPopScope(
-                    onWillPop: () => Future.value(false),
-                    child: const Dialog(
-                      child: LoadingWidget(),
-                      backgroundColor: Colors.transparent,
-                    ),
-                  );
-                },
-              );
+              loadingDialog(context: context);
             } else if (state is SecondLoginErrorState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               defaultToast(
                 text: state.errorMessage,
                 isError: true,
               );
             }
             if (state is FirstLoginSuccessState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               defaultToast(
                 text: 'The OTP has been resent to your email',
               );
             } else if (state is FirstLoginLoadingState) {
-              showDialog(
-                context: context,
-                builder: (context) => const LoadingWidget(),
-              );
-            }
-            else if (state is FirstLoginErrorState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              loadingDialog(context: context);
+            } else if (state is FirstLoginErrorState) {
+              Navigator.of(context).pop();
               defaultToast(
                 text: state.errorMessage,
                 isError: true,
@@ -163,9 +148,9 @@ class _SecondLoginScreenState extends State<SecondLoginScreen> {
                       CircularCountDownTimer(
                         width: 20.w,
                         height: 20.h,
-                        ringColor: Colors.grey[300]!,
-                        fillColor: const Color(0xffff4980),
-                        backgroundColor: Colors.transparent,
+                        ringColor: ColorManager.lightGray,
+                        fillColor: ColorManager.secondary,
+                        backgroundColor: ColorManager.transparent,
                         strokeCap: StrokeCap.round,
                         strokeWidth: 10.0,
                         textFormat: CountdownTextFormat.S,
@@ -213,7 +198,7 @@ class _SecondLoginScreenState extends State<SecondLoginScreen> {
                                         .bodyText1!
                                         .copyWith(
                                           fontSize: 12.sp,
-                                          color: const Color(0xffff4980),
+                                          color: ColorManager.secondary,
                                         ),
                                   ),
                                 ),

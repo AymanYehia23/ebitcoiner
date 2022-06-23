@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/core/extensions/input_validation.dart';
 import 'package:hash_store/data/models/update_password_model.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
@@ -8,8 +9,8 @@ import 'package:hash_store/presentation/shared_components/default_textfield.dart
 import 'package:sizer/sizer.dart';
 
 import '../../../logic/cubit/profile/profile_cubit.dart';
-import '../../../main.dart';
 import '../../shared_components/default_disabled_button.dart';
+import '../../shared_components/loading_dialog.dart';
 import '../../shared_components/loading_widget.dart';
 
 class ChangePasswordWidget extends StatefulWidget {
@@ -72,24 +73,10 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
     return BlocListener<ProfileCubit, ProfileState>(
       listener: (context, state) {
         if (state is UpdatePasswordSuccessState) {
-          navigatorKey.currentState!.popUntil((route) => route.isFirst);
           defaultToast(text: 'Password changed successfully');
         } else if (state is UpdatePasswordLoadingState) {
-          showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (BuildContext context) {
-              return WillPopScope(
-                onWillPop: () => Future.value(false),
-                child: const Dialog(
-                  child: LoadingWidget(),
-                  backgroundColor: Colors.transparent,
-                ),
-              );
-            },
-          );
+          loadingDialog(context: context);
         } else if (state is UpdatePasswordErrorState) {
-          navigatorKey.currentState!.popUntil((route) => route.isFirst);
           defaultToast(
             text: state.errorMessage,
             isError: true,
@@ -101,7 +88,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
         child: Container(
           height: 63.h,
           padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-          color: const Color(0xff1d1a27),
+          color: ColorManager.primary,
           child: Column(
             children: [
               Expanded(
@@ -131,7 +118,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                         suffixIcon: IconButton(
                           icon: Icon(
                             context.read<ProfileCubit>().iconData,
-                            color: Colors.white,
+                            color: ColorManager.white,
                           ),
                           onPressed: () {
                             context
@@ -157,7 +144,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                         suffixIcon: IconButton(
                           icon: Icon(
                             context.read<ProfileCubit>().newPasswordIconData,
-                            color: Colors.white,
+                            color: ColorManager.white,
                           ),
                           onPressed: () {
                             context
@@ -183,7 +170,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                         suffixIcon: IconButton(
                           icon: Icon(
                             context.read<ProfileCubit>().reNewIconData,
-                            color: Colors.white,
+                            color: ColorManager.white,
                           ),
                           onPressed: () {
                             context

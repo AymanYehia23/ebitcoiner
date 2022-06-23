@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/logic/cubit/deposit/deposit_cubit.dart';
 import 'package:hash_store/logic/cubit/withdraw/withdraw_cubit.dart';
 import 'package:hash_store/presentation/shared_components/default_textfield.dart';
@@ -49,7 +50,7 @@ class _DepositScreenState extends State<DepositScreen> {
           Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              backgroundColor: Colors.black,
+              backgroundColor: ColorManager.black,
               title: Text(
                 'Deposit',
                 style: Theme.of(context).textTheme.bodyText1!.copyWith(
@@ -67,7 +68,7 @@ class _DepositScreenState extends State<DepositScreen> {
                         EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
                     height: 9.h,
                     decoration: BoxDecoration(
-                      color: const Color(0xff302c3f),
+                      color: ColorManager.darkPurple,
                       borderRadius: BorderRadius.circular(2.w),
                     ),
                     child: Row(
@@ -75,7 +76,7 @@ class _DepositScreenState extends State<DepositScreen> {
                         Icon(
                           Icons.info_outline,
                           size: (0.5.h * 1.5.w),
-                          color: const Color(0xffb7b4c7),
+                          color: ColorManager.lightGray,
                         ),
                         SizedBox(
                           width: 4.w,
@@ -99,7 +100,7 @@ class _DepositScreenState extends State<DepositScreen> {
                     height: 9.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: const Color(0xff302c3f),
+                      color: ColorManager.darkPurple,
                       borderRadius: BorderRadius.circular(2.w),
                     ),
                     child: Center(
@@ -137,7 +138,7 @@ class _DepositScreenState extends State<DepositScreen> {
                             fontSize: 10.sp,
                             suffixIcon: IconButton(
                               icon: const Icon(Icons.copy),
-                              color: Colors.white,
+                              color: ColorManager.white,
                               onPressed: () {
                                 Clipboard.setData(
                                     ClipboardData(text: _address));
@@ -149,7 +150,7 @@ class _DepositScreenState extends State<DepositScreen> {
                                 );
                               },
                             ),
-                            borderColor: Colors.transparent,
+                            borderColor: ColorManager.transparent,
                           ),
                           SizedBox(
                             height: 4.h,
@@ -160,7 +161,7 @@ class _DepositScreenState extends State<DepositScreen> {
                                   data: _address,
                                   version: QrVersions.auto,
                                   size: 200.0,
-                                  backgroundColor: Colors.white,
+                                  backgroundColor: ColorManager.white,
                                 ),
                         ],
                       );

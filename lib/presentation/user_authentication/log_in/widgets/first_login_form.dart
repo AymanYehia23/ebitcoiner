@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/logic/cubit/login/login_cubit.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../shared_components/default_textfield.dart';
-
 
 class FirstLoginForm extends StatelessWidget {
   const FirstLoginForm({
@@ -45,7 +45,7 @@ class FirstLoginForm extends StatelessWidget {
               suffixIcon: IconButton(
                 icon: Icon(
                   context.read<LoginCubit>().iconData,
-                  color: Colors.white,
+                  color: ColorManager.white,
                 ),
                 onPressed: () {
                   context.read<LoginCubit>().changePasswordVisibility();

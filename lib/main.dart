@@ -23,7 +23,7 @@ import 'package:hash_store/logic/cubit/login/login_cubit.dart';
 import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 import 'package:hash_store/logic/cubit/withdraw/withdraw_cubit.dart';
 import 'package:hash_store/data/data_providers/currency_converter_api.dart';
-import 'package:hash_store/presentation/auth_dialog/auth_dialog.dart';
+import 'package:hash_store/presentation/shared_components/auth_dialog.dart';
 import 'package:hash_store/presentation/onboarding/screen/onboarding_screen.dart';
 import 'package:sizer/sizer.dart';
 import 'core/constants/strings.dart';
@@ -63,7 +63,6 @@ Future<void> main() async {
   );
 }
 
-final navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -137,7 +136,6 @@ class MyApp extends StatelessWidget {
       child: Sizer(
         builder: (context, orientation, deviceType) {
           return MaterialApp(
-            navigatorKey: navigatorKey,
             title: Strings.appTitle,
             theme: AppTheme.lightTheme,
             debugShowCheckedModeBanner: false,

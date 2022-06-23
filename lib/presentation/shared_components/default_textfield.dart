@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class DefaultTextField extends StatelessWidget {
@@ -40,18 +41,18 @@ class DefaultTextField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: text,
         labelStyle: Theme.of(context).textTheme.bodyText2,
-        fillColor: const Color(0xff302c3f),
+        fillColor: ColorManager.darkPurple,
         filled: true,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular((2.w)),
           borderSide:  BorderSide(
-            color: borderColor ?? Colors.white,
+            color: borderColor ?? ColorManager.white,
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular((2.w)),
           borderSide:  BorderSide(
-            color: borderColor ?? const Color(0xffe6e6e6),
+            color: borderColor ?? ColorManager.lightGray,
           ),
         ),
         suffixIcon: suffixIcon == null ? const Text('') : suffixIcon!,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/data/models/sign_up_model.dart';
 import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
 import 'package:hash_store/presentation/router/app_router.dart';
@@ -8,8 +9,8 @@ import 'package:hash_store/presentation/shared_components/default_toast.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../main.dart';
 import '../../../shared_components/default_disabled_button.dart';
+import '../../../shared_components/loading_dialog.dart';
 import '../../../shared_components/loading_widget.dart';
 import '../widgets/sign_up_form.dart';
 
@@ -85,26 +86,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
             BlocListener<SignUpCubit, SignUpState>(
               listener: (context, state) {
                 if (state is SignUpSuccessState) {
-                  navigatorKey.currentState!.popUntil((route) => route.isFirst);
+                  Navigator.of(context).pop();
                   defaultToast(text: 'Account successfully created');
                   Navigator.of(context)
                       .pushReplacementNamed(AppRouter.firstLogin);
                 } else if (state is SignUpLoadingState) {
-                  showDialog(
-                    barrierDismissible: false,
-                    context: context,
-                    builder: (BuildContext context) {
-                      return WillPopScope(
-                        onWillPop: () => Future.value(false),
-                        child: const Dialog(
-                          child: LoadingWidget(),
-                          backgroundColor: Colors.transparent,
-                        ),
-                      );
-                    },
-                  );
+                  loadingDialog(context: context);
                 } else if (state is SignUpErrorState) {
-                  navigatorKey.currentState!.popUntil((route) => route.isFirst);
+                  Navigator.of(context).pop();
                   defaultToast(
                     text: state.errorMessage,
                     isError: true,
@@ -185,7 +174,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   .bodyText1!
                                   .copyWith(
                                     fontSize: 11.sp,
-                                    color: const Color(0xffff4980),
+                                    color: ColorManager.secondary,
                                   ),
                             ),
                           ),
@@ -207,7 +196,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   .bodyText1!
                                   .copyWith(
                                     fontSize: 11.sp,
-                                    color: const Color(0xffff4980),
+                                    color: ColorManager.secondary,
                                   ),
                             ),
                           ),

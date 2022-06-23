@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/presentation/assets/screen/assets_screen.dart';
 import 'package:hash_store/presentation/devices/screen/devices_screen.dart';
 import 'package:hash_store/presentation/hashrate/screen/hashrate_screen.dart';
@@ -21,7 +22,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   String title = '';
-  Color color = Colors.transparent;
+  Color color = ColorManager.transparent;
   bool isFloatingButton = false;
   String navigatorName = '';
 
@@ -30,25 +31,25 @@ class _HomeScreenState extends State<HomeScreen> {
       _selectedIndex = index;
       if (_selectedIndex == 1) {
         title = 'Hashrate plans';
-        color = Colors.black;
+        color = ColorManager.black;
         isFloatingButton = true;
         navigatorName = AppRouter.addPlanContract;
       } else if (_selectedIndex == 2) {
         title = 'Devices';
-        color = Colors.black;
+        color = ColorManager.black;
         isFloatingButton = true;
         navigatorName = AppRouter.buyMiningDevice;
       } else if (_selectedIndex == 3) {
         title = 'Wallet';
-        color = Colors.black;
+        color = ColorManager.black;
         isFloatingButton = false;
       } else if (_selectedIndex == 4) {
         title = 'Profile';
-        color = Colors.black;
+        color = ColorManager.black;
         isFloatingButton = false;
       } else {
         title = '';
-        color = Colors.transparent;
+        color = ColorManager.transparent;
         isFloatingButton = false;
       }
     });
@@ -65,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff13111a),
+      backgroundColor: ColorManager.backGround,
       appBar: AppBar(
         title: Text(
           title,
@@ -88,11 +89,11 @@ class _HomeScreenState extends State<HomeScreen> {
           Icon(CustomIcons.assets_icon),
           Icon(Icons.person),
         ],
-        backgroundColor: const Color(0xff1d1a27),
+        backgroundColor: ColorManager.primary,
         onTap: (int index) {
           _onItemTapped(index);
         },
-        color: const Color(0xffFF4980).withOpacity(0.8),
+        color: ColorManager.secondary.withOpacity(0.8),
       ),
       floatingActionButton: isFloatingButton
           ? FloatingActionButton(
@@ -102,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: DefaultGradientButton(
                   text: const Icon(
                     Icons.add,
-                    color: Colors.white,
+                    color: ColorManager.white,
                   ),
                   onPressed: () {
                     Navigator.of(context).pushNamed(navigatorName);

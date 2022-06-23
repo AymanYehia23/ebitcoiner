@@ -6,9 +6,9 @@ import 'package:hash_store/presentation/shared_components/gradient_background_co
 import 'package:sizer/sizer.dart';
 
 import '../../../../logic/cubit/forget_password/forget_password_cubit.dart';
-import '../../../../main.dart';
 import '../../../router/app_router.dart';
 import '../../../shared_components/default_gradient_button.dart';
+import '../../../shared_components/loading_dialog.dart';
 import '../../../shared_components/loading_widget.dart';
 import '../widgets/forget_password_form.dart';
 
@@ -64,25 +64,13 @@ class _ForgetPassScreenState extends State<ForgetPasswordScreen> {
         BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
           listener: (context, state) {
             if (state is ForgetPasswordSuccessState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               context.read<ForgetPasswordCubit>().email = _emailController.text;
               Navigator.pushReplacementNamed(context, AppRouter.recoveryLink);
             } else if (state is ForgetPasswordLoadingState) {
-              showDialog(
-                barrierDismissible: false,
-                context: context,
-                builder: (BuildContext context) {
-                  return WillPopScope(
-                    onWillPop: () => Future.value(false),
-                    child: const Dialog(
-                      child: LoadingWidget(),
-                      backgroundColor: Colors.transparent,
-                    ),
-                  );
-                },
-              );
+              loadingDialog(context: context);
             } else if (state is ForgetPasswordErrorState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               defaultToast(
                 text: state.errorMessage,
                 isError: true,

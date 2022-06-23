@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/logic/cubit/devices/devices_cubit.dart';
 import 'package:sizer/sizer.dart';
 
@@ -19,9 +20,9 @@ class MinersTotalWidget extends StatelessWidget {
       height: 12.h,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xff1d1a27),
+        color: ColorManager.primary,
         border: Border.all(
-          color: Colors.white,
+          color: ColorManager.white,
         ),
         borderRadius: BorderRadius.circular((8)),
       ),

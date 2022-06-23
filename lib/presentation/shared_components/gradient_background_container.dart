@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class GradientBackgroundContainer extends StatelessWidget {
@@ -7,7 +8,6 @@ class GradientBackgroundContainer extends StatelessWidget {
   const GradientBackgroundContainer({
     Key? key,
     this.child,
-
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class GradientBackgroundContainer extends StatelessWidget {
           Container(
             width: double.infinity,
             height: double.infinity,
-            color: const Color(0xff13111a),
+            color: ColorManager.backGround,
           ),
           Container(
             margin: EdgeInsets.only(right: 4.w),
@@ -26,8 +26,8 @@ class GradientBackgroundContainer extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  const Color(0xffff4980).withOpacity(0.2),
-                  const Color(0xff4f56ff).withOpacity(0.2)
+                  ColorManager.secondary.withOpacity(0.2),
+                  ColorManager.purple.withOpacity(0.2)
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -36,7 +36,7 @@ class GradientBackgroundContainer extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular((2160)),
               backgroundBlendMode: BlendMode.overlay,
-              color:  const Color(0xff13111a),
+              color: ColorManager.backGround,
             ),
           ),
         ],

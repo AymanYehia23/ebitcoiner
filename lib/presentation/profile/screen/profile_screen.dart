@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/data/models/logout_model.dart';
 import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
 import 'package:hash_store/presentation/profile/widgets/password_info_widget.dart';
@@ -13,8 +14,9 @@ import 'package:sizer/sizer.dart';
 
 import '../../../core/constants/strings.dart';
 import '../../../logic/cubit/profile/profile_cubit.dart';
-import '../../../main.dart';
+import '../../shared_components/loading_dialog.dart';
 import '../../shared_components/loading_widget.dart';
+import '../../shared_components/session_expired.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
@@ -32,50 +34,17 @@ class ProfileScreen extends StatelessWidget {
 
     return BlocListener<ProfileCubit, ProfileState>(
       listener: (context, state) {
-         if (state is UnauthorizedProfileState) {
-          showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (BuildContext context) {
-              return WillPopScope(
-                onWillPop: () => Future.value(false),
-                child: AlertDialog(
-                  title: const Text('Session expired'),
-                  content: const Text(Strings.loginSessionError),
-                  actions: [
-                    TextButton(
-                      child: const Text("Login"),
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushReplacementNamed(AppRouter.firstLogin);
-                      },
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
+        if (state is UnauthorizedProfileState) {
+          sessionExpiredDialog(context: context);
         }
         if (state is DeleteSavedTokensSuccessState) {
-          navigatorKey.currentState!.popUntil((route) => route.isFirst);
+          Navigator.of(context).pop();
           Navigator.of(context).popAndPushNamed(AppRouter.onboarding);
         } else if (state is DeleteSavedTokensLoadingState ||
             state is LogoutLoadingState) {
-          showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (BuildContext context) {
-              return WillPopScope(
-                onWillPop: () => Future.value(false),
-                child: const Dialog(
-                  child: LoadingWidget(),
-                  backgroundColor: Colors.transparent,
-                ),
-              );
-            },
-          );
+          loadingDialog(context: context);
         } else if (state is LogoutErrorState) {
-          navigatorKey.currentState!.popUntil((route) => route.isFirst);
+          Navigator.of(context).pop();
           defaultToast(
             text: state.errorMessage,
             isError: true,
@@ -91,7 +60,7 @@ class ProfileScreen extends StatelessWidget {
               controller: _refreshController,
               enablePullDown: true,
               header: WaterDropMaterialHeader(
-                backgroundColor: const Color(0xffFF4980).withOpacity(0.8),
+                backgroundColor: ColorManager.secondary.withOpacity(0.8),
               ),
               onRefresh: _onRefresh,
               child: Builder(builder: (context) {
@@ -123,12 +92,12 @@ class ProfileScreen extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                               horizontal: 6.w, vertical: 2.h),
                           height: (8.h),
-                          color: const Color(0xff1d1a27),
+                          color: ColorManager.primary,
                           child: Row(
                             children: [
                               const Icon(
                                 Icons.logout_outlined,
-                                color: Colors.red,
+                                color: ColorManager.red,
                               ),
                               SizedBox(
                                 width: 2.w,
@@ -140,7 +109,7 @@ class ProfileScreen extends StatelessWidget {
                                     .bodyText1!
                                     .copyWith(
                                       fontSize: 12.sp,
-                                      color: Colors.red,
+                                      color: ColorManager.red,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),

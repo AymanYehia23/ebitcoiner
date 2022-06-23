@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hash_store/core/extensions/input_validation.dart';
 import 'package:sizer/sizer.dart';
+import '../../../../core/constants/colors.dart';
 import '../../../../logic/cubit/sign_up/sign_up_cubit.dart';
 import '../../../shared_components/default_textfield.dart';
 import 'country_code_widget.dart';
@@ -105,7 +106,7 @@ class SignUpForm extends StatelessWidget {
               suffixIcon: IconButton(
                 icon: Icon(
                   context.read<SignUpCubit>().iconData,
-                  color: Colors.white,
+                  color: ColorManager.white,
                 ),
                 onPressed: () {
                   context.read<SignUpCubit>().changePasswordVisibility();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/presentation/shared_components/default_toast.dart';
 import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
 import 'package:sizer/sizer.dart';
@@ -7,7 +8,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../logic/cubit/assets/assets_cubit.dart';
 import '../../../../logic/cubit/hash_rate/hash_rate_cubit.dart';
 import '../../../../logic/cubit/plan_contract/plan_contract_cubit.dart';
-import '../../../../main.dart';
+import '../../../shared_components/loading_dialog.dart';
 import '../../../shared_components/loading_widget.dart';
 import '../widgets/buy_plan_widget.dart';
 import '../../add_plan/widgets/contract_period_widget.dart';
@@ -23,26 +24,14 @@ class ChooseDesiredPlanScreen extends StatelessWidget {
         BlocListener<PlanContractCubit, PlanContractState>(
           listener: (context, state) async {
             if (state is AddPlanContractSuccessState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               defaultToast(text: 'Purchased successfully');
               await context.read<HashRateCubit>().getTotalPower();
               await context.read<AssetsCubit>().getUserData();
             } else if (state is AddPlanContractLoadingState) {
-              showDialog(
-                barrierDismissible: false,
-                context: context,
-                builder: (BuildContext context) {
-                  return WillPopScope(
-                    onWillPop: () => Future.value(false),
-                    child: const Dialog(
-                      child: LoadingWidget(),
-                      backgroundColor: Colors.transparent,
-                    ),
-                  );
-                },
-              );
+              loadingDialog(context: context);
             } else if (state is AddPlanContractErrorState) {
-              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+              Navigator.of(context).pop();
               defaultToast(
                 text: state.errorMessage,
                 isError: true,
@@ -73,11 +62,11 @@ class ChooseDesiredPlanScreen extends StatelessWidget {
                     height: 30.h,
                     width: double.infinity,
                     decoration: const BoxDecoration(
-                      color: Color(0xff1d1a27),
+                      color: ColorManager.primary,
                       border: Border(
                         bottom: BorderSide(
                           width: 0.1,
-                          color: Colors.grey,
+                          color: ColorManager.gray,
                         ),
                       ),
                     ),

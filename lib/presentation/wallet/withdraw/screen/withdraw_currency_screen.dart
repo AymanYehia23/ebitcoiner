@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hash_store/core/constants/colors.dart';
 import 'package:hash_store/logic/cubit/withdraw/withdraw_cubit.dart';
 import 'package:hash_store/presentation/router/app_router.dart';
 import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
 import 'package:hash_store/presentation/shared_components/default_toast.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../main.dart';
 import '../../../shared_components/default_disabled_button.dart';
 import '../../../shared_components/gradient_background_container.dart';
+import '../../../shared_components/loading_dialog.dart';
 import '../../../shared_components/loading_widget.dart';
 import '../../withdraw/widgets/withdraw_form.dart';
 
@@ -69,7 +70,7 @@ class _WithdrawCurrencyScreenState extends State<WithdrawCurrencyScreen> {
         Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            backgroundColor: Colors.black,
+            backgroundColor: ColorManager.black,
             title: Text(
               'Withdraw ${_withdrawCubit.selectedCurrency}',
               style: Theme.of(context).textTheme.bodyText1!.copyWith(
@@ -81,25 +82,13 @@ class _WithdrawCurrencyScreenState extends State<WithdrawCurrencyScreen> {
           body: BlocListener<WithdrawCubit, WithdrawState>(
             listener: (context, state) {
               if (state is WithdrawRequestSuccessState) {
-                navigatorKey.currentState!.popUntil((route) => route.isFirst);
+                Navigator.of(context).pop();
                 defaultToast(text: 'Withdrawal request completed successfully');
                 Navigator.of(context).pushReplacementNamed(AppRouter.home);
               } else if (state is WithdrawRequestLoadingState) {
-               showDialog(
-                  barrierDismissible: false,
-                  context: context,
-                  builder: (BuildContext context) {
-                    return WillPopScope(
-                      onWillPop: () => Future.value(false),
-                      child: const Dialog(
-                        child: LoadingWidget(),
-                        backgroundColor: Colors.transparent,
-                      ),
-                    );
-                  },
-                );
+                loadingDialog(context: context);
               } else if (state is WithdrawRequestErrorState) {
-                navigatorKey.currentState!.popUntil((route) => route.isFirst);
+                Navigator.of(context).pop();
                 defaultToast(
                   text: state.errorMessage,
                   isError: true,
@@ -116,7 +105,7 @@ class _WithdrawCurrencyScreenState extends State<WithdrawCurrencyScreen> {
                       Container(
                         height: 9.h,
                         decoration: BoxDecoration(
-                          color: const Color(0xff302c3f),
+                          color: ColorManager.darkPurple,
                           borderRadius: BorderRadius.circular(2.w),
                         ),
                         child: Padding(
@@ -127,7 +116,7 @@ class _WithdrawCurrencyScreenState extends State<WithdrawCurrencyScreen> {
                               Icon(
                                 Icons.info_outline,
                                 size: (0.5.h * 1.5.w),
-                                color: const Color(0xffb7b4c7),
+                                color: ColorManager.lightGray,
                               ),
                               SizedBox(
                                 width: 4.w,
@@ -175,7 +164,7 @@ class _WithdrawCurrencyScreenState extends State<WithdrawCurrencyScreen> {
                                   .bodyText2!
                                   .copyWith(
                                     fontSize: 11.sp,
-                                    color: const Color(0xffFF4980),
+                                    color: ColorManager.secondary,
                                   ),
                             ),
                           ),
