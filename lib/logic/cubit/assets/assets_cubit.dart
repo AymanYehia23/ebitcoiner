@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:hash_store/core/constants/enums.dart';
-import 'package:hash_store/data/models/chart_model.dart';
-import 'package:hash_store/data/models/plan_contract_model.dart';
-import 'package:hash_store/data/repositories/get_user_data_repo.dart';
-import 'package:hash_store/data/repositories/plan_contract_repo.dart';
+import 'package:ebitcoiner/core/constants/enums.dart';
+import 'package:ebitcoiner/data/models/chart_model.dart';
+import 'package:ebitcoiner/data/models/plan_contract_model.dart';
+import 'package:ebitcoiner/data/repositories/get_user_data_repo.dart';
+import 'package:ebitcoiner/data/repositories/plan_contract_repo.dart';
 import 'package:meta/meta.dart';
 
 import '../../../core/constants/strings.dart';

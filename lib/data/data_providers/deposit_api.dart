@@ -1,5 +1,5 @@
-import 'package:hash_store/data/models/deposit_model.dart';
-import 'package:hash_store/data/repositories/deposit_repo.dart';
+import 'package:ebitcoiner/data/models/deposit_model.dart';
+import 'package:ebitcoiner/data/repositories/deposit_repo.dart';
 
 import '../../core/constants/strings.dart';
 import '../http/http_service.dart';

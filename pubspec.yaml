@@ -1,4 +1,4 @@
-name: hash_store
+name: ebitcoiner
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -43,9 +43,6 @@ dependencies:
   syncfusion_flutter_charts: ^20.1.55
   country_code_picker: ^2.0.2
   flutter_secure_storage: ^5.0.2
-  mocktail: ^0.3.0
-  bloc_test: ^9.0.3
-  equatable: ^2.0.3
   sizer: ^2.0.15
   circular_countdown_timer: ^0.2.1
   curved_navigation_bar: ^1.0.3
@@ -77,12 +74,12 @@ flutter_icons:
   ios: true
   remove_alpha_ios: true
   image_path: "assets/images/logo_foreground.png"
-  adaptive_icon_background: "#673AB7"
+  adaptive_icon_background: "#000000"
   adaptive_icon_foreground: "assets/images/logo_foreground.png"
 
 flutter_native_splash:
-  color: '#13111a'
-  color_dark: '#13111a'
+  color: '#000000'
+  color_dark: '#000000'
   image: assets/images/splash.png
   image_dark: assets/images/splash.png
 

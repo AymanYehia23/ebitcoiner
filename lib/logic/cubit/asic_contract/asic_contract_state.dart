@@ -1,11 +1,6 @@
 part of 'asic_contract_cubit.dart';
 
-abstract class AsicContractState extends Equatable {
-  const AsicContractState();
-
-  @override
-  List<Object> get props => [];
-}
+abstract class AsicContractState {}
 
 class AsicContractInitial extends AsicContractState {}
 
@@ -15,7 +10,7 @@ class GetAsicsSuccessState extends AsicContractState {}
 
 class GetAsicsErrorState extends AsicContractState {
   final String errorMessage;
-  const GetAsicsErrorState({
+  GetAsicsErrorState({
     required this.errorMessage,
   });
 }
@@ -26,7 +21,7 @@ class AddAsicContractSuccessState extends AsicContractState {}
 
 class AddAsicContractErrorState extends AsicContractState {
   final String errorMessage;
-  const AddAsicContractErrorState({
+  AddAsicContractErrorState({
     required this.errorMessage,
   });
 }

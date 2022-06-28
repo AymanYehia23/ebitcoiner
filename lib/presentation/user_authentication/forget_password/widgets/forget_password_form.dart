@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hash_store/core/extensions/input_validation.dart';
+import 'package:ebitcoiner/core/extensions/input_validation.dart';
 
 import '../../../shared_components/default_textfield.dart';
 

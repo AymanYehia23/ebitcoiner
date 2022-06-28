@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/core/secure_storage/secure_storage.dart';
-import 'package:hash_store/data/models/forget_password_model.dart';
-import 'package:hash_store/data/repositories/forget_password_repo.dart';
+import 'package:ebitcoiner/core/constants/strings.dart';
+import 'package:ebitcoiner/core/secure_storage/secure_storage.dart';
+import 'package:ebitcoiner/data/models/forget_password_model.dart';
+import 'package:ebitcoiner/data/repositories/forget_password_repo.dart';
 
 part 'forget_password_state.dart';
 
@@ -91,18 +91,16 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   void changeIsEmpty(bool i) {
     if (i) {
       isEmpty = true;
-      emit(ChangeIsEmptyTrueState());
     } else {
       isEmpty = false;
-      emit(ChangeIsEmptyFalseState());
     }
+    emit(ChangeIsEmptyState());
   }
 
   void changePasswordVisibility() {
-    emit(ChangePasswordVisibilityLoadingState());
     isObscure = !isObscure;
     iconData =
         isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-    emit(ChangePasswordVisibilitySuccessState());
+    emit(ChangePasswordVisibilityState());
   }
 }

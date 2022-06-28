@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hash_store/presentation/onboarding/screen/onboarding_screen.dart';
+import 'package:ebitcoiner/presentation/onboarding/screen/onboarding_screen.dart';
 
 import '../../core/exceptions/route_exception.dart';
 

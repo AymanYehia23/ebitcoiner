@@ -1,1 +1,1 @@
-# hash_store
+# ebitcoiner

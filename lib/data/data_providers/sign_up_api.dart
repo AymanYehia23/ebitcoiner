@@ -1,5 +1,5 @@
-import 'package:hash_store/data/models/sign_up_model.dart';
-import 'package:hash_store/data/repositories/sign_up_repo.dart';
+import 'package:ebitcoiner/data/models/sign_up_model.dart';
+import 'package:ebitcoiner/data/repositories/sign_up_repo.dart';
 
 import '../../core/constants/strings.dart';
 import '../http/http_service.dart';

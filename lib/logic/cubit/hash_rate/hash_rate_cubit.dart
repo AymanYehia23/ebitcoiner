@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:equatable/equatable.dart';
-import 'package:hash_store/data/repositories/plan_contract_repo.dart';
+import 'package:ebitcoiner/data/repositories/plan_contract_repo.dart';
 
 import '../../../core/constants/strings.dart';
 import '../../../data/models/plan_contract_model.dart';

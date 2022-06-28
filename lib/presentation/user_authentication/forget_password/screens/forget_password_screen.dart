@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
-import 'package:hash_store/presentation/shared_components/default_toast.dart';
-import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
+import 'package:ebitcoiner/presentation/shared_components/default_disabled_button.dart';
+import 'package:ebitcoiner/presentation/shared_components/default_toast.dart';
+import 'package:ebitcoiner/presentation/shared_components/gradient_background_container.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../logic/cubit/forget_password/forget_password_cubit.dart';
 import '../../../router/app_router.dart';
 import '../../../shared_components/default_gradient_button.dart';
 import '../../../shared_components/loading_dialog.dart';
-import '../../../shared_components/loading_widget.dart';
 import '../widgets/forget_password_form.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {

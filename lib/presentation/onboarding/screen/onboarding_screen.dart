@@ -1,6 +1,6 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:hash_store/presentation/router/app_router.dart';
+import 'package:ebitcoiner/presentation/router/app_router.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../shared_components/default_gradient_button.dart';

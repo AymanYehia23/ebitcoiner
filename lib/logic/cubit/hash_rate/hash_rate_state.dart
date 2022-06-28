@@ -1,11 +1,6 @@
 part of 'hash_rate_cubit.dart';
 
-abstract class HashRateState extends Equatable {
-  const HashRateState();
-
-  @override
-  List<Object> get props => [];
-}
+abstract class HashRateState {}
 
 class HashRateInitial extends HashRateState {}
 
@@ -15,7 +10,7 @@ class HashRateGetPlanContractSuccessState extends HashRateState {}
 
 class HashRateGetPlanContractErrorState extends HashRateState {
   final String errorMessage;
-  const HashRateGetPlanContractErrorState({
+  HashRateGetPlanContractErrorState({
     required this.errorMessage,
   });
 }

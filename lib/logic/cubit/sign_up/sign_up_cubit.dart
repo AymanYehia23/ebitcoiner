@@ -1,10 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/data/models/sign_up_model.dart';
-import 'package:hash_store/data/repositories/sign_up_repo.dart';
+import 'package:ebitcoiner/core/constants/strings.dart';
+import 'package:ebitcoiner/data/models/sign_up_model.dart';
+import 'package:ebitcoiner/data/repositories/sign_up_repo.dart';
 
 part 'sign_up_state.dart';
 
@@ -44,18 +43,16 @@ class SignUpCubit extends Cubit<SignUpState> {
   void changeIsEmpty(bool i) {
     if (i) {
       isEmpty = true;
-      emit(ChangeIsEmptyTrueState());
     } else {
       isEmpty = false;
-      emit(ChangeIsEmptyFalseState());
     }
+    emit(ChangeIsEmptyState());
   }
 
   void changePasswordVisibility() {
-    emit(ChangePasswordVisibilityLoadingState());
     isObscure = !isObscure;
     iconData =
         isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-    emit(ChangePasswordVisibilitySuccessState());
+    emit(ChangePasswordVisibilityState());
   }
 }

@@ -1,6 +1,6 @@
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/data/http/http_service.dart';
-import 'package:hash_store/data/repositories/forget_password_repo.dart';
+import 'package:ebitcoiner/core/constants/strings.dart';
+import 'package:ebitcoiner/data/http/http_service.dart';
+import 'package:ebitcoiner/data/repositories/forget_password_repo.dart';
 
 import '../models/forget_password_model.dart';
 

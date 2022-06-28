@@ -1,6 +1,6 @@
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/data/http/http_service.dart';
-import 'package:hash_store/data/repositories/login_repo.dart';
+import 'package:ebitcoiner/core/constants/strings.dart';
+import 'package:ebitcoiner/data/http/http_service.dart';
+import 'package:ebitcoiner/data/repositories/login_repo.dart';
 
 import '../models/login_model.dart';
 

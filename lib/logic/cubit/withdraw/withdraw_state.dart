@@ -1,11 +1,6 @@
 part of 'withdraw_cubit.dart';
 
-abstract class WithdrawState extends Equatable {
-  const WithdrawState();
-
-  @override
-  List<Object> get props => [];
-}
+abstract class WithdrawState {}
 
 class WithdrawInitial extends WithdrawState {}
 
@@ -21,7 +16,7 @@ class WithdrawRequestSuccessState extends WithdrawState {}
 
 class WithdrawRequestErrorState extends WithdrawState {
   final String errorMessage;
-  const WithdrawRequestErrorState({
+  WithdrawRequestErrorState({
     required this.errorMessage,
   });
 }

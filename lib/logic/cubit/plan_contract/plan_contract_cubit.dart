@@ -1,11 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:equatable/equatable.dart';
-import 'package:hash_store/core/constants/enums.dart';
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/data/models/plan_contract_model.dart';
-import 'package:hash_store/data/repositories/plan_contract_repo.dart';
-import 'package:hash_store/data/repositories/plans_repo.dart';
+import 'package:ebitcoiner/core/constants/enums.dart';
+import 'package:ebitcoiner/core/constants/strings.dart';
+import 'package:ebitcoiner/data/models/plan_contract_model.dart';
+import 'package:ebitcoiner/data/repositories/plan_contract_repo.dart';
+import 'package:ebitcoiner/data/repositories/plans_repo.dart';
 
 import '../../../data/models/plan_model.dart';
 
@@ -27,6 +26,7 @@ class PlanContractCubit extends Cubit<PlanContractState> {
   double fourthRange = 0;
 
   Future<void> getPlans() async {
+    plansModel = PlansResponseModel(plans: [], plansHashPower: []);
     String errorMessage = Strings.defaultErrorMessage;
     emit(GetPlansLoadingState());
     try {

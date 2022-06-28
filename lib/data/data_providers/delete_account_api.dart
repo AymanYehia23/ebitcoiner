@@ -1,5 +1,5 @@
-import 'package:hash_store/data/models/delete_account_model.dart';
-import 'package:hash_store/data/repositories/delete_account_repo.dart';
+import 'package:ebitcoiner/data/models/delete_account_model.dart';
+import 'package:ebitcoiner/data/repositories/delete_account_repo.dart';
 
 import '../../core/constants/strings.dart';
 import '../http/http_service.dart';

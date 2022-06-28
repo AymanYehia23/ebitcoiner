@@ -1,6 +1,5 @@
 part of 'forget_password_cubit.dart';
 
-@immutable
 abstract class ForgetPasswordState {}
 
 class ForgetPasswordInitial extends ForgetPasswordState {}
@@ -38,10 +37,6 @@ class ResetPasswordErrorState extends ForgetPasswordState {
   });
 }
 
-class ChangeIsEmptyTrueState extends ForgetPasswordState {}
+class ChangeIsEmptyState extends ForgetPasswordState {}
 
-class ChangeIsEmptyFalseState extends ForgetPasswordState {}
-
-class ChangePasswordVisibilityLoadingState extends ForgetPasswordState {}
-
-class ChangePasswordVisibilitySuccessState extends ForgetPasswordState {}
+class ChangePasswordVisibilityState extends ForgetPasswordState {}

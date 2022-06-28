@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/core/secure_storage/secure_storage.dart';
+import 'package:ebitcoiner/core/constants/strings.dart';
+import 'package:ebitcoiner/core/secure_storage/secure_storage.dart';
 
 class HttpService {
   static late Dio _dio;
@@ -96,7 +96,6 @@ class HttpService {
         },
         onResponse: (response, responseInterceptorHandler) {
           return responseInterceptorHandler.next(response);
-          //print(response.data);
         },
       ),
     );

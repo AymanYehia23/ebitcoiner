@@ -1,6 +1,6 @@
-import 'package:hash_store/data/http/http_service.dart';
-import 'package:hash_store/data/models/plan_model.dart';
-import 'package:hash_store/data/repositories/plans_repo.dart';
+import 'package:ebitcoiner/data/http/http_service.dart';
+import 'package:ebitcoiner/data/models/plan_model.dart';
+import 'package:ebitcoiner/data/repositories/plans_repo.dart';
 
 class PlansApi implements PlansRepo {
   @override

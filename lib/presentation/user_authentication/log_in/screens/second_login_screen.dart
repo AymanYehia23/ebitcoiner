@@ -1,15 +1,14 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/core/constants/colors.dart';
-import 'package:hash_store/data/models/login_model.dart';
-import 'package:hash_store/presentation/router/app_router.dart';
-import 'package:hash_store/presentation/shared_components/default_toast.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
+import 'package:ebitcoiner/data/models/login_model.dart';
+import 'package:ebitcoiner/presentation/router/app_router.dart';
+import 'package:ebitcoiner/presentation/shared_components/default_toast.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../logic/cubit/login/login_cubit.dart';
 import '../../../shared_components/loading_dialog.dart';
-import '../../../shared_components/loading_widget.dart';
 import '../widgets/second_login_form.dart';
 import '../../../shared_components/default_disabled_button.dart';
 import '../../../shared_components/default_gradient_button.dart';

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:hash_store/core/constants/enums.dart';
+import 'package:ebitcoiner/core/constants/enums.dart';
 
 class CurrencyConverter {
   Dio dio = Dio(

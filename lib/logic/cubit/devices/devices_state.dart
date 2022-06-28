@@ -1,11 +1,6 @@
 part of 'devices_cubit.dart';
 
-abstract class DevicesState extends Equatable {
-  const DevicesState();
-
-  @override
-  List<Object> get props => [];
-}
+abstract class DevicesState {}
 
 class DevicesInitial extends DevicesState {}
 
@@ -15,12 +10,12 @@ class GetAsicContractSuccessState extends DevicesState {}
 
 class GetAsicContractErrorState extends DevicesState {
   final String errorMessage;
-  const GetAsicContractErrorState({
+  GetAsicContractErrorState({
     required this.errorMessage,
   });
 }
 
-class UnauthorizedDevicesState extends DevicesState{}
+class UnauthorizedDevicesState extends DevicesState {}
 
 class DevicesChartBtcState extends DevicesState {}
 

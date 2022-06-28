@@ -1,8 +1,8 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/core/constants/colors.dart';
-import 'package:hash_store/logic/cubit/sign_up/sign_up_cubit.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
+import 'package:ebitcoiner/logic/cubit/sign_up/sign_up_cubit.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomCountryCode extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hash_store/core/constants/colors.dart';
-import 'package:hash_store/logic/cubit/hash_rate/hash_rate_cubit.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
+import 'package:ebitcoiner/logic/cubit/hash_rate/hash_rate_cubit.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../core/constants/strings.dart';

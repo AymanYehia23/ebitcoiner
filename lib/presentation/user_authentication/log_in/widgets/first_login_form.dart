@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/core/constants/colors.dart';
-import 'package:hash_store/logic/cubit/login/login_cubit.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
+import 'package:ebitcoiner/logic/cubit/login/login_cubit.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../shared_components/default_textfield.dart';

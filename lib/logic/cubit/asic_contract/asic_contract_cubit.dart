@@ -1,12 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:equatable/equatable.dart';
-import 'package:hash_store/core/constants/enums.dart';
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/data/models/asic_contract_model.dart';
-import 'package:hash_store/data/models/asic_model.dart';
-import 'package:hash_store/data/repositories/asic_contract_repo.dart';
-import 'package:hash_store/data/repositories/asics_repo.dart';
+import 'package:ebitcoiner/core/constants/enums.dart';
+import 'package:ebitcoiner/core/constants/strings.dart';
+import 'package:ebitcoiner/data/models/asic_contract_model.dart';
+import 'package:ebitcoiner/data/models/asic_model.dart';
+import 'package:ebitcoiner/data/repositories/asic_contract_repo.dart';
+import 'package:ebitcoiner/data/repositories/asics_repo.dart';
 
 part 'asic_contract_state.dart';
 

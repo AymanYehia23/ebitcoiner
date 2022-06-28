@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/core/constants/colors.dart';
-import 'package:hash_store/logic/cubit/deposit/deposit_cubit.dart';
-import 'package:hash_store/logic/cubit/withdraw/withdraw_cubit.dart';
-import 'package:hash_store/presentation/shared_components/default_textfield.dart';
-import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
+import 'package:ebitcoiner/logic/cubit/deposit/deposit_cubit.dart';
+import 'package:ebitcoiner/logic/cubit/withdraw/withdraw_cubit.dart';
+import 'package:ebitcoiner/presentation/shared_components/default_textfield.dart';
+import 'package:ebitcoiner/presentation/shared_components/gradient_background_container.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:sizer/sizer.dart';
 import '../../../shared_components/default_toast.dart';

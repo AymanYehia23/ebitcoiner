@@ -2,7 +2,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Strings {
   // App
-  static const appTitle = 'Hash Store';
+  static const appTitle = 'Ebitcoiner';
 
   //images paths
   static const splashImage = 'assets/images/splash_image.jpg';

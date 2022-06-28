@@ -1,11 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:hash_store/core/constants/colors.dart';
-import 'package:hash_store/presentation/assets/screen/assets_screen.dart';
-import 'package:hash_store/presentation/devices/screen/devices_screen.dart';
-import 'package:hash_store/presentation/hashrate/screen/hashrate_screen.dart';
-import 'package:hash_store/presentation/profile/screen/profile_screen.dart';
-import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
+import 'package:ebitcoiner/presentation/assets/screen/assets_screen.dart';
+import 'package:ebitcoiner/presentation/devices/screen/devices_screen.dart';
+import 'package:ebitcoiner/presentation/hashrate/screen/hashrate_screen.dart';
+import 'package:ebitcoiner/presentation/profile/screen/profile_screen.dart';
+import 'package:ebitcoiner/presentation/shared_components/default_gradient_button.dart';
 import 'package:sizer/sizer.dart';
 
 import '../router/app_router.dart';

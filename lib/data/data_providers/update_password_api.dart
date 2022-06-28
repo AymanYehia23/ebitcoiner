@@ -1,7 +1,7 @@
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/data/http/http_service.dart';
-import 'package:hash_store/data/models/update_password_model.dart';
-import 'package:hash_store/data/repositories/update_password_repo.dart';
+import 'package:ebitcoiner/core/constants/strings.dart';
+import 'package:ebitcoiner/data/http/http_service.dart';
+import 'package:ebitcoiner/data/models/update_password_model.dart';
+import 'package:ebitcoiner/data/repositories/update_password_repo.dart';
 
 class UpdatePasswordApi implements UpdatePasswordRepo {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hash_store/core/constants/colors.dart';
-import 'package:hash_store/core/constants/enums.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
+import 'package:ebitcoiner/core/constants/enums.dart';
 import 'package:sizer/sizer.dart';
 
 class MinerWidget extends StatelessWidget {

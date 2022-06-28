@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hash_store/core/constants/colors.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class DefaultTextField extends StatelessWidget {

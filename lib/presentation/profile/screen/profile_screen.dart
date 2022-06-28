@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/core/constants/colors.dart';
-import 'package:hash_store/data/models/logout_model.dart';
-import 'package:hash_store/logic/cubit/assets/assets_cubit.dart';
-import 'package:hash_store/presentation/profile/widgets/password_info_widget.dart';
-import 'package:hash_store/presentation/profile/widgets/personal_info_widget.dart';
-import 'package:hash_store/presentation/router/app_router.dart';
-import 'package:hash_store/presentation/shared_components/default_toast.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
+import 'package:ebitcoiner/data/models/logout_model.dart';
+import 'package:ebitcoiner/logic/cubit/assets/assets_cubit.dart';
+import 'package:ebitcoiner/presentation/profile/widgets/password_info_widget.dart';
+import 'package:ebitcoiner/presentation/profile/widgets/personal_info_widget.dart';
+import 'package:ebitcoiner/presentation/router/app_router.dart';
+import 'package:ebitcoiner/presentation/shared_components/default_toast.dart';
 
-import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
+import 'package:ebitcoiner/presentation/shared_components/gradient_background_container.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../core/constants/strings.dart';
 import '../../../logic/cubit/profile/profile_cubit.dart';
 import '../../shared_components/loading_dialog.dart';
-import '../../shared_components/loading_widget.dart';
 import '../../shared_components/session_expired.dart';
 
 class ProfileScreen extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/core/extensions/input_validation.dart';
+import 'package:ebitcoiner/core/extensions/input_validation.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../logic/cubit/sign_up/sign_up_cubit.dart';

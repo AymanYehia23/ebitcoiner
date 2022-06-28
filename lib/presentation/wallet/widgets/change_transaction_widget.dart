@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/core/constants/colors.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../logic/cubit/wallet/wallet_cubit.dart';

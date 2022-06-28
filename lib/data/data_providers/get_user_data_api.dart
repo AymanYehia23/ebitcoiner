@@ -1,7 +1,7 @@
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/data/http/http_service.dart';
-import 'package:hash_store/data/models/login_model.dart';
-import 'package:hash_store/data/repositories/get_user_data_repo.dart';
+import 'package:ebitcoiner/core/constants/strings.dart';
+import 'package:ebitcoiner/data/http/http_service.dart';
+import 'package:ebitcoiner/data/models/login_model.dart';
+import 'package:ebitcoiner/data/repositories/get_user_data_repo.dart';
 
 class UserDataApi implements UserDataRepo {
   @override

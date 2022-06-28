@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hash_store/core/constants/colors.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
 import 'package:sizer/sizer.dart';
 
 Future defaultToast({

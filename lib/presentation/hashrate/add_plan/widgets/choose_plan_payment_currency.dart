@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/core/constants/colors.dart';
-import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
+import 'package:ebitcoiner/presentation/shared_components/default_gradient_button.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../logic/cubit/plan_contract/plan_contract_cubit.dart';

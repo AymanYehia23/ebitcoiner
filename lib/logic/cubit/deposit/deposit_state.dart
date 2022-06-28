@@ -1,11 +1,6 @@
 part of 'deposit_cubit.dart';
 
-abstract class DepositState extends Equatable {
-  const DepositState();
-
-  @override
-  List<Object> get props => [];
-}
+abstract class DepositState {}
 
 class DepositInitial extends DepositState {}
 
@@ -15,7 +10,7 @@ class GetDepositAddressSuccessState extends DepositState {}
 
 class GetDepositAddressErrorState extends DepositState {
   final String errorMessage;
-  const GetDepositAddressErrorState({
+  GetDepositAddressErrorState({
     required this.errorMessage,
   });
 }

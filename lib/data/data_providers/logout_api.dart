@@ -1,4 +1,4 @@
-import 'package:hash_store/data/repositories/logout_repo.dart';
+import 'package:ebitcoiner/data/repositories/logout_repo.dart';
 
 import '../../core/constants/strings.dart';
 import '../http/http_service.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hash_store/core/constants/colors.dart';
-import 'package:hash_store/presentation/profile/widgets/change_password_widget.dart';
-import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
+import 'package:ebitcoiner/presentation/profile/widgets/change_password_widget.dart';
+import 'package:ebitcoiner/presentation/shared_components/default_gradient_button.dart';
 import 'package:sizer/sizer.dart';
 
 class PasswordInfoWidget extends StatelessWidget {

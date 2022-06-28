@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/core/constants/colors.dart';
-import 'package:hash_store/logic/cubit/withdraw/withdraw_cubit.dart';
-import 'package:hash_store/presentation/router/app_router.dart';
-import 'package:hash_store/presentation/shared_components/default_gradient_button.dart';
-import 'package:hash_store/presentation/shared_components/default_toast.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
+import 'package:ebitcoiner/logic/cubit/withdraw/withdraw_cubit.dart';
+import 'package:ebitcoiner/presentation/router/app_router.dart';
+import 'package:ebitcoiner/presentation/shared_components/default_gradient_button.dart';
+import 'package:ebitcoiner/presentation/shared_components/default_toast.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../shared_components/default_disabled_button.dart';
 import '../../../shared_components/gradient_background_container.dart';
 import '../../../shared_components/loading_dialog.dart';
-import '../../../shared_components/loading_widget.dart';
 import '../../withdraw/widgets/withdraw_form.dart';
 
 class WithdrawCurrencyScreen extends StatefulWidget {

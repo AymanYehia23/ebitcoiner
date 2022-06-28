@@ -1,4 +1,4 @@
-package com.example.hash_store
+package com.example.ebitcoiner
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.plugins.GeneratedPluginRegistrant

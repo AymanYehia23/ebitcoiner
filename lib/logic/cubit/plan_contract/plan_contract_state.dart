@@ -1,11 +1,6 @@
 part of 'plan_contract_cubit.dart';
 
-abstract class PlanContractState extends Equatable {
-  const PlanContractState();
-
-  @override
-  List<Object> get props => [];
-}
+abstract class PlanContractState {}
 
 class PlanContractInitial extends PlanContractState {}
 
@@ -15,7 +10,7 @@ class GetPlansSuccessState extends PlanContractState {}
 
 class GetPlansErrorState extends PlanContractState {
   final String errorMessage;
-  const GetPlansErrorState({
+   GetPlansErrorState({
     required this.errorMessage,
   });
 }
@@ -26,7 +21,7 @@ class AddPlanContractSuccessState extends PlanContractState {}
 
 class AddPlanContractErrorState extends PlanContractState {
   final String errorMessage;
-  const AddPlanContractErrorState({
+   AddPlanContractErrorState({
     required this.errorMessage,
   });
 }

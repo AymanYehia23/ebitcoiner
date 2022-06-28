@@ -1,12 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/data/models/delete_account_model.dart';
-import 'package:hash_store/data/models/logout_model.dart';
-import 'package:hash_store/data/models/update_password_model.dart';
-import 'package:hash_store/data/repositories/update_password_repo.dart';
+import 'package:ebitcoiner/core/constants/strings.dart';
+import 'package:ebitcoiner/data/models/delete_account_model.dart';
+import 'package:ebitcoiner/data/models/logout_model.dart';
+import 'package:ebitcoiner/data/models/update_password_model.dart';
+import 'package:ebitcoiner/data/repositories/update_password_repo.dart';
 import '../../../core/secure_storage/secure_storage.dart';
 import '../../../data/repositories/delete_account_repo.dart';
 import '../../../data/repositories/logout_repo.dart';
@@ -119,36 +118,32 @@ class ProfileCubit extends Cubit<ProfileState> {
   void changeIsEmpty(bool i) {
     if (i) {
       _isEmpty = true;
-      emit(ChangeIsEmptyTrueState());
     } else {
       _isEmpty = false;
-      emit(ChangeIsEmptyFalseState());
     }
+    emit(ChangeIsEmptyState());
   }
 
   void changePasswordVisibility() {
-    emit(ChangePasswordVisibilityInitialState());
     isObscure = !isObscure;
     iconData =
         isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-    emit(ChangePasswordVisibilitySuccessState());
+    emit(ChangePasswordVisibilityState());
   }
 
   void changeNewPasswordVisibility() {
-    emit(ChangePasswordVisibilityInitialState());
     newPasswordIsObscure = !newPasswordIsObscure;
     newPasswordIconData = newPasswordIsObscure
         ? Icons.visibility_outlined
         : Icons.visibility_off_outlined;
-    emit(ChangePasswordVisibilitySuccessState());
+    emit(ChangePasswordVisibilityState());
   }
 
   void changeReNewPasswordVisibility() {
-    emit(ChangePasswordVisibilityInitialState());
     reNewIsObscure = !reNewIsObscure;
     reNewIconData = reNewIsObscure
         ? Icons.visibility_outlined
         : Icons.visibility_off_outlined;
-    emit(ChangePasswordVisibilitySuccessState());
+    emit(ChangePasswordVisibilityState());
   }
 }

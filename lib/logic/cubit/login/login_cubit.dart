@@ -1,13 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hash_store/core/constants/enums.dart';
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/core/secure_storage/secure_storage.dart';
-import 'package:hash_store/data/models/login_model.dart';
-import 'package:hash_store/data/repositories/login_repo.dart';
+import 'package:ebitcoiner/core/constants/enums.dart';
+import 'package:ebitcoiner/core/constants/strings.dart';
+import 'package:ebitcoiner/core/secure_storage/secure_storage.dart';
+import 'package:ebitcoiner/data/models/login_model.dart';
+import 'package:ebitcoiner/data/repositories/login_repo.dart';
 
 import '../../../core/local_auth/local_auth_api.dart';
 
@@ -109,18 +108,16 @@ class LoginCubit extends Cubit<LoginState> {
   void changeIsEmpty(bool i) {
     if (i) {
       _isEmpty = true;
-      emit(ChangeIsEmptyTrueState());
     } else {
       _isEmpty = false;
-      emit(ChangeIsEmptyFalseState());
     }
+    emit(ChangeIsEmptyState());
   }
 
   void changePasswordVisibility() {
-    emit(ChangePasswordVisibilityInitialState());
     _isObscure = !_isObscure;
     _iconData =
         _isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-    emit(ChangePasswordVisibilitySuccessState());
+    emit(ChangePasswordVisibilityState());
   }
 }

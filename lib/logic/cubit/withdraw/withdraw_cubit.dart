@@ -1,12 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:equatable/equatable.dart';
-import 'package:hash_store/core/constants/enums.dart';
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/data/models/login_model.dart';
-import 'package:hash_store/data/models/withdraw_model.dart';
-import 'package:hash_store/data/repositories/get_user_data_repo.dart';
-import 'package:hash_store/data/repositories/withdraw_repo.dart';
+import 'package:ebitcoiner/core/constants/enums.dart';
+import 'package:ebitcoiner/core/constants/strings.dart';
+import 'package:ebitcoiner/data/models/login_model.dart';
+import 'package:ebitcoiner/data/models/withdraw_model.dart';
+import 'package:ebitcoiner/data/repositories/get_user_data_repo.dart';
+import 'package:ebitcoiner/data/repositories/withdraw_repo.dart';
 
 part 'withdraw_state.dart';
 

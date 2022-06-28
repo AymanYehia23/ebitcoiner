@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/logic/cubit/forget_password/forget_password_cubit.dart';
-import 'package:hash_store/presentation/shared_components/default_toast.dart';
-import 'package:hash_store/presentation/shared_components/gradient_background_container.dart';
+import 'package:ebitcoiner/core/constants/strings.dart';
+import 'package:ebitcoiner/logic/cubit/forget_password/forget_password_cubit.dart';
+import 'package:ebitcoiner/presentation/shared_components/default_toast.dart';
+import 'package:ebitcoiner/presentation/shared_components/gradient_background_container.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../shared_components/loading_dialog.dart';
-import '../../../shared_components/loading_widget.dart';
 import '../../forget_password/widgets/recovery_code_form.dart';
 import '../../../router/app_router.dart';
 import '../../../shared_components/default_disabled_button.dart';

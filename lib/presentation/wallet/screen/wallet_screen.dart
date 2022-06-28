@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hash_store/core/constants/colors.dart';
-import 'package:hash_store/logic/cubit/wallet/wallet_cubit.dart';
-import 'package:hash_store/presentation/assets/widgets/assets_total_widget.dart';
-import 'package:hash_store/presentation/router/app_router.dart';
-import 'package:hash_store/presentation/wallet/widgets/change_transaction_widget.dart';
-import 'package:hash_store/presentation/wallet/widgets/deposit_widget.dart';
-import 'package:hash_store/presentation/wallet/widgets/withdraw_widget.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
+import 'package:ebitcoiner/logic/cubit/wallet/wallet_cubit.dart';
+import 'package:ebitcoiner/presentation/assets/widgets/assets_total_widget.dart';
+import 'package:ebitcoiner/presentation/router/app_router.dart';
+import 'package:ebitcoiner/presentation/wallet/widgets/change_transaction_widget.dart';
+import 'package:ebitcoiner/presentation/wallet/widgets/deposit_widget.dart';
+import 'package:ebitcoiner/presentation/wallet/widgets/withdraw_widget.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sizer/sizer.dart';
 

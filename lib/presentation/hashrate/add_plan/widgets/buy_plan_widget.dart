@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hash_store/core/constants/colors.dart';
-import 'package:hash_store/presentation/shared_components/default_disabled_button.dart';
+import 'package:ebitcoiner/core/constants/colors.dart';
+import 'package:ebitcoiner/presentation/shared_components/default_disabled_button.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../shared_components/default_gradient_button.dart';

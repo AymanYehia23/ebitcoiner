@@ -1,7 +1,7 @@
-import 'package:hash_store/core/constants/strings.dart';
-import 'package:hash_store/data/http/http_service.dart';
-import 'package:hash_store/data/models/asic_contract_model.dart';
-import 'package:hash_store/data/repositories/asic_contract_repo.dart';
+import 'package:ebitcoiner/core/constants/strings.dart';
+import 'package:ebitcoiner/data/http/http_service.dart';
+import 'package:ebitcoiner/data/models/asic_contract_model.dart';
+import 'package:ebitcoiner/data/repositories/asic_contract_repo.dart';
 
 class AsicContractApi implements AsicContractRepo {
   @override
