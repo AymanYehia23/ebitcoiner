@@ -1,6 +1,5 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ebitcoiner/core/constants/colors.dart';
-import 'package:sizer/sizer.dart';
 
 Future defaultToast({
   required String text,
@@ -15,6 +14,6 @@ Future defaultToast({
     backgroundColor:
         isError ? ColorManager.red : ColorManager.green,
     textColor: ColorManager.white,
-    fontSize: 10.sp,
+    fontSize: 16.0,
   );
 }

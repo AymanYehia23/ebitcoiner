@@ -34,7 +34,7 @@ class OnboardingScreen extends StatelessWidget {
                   'Get Access to Real Mining Power Without Any Extra Effort',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                        fontSize: 20.sp,
+                        fontSize: 19.sp,
                         fontWeight: FontWeight.bold,
                       ),
                 ),

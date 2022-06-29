@@ -36,7 +36,7 @@ class WithdrawWidget extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
-          height: 16.h,
+          height: 18.h,
           color: ColorManager.primary,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

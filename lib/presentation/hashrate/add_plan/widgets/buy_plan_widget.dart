@@ -48,8 +48,8 @@ class BuyPlanWidget extends StatelessWidget {
           ),
           child: Column(
             children: [
-              SizedBox(
-                height: 9.h,
+              Expanded(
+                flex: 1,
                 child: Row(
                   children: [
                     SvgPicture.asset(
@@ -70,197 +70,208 @@ class BuyPlanWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 2.h,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Mining Currency',
-                            style:
-                                Theme.of(context).textTheme.bodyText2!.copyWith(
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                          ),
-                          SizedBox(
-                            height: 0.5.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [ Image.asset(
-                                      currencyIcn,
-                                      height: 5.w,
-                                      width: 5.w,
-                                    ),
-                                  
-                              SizedBox(
-                                width: 1.w,
-                              ),
-                              Text(
-                                currencyName,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(
-                                      fontSize: 13.sp,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ]),
-                  ),
-                  Expanded(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Power',
-                            style:
-                                Theme.of(context).textTheme.bodyText2!.copyWith(
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                          ),
-                          Text(
-                            power,
-                            style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 13.sp,
-                                    ),
-                          ),
-                        ]),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 2.h,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Plan Duration',
-                            style:
-                                Theme.of(context).textTheme.bodyText2!.copyWith(
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                          ),
-                          Text(
-                            planDuration,
-                            style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 13.sp,
-                                    ),
-                          ),
-                        ]),
-                  ),
-                  Expanded(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Profitability',
-                            style:
-                                Theme.of(context).textTheme.bodyText2!.copyWith(
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                          ),
-                          Text(
-                            profitability,
-                            style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 13.sp,
-                                    ),
-                          ),
-                        ]),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 2.h,
-              ),
-              const Divider(),
-              SizedBox(
-                height: 2.h,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 4.w),
+              Expanded(
+                flex: 1,
                 child: Row(
                   children: [
                     Expanded(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Price',
-                            style:
-                                Theme.of(context).textTheme.bodyText2!.copyWith(
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                          ),
-                          SizedBox(
-                            height: 0.5.h,
-                          ),
-                          Text(
-                            price,
-                            style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 22.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                          ),
-                        ],
-                      ),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Mining Currency',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                            SizedBox(
+                              height: 0.5.h,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  currencyIcn,
+                                  height: 5.w,
+                                  width: 5.w,
+                                ),
+                                SizedBox(
+                                  width: 1.w,
+                                ),
+                                Text(
+                                  currencyName,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        fontSize: 13.sp,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ]),
                     ),
                     Expanded(
-                      child: availability
-                          ? DefaultGradientButton(
-                              isFilled: true,
-                              height: 6.8.h,
-                              text: Text(
-                                'Buy Plan',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                              onPressed: () {
-                                showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) =>
-                                      ChoosePlanPaymentCurrency(planId: planId),
-                                );
-                              },
-                            )
-                          : DefaultDisabledButton(
-                              height: 6.8.h,
-                              text: Text(
-                                'Buy Plan',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Power',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
+                            Text(
+                              power,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
+                                    fontSize: 13.sp,
+                                  ),
+                            ),
+                          ]),
                     ),
                   ],
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Plan Duration',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                            Text(
+                              planDuration,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
+                                    fontSize: 13.sp,
+                                  ),
+                            ),
+                          ]),
+                    ),
+                    Expanded(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Profitability',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                            Text(
+                              profitability,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
+                                    fontSize: 13.sp,
+                                  ),
+                            ),
+                          ]),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(),
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4.w),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Price',
+                              style:
+                                  Theme.of(context).textTheme.bodyText2!.copyWith(
+                                        fontSize: 11.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                            ),
+                            SizedBox(
+                              height: 0.5.h,
+                            ),
+                            Text(
+                              price,
+                              style:
+                                  Theme.of(context).textTheme.bodyText1!.copyWith(
+                                        fontSize: 22.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: availability
+                            ? DefaultGradientButton(
+                                isFilled: true,
+                                height: 6.8.h,
+                                text: Text(
+                                  'Buy Plan',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) =>
+                                        ChoosePlanPaymentCurrency(planId: planId),
+                                  );
+                                },
+                              )
+                            : DefaultDisabledButton(
+                                height: 6.8.h,
+                                text: Text(
+                                  'Buy Plan',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

@@ -122,7 +122,7 @@ class HashRateScreen extends StatelessWidget {
                             height: context.select(
                                     (HashRateCubit h) => h.isExpiredExpanded)
                                 ? 45.h
-                                : 9.h,
+                                : 10.h,
                             decoration: BoxDecoration(
                               border: Border.all(
                                 color: ColorManager.darkPurple,
@@ -133,43 +133,45 @@ class HashRateScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Expired plans (${context.read<HashRateCubit>().expiredPlans.length})',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1!
-                                          .copyWith(
-                                            fontSize: 13.sp,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        context
-                                            .read<HashRateCubit>()
-                                            .changeExpiredSize();
-                                      },
-                                      child: Container(
-                                        width: 8.w,
-                                        height: 8.w,
-                                        decoration: BoxDecoration(
-                                          color: ColorManager.darkPurple,
-                                          borderRadius: BorderRadius.circular(
-                                            (32),
-                                          ),
-                                        ),
-                                        child: SvgPicture.asset(
+                                Expanded(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Expired plans (${context.read<HashRateCubit>().expiredPlans.length})',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1!
+                                            .copyWith(
+                                              fontSize: 13.sp,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
                                           context
                                               .read<HashRateCubit>()
-                                              .expandedExpiredIcon,
+                                              .changeExpiredSize();
+                                        },
+                                        child: Container(
+                                          width: 8.w,
+                                          height: 8.w,
+                                          decoration: BoxDecoration(
+                                            color: ColorManager.darkPurple,
+                                            borderRadius: BorderRadius.circular(
+                                              (32),
+                                            ),
+                                          ),
+                                          child: SvgPicture.asset(
+                                            context
+                                                .read<HashRateCubit>()
+                                                .expandedExpiredIcon,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                                 context.read<HashRateCubit>().isExpiredExpanded
                                     ? Container(

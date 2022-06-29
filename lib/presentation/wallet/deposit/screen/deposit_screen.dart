@@ -66,7 +66,7 @@ class _DepositScreenState extends State<DepositScreen> {
                   Container(
                     padding:
                         EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-                    height: 9.h,
+                    height: 10.h,
                     decoration: BoxDecoration(
                       color: ColorManager.darkPurple,
                       borderRadius: BorderRadius.circular(2.w),
@@ -160,7 +160,7 @@ class _DepositScreenState extends State<DepositScreen> {
                               : QrImage(
                                   data: _address,
                                   version: QrVersions.auto,
-                                  size: 200.0,
+                                  size: 30.h,
                                   backgroundColor: ColorManager.white,
                                 ),
                         ],
