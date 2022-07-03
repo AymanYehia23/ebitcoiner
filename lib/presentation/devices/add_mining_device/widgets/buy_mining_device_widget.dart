@@ -48,66 +48,104 @@ class BuyMiningDeviceWidget extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 4.w,
-                  vertical: 1.h,
-                ),
-                height: 9.h,
-                child: Row(
+              Expanded(
+                flex: 2,
+                child: Column(
                   children: [
-                    Image(
-                      height: 7.h,
-                      width: 7.h,
-                      image: AssetImage(yourMinerPic),
-                    ),
-                    SizedBox(
-                      width: 2.w,
-                    ),
-                    Center(
-                      child: Text(
-                        yourMinerName,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.bold,
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 4.w,
+                          vertical: 1.h,
+                        ),
+                        child: Row(
+                          children: [
+                            Image(
+                              height: 7.h,
+                              width: 7.h,
+                              image: AssetImage(yourMinerPic),
                             ),
+                            SizedBox(
+                              width: 2.w,
+                            ),
+                            Center(
+                              child: Text(
+                                yourMinerName,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ],
-                ),
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      height: 14.h,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text(
-                            'Mining Currency',
-                            style:
-                                Theme.of(context).textTheme.bodyText2!.copyWith(
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Mining Currency',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(
                                       fontSize: 11.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
-                          ),
-                          SizedBox(
-                            height: 0.5.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                currencyIcon,
-                                height: 6.w,
-                                width: 6.w,
                               ),
                               SizedBox(
-                                width: 1.w,
+                                height: 0.5.h,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    currencyIcon,
+                                    height: 6.w,
+                                    width: 6.w,
+                                  ),
+                                  SizedBox(
+                                    width: 1.w,
+                                  ),
+                                  Text(
+                                    currencyName,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .copyWith(
+                                          fontSize: 12.sp,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Algorithm',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(
+                                      fontSize: 11.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              SizedBox(
+                                height: 0.5.h,
                               ),
                               Text(
-                                currencyName,
+                                algorithm,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText1!
@@ -120,86 +158,57 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: SizedBox(
-                      height: 12.h,
-                      child: Column(
+                    Expanded(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Algorithm',
-                            style:
-                                Theme.of(context).textTheme.bodyText2!.copyWith(
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Power',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(
                                       fontSize: 11.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
-                          ),
-                          SizedBox(
-                            height: 0.5.h,
-                          ),
-                          Text(
-                            algorithm,
-                            style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                              ),
+                              SizedBox(
+                                width: 1.w,
+                              ),
+                              Text(
+                                power,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
                                       fontSize: 12.sp,
                                     ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      height: 7.5.h,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Power',
-                            style:
-                                Theme.of(context).textTheme.bodyText2!.copyWith(
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                          ),
-                          SizedBox(
-                            width: 1.w,
-                          ),
-                          Text(
-                            power,
-                            style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 12.sp,
-                                    ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               const Divider(
                 color: ColorManager.gray,
               ),
-              Container(
-                height: 18.h,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 4.w,
-                  vertical: 1.h,
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: SizedBox(
-                            height: 8.h,
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 4.w,
+                    vertical: 1.h,
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
@@ -228,10 +237,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                   ),
                                 ]),
                           ),
-                        ),
-                        Expanded(
-                          child: SizedBox(
-                            height: 8.h,
+                          Expanded(
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
@@ -260,47 +266,52 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                   ),
                                 ]),
                           ),
-                        ),
-                      ],
-                    ),
-                    availability
-                        ? DefaultGradientButton(
-                            height: 8.h,
-                            isFilled: true,
-                            text: Text(
-                              'Buy Device',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            onPressed: () {
-                              showModalBottomSheet(
-                                context: context,
-                                builder: (context) =>
-                                    ChooseMinerPaymentCurrency(
-                                  asicId: asicId,
+                        ],
+                      ),
+                       SizedBox(
+                        height: 1.h,
+                      ),
+                      availability
+                          ? Expanded(
+                              child: DefaultGradientButton(
+                                isFilled: true,
+                                text: Text(
+                                  'Buy Device',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                 ),
-                              );
-                            },
-                          )
-                        : DefaultDisabledButton(
-                            height: 8.h,
-                            text: Text(
-                              'Buy Device',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                          )
-                  ],
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) =>
+                                        ChooseMinerPaymentCurrency(
+                                      asicId: asicId,
+                                    ),
+                                  );
+                                },
+                              ),
+                            )
+                          : Expanded(
+                              child: DefaultDisabledButton(
+                                text: Text(
+                                  'Buy Device',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ),
+                            )
+                    ],
+                  ),
                 ),
               ),
             ],

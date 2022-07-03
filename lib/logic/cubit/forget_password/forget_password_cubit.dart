@@ -84,23 +84,30 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   }
 
   //UI logic
-  bool isEmpty = true;
-  bool isObscure = true;
-  IconData iconData = Icons.visibility_outlined;
+  bool _isEmpty = true;
+  get isEmpty => _isEmpty;
+  bool _isObscure = true;
+  get getIsObscure => _isObscure;
+  set setIsObscure(bool i) {
+    _isObscure = i;
+  }
+
+  IconData _iconData = Icons.visibility_outlined;
+  get iconData => _iconData;
 
   void changeIsEmpty(bool i) {
     if (i) {
-      isEmpty = true;
+      _isEmpty = true;
     } else {
-      isEmpty = false;
+      _isEmpty = false;
     }
     emit(ChangeIsEmptyState());
   }
 
   void changePasswordVisibility() {
-    isObscure = !isObscure;
-    iconData =
-        isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    _isObscure = !_isObscure;
+    _iconData =
+        _isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(ChangePasswordVisibilityState());
   }
 }

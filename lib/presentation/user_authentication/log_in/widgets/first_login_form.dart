@@ -41,7 +41,7 @@ class FirstLoginForm extends StatelessWidget {
           Builder(builder: (context) {
             return DefaultTextField(
               text: 'Password',
-              isObscureText: context.watch<LoginCubit>().isObscure,
+              isObscureText: context.watch<LoginCubit>().getIsObscure,
               suffixIcon: IconButton(
                 icon: Icon(
                   context.read<LoginCubit>().iconData,

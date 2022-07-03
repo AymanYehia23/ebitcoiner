@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:device_preview/device_preview.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -46,23 +45,19 @@ import 'presentation/router/app_router.dart';
 import 'presentation/shared_components/loading_widget.dart';
 
 Future<void> main() async {
-  await dotenv.load(fileName: ".env");
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  await dotenv.load(fileName: ".env");
   HttpService.init();
   BlocOverrides.runZoned(
     () {
-      runApp(
-        DevicePreview(
-          enabled: false,
-          builder: (context) => const MyApp(),
-        ),
-      );
+      runApp(const MyApp());
     },
     blocObserver: AppBlocObserver(),
   );
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -141,8 +136,6 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             onGenerateRoute: AppRouter.onGenerateRoute,
             useInheritedMediaQuery: true,
-            locale: DevicePreview.locale(context),
-            builder: DevicePreview.appBuilder,
             home: BlocBuilder<LoginCubit, LoginState>(
               builder: (context, state) {
                 if (state is AutoLoginSuccessState) {

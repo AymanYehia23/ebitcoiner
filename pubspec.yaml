@@ -37,7 +37,6 @@ dependencies:
   bloc: ^8.0.2
   flutter_bloc: ^8.0.1
   dio: ^4.0.4
-  device_preview: ^1.0.0
   flutter_svg: ^1.0.3
   outline_gradient_button: ^2.0.0+1
   syncfusion_flutter_charts: ^20.1.55

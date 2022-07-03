@@ -1,4 +1,4 @@
-package com.example.ebitcoiner
+package com.ebt.ebitcoiner
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.plugins.GeneratedPluginRegistrant

@@ -101,7 +101,11 @@ class LoginCubit extends Cubit<LoginState> {
   bool _isEmpty = true;
   get isEmpty => _isEmpty;
   bool _isObscure = true;
-  get isObscure => _isObscure;
+  get getIsObscure => _isObscure;
+  set setIsObscure(bool i) {
+    _isObscure = i;
+  }
+
   IconData _iconData = Icons.visibility_outlined;
   get iconData => _iconData;
 

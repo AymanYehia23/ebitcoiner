@@ -44,6 +44,7 @@ class _FirstLogInScreenState extends State<FirstLogInScreen> {
     _userNameController.addListener(_checkOfEmptyValue);
     _passwordController.addListener(_checkOfEmptyValue);
     context.read<LoginCubit>().changeIsEmpty(true);
+    context.read<LoginCubit>().setIsObscure = true;
     super.initState();
   }
 

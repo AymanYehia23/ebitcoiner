@@ -18,7 +18,7 @@ class ResetPasswordForm extends StatelessWidget {
       key: formKey,
       child: DefaultTextField(
         text: 'Password',
-        isObscureText: context.watch<ForgetPasswordCubit>().isObscure,
+        isObscureText: context.watch<ForgetPasswordCubit>().getIsObscure,
         suffixIcon: IconButton(
           icon: Icon(
             context.read<ForgetPasswordCubit>().iconData,

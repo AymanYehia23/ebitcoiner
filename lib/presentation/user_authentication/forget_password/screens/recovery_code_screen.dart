@@ -48,6 +48,7 @@ class _RecoveryCodeScreenState extends State<RecoveryCodeScreen> {
     _formKey = GlobalKey();
     _codeController.addListener(_checkOfEmptyValue);
     context.read<ForgetPasswordCubit>().changeIsEmpty(true);
+    context.read<ForgetPasswordCubit>().setIsObscure = true;
     super.initState();
   }
 

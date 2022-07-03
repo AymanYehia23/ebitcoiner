@@ -46,6 +46,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     _formKey = GlobalKey();
     _passwordController.addListener(_checkOfEmptyValue);
     context.read<ForgetPasswordCubit>().changeIsEmpty(true);
+    context.read<ForgetPasswordCubit>().setIsObscure = true;
     super.initState();
   }
 

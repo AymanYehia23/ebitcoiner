@@ -39,8 +39,8 @@ class AssetsTotalWidget extends StatelessWidget {
             duration: const Duration(milliseconds: 300),
             padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
             height: context.select((AssetsCubit a) => a.isExpanded)
-                ? (34.h)
-                : (17.h),
+                ? (35.h)
+                : (18.h),
             width: double.infinity,
             decoration: BoxDecoration(
               border: Border.all(color: ColorManager.white),

@@ -15,7 +15,7 @@ class MinersGainsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: (45.h),
+      height: (46.h),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [

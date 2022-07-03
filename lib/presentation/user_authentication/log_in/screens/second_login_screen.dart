@@ -58,6 +58,7 @@ class _SecondLoginScreenState extends State<SecondLoginScreen> {
     _counterController = CountDownController();
     _otpController.addListener(_checkOfEmptyValue);
     context.read<LoginCubit>().changeIsEmpty(true);
+    context.read<LoginCubit>().setIsObscure = true;
     super.initState();
   }
 
