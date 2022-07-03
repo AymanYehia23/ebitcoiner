@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ebitcoiner/core/constants/colors.dart';
 import 'package:ebitcoiner/core/constants/strings.dart';
 import 'package:ebitcoiner/presentation/shared_components/default_toast.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:sizer/sizer.dart';
 import '../../../logic/cubit/assets/assets_cubit.dart';
 import '../../router/app_router.dart';

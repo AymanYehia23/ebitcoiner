@@ -7,21 +7,21 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "40.0.0"
+    version: "41.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0"
+    version: "4.2.0"
   app_settings:
     dependency: "direct main"
     description:
       name: app_settings
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.6"
+    version: "4.1.8"
   archive:
     dependency: transitive
     description:
@@ -140,7 +140,7 @@ packages:
       name: circular_countdown_timer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.1"
+    version: "0.2.2"
   clock:
     dependency: transitive
     description:
@@ -235,9 +235,11 @@ packages:
   flare_flutter:
     dependency: "direct main"
     description:
-      name: flare_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: flare_flutter
+      ref: HEAD
+      resolved-ref: e90219f457602c61afee0b5f6cec2d66bd395e01
+      url: "https://github.com/tsinis/Flare-Flutter"
+    source: git
     version: "3.0.2"
   flutter:
     dependency: "direct main"
@@ -334,7 +336,7 @@ packages:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.1+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -597,13 +599,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  pull_to_refresh:
+  pull_to_refresh_flutter3:
     dependency: "direct main"
     description:
-      name: pull_to_refresh
+      name: pull_to_refresh_flutter3
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   qr:
     dependency: transitive
     description:
@@ -685,14 +687,14 @@ packages:
       name: syncfusion_flutter_charts
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "20.1.61"
+    version: "20.2.36"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "20.1.61"
+    version: "20.2.36"
   term_glyph:
     dependency: transitive
     description:
@@ -771,5 +773,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.17.0 <3.0.0"
-  flutter: ">=3.0.0"
+  dart: ">=2.17.3 <3.0.0"
+  flutter: ">=3.0.1"

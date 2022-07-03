@@ -5,7 +5,7 @@ import 'package:ebitcoiner/logic/cubit/devices/devices_cubit.dart';
 import 'package:ebitcoiner/presentation/devices/widgets/miners_total_widget.dart';
 import 'package:ebitcoiner/presentation/devices/widgets/miner_widget.dart';
 import 'package:ebitcoiner/presentation/shared_components/gradient_background_container.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../core/constants/strings.dart';

@@ -7,7 +7,7 @@ import 'package:ebitcoiner/presentation/hashrate/widgets/plan_widget.dart';
 import 'package:ebitcoiner/presentation/hashrate/widgets/hashrate_total_widget.dart';
 import 'package:ebitcoiner/presentation/shared_components/default_toast.dart';
 import 'package:ebitcoiner/presentation/shared_components/gradient_background_container.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:sizer/sizer.dart';
 import '../../../logic/cubit/assets/assets_cubit.dart';
 import '../../shared_components/loading_widget.dart';

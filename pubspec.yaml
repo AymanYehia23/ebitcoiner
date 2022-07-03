@@ -46,8 +46,11 @@ dependencies:
   circular_countdown_timer: ^0.2.1
   curved_navigation_bar: ^1.0.3
   qr_flutter: ^4.0.0
-  flare_flutter: ^3.0.2
-  pull_to_refresh: ^2.0.0
+  flare_flutter:
+    git:
+      url: https://github.com/tsinis/Flare-Flutter
+      path: flare_flutter/ 
+  pull_to_refresh_flutter3: ^2.0.1
   fluttertoast: ^8.0.9  
   flutter_native_splash: ^2.2.0+1
   local_auth: ^2.0.2

@@ -6,7 +6,7 @@ import 'package:ebitcoiner/core/constants/strings.dart';
 import 'package:ebitcoiner/logic/cubit/withdraw/withdraw_cubit.dart';
 import 'package:ebitcoiner/presentation/router/app_router.dart';
 import 'package:ebitcoiner/presentation/shared_components/gradient_background_container.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../shared_components/loading_widget.dart';
