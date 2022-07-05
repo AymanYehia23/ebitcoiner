@@ -52,7 +52,7 @@ class AssetsChartWidget extends StatelessWidget {
                   ColumnSeries<ChartData, String>(
                     dataSource: context.watch<AssetsCubit>().selectedChartData,
                     xValueMapper: (ChartData data, _) =>
-                        data.x.isNotEmpty ? data.x.substring(14, 19) : data.x,
+                        data.x.isNotEmpty ? data.x.substring(11, 16) : data.x,
                     yValueMapper: (ChartData data, _) => data.y,
                     color: ColorManager.secondary,
                     borderRadius: const BorderRadius.only(
