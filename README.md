@@ -1,4 +1,4 @@
 # Ebitcoiner (Graduation project)
 # It's a cloud mining APP
 
-![My Remote Image](https://www.dropbox.com/s/kudfjyiorcnodix/0.png?dl=0)
+![My Remote Image](https://drive.google.com/file/d/1CIcjhf-JyoPAsPpMeQsOZJ7_wQL66pHg/view?usp=sharing)
