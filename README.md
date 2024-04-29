@@ -1,5 +1,7 @@
 # Ebitcoiner (Graduation project)
 # Cloud mining APP
+Ebitcoiner (Cloud mining System) is a method that allows everyday investors who may lack sufficient technical knowledge to mine cryptocurrencies. It reduces overall costs associated with mining.
+With Ebitcoiner, investors can purchase the hashing power. They can rent crypto mining hardware that can achieve the desired hash rate at a certain market price without dealing with heat, noise problems, and government issues (it is illegal in some countries).
 
 ![1](https://user-images.githubusercontent.com/66851017/177740570-b61866cf-3798-41f1-a635-606eeec34fa3.jpg)
 ![2](https://user-images.githubusercontent.com/66851017/177740593-12727113-20aa-43ed-bf17-46faf312f207.jpg)
