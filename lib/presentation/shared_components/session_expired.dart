@@ -8,8 +8,8 @@ Future sessionExpiredDialog({required BuildContext context}) {
     barrierDismissible: false,
     context: context,
     builder: (BuildContext context) {
-      return WillPopScope(
-        onWillPop: () => Future.value(false),
+      return PopScope(
+        canPop: false,
         child: AlertDialog(
           title: const Text('Session expired'),
           content: const Text(Strings.loginSessionError),

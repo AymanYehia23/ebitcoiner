@@ -45,7 +45,7 @@ class HashrateTotalWidget extends StatelessWidget {
                 children: [
                   Text(
                     'Active Hashrate Power',
-                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 13.sp,
                           fontWeight: FontWeight.bold,
                         ),
@@ -53,7 +53,7 @@ class HashrateTotalWidget extends StatelessWidget {
                   Builder(builder: (context) {
                     return Text(
                       '${context.watch<HashRateCubit>().totalPower.toStringAsFixed(2)} GH/S',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
                           ),
@@ -146,7 +146,7 @@ class HashrateTotalWidget extends StatelessWidget {
                           Text(
                             'BTC (Bitcoin)',
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: 11.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -156,7 +156,7 @@ class HashrateTotalWidget extends StatelessWidget {
                               '${context.read<HashRateCubit>().btcActivePlans} active plan',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
                                     color: ColorManager.secondary,
                                     fontSize: 12.sp,
@@ -168,7 +168,7 @@ class HashrateTotalWidget extends StatelessWidget {
                       const Spacer(),
                       Text(
                         '${context.watch<HashRateCubit>().totalBTCPower} GH/S',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 11.sp,
                             ),
                       ),
@@ -191,7 +191,7 @@ class HashrateTotalWidget extends StatelessWidget {
                           Text(
                             'ETH (Ethereum)',
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: 11.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -201,7 +201,7 @@ class HashrateTotalWidget extends StatelessWidget {
                               '${context.read<HashRateCubit>().ethActivePlans} active plan',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
                                     color: ColorManager.secondary,
                                     fontSize: 12.sp,
@@ -213,7 +213,7 @@ class HashrateTotalWidget extends StatelessWidget {
                       const Spacer(),
                       Text(
                         '${context.watch<HashRateCubit>().totalETHPower} GH/S',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 11.sp,
                             ),
                       ),
@@ -236,7 +236,7 @@ class HashrateTotalWidget extends StatelessWidget {
                           Text(
                             'RVN',
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: 11.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -246,7 +246,7 @@ class HashrateTotalWidget extends StatelessWidget {
                               '${context.read<HashRateCubit>().rvnActivePlans} active plan',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
                                     color: ColorManager.secondary,
                                     fontSize: 12.sp,
@@ -258,7 +258,7 @@ class HashrateTotalWidget extends StatelessWidget {
                       const Spacer(),
                       Text(
                         '${context.watch<HashRateCubit>().totalRVNPower} GH/S',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 11.sp,
                             ),
                       ),
@@ -281,7 +281,7 @@ class HashrateTotalWidget extends StatelessWidget {
                           Text(
                             'LTCT',
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: 11.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -291,7 +291,7 @@ class HashrateTotalWidget extends StatelessWidget {
                               '${context.read<HashRateCubit>().ltctActivePlans} active plan',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
                                     color: ColorManager.secondary,
                                     fontSize: 12.sp,
@@ -303,7 +303,7 @@ class HashrateTotalWidget extends StatelessWidget {
                       const Spacer(),
                       Text(
                         '${context.watch<HashRateCubit>().totalLTCTPower} GH/S',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 11.sp,
                             ),
                       ),

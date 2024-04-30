@@ -62,7 +62,7 @@ class BuyPlanWidget extends StatelessWidget {
                     ),
                     Text(
                       text,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontSize: 13.sp,
                             fontWeight: FontWeight.bold,
                           ),
@@ -82,7 +82,7 @@ class BuyPlanWidget extends StatelessWidget {
                               'Mining Currency',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
                                     fontSize: 11.sp,
                                     fontWeight: FontWeight.bold,
@@ -106,7 +106,7 @@ class BuyPlanWidget extends StatelessWidget {
                                   currencyName,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .copyWith(
                                         fontSize: 13.sp,
                                       ),
@@ -123,7 +123,7 @@ class BuyPlanWidget extends StatelessWidget {
                               'Power',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
                                     fontSize: 11.sp,
                                     fontWeight: FontWeight.bold,
@@ -133,7 +133,7 @@ class BuyPlanWidget extends StatelessWidget {
                               power,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     fontSize: 13.sp,
                                   ),
@@ -155,7 +155,7 @@ class BuyPlanWidget extends StatelessWidget {
                               'Plan Duration',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
                                     fontSize: 11.sp,
                                     fontWeight: FontWeight.bold,
@@ -165,7 +165,7 @@ class BuyPlanWidget extends StatelessWidget {
                               planDuration,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     fontSize: 13.sp,
                                   ),
@@ -180,7 +180,7 @@ class BuyPlanWidget extends StatelessWidget {
                               'Profitability',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
                                     fontSize: 11.sp,
                                     fontWeight: FontWeight.bold,
@@ -190,7 +190,7 @@ class BuyPlanWidget extends StatelessWidget {
                               profitability,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     fontSize: 13.sp,
                                   ),
@@ -213,22 +213,26 @@ class BuyPlanWidget extends StatelessWidget {
                           children: [
                             Text(
                               'Price',
-                              style:
-                                  Theme.of(context).textTheme.bodyText2!.copyWith(
-                                        fontSize: 11.sp,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
                             SizedBox(
                               height: 0.5.h,
                             ),
                             Text(
                               price,
-                              style:
-                                  Theme.of(context).textTheme.bodyText1!.copyWith(
-                                        fontSize: 22.sp,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(
+                                    fontSize: 22.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
                           ],
                         ),
@@ -242,7 +246,7 @@ class BuyPlanWidget extends StatelessWidget {
                                   'Buy Plan',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .copyWith(
                                         fontSize: 13.sp,
                                         fontWeight: FontWeight.bold,
@@ -252,7 +256,8 @@ class BuyPlanWidget extends StatelessWidget {
                                   showModalBottomSheet(
                                     context: context,
                                     builder: (context) =>
-                                        ChoosePlanPaymentCurrency(planId: planId),
+                                        ChoosePlanPaymentCurrency(
+                                            planId: planId),
                                   );
                                 },
                               )
@@ -262,7 +267,7 @@ class BuyPlanWidget extends StatelessWidget {
                                   'Buy Plan',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .copyWith(
                                         fontSize: 13.sp,
                                         fontWeight: FontWeight.bold,

@@ -95,7 +95,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                 child: Center(
                   child: Text(
                     'Change Password',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: 19.sp,
                           fontWeight: FontWeight.bold,
                         ),
@@ -198,7 +198,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                         text: Text(
                           'Change Password',
                           style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -209,7 +209,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                       isFilled: true,
                       text: Text(
                         'Change Password',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 13.sp,
                               fontWeight: FontWeight.bold,
                             ),

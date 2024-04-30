@@ -26,7 +26,7 @@ class ChangeTransactionWidget extends StatelessWidget {
                   child: Text(
                     'Deposit',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: (13.sp),
                           color: isDeposit
                               ? ColorManager.secondary
@@ -59,7 +59,7 @@ class ChangeTransactionWidget extends StatelessWidget {
                   child: Text(
                     'Withdraw',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: (13.sp),
                           color: isDeposit
                               ? ColorManager.lightGray

@@ -22,7 +22,7 @@ class ChoosePlanPaymentCurrency extends StatelessWidget {
         children: [
           Text(
             'Choose the payment currency',
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontSize: 13.sp,
                   fontWeight: FontWeight.bold,
                 ),
@@ -71,7 +71,7 @@ class ChoosePlanPaymentCurrency extends StatelessWidget {
                               'BTC',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     fontSize: (12.sp),
                                     fontWeight: FontWeight.bold,
@@ -114,7 +114,7 @@ class ChoosePlanPaymentCurrency extends StatelessWidget {
                               'ETH',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     fontSize: (12.sp),
                                     fontWeight: FontWeight.bold,
@@ -157,7 +157,7 @@ class ChoosePlanPaymentCurrency extends StatelessWidget {
                               'RVN',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     fontSize: (12.sp),
                                     fontWeight: FontWeight.bold,
@@ -178,7 +178,7 @@ class ChoosePlanPaymentCurrency extends StatelessWidget {
               isFilled: false,
               text: Text(
                 'Buy now',
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       fontSize: (12.sp),
                       fontWeight: FontWeight.bold,
                     ),

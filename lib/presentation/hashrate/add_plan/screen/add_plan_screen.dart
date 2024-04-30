@@ -48,7 +48,7 @@ class ChooseDesiredPlanScreen extends StatelessWidget {
             appBar: AppBar(
               title: Text(
                 'Add new hashrate plan',
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       fontSize: 3.h,
                     ),
               ),
@@ -76,7 +76,7 @@ class ChooseDesiredPlanScreen extends StatelessWidget {
                         Text(
                           'Choose Currency',
                           style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -90,7 +90,7 @@ class ChooseDesiredPlanScreen extends StatelessWidget {
                         Text(
                           'Contract period',
                           style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -120,7 +120,7 @@ class ChooseDesiredPlanScreen extends StatelessWidget {
                         Text(
                           'Choose desired Plan',
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     fontSize: 22.sp,
                                     fontWeight: FontWeight.bold,
                                   ),

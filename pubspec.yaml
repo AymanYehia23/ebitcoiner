@@ -40,7 +40,7 @@ dependencies:
   flutter_svg: ^1.0.3
   outline_gradient_button: ^2.0.0+1
   syncfusion_flutter_charts: ^20.1.55
-  country_code_picker: ^2.0.2
+  country_code_picker: ^3.0.0
   flutter_secure_storage: ^5.0.2
   sizer: ^2.0.15
   circular_countdown_timer: ^0.2.1
@@ -56,6 +56,7 @@ dependencies:
   local_auth: ^2.0.2
   app_settings: ^4.1.6
   flutter_dotenv: ^5.0.2
+  modal_bottom_sheet: ^3.0.0-pre 
 
 dev_dependencies:
   flutter_test:

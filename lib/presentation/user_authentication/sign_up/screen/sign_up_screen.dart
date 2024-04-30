@@ -111,7 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   },
                   child: Text(
                     'Login',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: 13.sp,
                         ),
                   ),
@@ -136,7 +136,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         textAlign: TextAlign.center,
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText1!
+                            .bodyLarge!
                             .copyWith(fontSize: 22.sp),
                       ),
                       SizedBox(
@@ -157,7 +157,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         textAlign: TextAlign.center,
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 11.sp),
                       ),
                       Row(
@@ -170,7 +170,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               textAlign: TextAlign.center,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     fontSize: 11.sp,
                                     color: ColorManager.secondary,
@@ -180,10 +180,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           Text(
                             ' and ',
                             textAlign: TextAlign.center,
-                            style:
-                                Theme.of(context).textTheme.bodyText2!.copyWith(
-                                      fontSize: 11.sp,
-                                    ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  fontSize: 11.sp,
+                                ),
                           ),
                           InkWell(
                             onTap: () {},
@@ -192,7 +194,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               textAlign: TextAlign.center,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     fontSize: 11.sp,
                                     color: ColorManager.secondary,
@@ -210,7 +212,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 'Sign Up',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
                                       fontSize: 13.sp,
                                       fontWeight: FontWeight.bold,
@@ -224,7 +226,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 'Sign Up',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 13.sp,
                                       fontWeight: FontWeight.bold,

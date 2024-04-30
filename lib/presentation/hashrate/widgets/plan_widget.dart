@@ -59,14 +59,14 @@ class PlanWidget extends StatelessWidget {
                   children: [
                     Text(
                       currency,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
                     Text(
                       'Booking Date: $bookingDate',
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: 10.sp,
                           ),
                     ),
@@ -84,7 +84,7 @@ class PlanWidget extends StatelessWidget {
                     children: [
                       Text(
                         'Total Mined',
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -94,7 +94,7 @@ class PlanWidget extends StatelessWidget {
                       ),
                       Text(
                         totalMined,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 11.sp,
                             ),
                       )
@@ -107,7 +107,7 @@ class PlanWidget extends StatelessWidget {
                     children: [
                       Text(
                         'Avg Income/Minute',
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -117,7 +117,7 @@ class PlanWidget extends StatelessWidget {
                       ),
                       Text(
                         avgDailyIncome,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 11.sp,
                             ),
                       )
@@ -137,7 +137,7 @@ class PlanWidget extends StatelessWidget {
                       Text(
                         'Current HashPower',
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -159,7 +159,7 @@ class PlanWidget extends StatelessWidget {
                           Text(
                             currentHashPower,
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: 11.sp,
                                     ),
                           ),
@@ -174,7 +174,7 @@ class PlanWidget extends StatelessWidget {
                     children: [
                       Text(
                         'Expired on',
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -184,7 +184,7 @@ class PlanWidget extends StatelessWidget {
                       ),
                       Text(
                         expiredOn,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 11.sp,
                             ),
                       )

@@ -72,7 +72,7 @@ class _WithdrawCurrencyScreenState extends State<WithdrawCurrencyScreen> {
             backgroundColor: ColorManager.black,
             title: Text(
               'Withdraw ${_withdrawCubit.selectedCurrency}',
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.bold,
                   ),
@@ -124,7 +124,7 @@ class _WithdrawCurrencyScreenState extends State<WithdrawCurrencyScreen> {
                                 'You can only withdraw from ${_withdrawCubit.selectedCurrency}\nbalance to ${_withdrawCubit.selectedCurrency} wallet',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
                                       fontSize: 12.sp,
                                     ),
@@ -147,7 +147,7 @@ class _WithdrawCurrencyScreenState extends State<WithdrawCurrencyScreen> {
                           Text(
                             '${_withdrawCubit.getAvailableBalance()} ${_withdrawCubit.selectedCurrency} Available',
                             style:
-                                Theme.of(context).textTheme.bodyText2!.copyWith(
+                                Theme.of(context).textTheme.bodyMedium!.copyWith(
                                       fontSize: 10.sp,
                                     ),
                           ),
@@ -160,7 +160,7 @@ class _WithdrawCurrencyScreenState extends State<WithdrawCurrencyScreen> {
                               'Max Amount',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
                                     fontSize: 11.sp,
                                     color: ColorManager.secondary,
@@ -177,7 +177,7 @@ class _WithdrawCurrencyScreenState extends State<WithdrawCurrencyScreen> {
                               'Withdraw',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.bold,
@@ -190,7 +190,7 @@ class _WithdrawCurrencyScreenState extends State<WithdrawCurrencyScreen> {
                           text: Text(
                             'Withdraw',
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
                                     ),

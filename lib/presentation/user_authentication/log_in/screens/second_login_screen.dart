@@ -132,7 +132,7 @@ class _SecondLoginScreenState extends State<SecondLoginScreen> {
                       Text(
                         'Login',
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 22.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -155,7 +155,7 @@ class _SecondLoginScreenState extends State<SecondLoginScreen> {
                         strokeWidth: 10.0,
                         textFormat: CountdownTextFormat.S,
                         textStyle:
-                            Theme.of(context).textTheme.bodyText1!.copyWith(
+                            Theme.of(context).textTheme.bodyLarge!.copyWith(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -179,7 +179,7 @@ class _SecondLoginScreenState extends State<SecondLoginScreen> {
                                   textAlign: TextAlign.center,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .copyWith(
                                         fontSize: 12.sp,
                                       ),
@@ -195,7 +195,7 @@ class _SecondLoginScreenState extends State<SecondLoginScreen> {
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyText1!
+                                        .bodyLarge!
                                         .copyWith(
                                           fontSize: 12.sp,
                                           color: ColorManager.secondary,
@@ -214,7 +214,7 @@ class _SecondLoginScreenState extends State<SecondLoginScreen> {
                                 'Login',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
                                       fontSize: 13.sp,
                                       fontWeight: FontWeight.bold,
@@ -228,7 +228,7 @@ class _SecondLoginScreenState extends State<SecondLoginScreen> {
                                 'Login',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 13.sp,
                                       fontWeight: FontWeight.bold,

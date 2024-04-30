@@ -13,10 +13,10 @@ class AppTheme {
       elevation: 0,
     ),
     textTheme: const TextTheme(
-      bodyText1: TextStyle(
+      bodyLarge: TextStyle(
         color: Colors.white,
       ),
-      bodyText2: TextStyle(color: Color(0xffb7b4c7)),
+      bodyMedium: TextStyle(color: Color(0xffb7b4c7)),
     ),
     fontFamily: 'CircularStd',
   );

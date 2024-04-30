@@ -37,8 +37,8 @@ class _DepositScreenState extends State<DepositScreen> {
   Widget build(BuildContext context) {
     return BlocListener<DepositCubit, DepositState>(
       listener: (context, state) {
-        if(state is GetDepositAddressErrorState){
-            defaultToast(
+        if (state is GetDepositAddressErrorState) {
+          defaultToast(
             text: state.errorMessage,
             isError: true,
           );
@@ -53,7 +53,7 @@ class _DepositScreenState extends State<DepositScreen> {
               backgroundColor: ColorManager.black,
               title: Text(
                 'Deposit',
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
                     ),
@@ -84,7 +84,7 @@ class _DepositScreenState extends State<DepositScreen> {
                         Text(
                           'You can only deposit from wallet\nto your balance',
                           style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     fontSize: 12.sp,
                                   ),
                         ),
@@ -107,7 +107,7 @@ class _DepositScreenState extends State<DepositScreen> {
                       child: Text(
                         'Choose Currency to Deposit',
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -157,7 +157,7 @@ class _DepositScreenState extends State<DepositScreen> {
                           ),
                           context.watch<DepositCubit>().depositCurrency == ''
                               ? const SizedBox()
-                              : QrImage(
+                              : QrImageView(
                                   data: _address,
                                   version: QrVersions.auto,
                                   size: 30.h,

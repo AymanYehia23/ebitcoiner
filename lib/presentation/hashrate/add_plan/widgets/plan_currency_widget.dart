@@ -24,23 +24,26 @@ class PlanCurrencyWidget extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  context.read<PlanContractCubit>().chooseCurrency(Currency.btc);
+                  context
+                      .read<PlanContractCubit>()
+                      .chooseCurrency(Currency.btc);
                 },
                 child: Container(
                   width: (20.w),
                   height: (4.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular((20)),
-                    color: context.watch<PlanContractCubit>().cryptoName == 'BTC'
-                        ? ColorManager.darkPurple
-                        : null,
+                    color:
+                        context.watch<PlanContractCubit>().cryptoName == 'BTC'
+                            ? ColorManager.darkPurple
+                            : null,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
                         Strings.btcIcon,
-                         width: (6.w),
+                        width: (6.w),
                         height: (3.5.h),
                       ),
                       SizedBox(
@@ -48,7 +51,7 @@ class PlanCurrencyWidget extends StatelessWidget {
                       ),
                       Text(
                         'BTC',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: (12.sp),
                               fontWeight: FontWeight.bold,
                             ),
@@ -59,23 +62,26 @@ class PlanCurrencyWidget extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  context.read<PlanContractCubit>().chooseCurrency(Currency.eth);
+                  context
+                      .read<PlanContractCubit>()
+                      .chooseCurrency(Currency.eth);
                 },
                 child: Container(
                   width: (20.w),
                   height: (4.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular((20)),
-                     color: context.watch<PlanContractCubit>().cryptoName == 'ETH'
-                        ? ColorManager.darkPurple
-                        : null,
+                    color:
+                        context.watch<PlanContractCubit>().cryptoName == 'ETH'
+                            ? ColorManager.darkPurple
+                            : null,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
                         Strings.ethIcon,
-                       width: (6.w),
+                        width: (6.w),
                         height: (3.5.h),
                       ),
                       SizedBox(
@@ -83,7 +89,7 @@ class PlanCurrencyWidget extends StatelessWidget {
                       ),
                       Text(
                         'ETH',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: (12.sp),
                               fontWeight: FontWeight.bold,
                             ),
@@ -93,17 +99,20 @@ class PlanCurrencyWidget extends StatelessWidget {
                 ),
               ),
               InkWell(
-                onTap: ()  {
-                  context.read<PlanContractCubit>().chooseCurrency(Currency.rvn);
+                onTap: () {
+                  context
+                      .read<PlanContractCubit>()
+                      .chooseCurrency(Currency.rvn);
                 },
                 child: Container(
                   width: (20.w),
                   height: (4.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular((20)),
-                    color: context.watch<PlanContractCubit>().cryptoName == 'RVN'
-                        ? ColorManager.darkPurple
-                        : null,
+                    color:
+                        context.watch<PlanContractCubit>().cryptoName == 'RVN'
+                            ? ColorManager.darkPurple
+                            : null,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -118,7 +127,7 @@ class PlanCurrencyWidget extends StatelessWidget {
                       ),
                       Text(
                         'RVN',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: (12.sp),
                               fontWeight: FontWeight.bold,
                             ),
@@ -127,18 +136,21 @@ class PlanCurrencyWidget extends StatelessWidget {
                   ),
                 ),
               ),
-               InkWell(
+              InkWell(
                 onTap: () {
-                  context.read<PlanContractCubit>().chooseCurrency(Currency.ltct);
+                  context
+                      .read<PlanContractCubit>()
+                      .chooseCurrency(Currency.ltct);
                 },
                 child: Container(
                   width: (20.w),
                   height: (4.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular((20)),
-                    color: context.watch<PlanContractCubit>().cryptoName == 'LTCT'
-                        ? ColorManager.darkPurple
-                        : null,
+                    color:
+                        context.watch<PlanContractCubit>().cryptoName == 'LTCT'
+                            ? ColorManager.darkPurple
+                            : null,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -153,7 +165,7 @@ class PlanCurrencyWidget extends StatelessWidget {
                       ),
                       Text(
                         'LTCT',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: (12.sp),
                               fontWeight: FontWeight.bold,
                             ),

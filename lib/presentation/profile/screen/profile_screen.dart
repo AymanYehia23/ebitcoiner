@@ -104,7 +104,7 @@ class ProfileScreen extends StatelessWidget {
                                 'Logout',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 12.sp,
                                       color: ColorManager.red,

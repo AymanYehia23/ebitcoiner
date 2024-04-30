@@ -93,7 +93,7 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                 child: Center(
                   child: Text(
                     'Delete Account',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: 19.sp,
                           fontWeight: FontWeight.bold,
                         ),
@@ -138,7 +138,7 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                         text: Text(
                           'Delete',
                           style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -150,7 +150,7 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                     isFilled: true,
                     text: Text(
                       'Delete',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontSize: 13.sp,
                             fontWeight: FontWeight.bold,
                           ),

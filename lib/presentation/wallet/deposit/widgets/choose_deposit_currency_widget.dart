@@ -7,7 +7,6 @@ import '../../../../core/constants/enums.dart';
 import '../../../../core/constants/strings.dart';
 import '../../../../logic/cubit/deposit/deposit_cubit.dart';
 
-
 class ChooseDepositCurrencyWidget extends StatelessWidget {
   const ChooseDepositCurrencyWidget({Key? key}) : super(key: key);
 
@@ -43,7 +42,7 @@ class ChooseDepositCurrencyWidget extends StatelessWidget {
                     children: [
                       Image.asset(
                         Strings.btcIcon,
-                         width: (6.w),
+                        width: (6.w),
                         height: (6.h),
                       ),
                       SizedBox(
@@ -51,7 +50,7 @@ class ChooseDepositCurrencyWidget extends StatelessWidget {
                       ),
                       Text(
                         'BTC',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: (12.sp),
                               fontWeight: FontWeight.bold,
                             ),
@@ -82,7 +81,7 @@ class ChooseDepositCurrencyWidget extends StatelessWidget {
                     children: [
                       Image.asset(
                         Strings.ethIcon,
-                         width: (6.w),
+                        width: (6.w),
                         height: (6.h),
                       ),
                       SizedBox(
@@ -90,7 +89,7 @@ class ChooseDepositCurrencyWidget extends StatelessWidget {
                       ),
                       Text(
                         'ETH',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: (12.sp),
                               fontWeight: FontWeight.bold,
                             ),
@@ -121,7 +120,7 @@ class ChooseDepositCurrencyWidget extends StatelessWidget {
                     children: [
                       Image.asset(
                         Strings.rvnIcon,
-                         width: (6.w),
+                        width: (6.w),
                         height: (6.h),
                       ),
                       SizedBox(
@@ -129,7 +128,7 @@ class ChooseDepositCurrencyWidget extends StatelessWidget {
                       ),
                       Text(
                         'RVN',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: (12.sp),
                               fontWeight: FontWeight.bold,
                             ),
@@ -168,7 +167,7 @@ class ChooseDepositCurrencyWidget extends StatelessWidget {
                       ),
                       Text(
                         'LTCT',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: (12.sp),
                               fontWeight: FontWeight.bold,
                             ),

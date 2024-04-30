@@ -21,13 +21,13 @@ class CustomCountryCode extends StatelessWidget {
         borderRadius: BorderRadius.circular((10)),
       ),
       child: CountryCodePicker(
-        textStyle: Theme.of(context).textTheme.bodyText2,
+        textStyle: Theme.of(context).textTheme.bodyMedium,
         initialSelection: 'eg',
         dialogBackgroundColor: ColorManager.black.withOpacity(0.8),
         dialogSize: Size(60.w, 45.h),
-        dialogTextStyle: Theme.of(context).textTheme.bodyText2,
+        dialogTextStyle: Theme.of(context).textTheme.bodyMedium,
         searchDecoration: InputDecoration(
-          labelStyle: Theme.of(context).textTheme.bodyText2,
+          labelStyle: Theme.of(context).textTheme.bodyMedium,
           fillColor: ColorManager.darkWhite,
           filled: true,
           focusedBorder: OutlineInputBorder(

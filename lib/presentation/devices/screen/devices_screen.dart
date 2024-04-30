@@ -77,7 +77,7 @@ class DevicesScreen extends StatelessWidget {
                                   'Your Miners (${asicContractList.length})',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .copyWith(
                                         fontSize: 22.sp,
                                         fontWeight: FontWeight.bold,

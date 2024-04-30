@@ -19,7 +19,7 @@ class AssetsTotalWidget extends StatelessWidget {
         builder: (context, snapshot) {
           String _totalBalance = '';
           String _totalBTC = '';
-          String _totalETH ='';
+          String _totalETH = '';
           String _totalRVN = '';
           String _totalLTCT = '';
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -29,7 +29,8 @@ class AssetsTotalWidget extends StatelessWidget {
             _totalRVN = '';
             _totalLTCT = '';
           } else if (snapshot.connectionState == ConnectionState.done) {
-            _totalBalance = context.watch<AssetsCubit>().totalBalance.toString();
+            _totalBalance =
+                context.watch<AssetsCubit>().totalBalance.toString();
             _totalBTC = context.watch<AssetsCubit>().totalBTC.toString();
             _totalETH = context.watch<AssetsCubit>().totalETH.toString();
             _totalRVN = context.watch<AssetsCubit>().totalRVN.toString();
@@ -67,7 +68,7 @@ class AssetsTotalWidget extends StatelessWidget {
                         Text(
                           'Total',
                           style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     fontSize: (13.sp),
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -76,7 +77,7 @@ class AssetsTotalWidget extends StatelessWidget {
                           return Text(
                             '\$$_totalBalance',
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: (14.sp),
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -167,7 +168,7 @@ class AssetsTotalWidget extends StatelessWidget {
                               'BTC (Bitcoin)',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     fontSize: (13.sp),
                                     fontWeight: FontWeight.bold,
@@ -180,7 +181,7 @@ class AssetsTotalWidget extends StatelessWidget {
                                   '\$$_totalBTC',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .copyWith(
                                         fontSize: (13.sp),
                                       ),
@@ -194,7 +195,7 @@ class AssetsTotalWidget extends StatelessWidget {
                           children: [
                             Image.asset(
                               Strings.ethIcon,
-                             width: (6.w),
+                              width: (6.w),
                               height: (3.h),
                             ),
                             SizedBox(
@@ -204,7 +205,7 @@ class AssetsTotalWidget extends StatelessWidget {
                               'ETH (Ethereum)',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     fontSize: (13.sp),
                                     fontWeight: FontWeight.bold,
@@ -217,7 +218,7 @@ class AssetsTotalWidget extends StatelessWidget {
                                   '\$$_totalETH',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .copyWith(
                                         fontSize: (13.sp),
                                       ),
@@ -241,7 +242,7 @@ class AssetsTotalWidget extends StatelessWidget {
                               'RVN',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     fontSize: (13.sp),
                                     fontWeight: FontWeight.bold,
@@ -254,7 +255,7 @@ class AssetsTotalWidget extends StatelessWidget {
                                   '\$$_totalRVN',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .copyWith(
                                         fontSize: (13.sp),
                                       ),
@@ -278,7 +279,7 @@ class AssetsTotalWidget extends StatelessWidget {
                               'LTCT',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     fontSize: (13.sp),
                                     fontWeight: FontWeight.bold,
@@ -291,7 +292,7 @@ class AssetsTotalWidget extends StatelessWidget {
                                   '\$$_totalLTCT',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .copyWith(
                                         fontSize: (13.sp),
                                       ),

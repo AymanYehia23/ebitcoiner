@@ -50,14 +50,14 @@ class WithdrawWidget extends StatelessWidget {
                         Text(
                           'ID: $id',
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     fontSize: (11.sp),
                                   ),
                         ),
                         Text(
                           '$amount $currency',
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     fontSize: (11.sp),
                                   ),
                         ),
@@ -69,7 +69,7 @@ class WithdrawWidget extends StatelessWidget {
                         Text(
                           time,
                           style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     fontSize: (10.sp),
                                   ),
                         ),
@@ -85,7 +85,7 @@ class WithdrawWidget extends StatelessWidget {
                               status.name,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
                                     fontSize: (10.sp),
                                   ),
@@ -104,13 +104,13 @@ class WithdrawWidget extends StatelessWidget {
                   children: [
                     Text(
                       'Wallet Address',
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: (10.sp),
                           ),
                     ),
                     Text(
                       address,
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: (10.sp),
                           ),
                     ),

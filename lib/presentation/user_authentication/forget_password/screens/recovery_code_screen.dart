@@ -94,7 +94,7 @@ class _RecoveryCodeScreenState extends State<RecoveryCodeScreen> {
                   child: Text(
                     'Login',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: 13.sp,
                         ),
                   ),
@@ -130,7 +130,7 @@ class _RecoveryCodeScreenState extends State<RecoveryCodeScreen> {
                       Text(
                         'Recovery code sent!',
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 22.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -141,7 +141,7 @@ class _RecoveryCodeScreenState extends State<RecoveryCodeScreen> {
                       Text(
                         'We’ve sent the password recovery code to your email "${_forgetPasswordCubit.email.trim()}"',
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 12.sp,
                             ),
                       ),
@@ -162,7 +162,7 @@ class _RecoveryCodeScreenState extends State<RecoveryCodeScreen> {
                                 'Next',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
@@ -176,7 +176,7 @@ class _RecoveryCodeScreenState extends State<RecoveryCodeScreen> {
                                 'Next',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,

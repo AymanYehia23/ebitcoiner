@@ -77,7 +77,7 @@ class AssetsScreen extends StatelessWidget {
                           Text(
                             'Hashrate Profits',
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: (22.sp),
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -103,7 +103,7 @@ class AssetsScreen extends StatelessWidget {
                                   'Last Profits',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .copyWith(
                                         fontSize: (14.sp),
                                         fontWeight: FontWeight.bold,
@@ -142,7 +142,7 @@ class AssetsScreen extends StatelessWidget {
                                     'See mining devices',
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyText1!
+                                        .bodyLarge!
                                         .copyWith(
                                           fontSize: (12.sp),
                                           fontWeight: FontWeight.bold,
@@ -170,7 +170,7 @@ class AssetsScreen extends StatelessWidget {
                           Text(
                             'Miners Gains',
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: (22.sp),
                                       fontWeight: FontWeight.bold,
                                     ),

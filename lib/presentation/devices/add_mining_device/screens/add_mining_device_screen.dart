@@ -48,14 +48,15 @@ class BuyMiningDeviceScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                icon: const Icon(Icons.close_rounded, color: ColorManager.white),
+                icon:
+                    const Icon(Icons.close_rounded, color: ColorManager.white),
               ),
               title: Title(
                 child: Text(
                   'Buy Mining Device',
                   style: Theme.of(context)
                       .textTheme
-                      .bodyText1!
+                      .bodyLarge!
                       .copyWith(fontSize: 13.sp),
                 ),
                 color: ColorManager.white,
@@ -74,7 +75,7 @@ class BuyMiningDeviceScreen extends StatelessWidget {
                     ),
                     Text(
                       'Choose desired device',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontSize: 22.sp,
                             fontWeight: FontWeight.bold,
                           ),

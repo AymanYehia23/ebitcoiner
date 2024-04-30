@@ -30,7 +30,7 @@ class ContractPeriodWidget extends StatelessWidget {
                       radius: 8.0,
                       text: Text(
                         'Long',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 13.5.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -50,7 +50,7 @@ class ContractPeriodWidget extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Long',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 13.5.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -79,7 +79,7 @@ class ContractPeriodWidget extends StatelessWidget {
                       isFilled: false,
                       text: Text(
                         'Short',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 13.5.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -102,7 +102,7 @@ class ContractPeriodWidget extends StatelessWidget {
                         Text(
                           'Short',
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     fontSize: 13.5.sp,
                                     fontWeight: FontWeight.bold,
                                   ),

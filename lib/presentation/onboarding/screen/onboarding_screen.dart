@@ -33,7 +33,7 @@ class OnboardingScreen extends StatelessWidget {
                 Text(
                   'Get Access to Real Mining Power Without Any Extra Effort',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         fontSize: 19.sp,
                         fontWeight: FontWeight.bold,
                       ),
@@ -43,7 +43,7 @@ class OnboardingScreen extends StatelessWidget {
                   isFilled: true,
                   text: Text(
                     'Create an Account',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.bold,
                         ),
@@ -60,7 +60,7 @@ class OnboardingScreen extends StatelessWidget {
                   isFilled: false,
                   text: Text(
                     'Sign In',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.bold,
                         ),

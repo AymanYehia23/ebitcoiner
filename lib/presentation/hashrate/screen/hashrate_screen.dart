@@ -67,7 +67,7 @@ class HashRateScreen extends StatelessWidget {
                           Text(
                             'Active Plans (${context.watch<AssetsCubit>().userData.activePlans})',
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: 22.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -142,7 +142,7 @@ class HashRateScreen extends StatelessWidget {
                                         'Expired plans (${context.read<HashRateCubit>().expiredPlans.length})',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText1!
+                                            .bodyLarge!
                                             .copyWith(
                                               fontSize: 13.sp,
                                               fontWeight: FontWeight.bold,

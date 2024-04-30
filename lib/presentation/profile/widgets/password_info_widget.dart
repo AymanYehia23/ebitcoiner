@@ -24,7 +24,7 @@ class PasswordInfoWidget extends StatelessWidget {
           Expanded(
             child: Text(
               'Password',
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontSize: 19.sp,
                     fontWeight: FontWeight.bold,
                   ),
@@ -33,7 +33,7 @@ class PasswordInfoWidget extends StatelessWidget {
           Expanded(
             child: Text(
               password,
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontSize: 13.sp,
                   ),
             ),
@@ -44,7 +44,7 @@ class PasswordInfoWidget extends StatelessWidget {
               isFilled: false,
               text: Text(
                 'Change Password',
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       fontSize: 12.sp,
                     ),
               ),

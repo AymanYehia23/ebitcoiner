@@ -73,7 +73,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                 yourMinerName,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
@@ -95,7 +95,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                 'Mining Currency',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
                                       fontSize: 11.sp,
                                       fontWeight: FontWeight.bold,
@@ -119,7 +119,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                     currencyName,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyText1!
+                                        .bodyLarge!
                                         .copyWith(
                                           fontSize: 12.sp,
                                         ),
@@ -135,7 +135,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                 'Algorithm',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
                                       fontSize: 11.sp,
                                       fontWeight: FontWeight.bold,
@@ -148,7 +148,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                 algorithm,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 12.sp,
                                     ),
@@ -169,7 +169,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                 'Power',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
                                       fontSize: 11.sp,
                                       fontWeight: FontWeight.bold,
@@ -182,7 +182,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                 power,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 12.sp,
                                     ),
@@ -216,7 +216,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                     'Unit Price',
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyText2!
+                                        .bodyMedium!
                                         .copyWith(
                                           fontSize: 11.sp,
                                           fontWeight: FontWeight.bold,
@@ -229,7 +229,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                     unitPrice,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyText1!
+                                        .bodyLarge!
                                         .copyWith(
                                           fontSize: 18.sp,
                                           fontWeight: FontWeight.bold,
@@ -245,7 +245,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                     'Host Fees',
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyText2!
+                                        .bodyMedium!
                                         .copyWith(
                                           fontSize: 11.sp,
                                           fontWeight: FontWeight.bold,
@@ -258,7 +258,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                     maintenancePrice,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyText1!
+                                        .bodyLarge!
                                         .copyWith(
                                           fontSize: 18.sp,
                                           fontWeight: FontWeight.bold,
@@ -268,7 +268,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                       SizedBox(
+                      SizedBox(
                         height: 1.h,
                       ),
                       availability
@@ -279,7 +279,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                   'Buy Device',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .copyWith(
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.bold,
@@ -302,7 +302,7 @@ class BuyMiningDeviceWidget extends StatelessWidget {
                                   'Buy Device',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .copyWith(
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.bold,

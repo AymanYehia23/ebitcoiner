@@ -87,7 +87,7 @@ class _ForgetPassScreenState extends State<ForgetPasswordScreen> {
                   child: Text(
                     'Login',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: 13.sp,
                         ),
                   ),
@@ -107,7 +107,7 @@ class _ForgetPassScreenState extends State<ForgetPasswordScreen> {
                       Text(
                         'Forget Password',
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 22.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -118,7 +118,7 @@ class _ForgetPassScreenState extends State<ForgetPasswordScreen> {
                       Text(
                         'Enter your account email to send you password recovery code',
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 12.sp,
                             ),
                       ),
@@ -139,7 +139,7 @@ class _ForgetPassScreenState extends State<ForgetPasswordScreen> {
                                 'Next',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
@@ -153,7 +153,7 @@ class _ForgetPassScreenState extends State<ForgetPasswordScreen> {
                                 'Next',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,

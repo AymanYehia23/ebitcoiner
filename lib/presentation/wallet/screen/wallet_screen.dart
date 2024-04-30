@@ -72,7 +72,7 @@ class WalletScreen extends StatelessWidget {
                           Text(
                             'Your Balance',
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: 22.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -105,7 +105,7 @@ class WalletScreen extends StatelessWidget {
                                         'Deposit',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText1!
+                                            .bodyLarge!
                                             .copyWith(
                                               fontSize: (13.sp),
                                             ),
@@ -140,7 +140,7 @@ class WalletScreen extends StatelessWidget {
                                         'Withdraw',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText1!
+                                            .bodyLarge!
                                             .copyWith(
                                               fontSize: (13.sp),
                                             ),
@@ -161,7 +161,7 @@ class WalletScreen extends StatelessWidget {
                           Text(
                             'Transaction History',
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: 22.sp,
                                       fontWeight: FontWeight.bold,
                                     ),

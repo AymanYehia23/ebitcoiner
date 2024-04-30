@@ -43,7 +43,7 @@ class MinersTotalWidget extends StatelessWidget {
             children: [
               Text(
                 'Miners Total Mined',
-                style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontSize: 13.sp,
                       fontWeight: FontWeight.bold,
                     ),
@@ -51,7 +51,7 @@ class MinersTotalWidget extends StatelessWidget {
               Builder(builder: (context) {
                 return Text(
                   '${context.watch<DevicesCubit>().totalMined.toStringAsFixed(2)} GH/S',
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
                       ),

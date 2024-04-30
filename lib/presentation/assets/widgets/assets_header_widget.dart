@@ -16,7 +16,7 @@ class AssetsHeaderWidget extends StatelessWidget {
       children: [
         Text(
           'Hello👋 $userName',
-          style: Theme.of(context).textTheme.bodyText1!.copyWith(
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 fontSize: 13.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -26,7 +26,7 @@ class AssetsHeaderWidget extends StatelessWidget {
         ),
         Text(
           'Available Balance',
-          style: Theme.of(context).textTheme.bodyText1!.copyWith(
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 fontSize: 22.sp,
                 fontWeight: FontWeight.bold,
               ),

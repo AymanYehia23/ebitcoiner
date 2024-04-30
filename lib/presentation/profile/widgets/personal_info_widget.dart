@@ -26,7 +26,7 @@ class PersonalInfoWidget extends StatelessWidget {
             flex: 1,
             child: Text(
               'Personal information',
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontSize: 19.sp,
                     fontWeight: FontWeight.bold,
                   ),
@@ -66,7 +66,7 @@ class PersonalInfoWidget extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     fontSize: 13.sp,
                                   ),
@@ -92,7 +92,7 @@ class PersonalInfoWidget extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                     fontSize: 13.sp,
                                   ),
@@ -113,7 +113,7 @@ class PersonalInfoWidget extends StatelessWidget {
                 height: 6.h,
                 text: Text(
                   'Delete Account',
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         fontSize: 12.sp,
                       ),
                 ),

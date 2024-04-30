@@ -75,7 +75,7 @@ class MinersGainsWidget extends StatelessWidget {
                   ),
                   Text(
                     'Boost Your Hashrate With Private Mining Devices',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: (16.sp),
                           fontWeight: FontWeight.bold,
                           letterSpacing: (0.6),
@@ -87,7 +87,7 @@ class MinersGainsWidget extends StatelessWidget {
                   ),
                   Text(
                     'Up to 10 TH/s',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: (15.sp),
                           fontWeight: FontWeight.bold,
                           color: ColorManager.secondary,
@@ -105,7 +105,7 @@ class MinersGainsWidget extends StatelessWidget {
                         Text(
                           'See mining devices',
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     fontSize: (13.sp),
                                     fontWeight: FontWeight.bold,
                                   ),

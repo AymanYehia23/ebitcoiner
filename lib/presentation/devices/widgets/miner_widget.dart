@@ -59,7 +59,7 @@ class MinerWidget extends StatelessWidget {
                 ),
                 Text(
                   minerName,
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
                       ),
@@ -77,7 +77,7 @@ class MinerWidget extends StatelessWidget {
                     children: [
                       Text(
                         'Start Date',
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 12.sp,
                             ),
                       ),
@@ -86,7 +86,7 @@ class MinerWidget extends StatelessWidget {
                       ),
                       Text(
                         startDate,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 13.sp,
                             ),
                       )
@@ -102,7 +102,7 @@ class MinerWidget extends StatelessWidget {
                     children: [
                       Text(
                         'Host Fees',
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 12.sp,
                             ),
                       ),
@@ -111,7 +111,7 @@ class MinerWidget extends StatelessWidget {
                       ),
                       Text(
                         hostFees,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 13.sp,
                             ),
                       )
@@ -131,7 +131,7 @@ class MinerWidget extends StatelessWidget {
                     children: [
                       Text(
                         'Total Mined',
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 12.sp,
                             ),
                       ),
@@ -140,7 +140,7 @@ class MinerWidget extends StatelessWidget {
                       ),
                       Text(
                         totalMined,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 13.sp,
                             ),
                       )
@@ -156,7 +156,7 @@ class MinerWidget extends StatelessWidget {
                     children: [
                       Text(
                         'Status',
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 12.sp,
                             ),
                       ),
@@ -174,7 +174,7 @@ class MinerWidget extends StatelessWidget {
                           Text(
                             status.name,
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: 13.sp,
                                     ),
                           ),

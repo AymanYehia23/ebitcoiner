@@ -53,7 +53,7 @@ class AssetsChangeChartButton extends StatelessWidget {
                         Text(
                           'BTC',
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     fontSize: (12.sp),
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -91,7 +91,7 @@ class AssetsChangeChartButton extends StatelessWidget {
                         Text(
                           'ETH',
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     fontSize: (12.sp),
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -120,7 +120,7 @@ class AssetsChangeChartButton extends StatelessWidget {
                       children: [
                         Image.asset(
                           Strings.rvnIcon,
-                         width: (6.w),
+                          width: (6.w),
                           height: (3.5.h),
                         ),
                         SizedBox(
@@ -129,7 +129,7 @@ class AssetsChangeChartButton extends StatelessWidget {
                         Text(
                           'RVN',
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     fontSize: (12.sp),
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -169,7 +169,7 @@ class AssetsChangeChartButton extends StatelessWidget {
                         Text(
                           'LTCT',
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     fontSize: (12.sp),
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -209,7 +209,7 @@ class AssetsChangeChartButton extends StatelessWidget {
                   child: Center(
                     child: Text(
                       context.read<AssetsCubit>().getPlans()[index].id,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontSize: (10.sp),
                             fontWeight: FontWeight.bold,
                           ),

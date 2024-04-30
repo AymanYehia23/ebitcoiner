@@ -45,13 +45,13 @@ class DepositWidget extends StatelessWidget {
                 children: [
                   Text(
                     'ID: $id',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: (11.sp),
                         ),
                   ),
                   Text(
                     '$amount $currency',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: (11.sp),
                         ),
                   ),
@@ -62,7 +62,7 @@ class DepositWidget extends StatelessWidget {
                 children: [
                   Text(
                     time,
-                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: (10.sp),
                         ),
                   ),
@@ -75,7 +75,7 @@ class DepositWidget extends StatelessWidget {
                       ),
                       Text(
                         status.name,
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: (10.sp),
                             ),
                       ),

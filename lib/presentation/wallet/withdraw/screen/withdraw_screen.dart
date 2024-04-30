@@ -32,7 +32,7 @@ class WithdrawScreen extends StatelessWidget {
             backgroundColor: ColorManager.black,
             title: Text(
               'Withdraw',
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.bold,
                   ),
@@ -63,7 +63,7 @@ class WithdrawScreen extends StatelessWidget {
                         Text(
                           'Choose Currency to Withdraw',
                           style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -93,7 +93,7 @@ class WithdrawScreen extends StatelessWidget {
                                 'BTC',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
@@ -104,7 +104,7 @@ class WithdrawScreen extends StatelessWidget {
                                 '${context.watch<WithdrawCubit>().userData.balance!.btc!.toStringAsFixed(12)} BTC',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.bold,
@@ -136,7 +136,7 @@ class WithdrawScreen extends StatelessWidget {
                                 'ETH',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
@@ -147,7 +147,7 @@ class WithdrawScreen extends StatelessWidget {
                                 '${context.watch<WithdrawCubit>().userData.balance!.eth!.toStringAsFixed(12)} ETH',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.bold,
@@ -179,7 +179,7 @@ class WithdrawScreen extends StatelessWidget {
                                 'RVN',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
@@ -190,7 +190,7 @@ class WithdrawScreen extends StatelessWidget {
                                 '${context.watch<WithdrawCubit>().userData.balance!.rvn!.toStringAsFixed(12)} RVN',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.bold,
@@ -222,7 +222,7 @@ class WithdrawScreen extends StatelessWidget {
                                 'LTCT',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
@@ -233,7 +233,7 @@ class WithdrawScreen extends StatelessWidget {
                                 '${context.watch<WithdrawCubit>().userData.balance!.ltct!.toStringAsFixed(12)} LTCT',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.bold,

@@ -40,18 +40,18 @@ class DefaultTextField extends StatelessWidget {
     return TextFormField(
       decoration: InputDecoration(
         labelText: text,
-        labelStyle: Theme.of(context).textTheme.bodyText2,
+        labelStyle: Theme.of(context).textTheme.bodyMedium,
         fillColor: ColorManager.darkPurple,
         filled: true,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular((2.w)),
-          borderSide:  BorderSide(
+          borderSide: BorderSide(
             color: borderColor ?? ColorManager.white,
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular((2.w)),
-          borderSide:  BorderSide(
+          borderSide: BorderSide(
             color: borderColor ?? ColorManager.lightGray,
           ),
         ),

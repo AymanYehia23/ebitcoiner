@@ -101,7 +101,7 @@ class _FirstLogInScreenState extends State<FirstLogInScreen> {
                   },
                   child: Text(
                     'Sign Up',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: 13.sp,
                         ),
                   ),
@@ -124,7 +124,7 @@ class _FirstLogInScreenState extends State<FirstLogInScreen> {
                       Text(
                         'Login',
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontSize: 22.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -148,7 +148,7 @@ class _FirstLogInScreenState extends State<FirstLogInScreen> {
                         child: Text(
                           'Forget your Password',
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     fontSize: 11.sp,
                                     color: ColorManager.secondary,
                                     fontWeight: FontWeight.bold,
@@ -164,7 +164,7 @@ class _FirstLogInScreenState extends State<FirstLogInScreen> {
                                 'Send OTP',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
                                       fontSize: 13.sp,
                                       fontWeight: FontWeight.bold,
@@ -178,7 +178,7 @@ class _FirstLogInScreenState extends State<FirstLogInScreen> {
                                 'Send OTP',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(
                                       fontSize: 13.sp,
                                       fontWeight: FontWeight.bold,

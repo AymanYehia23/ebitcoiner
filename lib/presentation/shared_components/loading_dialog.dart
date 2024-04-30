@@ -8,9 +8,9 @@ Future loadingDialog({required BuildContext context}) {
     barrierDismissible: false,
     context: context,
     builder: (BuildContext context) {
-      return WillPopScope(
-        onWillPop: () => Future.value(false),
-        child: const Dialog(
+      return const PopScope(
+        canPop: false,
+        child: Dialog(
           child: LoadingWidget(),
           backgroundColor: ColorManager.transparent,
         ),
